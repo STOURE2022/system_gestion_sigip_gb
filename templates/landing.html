@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="pt" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIGIP·GB — Sistema de Gestão do Investimento Público</title>
+<style>
+:root {
+  --ink:     #0d1b2a;
+  --ink2:    #1b263b;
+  --paper:   #f7f5f0;
+  --teal:    #0a4d4a;
+  --teal2:   #2a6f6b;
+  --teal-bg: #e6f4f3;
+  --teal-mid:#c0e8e5;
+  --gold:    #c8961e;
+  --gold-dim:#f5e8c4;
+  --gold-bg: #fffbee;
+  --line:    #e2ddd2;
+  --muted:   #6b7280;
+  --red:     #CE1126;
+  --yellow:  #FCD116;
+  --green:   #009E49;
+  --shadow:  0 4px 24px rgba(13,27,42,.08);
+  --shadow-lg:0 12px 48px rgba(13,27,42,.12);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  background: #fff;
+  color: var(--ink);
+  line-height: 1.55;
+  font-size: 15px;
+}
+
+/* ── Flag bar ──────────────────────────────────────────── */
+.flag-bar {
+  height: 5px;
+  background: linear-gradient(90deg, var(--red) 0 33.33%, var(--yellow) 33.33% 66.66%, var(--green) 66.66%);
+}
+
+/* ── Navigation ────────────────────────────────────────── */
+nav {
+  position: sticky; top: 0; z-index: 300;
+  background: rgba(255,255,255,.96);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  height: 62px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 48px;
+  box-shadow: 0 1px 0 var(--line), 0 2px 12px rgba(13,27,42,.04);
+}
+.nav-brand {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none; flex-shrink: 0;
+}
+.nav-emblem {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: linear-gradient(145deg, var(--teal), var(--teal2));
+  display: grid; place-items: center;
+  font-weight: 800; font-size: 12px; color: #fff;
+  box-shadow: 0 2px 8px rgba(10,77,74,.3);
+  flex-shrink: 0;
+}
+.nav-text-top { font-size: 15px; font-weight: 800; color: var(--ink); letter-spacing: -.3px; }
+.nav-text-bot { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1.2px; }
+.nav-actions { display: flex; align-items: center; gap: 10px; }
+.btn-lang {
+  background: none; border: 1px solid var(--line);
+  color: var(--muted); padding: 5px 13px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; cursor: pointer;
+  font-family: inherit; letter-spacing: .5px; transition: .15s;
+}
+.btn-lang:hover { border-color: var(--gold); color: var(--ink); background: var(--gold-bg); }
+.btn-lang .active { color: var(--gold); }
+.btn-enter {
+  background: var(--teal); color: #fff; text-decoration: none;
+  padding: 9px 22px; border-radius: 22px;
+  font-size: 13px; font-weight: 700; transition: .15s;
+  display: inline-flex; align-items: center; gap: 7px;
+}
+.btn-enter:hover { background: #0d6560; transform: translateY(-1px); box-shadow: 0 4px 16px rgba(10,77,74,.25); }
+@media (max-width: 600px) {
+  nav { padding: 0 20px; }
+  .nav-text-bot { display: none; }
+}
+
+/* ── Hero ──────────────────────────────────────────────── */
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr;
+  align-items: center; gap: 40px;
+  padding: 40px 60px;
+  background: linear-gradient(150deg, #f9fffe 0%, #f0faf9 50%, #fefdf6 100%);
+  position: relative; overflow: hidden;
+}
+.hero::before {
+  content: ""; position: absolute; top: -160px; right: -100px;
+  width: 560px; height: 560px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(10,77,74,.06) 0%, transparent 68%);
+  pointer-events: none;
+}
+.hero::after {
+  content: ""; position: absolute; bottom: -120px; left: 120px;
+  width: 420px; height: 420px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,150,30,.06) 0%, transparent 68%);
+  pointer-events: none;
+}
+.hero-content { position: relative; z-index: 1; }
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--teal-bg); color: var(--teal2);
+  border: 1px solid var(--teal-mid);
+  padding: 5px 12px; border-radius: 20px;
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;
+  margin-bottom: 16px;
+}
+.hero-tag .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+h1 {
+  font-size: clamp(36px, 5.5vw, 60px);
+  font-weight: 800; line-height: 1.04; letter-spacing: -2px;
+  color: var(--ink); margin-bottom: 12px;
+}
+h1 .accent {
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal2) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.hero-desc {
+  font-size: 15px; color: var(--muted); line-height: 1.65;
+  max-width: 500px; margin-bottom: 24px;
+}
+.hero-btns { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px; }
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--teal); color: #fff; text-decoration: none;
+  padding: 11px 26px; border-radius: 50px; font-size: 14px; font-weight: 700;
+  box-shadow: 0 4px 16px rgba(10,77,74,.25); transition: .2s;
+}
+.btn-primary:hover { background: #0d6560; transform: translateY(-2px); box-shadow: 0 10px 28px rgba(10,77,74,.32); }
+.btn-primary .arr { transition: transform .2s; font-size: 16px; }
+.btn-primary:hover .arr { transform: translateX(4px); }
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; color: var(--ink2); text-decoration: none;
+  padding: 11px 22px; border-radius: 50px; font-size: 13px; font-weight: 600;
+  border: 1.5px solid var(--line); transition: .2s;
+}
+.btn-secondary:hover { border-color: var(--gold); background: var(--gold-bg); transform: translateY(-2px); }
+.hero-trust { display: flex; gap: 24px; flex-wrap: wrap; }
+.trust-item { display: flex; align-items: center; gap: 8px; font-size: 12.5px; color: var(--muted); }
+.trust-icon {
+  width: 28px; height: 28px; border-radius: 7px; background: var(--teal-bg);
+  display: grid; place-items: center; font-size: 13px; flex-shrink: 0;
+}
+@media (max-width: 960px) {
+  .hero { grid-template-columns: 1fr; padding: 32px 24px; text-align: center; gap: 32px; }
+  .hero-desc { margin-left: auto; margin-right: auto; }
+  .hero-btns { justify-content: center; }
+  .hero-trust { justify-content: center; }
+  .hero-panel { display: none; }
+}
+
+/* ── Mock panel ────────────────────────────────────────── */
+.hero-panel { position: relative; z-index: 1; }
+.panel-card {
+  background: #fff; border-radius: 18px;
+  border: 1px solid var(--line); box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+.panel-header {
+  background: var(--teal); padding: 14px 20px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.panel-header-title { color: rgba(255,255,255,.9); font-size: 12px; font-weight: 700; letter-spacing: .5px; }
+.panel-dots { display: flex; gap: 5px; }
+.panel-dots span { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,.25); }
+.panel-body { padding: 20px; }
+.kpi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 18px; }
+.kpi { background: var(--paper); border-radius: 10px; padding: 13px 15px; border: 1px solid var(--line); }
+.kpi-val { font-size: 21px; font-weight: 800; color: var(--ink); }
+.kpi-label { font-size: 9.5px; color: var(--muted); text-transform: uppercase; letter-spacing: .8px; margin-top: 2px; }
+.kpi-sub { font-size: 10px; color: var(--teal2); font-weight: 600; margin-top: 4px; }
+.bar-list { display: flex; flex-direction: column; gap: 8px; }
+.bar-row { display: flex; align-items: center; gap: 8px; font-size: 11px; }
+.bar-name { width: 72px; flex-shrink: 0; color: var(--ink2); font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.bar-track { flex: 1; height: 10px; background: #ede9e0; border-radius: 5px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 5px; background: linear-gradient(90deg, var(--teal), var(--teal2)); }
+.bar-val { font-weight: 700; color: var(--ink); white-space: nowrap; font-size: 10px; width: 56px; text-align: right; }
+.status-row { display: flex; gap: 6px; margin-top: 16px; flex-wrap: wrap; }
+.status-chip { padding: 3px 10px; border-radius: 10px; font-size: 10px; font-weight: 700; }
+.chip-r { background: #dbeafe; color: #1d4ed8; }
+.chip-s { background: #fef3c7; color: #92400e; }
+.chip-v { background: #d1fae5; color: #065f46; }
+.panel-glow {
+  position: absolute; bottom: -24px; left: 10%; right: 10%; height: 40px;
+  background: radial-gradient(ellipse, rgba(10,77,74,.14) 0%, transparent 70%);
+  filter: blur(12px);
+}
+
+/* ── Stats band ────────────────────────────────────────── */
+.stats-band {
+  background: var(--paper);
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  display: flex; justify-content: center; flex-wrap: wrap;
+}
+.stat-item {
+  padding: 18px 48px; text-align: center;
+  border-right: 1px solid var(--line);
+  position: relative;
+}
+.stat-item:last-child { border-right: none; }
+.stat-item:first-child::before {
+  content: ""; position: absolute; left: 0; top: 50%;
+  transform: translateY(-50%); width: 3px; height: 32px;
+  background: var(--teal); border-radius: 2px;
+}
+.stat-val { font-size: 26px; font-weight: 800; color: var(--teal); font-variant-numeric: tabular-nums; }
+.stat-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 3px; }
+@media (max-width: 700px) {
+  .stat-item { padding: 14px 24px; border-right: none; border-bottom: 1px solid var(--line); }
+  .stat-item:last-child { border-bottom: none; }
+  .stat-item:first-child::before { display: none; }
+}
+
+/* ── Sections ──────────────────────────────────────────── */
+.section { padding: 52px 48px; }
+.container { max-width: 1100px; margin: 0 auto; }
+.eyebrow { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--teal2); font-weight: 700; margin-bottom: 6px; }
+.sec-title { font-size: clamp(20px, 3vw, 26px); font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.sec-sub { font-size: 13.5px; color: var(--muted); line-height: 1.65; max-width: 540px; margin-bottom: 28px; }
+
+/* ── Features grid ─────────────────────────────────────── */
+.feat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+@media (max-width: 900px) { .feat-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 560px) { .feat-grid { grid-template-columns: 1fr; } }
+.feat-card {
+  background: #fff; border: 1.5px solid var(--line); border-radius: 14px;
+  padding: 26px 24px; box-shadow: 0 1px 4px rgba(13,27,42,.05);
+  transition: .2s; display: flex; flex-direction: column;
+}
+.feat-card:hover { box-shadow: var(--shadow); border-color: var(--teal-mid); transform: translateY(-3px); }
+.feat-icon {
+  width: 46px; height: 46px; border-radius: 11px; background: var(--teal-bg);
+  display: grid; place-items: center; font-size: 20px; margin-bottom: 16px;
+}
+.feat-card h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 7px; }
+.feat-card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+/* ── Role cards ────────────────────────────────────────── */
+.roles-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; align-items: stretch;
+}
+@media (max-width: 820px) { .roles-grid { grid-template-columns: 1fr; } }
+.role-card {
+  border-radius: 16px; padding: 28px 22px;
+  text-align: center; border: 2px solid transparent;
+  display: flex; flex-direction: column;
+  transition: .2s;
+}
+.role-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+.role-card.agent { background: linear-gradient(145deg, #eff6ff, #dbeafe); border-color: #bfdbfe; }
+.role-card.dgp   { background: linear-gradient(145deg, #ecfdf5, #d1fae5); border-color: #a7f3d0; }
+.role-card.admin { background: linear-gradient(145deg, var(--gold-bg), var(--gold-dim)); border-color: #fde68a; }
+.role-icon {
+  width: 56px; height: 56px; border-radius: 50%; background: #fff;
+  margin: 0 auto 14px; display: grid; place-items: center; font-size: 24px;
+}
+.role-card.agent .role-icon { box-shadow: 0 4px 14px rgba(59,130,246,.2); }
+.role-card.dgp   .role-icon { box-shadow: 0 4px 14px rgba(10,77,74,.2); }
+.role-card.admin .role-icon { box-shadow: 0 4px 14px rgba(200,150,30,.2); }
+.role-card h3 { font-size: 15px; font-weight: 700; color: var(--ink); margin-bottom: 8px; }
+.role-card p { font-size: 12.5px; color: #374151; line-height: 1.6; }
+.role-btn {
+  display: block; width: fit-content;
+  margin-top: auto; margin-left: auto; margin-right: auto;
+  padding: 9px 24px; padding-top: 18px;
+  border-radius: 50px; font-size: 12.5px; font-weight: 700;
+  text-decoration: none; transition: .15s;
+}
+.role-card.agent .role-btn { background: #1d4ed8; color: #fff; }
+.role-card.agent .role-btn:hover { background: #1e40af; }
+.role-card.dgp   .role-btn { background: var(--teal); color: #fff; }
+.role-card.dgp   .role-btn:hover { background: #0d6560; }
+.role-card.admin .role-btn { background: var(--gold); color: #fff; }
+.role-card.admin .role-btn:hover { background: #a87818; }
+
+/* ── CTA section ───────────────────────────────────────── */
+.cta-section {
+  background: var(--teal); padding: 52px 48px; text-align: center;
+  position: relative; overflow: hidden;
+}
+.cta-section::before {
+  content: ""; position: absolute; top: -100px; right: -100px;
+  width: 360px; height: 360px; border-radius: 50%;
+  background: rgba(255,255,255,.05);
+}
+.cta-section::after {
+  content: ""; position: absolute; bottom: -100px; left: -100px;
+  width: 400px; height: 400px; border-radius: 50%;
+  background: rgba(255,255,255,.04);
+}
+.cta-section h2 {
+  font-size: clamp(22px, 4vw, 34px); font-weight: 800;
+  color: #fff; margin-bottom: 14px; position: relative; z-index: 1;
+}
+.cta-section p {
+  font-size: 14px; color: rgba(255,255,255,.7);
+  max-width: 460px; margin: 0 auto 28px; line-height: 1.65;
+  position: relative; z-index: 1;
+}
+.cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; position: relative; z-index: 1; }
+.btn-white {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #fff; color: var(--teal); text-decoration: none;
+  padding: 11px 26px; border-radius: 50px; font-size: 14px; font-weight: 700;
+  box-shadow: 0 4px 16px rgba(0,0,0,.12); transition: .2s;
+}
+.btn-white:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,.18); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(255,255,255,.1); color: #fff; text-decoration: none;
+  padding: 11px 22px; border-radius: 50px; font-size: 13px; font-weight: 600;
+  border: 1.5px solid rgba(255,255,255,.25); transition: .2s;
+}
+.btn-ghost:hover { background: rgba(255,255,255,.18); }
+
+/* ── Footer ────────────────────────────────────────────── */
+footer {
+  background: var(--ink); color: rgba(255,255,255,.4);
+  padding: 24px 48px; text-align: center;
+  font-size: 12px; line-height: 1.8;
+}
+footer strong { color: rgba(255,255,255,.8); }
+</style>
+</head>
+<body>
+
+<div class="flag-bar"></div>
+
+<nav>
+  <a href="/" class="nav-brand">
+    <div class="nav-emblem">GB</div>
+    <div>
+      <div class="nav-text-top">SIGIP&middot;GB</div>
+      <div class="nav-text-bot" data-i18n="tagline">Gestão do Investimento Público</div>
+    </div>
+  </a>
+  <div class="nav-actions">
+    <button class="btn-lang" onclick="toggleLang()">
+      <span id="l1" class="active">PT</span> | <span id="l2">FR</span>
+    </button>
+    <a href="/app/" class="btn-enter">
+      <span data-i18n="nav_enter">Aceder</span> &#8594;
+    </a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-tag">
+      <span class="dot"></span>
+      <span data-i18n="hero_pill">PIP 2026–2030 · Plano Nacional de Desenvolvimento</span>
+    </div>
+    <h1><span class="accent">SIGIP</span>&middot;GB</h1>
+    <p class="hero-desc" data-i18n="hero_desc">
+      A plataforma digital do Governo da Guiné-Bissau para gerir os 631 mil milhões FCFA do Programa de Investimento Público 2026–2030.
+    </p>
+    <div class="hero-btns">
+      <a href="/app/" class="btn-primary">
+        <span data-i18n="cta_enter">Aceder ao Sistema</span>
+        <span class="arr">&#8594;</span>
+      </a>
+      <a href="/admin/" class="btn-secondary">
+        &#9881; <span data-i18n="cta_admin">Administração</span>
+      </a>
+    </div>
+    <div class="hero-trust">
+      <div class="trust-item"><div class="trust-icon">&#128274;</div><span data-i18n="t1">Acesso seguro</span></div>
+      <div class="trust-item"><div class="trust-icon">&#127963;</div><span data-i18n="t2">26 ministérios</span></div>
+      <div class="trust-item"><div class="trust-icon">&#9989;</div><span data-i18n="t3">292 projectos</span></div>
+    </div>
+  </div>
+
+  <div class="hero-panel">
+    <div style="position:relative">
+      <div class="panel-card">
+        <div class="panel-header">
+          <span class="panel-header-title">SIGIP&middot;GB &mdash; Painel Nacional</span>
+          <div class="panel-dots"><span></span><span></span><span></span></div>
+        </div>
+        <div class="panel-body">
+          <div class="kpi-grid">
+            <div class="kpi">
+              <div class="kpi-val">631 Md</div>
+              <div class="kpi-label" data-i18n="k1">Total PIP</div>
+              <div class="kpi-sub">FCFA 2026–2030</div>
+            </div>
+            <div class="kpi">
+              <div class="kpi-val">292</div>
+              <div class="kpi-label" data-i18n="k2">Projectos</div>
+              <div class="kpi-sub" data-i18n="k2s">26 ministérios</div>
+            </div>
+          </div>
+          <div class="bar-list">
+            <div class="bar-row">
+              <span class="bar-name">Trav. Pub.</span>
+              <div class="bar-track"><div class="bar-fill" style="width:91%"></div></div>
+              <span class="bar-val">97 100 M</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MINEDU</span>
+              <div class="bar-track"><div class="bar-fill" style="width:82%"></div></div>
+              <span class="bar-val">87 200 M</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MINSAUDE</span>
+              <div class="bar-track"><div class="bar-fill" style="width:64%"></div></div>
+              <span class="bar-val">68 400 M</span>
+            </div>
+            <div class="bar-row">
+              <span class="bar-name">MADR</span>
+              <div class="bar-track"><div class="bar-fill" style="width:48%"></div></div>
+              <span class="bar-val">51 300 M</span>
+            </div>
+          </div>
+          <div class="status-row">
+            <span class="status-chip chip-r" data-i18n="st_r">Rascunho 48</span>
+            <span class="status-chip chip-s" data-i18n="st_s">Submetido 31</span>
+            <span class="status-chip chip-v" data-i18n="st_v">Validado 213</span>
+          </div>
+        </div>
+      </div>
+      <div class="panel-glow"></div>
+    </div>
+  </div>
+</section>
+
+<div class="stats-band">
+  <div class="stat-item">
+    <div class="stat-val">292</div>
+    <div class="stat-label" data-i18n="s1">Projectos PIP</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">631 Md</div>
+    <div class="stat-label" data-i18n="s2">FCFA programados</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">2026–2030</div>
+    <div class="stat-label" data-i18n="s3">Horizonte PND</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-val">26</div>
+    <div class="stat-label" data-i18n="s4">Ministérios</div>
+  </div>
+</div>
+
+<section class="section" style="background:#fff">
+  <div class="container">
+    <div class="eyebrow" data-i18n="ey_feat">Funcionalidades</div>
+    <div class="sec-title" data-i18n="feat_title">Tudo o que precisa para gerir o PIP</div>
+    <p class="sec-sub" data-i18n="feat_sub">Do rascunho ao orçamento validado — uma plataforma integrada para todos os actores.</p>
+    <div class="feat-grid">
+      <div class="feat-card">
+        <div class="feat-icon">&#128202;</div>
+        <h4 data-i18n="f1t">Painel Nacional</h4>
+        <p data-i18n="f1d">KPIs em tempo real, gráficos por ministério, estrutura de financiamento e trajectória 2026–2030.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#9999;&#65039;</div>
+        <h4 data-i18n="f2t">Saisie Contínua</h4>
+        <p data-i18n="f2d">Os ministérios inserem e actualizam os seus projectos directamente na plataforma.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#9989;</div>
+        <h4 data-i18n="f3t">Validação DGP</h4>
+        <p data-i18n="f3d">Fluxo Rascunho → Submetido → Validado com rejeição e notas motivadas.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#128197;</div>
+        <h4 data-i18n="f4t">Programação Plurianual</h4>
+        <p data-i18n="f4d">Montantes anuais por fonte (donativos, empréstimos, Estado) para cada projecto.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#128274;</div>
+        <h4 data-i18n="f5t">Isolamento Ministerial</h4>
+        <p data-i18n="f5d">Cada agente vê e edita apenas os projectos do seu ministério. Zero acesso cruzado.</p>
+      </div>
+      <div class="feat-card">
+        <div class="feat-icon">&#128203;</div>
+        <h4 data-i18n="f6t">Auditoria Integral</h4>
+        <p data-i18n="f6d">Cada acção é registada: quem, quando, o quê. Rastreabilidade total.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--paper)">
+  <div class="container">
+    <div class="eyebrow" data-i18n="ey_roles">Perfis de Acesso</div>
+    <div class="sec-title" data-i18n="roles_title">Feito para cada função</div>
+    <p class="sec-sub" data-i18n="roles_sub">Três perfis distintos com permissões e interfaces adaptadas.</p>
+    <div class="roles-grid">
+      <div class="role-card agent">
+        <div class="role-icon">&#127963;</div>
+        <h3 data-i18n="r1t">Agente Ministerial</h3>
+        <p data-i18n="r1d">Cria, edita e submete os projectos do seu ministério. Preenche a programação 2026–2030 e acompanha o estado de validação.</p>
+        <a href="/app/" class="role-btn" data-i18n="btn_enter">Aceder</a>
+      </div>
+      <div class="role-card dgp">
+        <div class="role-icon">&#128203;</div>
+        <h3 data-i18n="r2t">Analista DGP</h3>
+        <p data-i18n="r2d">Consolida e valida a carteira nacional. Acede a todos os ministérios, valida, rejeita e analisa o PIP completo.</p>
+        <a href="/app/" class="role-btn" data-i18n="btn_enter">Aceder</a>
+      </div>
+      <div class="role-card admin">
+        <div class="role-icon">&#9881;&#65039;</div>
+        <h3 data-i18n="r3t">Administrador</h3>
+        <p data-i18n="r3d">Gere utilizadores, ministérios, financiadores e todos os dados de referência do sistema.</p>
+        <a href="/admin/" class="role-btn" data-i18n="btn_admin">Painel Admin</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section">
+  <h2 data-i18n="cta_title">Pronto para entrar?</h2>
+  <p data-i18n="cta_desc">Aceda à plataforma SIGIP·GB com as suas credenciais institucionais e comece a gerir o investimento público da Guiné-Bissau.</p>
+  <div class="cta-btns">
+    <a href="/app/" class="btn-white">
+      <span data-i18n="cta_enter">Aceder ao Sistema</span> &#8594;
+    </a>
+    <a href="/admin/" class="btn-ghost">
+      &#9881; <span data-i18n="cta_admin">Administração</span>
+    </a>
+  </div>
+</div>
+
+<div class="flag-bar"></div>
+<footer>
+  <strong>SIGIP&middot;GB</strong> &mdash;
+  <span data-i18n="foot1">Sistema de Gestão do Investimento Público</span><br>
+  <span data-i18n="foot2">Direcção-Geral do Plano &mdash; República da Guiné-Bissau &mdash; PIP 2026–2030</span>
+</footer>
+
+<script>
+const I18N = {
+  pt: {
+    tagline:     'Gestão do Investimento Público',
+    nav_enter:   'Aceder',
+    hero_pill:   'PIP 2026–2030 · Plano Nacional de Desenvolvimento',
+    hero_desc:   'A plataforma digital do Governo da Guiné-Bissau para gerir os 631 mil milhões FCFA do Programa de Investimento Público 2026–2030.',
+    cta_enter:   'Aceder ao Sistema', cta_admin: 'Administração',
+    t1: 'Acesso seguro', t2: '26 ministérios', t3: '292 projectos',
+    k1: 'Total PIP', k2: 'Projectos', k2s: '26 ministérios',
+    st_r: 'Rascunho 48', st_s: 'Submetido 31', st_v: 'Validado 213',
+    s1: 'Projectos PIP', s2: 'FCFA programados', s3: 'Horizonte PND', s4: 'Ministérios',
+    ey_feat: 'Funcionalidades',
+    feat_title: 'Tudo o que precisa para gerir o PIP',
+    feat_sub: 'Do rascunho ao orçamento validado — uma plataforma integrada para todos os actores.',
+    f1t: 'Painel Nacional',        f1d: 'KPIs em tempo real, gráficos por ministério, estrutura de financiamento e trajectória 2026–2030.',
+    f2t: 'Saisie Contínua',        f2d: 'Os ministérios inserem e actualizam os seus projectos directamente na plataforma.',
+    f3t: 'Validação DGP',          f3d: 'Fluxo Rascunho → Submetido → Validado com rejeição e notas motivadas.',
+    f4t: 'Programação Plurianual', f4d: 'Montantes anuais por fonte (donativos, empréstimos, Estado) para cada projecto.',
+    f5t: 'Isolamento Ministerial', f5d: 'Cada agente vê e edita apenas os projectos do seu ministério. Zero acesso cruzado.',
+    f6t: 'Auditoria Integral',     f6d: 'Cada acção é registada: quem, quando, o quê. Rastreabilidade total.',
+    ey_roles: 'Perfis de Acesso', roles_title: 'Feito para cada função',
+    roles_sub: 'Três perfis distintos com permissões e interfaces adaptadas.',
+    r1t: 'Agente Ministerial', r1d: 'Cria, edita e submete os projectos do seu ministério. Preenche a programação 2026–2030 e acompanha o estado de validação.',
+    r2t: 'Analista DGP',       r2d: 'Consolida e valida a carteira nacional. Acede a todos os ministérios, valida, rejeita e analisa o PIP completo.',
+    r3t: 'Administrador',      r3d: 'Gere utilizadores, ministérios, financiadores e todos os dados de referência do sistema.',
+    btn_enter: 'Aceder', btn_admin: 'Painel Admin',
+    cta_title: 'Pronto para entrar?',
+    cta_desc: 'Aceda à plataforma SIGIP·GB com as suas credenciais institucionais e comece a gerir o investimento público da Guiné-Bissau.',
+    foot1: 'Sistema de Gestão do Investimento Público',
+    foot2: 'Direcção-Geral do Plano — República da Guiné-Bissau — PIP 2026–2030',
+  },
+  fr: {
+    tagline:     "Gestion de l'Investissement Public",
+    nav_enter:   'Accéder',
+    hero_pill:   'PIP 2026–2030 · Plan National de Développement',
+    hero_desc:   "La plateforme numérique du Gouvernement de Guinée-Bissau pour gérer les 631 milliards FCFA du Programme d'Investissement Public 2026–2030.",
+    cta_enter:   'Accéder au Système', cta_admin: 'Administration',
+    t1: 'Accès sécurisé', t2: '26 ministères', t3: '292 projets',
+    k1: 'Total PIP', k2: 'Projets', k2s: '26 ministères',
+    st_r: 'Brouillon 48', st_s: 'Soumis 31', st_v: 'Validé 213',
+    s1: 'Projets PIP', s2: 'FCFA programmés', s3: 'Horizon PND', s4: 'Ministères',
+    ey_feat: 'Fonctionnalités',
+    feat_title: "Tout ce qu'il faut pour gérer le PIP",
+    feat_sub: 'Du brouillon au budget validé — une plateforme intégrée pour tous les acteurs.',
+    f1t: 'Tableau de Bord',            f1d: "KPIs en temps réel, graphiques par ministère, structure de financement et trajectoire 2026–2030.",
+    f2t: 'Saisie Continue',            f2d: "Les ministères saisissent et mettent à jour leurs projets directement dans la plateforme.",
+    f3t: 'Validation DGP',             f3d: "Flux Brouillon → Soumis → Validé avec rejet et notes motivées.",
+    f4t: 'Programmation Pluriannuelle', f4d: "Montants annuels par source (dons, prêts, État) pour chaque projet.",
+    f5t: 'Isolation Ministérielle',    f5d: "Chaque agent ne voit et ne modifie que les projets de son ministère. Zéro accès croisé.",
+    f6t: 'Audit Intégral',             f6d: "Chaque action est enregistrée : qui, quand, quoi. Traçabilité totale.",
+    ey_roles: "Profils d'Accès", roles_title: 'Conçu pour chaque fonction',
+    roles_sub: 'Trois profils distincts avec permissions et interfaces adaptées.',
+    r1t: 'Agent Ministériel', r1d: "Crée, modifie et soumet les projets de son ministère. Renseigne la programmation 2026–2030 et suit l'état de validation.",
+    r2t: 'Analyste DGP',      r2d: "Consolide et valide le portefeuille national. Accède à tous les ministères, valide, rejette et analyse le PIP complet.",
+    r3t: 'Administrateur',    r3d: "Gère les utilisateurs, les ministères, les financeurs et toutes les données de référence du système.",
+    btn_enter: 'Accéder', btn_admin: 'Panneau Admin',
+    cta_title: 'Prêt à vous connecter ?',
+    cta_desc: "Accédez à la plateforme SIGIP·GB avec vos identifiants institutionnels et commencez à gérer l'investissement public de Guinée-Bissau.",
+    foot1: "Système de Gestion de l'Investissement Public",
+    foot2: 'Direction Générale du Plan — République de Guinée-Bissau — PIP 2026–2030',
+  }
+};
+
+let lang = localStorage.getItem('sigip_lang') || 'pt';
+function T(k) { return I18N[lang]?.[k] ?? I18N.pt[k] ?? k; }
+function applyLang(l) {
+  lang = l;
+  localStorage.setItem('sigip_lang', l);
+  document.getElementById('html-root').lang = l;
+  document.getElementById('l1').className = l === 'pt' ? 'active' : '';
+  document.getElementById('l2').className = l === 'fr' ? 'active' : '';
+  document.querySelectorAll('[data-i18n]').forEach(el => { el.innerHTML = T(el.dataset.i18n); });
+}
+function toggleLang() { applyLang(lang === 'pt' ? 'fr' : 'pt'); }
+applyLang(lang);
+</script>
+</body>
+</html>

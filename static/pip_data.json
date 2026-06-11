@@ -1,0 +1,5550 @@
+[
+  {
+    "code": "111920101",
+    "nome": "Projeto De Reforço De Capacidade Da Assembleia Nacional Popular",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "ASSEMBLEIA NACIONAL POPULAR",
+    "min_abbr": "ANP",
+    "total": 0,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 1,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "111920201",
+    "nome": "Reforço De Capacidade  De Assembleia Nacional Popular",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "ASSENBLEIA NACIONALPPUILAR",
+    "min_abbr": "Assenbleia Naciona",
+    "total": 275000,
+    "anos": {
+      "2026": 0,
+      "2027": 50000,
+      "2028": 75000,
+      "2029": 75000,
+      "2030": 75000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 275000
+  },
+  {
+    "code": "343920101",
+    "nome": "Projecto De Apoio A Gestão De Administração Pública- Pagap (Funcionamento De Comite De Pilotagem)",
+    "financiador": "BAD",
+    "fin_norm": "BAD",
+    "ministerio": "MINISTÉRIO DA PRESIDENCIA DO CONSELHO DE MINISTROS",
+    "min_abbr": "Presidência CM",
+    "total": 186000,
+    "anos": {
+      "2026": 10000,
+      "2027": 50000,
+      "2028": 42000,
+      "2029": 42000,
+      "2030": 42000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 186000
+  },
+  {
+    "code": "611920803",
+    "nome": "Projecto Apoio Ao Secretariado  Nacional De Luta Contra Sida  Na Coordenacao Da Resposta Nacional Do Vih/Sida",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA PRESIDENCIA DO CONSELHO DE MINISTROS",
+    "min_abbr": "Presidência CM",
+    "total": 220000,
+    "anos": {
+      "2026": 30000,
+      "2027": 100000,
+      "2028": 30000,
+      "2029": 30000,
+      "2030": 30000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 220000
+  },
+  {
+    "code": "611921202",
+    "nome": "Projecto Compras De Medicamentos \"Cecom\"",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA PRESIDENCIA DO CONSELHO DE MINISTROS",
+    "min_abbr": "Presidência CM",
+    "total": 2550000,
+    "anos": {
+      "2026": 50000,
+      "2027": 1000000,
+      "2028": 500000,
+      "2029": 500000,
+      "2030": 500000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 2550000
+  },
+  {
+    "code": "822930893",
+    "nome": "Projecto De Diversificação Da Agricultura Familiar, Mercados Integrados E Da Nutrição Face As Mudanças Climaticas Na Gb (Rede) I",
+    "financiador": "FIDA",
+    "fin_norm": "FIDA",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 9193536,
+    "anos": {
+      "2026": 2073536,
+      "2027": 1420000,
+      "2028": 600000,
+      "2029": 1600000,
+      "2030": 3500000
+    },
+    "don": 1619473,
+    "empr": 3174063,
+    "interno": 4400000
+  },
+  {
+    "code": "822930793",
+    "nome": "Projecto Apoio Ao Desenvolvimento Económico Das Regiões Sul \"Pades\"",
+    "financiador": "FIDA",
+    "fin_norm": "FIDA",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 8384249,
+    "anos": {
+      "2026": 865499,
+      "2027": 1730000,
+      "2028": 746250,
+      "2029": 1596250,
+      "2030": 3446250
+    },
+    "don": 2185499,
+    "empr": 2218750,
+    "interno": 3980000
+  },
+  {
+    "code": "832940192",
+    "nome": "Projecto De Apoio Intensificaçao Produçao Alimentar Na Guine-Bissau (Paipv)",
+    "financiador": "BOAD",
+    "fin_norm": "BOAD",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 7680600,
+    "anos": {
+      "2026": 1427500,
+      "2027": 1373100,
+      "2028": 960000,
+      "2029": 2960000,
+      "2030": 960000
+    },
+    "don": 2600000,
+    "empr": 2802500,
+    "interno": 2278100
+  },
+  {
+    "code": "821933395",
+    "nome": "Projecto De Apoio As Cadeias De Valores E Ao Empresariado Agricola E Rural (Pacvear)",
+    "financiador": "BAD",
+    "fin_norm": "BAD",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 4857500,
+    "anos": {
+      "2026": 1303000,
+      "2027": 1150000,
+      "2028": 634833,
+      "2029": 1134833,
+      "2030": 634833
+    },
+    "don": 3114500,
+    "empr": 778000,
+    "interno": 965000
+  },
+  {
+    "code": "821933495",
+    "nome": "Projecto De Apoio As Cadeias De Valores E Ao Empresariado Agricola E Rural (Pacvear) Gafsp (Fundo Adicional)",
+    "financiador": "BAD/CILS",
+    "fin_norm": "BAD/CILS",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 3831000,
+    "anos": {
+      "2026": 949000,
+      "2027": 638000,
+      "2028": 608000,
+      "2029": 678000,
+      "2030": 958000
+    },
+    "don": 3161000,
+    "empr": 0,
+    "interno": 670000
+  },
+  {
+    "code": "811940301",
+    "nome": "Projecto De Apoio  Autonomização E Inclusão Financeira Das Mulheres E De Jovens Nas Fileiras De Cajú,Frutas  E Legumes \"Paif\"",
+    "financiador": "BAD/FAD",
+    "fin_norm": "BAD/FAD",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 3436000,
+    "anos": {
+      "2026": 796000,
+      "2027": 1450000,
+      "2028": 30000,
+      "2029": 130000,
+      "2030": 1030000
+    },
+    "don": 0,
+    "empr": 1676000,
+    "interno": 1760000
+  },
+  {
+    "code": "811940601",
+    "nome": "Projecto De Apoio A Resiliencia Dos Agrupamentos  E Exploração Agricolas (Pargea)",
+    "financiador": "BAD",
+    "fin_norm": "BAD",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 968505,
+    "anos": {
+      "2026": 218505,
+      "2027": 300000,
+      "2028": 150000,
+      "2029": 150000,
+      "2030": 150000
+    },
+    "don": 968505,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "829929101",
+    "nome": "Projecto De Apoio A Agricultura No Quadro Da Cooperação Sul$Sul Gbs",
+    "financiador": "MRC/FAO",
+    "fin_norm": "MRC/FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 82863,
+    "anos": {
+      "2026": 16573,
+      "2027": 16573,
+      "2028": 16573,
+      "2029": 16573,
+      "2030": 16573
+    },
+    "don": 82863,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "829940101",
+    "nome": "Projecto Recenciamento Geral Da Agricultura E Pecuaria",
+    "financiador": "FAO",
+    "fin_norm": "FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 896000,
+    "anos": {
+      "2026": 256000,
+      "2027": 256000,
+      "2028": 128000,
+      "2029": 128000,
+      "2030": 128000
+    },
+    "don": 896000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "661310194",
+    "nome": "Projecto Pbf ''Prevenção De Conflitos De Recursos Naturais Relacionados Com A Apastoricia E Transumancia Nas Regioes De Bafata E Gabu''",
+    "financiador": "PBF/FAO",
+    "fin_norm": "PBF/FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 250000,
+    "anos": {
+      "2026": 50000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 250000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "661310292",
+    "nome": "Projecto Pbf ''Projetos De Gestão Pacifica E Inclusiva Da Terra Nas Regiões De Oio, Cacheu E Biombo''",
+    "financiador": "PBF/FAO",
+    "fin_norm": "PBF/FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 805000,
+    "anos": {
+      "2026": 230000,
+      "2027": 230000,
+      "2028": 115000,
+      "2029": 115000,
+      "2030": 115000
+    },
+    "don": 805000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "832490101",
+    "nome": "Projecto De Aoio Ao Controlo De Doenças, Pragas E Parasitas Do Caju Na Guiné-Bissau",
+    "financiador": "FAO",
+    "fin_norm": "FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 420000,
+    "anos": {
+      "2026": 120000,
+      "2027": 120000,
+      "2028": 60000,
+      "2029": 60000,
+      "2030": 60000
+    },
+    "don": 420000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "822990101",
+    "nome": "Projecto De Apoio Ao Reforço Das Capacidades E Operacionalização Do Laboratorio Nacional De Solos Na Guine-Bissau",
+    "financiador": "FAO",
+    "fin_norm": "FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 505000,
+    "anos": {
+      "2026": 101000,
+      "2027": 101000,
+      "2028": 101000,
+      "2029": 101000,
+      "2030": 101000
+    },
+    "don": 505000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "821930192",
+    "nome": "Projecto De Iniciativa Mão Na Mão Para Melhoria Da Segurança Alimentar Nas Regiões De Gabu, Oio E Biombo",
+    "financiador": "FAO",
+    "fin_norm": "FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 1172500,
+    "anos": {
+      "2026": 335000,
+      "2027": 335000,
+      "2028": 167500,
+      "2029": 167500,
+      "2030": 167500
+    },
+    "don": 1172500,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "841990201",
+    "nome": "Projecto De Apoio A Cadeia De Sementes E Plantas De Especies Lenhosas Agroflorestais",
+    "financiador": "FAO",
+    "fin_norm": "FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 645000,
+    "anos": {
+      "2026": 125000,
+      "2027": 130000,
+      "2028": 130000,
+      "2029": 130000,
+      "2030": 130000
+    },
+    "don": 645000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "829990201",
+    "nome": "Projecto De Gestão De Emergencia",
+    "financiador": "PAM/FAO",
+    "fin_norm": "PAM/FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 525000,
+    "anos": {
+      "2026": 105000,
+      "2027": 105000,
+      "2028": 105000,
+      "2029": 105000,
+      "2030": 105000
+    },
+    "don": 525000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "821990301",
+    "nome": "Projecto De Apoio A Formulação Da Politica E Quadro De Programaçao Pais",
+    "financiador": "FAO",
+    "fin_norm": "FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 750000,
+    "anos": {
+      "2026": 150000,
+      "2027": 150000,
+      "2028": 150000,
+      "2029": 150000,
+      "2030": 150000
+    },
+    "don": 750000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "832490201",
+    "nome": "Projecto De Reforço Da Cadeia De Valor Do Caju Na Guiné-Bissau Através Da Promoção Das Melhores Práticas Com Vista A Melhorar A Produção, A Produtividade E A Transformação Local (Iniciativa Ocop)",
+    "financiador": "FAO",
+    "fin_norm": "FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 900000,
+    "anos": {
+      "2026": 260000,
+      "2027": 160000,
+      "2028": 160000,
+      "2029": 160000,
+      "2030": 160000
+    },
+    "don": 900000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "864940101",
+    "nome": "Projecto De Promoção Do Emprego Dos Jovens No Sector Agro-Silvo-Pastoril E Das Pescas (Asph)",
+    "financiador": "FAO",
+    "fin_norm": "FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 780000,
+    "anos": {
+      "2026": 156000,
+      "2027": 156000,
+      "2028": 156000,
+      "2029": 156000,
+      "2030": 156000
+    },
+    "don": 780000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "992991621",
+    "nome": "Projecto Cacheu E Buba Na Guiné-Bissau",
+    "financiador": "FAO",
+    "fin_norm": "FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 150000,
+    "anos": {
+      "2026": 0,
+      "2027": 150000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 150000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "992991622",
+    "nome": "Projecto Agripreneurs (Mija) De Bula",
+    "financiador": "FAO",
+    "fin_norm": "FAO",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 170000,
+    "anos": {
+      "2026": 0,
+      "2027": 170000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 170000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "992991601",
+    "nome": "Projecto Regional De Horizicultura  Resiliencia  Na Africa Ocidental \"Reward\"",
+    "financiador": "BAD",
+    "fin_norm": "BAD",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 2815000,
+    "anos": {
+      "2026": 680000,
+      "2027": 790000,
+      "2028": 415000,
+      "2029": 515000,
+      "2030": 415000
+    },
+    "don": 2525000,
+    "empr": 0,
+    "interno": 290000
+  },
+  {
+    "code": "992990601",
+    "nome": "Projecto De Apoio A Resiliencia Para Pais De Sahel Fase Ii (Pii-Rs)",
+    "financiador": "BAD/CLSS",
+    "fin_norm": "BAD/CLSS",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 2846875,
+    "anos": {
+      "2026": 671875,
+      "2027": 675000,
+      "2028": 350000,
+      "2029": 650000,
+      "2030": 500000
+    },
+    "don": 2275000,
+    "empr": 0,
+    "interno": 571875
+  },
+  {
+    "code": "829931301",
+    "nome": "Projeto De Agricultura E Desenvolvimento Rural Sustentavel (Sard)",
+    "financiador": "BM",
+    "fin_norm": "BM",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 2078000,
+    "anos": {
+      "2026": 808000,
+      "2027": 508000,
+      "2028": 254000,
+      "2029": 254000,
+      "2030": 254000
+    },
+    "don": 2078000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "829931401",
+    "nome": "Projeto De Apoio A Segurança Alimentar E Nutricional, E Diversificação De Meios De Sobrevivencia Na Zonas Rurais Gb",
+    "financiador": "BM/JICA",
+    "fin_norm": "BM/JICA",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 936500,
+    "anos": {
+      "2026": 339000,
+      "2027": 239000,
+      "2028": 119500,
+      "2029": 119500,
+      "2030": 119500
+    },
+    "don": 936500,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "861931101",
+    "nome": "Projeto De Desenvolvimento E Estruturação Das Pescas E Agricultura",
+    "financiador": "EU",
+    "fin_norm": "EU",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 2500000,
+    "anos": {
+      "2026": 600000,
+      "2027": 700000,
+      "2028": 400000,
+      "2029": 400000,
+      "2030": 400000
+    },
+    "don": 2500000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "829931901",
+    "nome": "Projecto De Assintencia Em  Material Agricola A Guiné-Bissau",
+    "financiador": "CHINA",
+    "fin_norm": "CHINA",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 2237459,
+    "anos": {
+      "2026": 814984,
+      "2027": 500000,
+      "2028": 307492,
+      "2029": 307492,
+      "2030": 307492
+    },
+    "don": 2237459,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "829931601",
+    "nome": "Transformação Dos Sistemas Alimentares E Financiamentos Sustentevel Na Guiné-Bissau",
+    "financiador": "PNUD",
+    "fin_norm": "PNUD",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 465000,
+    "anos": {
+      "2026": 85000,
+      "2027": 95000,
+      "2028": 95000,
+      "2029": 95000,
+      "2030": 95000
+    },
+    "don": 465000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "821946601",
+    "nome": "Projecto De Apoio À Campanha Agrícola 2026-2027",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 3300000,
+    "anos": {
+      "2026": 200000,
+      "2027": 1200000,
+      "2028": 600000,
+      "2029": 700000,
+      "2030": 600000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 3300000
+  },
+  {
+    "code": "865940101",
+    "nome": "Projecto De Apoio Ao Instituto Nacional De Pesquisa Agraria \"Inpa\"",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 2340000,
+    "anos": {
+      "2026": 40000,
+      "2027": 250000,
+      "2028": 50000,
+      "2029": 950000,
+      "2030": 1050000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 2340000
+  },
+  {
+    "code": "992990101",
+    "nome": "Projeto De Revisão Setorial Conjunta",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 205000,
+    "anos": {
+      "2026": 10000,
+      "2027": 10000,
+      "2028": 10000,
+      "2029": 25000,
+      "2030": 150000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 205000
+  },
+  {
+    "code": "831940101",
+    "nome": "Projeto De Urgencia Para Reforço Da Resilencia Dos Atores Do Setor Agricula (Pa Kebur) Na Guiné-Bissau",
+    "financiador": "PROCURA",
+    "fin_norm": "PROCURA",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 18000000,
+    "anos": {
+      "2026": 0,
+      "2027": 3000000,
+      "2028": 5000000,
+      "2029": 5000000,
+      "2030": 5000000
+    },
+    "don": 1050000,
+    "empr": 16950000,
+    "interno": 0
+  },
+  {
+    "code": "831940201",
+    "nome": "Projeto De Ordenamento Idro Agricola Do Vale De Rio Geba",
+    "financiador": "PROCURA",
+    "fin_norm": "PROCURA",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 8200000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 3000000,
+      "2029": 2600000,
+      "2030": 2600000
+    },
+    "don": 3000000,
+    "empr": 4700000,
+    "interno": 500000
+  },
+  {
+    "code": "831940301",
+    "nome": "Projeto De Desenvolvimento De Acuacultura (Estudo, Assistencia Técnica E Implementação Do Projeto)",
+    "financiador": "PROCURA",
+    "fin_norm": "PROCURA",
+    "ministerio": "MINISTÉRIO DA AGRICULTURA, FLORESTA E DESENVOLVIMENTO RURAL",
+    "min_abbr": "Agricultura",
+    "total": 3756000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 1256000,
+      "2029": 1500000,
+      "2030": 1000000
+    },
+    "don": 3500000,
+    "empr": 0,
+    "interno": 256000
+  },
+  {
+    "code": "863941201",
+    "nome": "Projecto De Reabilitação De Centro De Formação Pesqueira De Bolama",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DAS PESCAS E ECONOMIA MARITIMA",
+    "min_abbr": "Pescas",
+    "total": 345000,
+    "anos": {
+      "2026": 5000,
+      "2027": 60000,
+      "2028": 60000,
+      "2029": 60000,
+      "2030": 160000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 345000
+  },
+  {
+    "code": "865921001",
+    "nome": "Projecto De Apoio Ao Reforço Das Capacidades Tecnicas De Laboratório Nacional De Controle De Qualidade Dos Produtos Das Pescas E Derivados",
+    "financiador": "FAO",
+    "fin_norm": "FAO",
+    "ministerio": "MINISTÉRIO DAS PESCAS E ECONOMIA MARITIMA",
+    "min_abbr": "Pescas",
+    "total": 2995000,
+    "anos": {
+      "2026": 370000,
+      "2027": 270000,
+      "2028": 785000,
+      "2029": 785000,
+      "2030": 785000
+    },
+    "don": 2995000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "865921101",
+    "nome": "Projeto De Acreditação De Laboratorio Nacional De Pesca (Iso 17025)",
+    "financiador": "N/A",
+    "fin_norm": "N/A",
+    "ministerio": "MINISTÉRIO DAS PESCAS E ECONOMIA MARITIMA",
+    "min_abbr": "Pescas",
+    "total": 393000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 131000,
+      "2029": 131000,
+      "2030": 131000
+    },
+    "don": 393000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "733920901",
+    "nome": "Programa  Hidraulica Multi-Uso Para Seguraça Alimentar Na Guiné-Bissau",
+    "financiador": "UEMOA",
+    "fin_norm": "UEMOA",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 1056950,
+    "anos": {
+      "2026": 237700,
+      "2027": 327700,
+      "2028": 163850,
+      "2029": 163850,
+      "2030": 163850
+    },
+    "don": 1046950,
+    "empr": 0,
+    "interno": 10000
+  },
+  {
+    "code": "851998401",
+    "nome": "Programa Hidraulica E Semi Urbana  De 200 Pontos De Agua,  2500 Latrinas Familiares, 100 Latrinas Publicos E 21 Sistemas Fotovoltaicos Na Guiné-Bissau",
+    "financiador": "UEMOA",
+    "fin_norm": "UEMOA",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 570000,
+    "anos": {
+      "2026": 170000,
+      "2027": 160000,
+      "2028": 80000,
+      "2029": 80000,
+      "2030": 80000
+    },
+    "don": 550000,
+    "empr": 0,
+    "interno": 20000
+  },
+  {
+    "code": "612294071",
+    "nome": "Programa Agúa, Saneamento E Higiene",
+    "financiador": "UNICEF",
+    "fin_norm": "UNICEF",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 1015903,
+    "anos": {
+      "2026": 290258,
+      "2027": 290258,
+      "2028": 145129,
+      "2029": 145129,
+      "2030": 145129
+    },
+    "don": 1015903,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "731941401",
+    "nome": "Projecto Da Gestão Integrado Dos Recursos Naturais - Fouta Djallon \"Pgirn\"",
+    "financiador": "GEF/FNUA/GOV. GB",
+    "fin_norm": "GEF/FNUA/GOV. GB",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 380000,
+    "anos": {
+      "2026": 60000,
+      "2027": 80000,
+      "2028": 80000,
+      "2029": 80000,
+      "2030": 80000
+    },
+    "don": 310000,
+    "empr": 0,
+    "interno": 70000
+  },
+  {
+    "code": "611990301",
+    "nome": "Projeto Alerta Precoce",
+    "financiador": "GEF-PNUD",
+    "fin_norm": "GEF-PNUD",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 120000,
+    "anos": {
+      "2026": 10000,
+      "2027": 15000,
+      "2028": 15000,
+      "2029": 15000,
+      "2030": 65000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 120000
+  },
+  {
+    "code": "793940101",
+    "nome": "Projecto De Reforço De Capacidade Do Cadastro Mineiro",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 220000,
+    "anos": {
+      "2026": 10000,
+      "2027": 15000,
+      "2028": 15000,
+      "2029": 15000,
+      "2030": 165000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 220000
+  },
+  {
+    "code": "793940301",
+    "nome": "Projecto Cartografia Geologica Da Guiné-Bissau",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 170000,
+    "anos": {
+      "2026": 10000,
+      "2027": 15000,
+      "2028": 15000,
+      "2029": 15000,
+      "2030": 115000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 170000
+  },
+  {
+    "code": "872990101",
+    "nome": "Projecto De Fiscalização E Seguimento Das Explorações De Pedreira Em Actividades",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 110000,
+    "anos": {
+      "2026": 10000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 40000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 110000
+  },
+  {
+    "code": "793940401",
+    "nome": "Projecto De Apoio Instituicional A Inita (Reestruturação E Relançamento)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 95000,
+    "anos": {
+      "2026": 15000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 95000
+  },
+  {
+    "code": "811940102",
+    "nome": "Projecto Apoio Ao Melhoramento De Segurança De Produtos Alimentar",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 180000,
+    "anos": {
+      "2026": 10000,
+      "2027": 35000,
+      "2028": 35000,
+      "2029": 35000,
+      "2030": 65000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 180000
+  },
+  {
+    "code": "731940101",
+    "nome": "Projecto Reparação E Manutenção De Furos De Aguas",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 240000,
+    "anos": {
+      "2026": 40000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 240000
+  },
+  {
+    "code": "731940601",
+    "nome": "Projecto Gestão Integrada Dos Recursos Em Água \"Gire\"",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 135000,
+    "anos": {
+      "2026": 5000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 70000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 135000
+  },
+  {
+    "code": "992990401",
+    "nome": "Projecto De Cooperação Transfronteiriça Do Aquífero Senegalo - Mauritaniano (Basm)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "ÁGUAS E SANEAMENTO",
+    "min_abbr": "Águas/Saneamento",
+    "total": 70000,
+    "anos": {
+      "2026": 10000,
+      "2027": 15000,
+      "2028": 15000,
+      "2029": 15000,
+      "2030": 15000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 70000
+  },
+  {
+    "code": "769930211",
+    "nome": "Projecto De Reforço Das Capacidades De Produção De Energia Electrica Atraves Duma Central Termica A Fuel 15 Mw",
+    "financiador": "BOAD/UEMOA",
+    "fin_norm": "BOAD/UEMOA",
+    "ministerio": "MINISTÉRIO DA ENERGIA",
+    "min_abbr": "Energia",
+    "total": 6200400,
+    "anos": {
+      "2026": 3550400,
+      "2027": 1000000,
+      "2028": 550000,
+      "2029": 550000,
+      "2030": 550000
+    },
+    "don": 0,
+    "empr": 5750400,
+    "interno": 450000
+  },
+  {
+    "code": "769933401",
+    "nome": "Projecto 14 Localidades A Partir Das Substações Da Omvg. (Projeto Elétrico)",
+    "financiador": "BOAD",
+    "fin_norm": "BOAD",
+    "ministerio": "MINISTÉRIO DA ENERGIA",
+    "min_abbr": "Energia",
+    "total": 3200178,
+    "anos": {
+      "2026": 1000178,
+      "2027": 850000,
+      "2028": 450000,
+      "2029": 450000,
+      "2030": 450000
+    },
+    "don": 0,
+    "empr": 2950178,
+    "interno": 250000
+  },
+  {
+    "code": "761992301",
+    "nome": "Projecto Regional De Acesso A Electricidade (Prae-Gb)",
+    "financiador": "BM",
+    "fin_norm": "BM",
+    "ministerio": "MINISTÉRIO DA ENERGIA",
+    "min_abbr": "Energia",
+    "total": 2855750,
+    "anos": {
+      "2026": 2855750,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 243119,
+    "empr": 2262631,
+    "interno": 350000
+  },
+  {
+    "code": "763940401",
+    "nome": "Projecto De Acesso E Desenvolvimento De Energia Solar Na Guiné-Bissau (Sesap)",
+    "financiador": "BM",
+    "fin_norm": "BM",
+    "ministerio": "MINISTÉRIO DA ENERGIA",
+    "min_abbr": "Energia",
+    "total": 9133743,
+    "anos": {
+      "2026": 1533743,
+      "2027": 2000000,
+      "2028": 1700000,
+      "2029": 1700000,
+      "2030": 2200000
+    },
+    "don": 7433743,
+    "empr": 0,
+    "interno": 1700000
+  },
+  {
+    "code": "763931501",
+    "nome": "Projecto De Construção De Central Solar Fotovoltaica (Estudo De Viabilidade)",
+    "financiador": "BID",
+    "fin_norm": "BID",
+    "ministerio": "MINISTÉRIO DA ENERGIA",
+    "min_abbr": "Energia",
+    "total": 112349,
+    "anos": {
+      "2026": 112349,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 112349,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "769932511",
+    "nome": "Projecto De Desenvolvimento Dos Serviços De Distribuição De Electricidade Na Cidade De Bissau (Pdsde)",
+    "financiador": "BAD/FAD/FAT",
+    "fin_norm": "BAD/FAD/FAT",
+    "ministerio": "MINISTÉRIO DA ENERGIA",
+    "min_abbr": "Energia",
+    "total": 1015000,
+    "anos": {
+      "2026": 1015000,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 200000,
+    "empr": 800000,
+    "interno": 15000
+  },
+  {
+    "code": "992990202",
+    "nome": "Projecto De Sistema De Informação Energetica (Sie)",
+    "financiador": "UEMOA",
+    "fin_norm": "UEMOA",
+    "ministerio": "MINISTÉRIO DA ENERGIA",
+    "min_abbr": "Energia",
+    "total": 869714,
+    "anos": {
+      "2026": 69714,
+      "2027": 500000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 100000
+    },
+    "don": 59714,
+    "empr": 0,
+    "interno": 810000
+  },
+  {
+    "code": "762940801",
+    "nome": "Projecto De Funcionamento Das Geradores Regionais",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA ENERGIA",
+    "min_abbr": "Energia",
+    "total": 230000,
+    "anos": {
+      "2026": 50000,
+      "2027": 45000,
+      "2028": 45000,
+      "2029": 45000,
+      "2030": 45000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 230000
+  },
+  {
+    "code": "762940701",
+    "nome": "Projecto Reparação E Manutenção De Lampadeiras Públicas Solares",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA ENERGIA",
+    "min_abbr": "Energia",
+    "total": 680000,
+    "anos": {
+      "2026": 50000,
+      "2027": 70000,
+      "2028": 70000,
+      "2029": 70000,
+      "2030": 420000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 680000
+  },
+  {
+    "code": "762940194",
+    "nome": "Projeto De Construção De Central Hidroeletrica De Saltinho",
+    "financiador": "N/A",
+    "fin_norm": "N/A",
+    "ministerio": "MINISTÉRIO DA ENERGIA",
+    "min_abbr": "Energia",
+    "total": 60000000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 15000000,
+      "2029": 20000000,
+      "2030": 25000000
+    },
+    "don": 19250000,
+    "empr": 35750000,
+    "interno": 5000000
+  },
+  {
+    "code": "819921001",
+    "nome": "Projecto De Assistência Social Aos Hospitais E Centros De Saude Militar Da Gb",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA DEFESA NACIONAL",
+    "min_abbr": "Defesa",
+    "total": 230000,
+    "anos": {
+      "2026": 30000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 230000
+  },
+  {
+    "code": "633940101",
+    "nome": "Programa De Prevenção A Assisténcia De Doenças Infectacontagiosas",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA DEFESA NACIONAL",
+    "min_abbr": "Defesa",
+    "total": 140000,
+    "anos": {
+      "2026": 20000,
+      "2027": 30000,
+      "2028": 30000,
+      "2029": 30000,
+      "2030": 30000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 140000
+  },
+  {
+    "code": "831940193",
+    "nome": "Programa De Apoio A Seguranção  Alimentar \"Batalha De Komo\"",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA DEFESA NACIONAL",
+    "min_abbr": "Defesa",
+    "total": 450000,
+    "anos": {
+      "2026": 30000,
+      "2027": 30000,
+      "2028": 30000,
+      "2029": 30000,
+      "2030": 330000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 450000
+  },
+  {
+    "code": "211934211",
+    "nome": "Projecto Construção Da Casa De Guarda Do Ministerio Da Defesa",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA DEFESA NACIONAL",
+    "min_abbr": "Defesa",
+    "total": 117000,
+    "anos": {
+      "2026": 17000,
+      "2027": 25000,
+      "2028": 25000,
+      "2029": 25000,
+      "2030": 25000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 117000
+  },
+  {
+    "code": "259840503",
+    "nome": "Projecto De Aquisição De Equipamentos E Meios De Transporte",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA DEFESA NACIONAL",
+    "min_abbr": "Defesa",
+    "total": 800000,
+    "anos": {
+      "2026": 500000,
+      "2027": 300000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 800000
+  },
+  {
+    "code": "711930291",
+    "nome": "Projecto De Construção Policia Judiciaria Militar",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA DEFESA NACIONAL",
+    "min_abbr": "Defesa",
+    "total": 170000,
+    "anos": {
+      "2026": 30000,
+      "2027": 35000,
+      "2028": 35000,
+      "2029": 35000,
+      "2030": 35000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 170000
+  },
+  {
+    "code": "711931391",
+    "nome": "Projeto De Reabilitação Do Instituto Da Defesa Nacional Da Gb",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA DEFESA NACIONAL",
+    "min_abbr": "Defesa",
+    "total": 150000,
+    "anos": {
+      "2026": 30000,
+      "2027": 30000,
+      "2028": 30000,
+      "2029": 30000,
+      "2030": 30000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 150000
+  },
+  {
+    "code": "221940301",
+    "nome": "Projecto Nacional Para Refugiados E Deslocados Internos",
+    "financiador": "Sist.NU/HCR/PPG1SENG",
+    "fin_norm": "Sist.NU/HCR/PPG1SENG",
+    "ministerio": "MINISTÉRIO DO INTERIOR E DA ORDEM PUBLICA",
+    "min_abbr": "Interior",
+    "total": 460958,
+    "anos": {
+      "2026": 110958,
+      "2027": 125000,
+      "2028": 75000,
+      "2029": 75000,
+      "2030": 75000
+    },
+    "don": 380958,
+    "empr": 0,
+    "interno": 80000
+  },
+  {
+    "code": "992990102",
+    "nome": "Projecto De Gestão De Emergencia",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DO INTERIOR E DA ORDEM PUBLICA",
+    "min_abbr": "Interior",
+    "total": 120000,
+    "anos": {
+      "2026": 50000,
+      "2027": 70000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 120000
+  },
+  {
+    "code": "661940201",
+    "nome": "Projecto  De Protecção Civil",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DO INTERIOR E DA ORDEM PUBLICA",
+    "min_abbr": "Interior",
+    "total": 100000,
+    "anos": {
+      "2026": 50000,
+      "2027": 50000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 100000
+  },
+  {
+    "code": "259840101",
+    "nome": "Projecto De Reforço Capacidade Inst. (Viaturas, Fardamentos, Equipamentos, Etc.)",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DO INTERIOR E DA ORDEM PUBLICA",
+    "min_abbr": "Interior",
+    "total": 800000,
+    "anos": {
+      "2026": 300000,
+      "2027": 500000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 800000
+  },
+  {
+    "code": "259841201",
+    "nome": "Projecto Construção De Instalações Da Guarda Nacional (Passagem Obrigatoria: Djegué, Dungal, Cambadju, Buruntuma, Pitche, Pirada, Cuntabane, Guiledje E Boé)",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DO INTERIOR E DA ORDEM PUBLICA",
+    "min_abbr": "Interior",
+    "total": 140000,
+    "anos": {
+      "2026": 40000,
+      "2027": 100000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 140000
+  },
+  {
+    "code": "259841301",
+    "nome": "Projecto Construção De Edificio De Centro Nacional De Operações E Socorros",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DO INTERIOR E DA ORDEM PUBLICA",
+    "min_abbr": "Interior",
+    "total": 90000,
+    "anos": {
+      "2026": 30000,
+      "2027": 60000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 90000
+  },
+  {
+    "code": "259840502",
+    "nome": "Projecto Construção De Sedes Regionais Da Proteção Civil",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DO INTERIOR E DA ORDEM PUBLICA",
+    "min_abbr": "Interior",
+    "total": 105000,
+    "anos": {
+      "2026": 30000,
+      "2027": 75000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 105000
+  },
+  {
+    "code": "258920501",
+    "nome": "Projecto Centro De Formação De Forças De Segurança(Cffs)",
+    "financiador": "BRASIL",
+    "fin_norm": "BRASIL",
+    "ministerio": "MINISTÉRIO DO INTERIOR E DA ORDEM PUBLICA",
+    "min_abbr": "Interior",
+    "total": 350000,
+    "anos": {
+      "2026": 100000,
+      "2027": 100000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 350000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "661931301",
+    "nome": "Projeto De Elaboração De Estrategia Nacional De Gestão De Riscos De Desastres",
+    "financiador": "PAM",
+    "fin_norm": "PAM",
+    "ministerio": "MINISTÉRIO DO INTERIOR E DA ORDEM PUBLICA",
+    "min_abbr": "Interior",
+    "total": 366500,
+    "anos": {
+      "2026": 46500,
+      "2027": 80000,
+      "2028": 80000,
+      "2029": 80000,
+      "2030": 80000
+    },
+    "don": 271000,
+    "empr": 0,
+    "interno": 95500
+  },
+  {
+    "code": "379940101",
+    "nome": "Fortalecimento Das Osc Para A Boa Governação E Densenvolvimento Da Guiné-Bissau",
+    "financiador": "EU",
+    "fin_norm": "EU",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO TERRITORIAL E DO PODER LOCAL",
+    "min_abbr": "Adm. Territorial",
+    "total": 1228960,
+    "anos": {
+      "2026": 293960,
+      "2027": 370000,
+      "2028": 195000,
+      "2029": 175000,
+      "2030": 195000
+    },
+    "don": 1168960,
+    "empr": 0,
+    "interno": 60000
+  },
+  {
+    "code": "373990101",
+    "nome": "Projeto De Apoio Aos Ciclos Eleitorais (2023-2025)",
+    "financiador": "PNUD",
+    "fin_norm": "PNUD",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO TERRITORIAL E DO PODER LOCAL",
+    "min_abbr": "Adm. Territorial",
+    "total": 168000,
+    "anos": {
+      "2026": 168000,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 168000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "711331201",
+    "nome": "Programa Cidades Verdes E Inclusivas - Melhorar A Governação Urbana E O Acesso A Serviços Básicos Para Um Desenvolvimento Local Verde E Inclusivo Na Guiné-Bissau",
+    "financiador": "EU",
+    "fin_norm": "EU",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO TERRITORIAL E DO PODER LOCAL",
+    "min_abbr": "Adm. Territorial",
+    "total": 1685000,
+    "anos": {
+      "2026": 500000,
+      "2027": 470000,
+      "2028": 245000,
+      "2029": 225000,
+      "2030": 245000
+    },
+    "don": 1625000,
+    "empr": 0,
+    "interno": 60000
+  },
+  {
+    "code": "362840101",
+    "nome": "Projecto Estabelecer Um Quadro Legal, Regulamentar Instituicional Da Descentralização",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO TERRITORIAL E DO PODER LOCAL",
+    "min_abbr": "Adm. Territorial",
+    "total": 215000,
+    "anos": {
+      "2026": 5000,
+      "2027": 35000,
+      "2028": 35000,
+      "2029": 105000,
+      "2030": 35000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 215000
+  },
+  {
+    "code": "362840201",
+    "nome": "Projecto Estabelecer Um Quadro Tecnico E Operacional Da Descentralização",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO TERRITORIAL E DO PODER LOCAL",
+    "min_abbr": "Adm. Territorial",
+    "total": 105000,
+    "anos": {
+      "2026": 5000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 40000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 105000
+  },
+  {
+    "code": "491920201",
+    "nome": "Projecto De Monotorização E Avaliação De Programas De Desenvolvimento Local",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO TERRITORIAL E DO PODER LOCAL",
+    "min_abbr": "Adm. Territorial",
+    "total": 130000,
+    "anos": {
+      "2026": 5000,
+      "2027": 25000,
+      "2028": 25000,
+      "2029": 50000,
+      "2030": 25000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 130000
+  },
+  {
+    "code": "491920301",
+    "nome": "Projecto De Reforço De Capacidade Institucional",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO TERRITORIAL E DO PODER LOCAL",
+    "min_abbr": "Adm. Territorial",
+    "total": 135000,
+    "anos": {
+      "2026": 5000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 70000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 135000
+  },
+  {
+    "code": "491921401",
+    "nome": "Projeto De Criação De Plataforma Digital De Gestão Das Receitas E Despesas Das 8 Regiões",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO TERRITORIAL E DO PODER LOCAL",
+    "min_abbr": "Adm. Territorial",
+    "total": 100000,
+    "anos": {
+      "2026": 5000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 35000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 100000
+  },
+  {
+    "code": "491921501",
+    "nome": "Projeto De Criação De Centro De Formação Autarquica Da Guiné-Bissau",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO TERRITORIAL E DO PODER LOCAL",
+    "min_abbr": "Adm. Territorial",
+    "total": 2050000,
+    "anos": {
+      "2026": 10000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 1980000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 2050000
+  },
+  {
+    "code": "331921401",
+    "nome": "Projecto De Governação Económica Transparente E Responsável",
+    "financiador": "EU",
+    "fin_norm": "EU",
+    "ministerio": "MINISTÉRIO DAS FINANÇAS",
+    "min_abbr": "Finanças",
+    "total": 2739888,
+    "anos": {
+      "2026": 864888,
+      "2027": 750000,
+      "2028": 375000,
+      "2029": 375000,
+      "2030": 375000
+    },
+    "don": 2739888,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "719922006",
+    "nome": "Projecto De Modelização, Cadrage Macroeconómica E Divulgação De Boletim Trimestral Da Conjuntura Económica",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DAS FINANÇAS",
+    "min_abbr": "Finanças",
+    "total": 145000,
+    "anos": {
+      "2026": 25000,
+      "2027": 30000,
+      "2028": 30000,
+      "2029": 30000,
+      "2030": 30000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 145000
+  },
+  {
+    "code": "719922101",
+    "nome": "Projecto De Comité Nacional Da Divida Pública \"Cndp\"",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DAS FINANÇAS",
+    "min_abbr": "Finanças",
+    "total": 100000,
+    "anos": {
+      "2026": 20000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 100000
+  },
+  {
+    "code": "719922102",
+    "nome": "Projecto De Inclusão Financeira",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DAS FINANÇAS",
+    "min_abbr": "Finanças",
+    "total": 195000,
+    "anos": {
+      "2026": 35000,
+      "2027": 40000,
+      "2028": 40000,
+      "2029": 40000,
+      "2030": 40000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 195000
+  },
+  {
+    "code": "719922107",
+    "nome": "Programação Orçamental Pliurianual",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DAS FINANÇAS",
+    "min_abbr": "Finanças",
+    "total": 185000,
+    "anos": {
+      "2026": 25000,
+      "2027": 40000,
+      "2028": 40000,
+      "2029": 40000,
+      "2030": 40000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 185000
+  },
+  {
+    "code": "719922007",
+    "nome": "Projeto De Alargamento De Campo De Cobertura Estatistica De Finanças Publica E Operacionalizaçao Do Cefp (Tofe)",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DAS FINANÇAS",
+    "min_abbr": "Finanças",
+    "total": 100000,
+    "anos": {
+      "2026": 20000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 100000
+  },
+  {
+    "code": "879940401",
+    "nome": "Projecto Para Aquisição De Kits Analise Rapida E Preventiva(Carne, Cereais,Produtos De Mar, Óleo Alimentar E Produtos Oleaginosos)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "COMÉRCIO",
+    "min_abbr": "Comércio",
+    "total": 85000,
+    "anos": {
+      "2026": 5000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 85000
+  },
+  {
+    "code": "879920401",
+    "nome": "Projecto Capacitação/Formação Pedagogica Legal E Coersiva (Inspeção Fiscalização Comercial E Industrial, Associação De Consumidores)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "COMÉRCIO",
+    "min_abbr": "Comércio",
+    "total": 90000,
+    "anos": {
+      "2026": 10000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 90000
+  },
+  {
+    "code": "774941391",
+    "nome": "Contrução Da Sede De Autoridade Nacional De Concorrencia E Proteção De Consumidores (Anc-Gb)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "COMÉRCIO",
+    "min_abbr": "Comércio",
+    "total": 210000,
+    "anos": {
+      "2026": 30000,
+      "2027": 45000,
+      "2028": 45000,
+      "2029": 45000,
+      "2030": 45000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 210000
+  },
+  {
+    "code": "812933203",
+    "nome": "Projecto  De Valorização Integral De Cajú \"Fundei\"",
+    "financiador": "BRASIL",
+    "fin_norm": "BRASIL",
+    "ministerio": "INDÚSTRIA",
+    "min_abbr": "Indústria",
+    "total": 720540,
+    "anos": {
+      "2026": 175540,
+      "2027": 200000,
+      "2028": 115000,
+      "2029": 115000,
+      "2030": 115000
+    },
+    "don": 610540,
+    "empr": 0,
+    "interno": 110000
+  },
+  {
+    "code": "874940501",
+    "nome": "Projecto De Politica Nacional De Qualidade",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "INDÚSTRIA",
+    "min_abbr": "Indústria",
+    "total": 65000,
+    "anos": {
+      "2026": 5000,
+      "2027": 15000,
+      "2028": 15000,
+      "2029": 15000,
+      "2030": 15000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 65000
+  },
+  {
+    "code": "874920201",
+    "nome": "Projecto De Reforço De Capacidade Da Industria",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "INDÚSTRIA",
+    "min_abbr": "Indústria",
+    "total": 85000,
+    "anos": {
+      "2026": 5000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 85000
+  },
+  {
+    "code": "361910201",
+    "nome": "Projecto Comité Nacional De Seguimento De Indicação Geográfica -Cns-Ig",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "INDÚSTRIA",
+    "min_abbr": "Indústria",
+    "total": 90000,
+    "anos": {
+      "2026": 10000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 90000
+  },
+  {
+    "code": "361910101",
+    "nome": "Projeto  De Reforço De Capacidade  Da Direção Geral De Propriedade Industrial \"Oapi\"",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "INDÚSTRIA",
+    "min_abbr": "Indústria",
+    "total": 95000,
+    "anos": {
+      "2026": 15000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 95000
+  },
+  {
+    "code": "361910301",
+    "nome": "Projecto Mediatização Sobre A Propriedade Industrial",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "INDÚSTRIA",
+    "min_abbr": "Indústria",
+    "total": 95000,
+    "anos": {
+      "2026": 15000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 95000
+  },
+  {
+    "code": "774940191",
+    "nome": "Projecto De Construção Da Estrada Circular Sul De Bissau (12,9 Km), De Bissau-Nhacra (14,1 Km), De Uma Rampa Em Cumere E Uma Ponte De 200M No Canal Impernal Em Ndam, Incluindo Seguimento E Avaliação",
+    "financiador": "BADEA",
+    "fin_norm": "BADEA",
+    "ministerio": "MINISTÉRIO DAS OBRAS PÚBLICAS, HABITAÇÃO E URBANISMO",
+    "min_abbr": "Obras Públicas",
+    "total": 11600000,
+    "anos": {
+      "2026": 1550000,
+      "2027": 2650000,
+      "2028": 1875000,
+      "2029": 2450000,
+      "2030": 3075000
+    },
+    "don": 0,
+    "empr": 8600000,
+    "interno": 3000000
+  },
+  {
+    "code": "719930592",
+    "nome": "Projecto De Melhoria Da Conectividade No Norte Gb (Safim -M'Pack)",
+    "financiador": "BM/BEI",
+    "fin_norm": "BM/BEI",
+    "ministerio": "MINISTÉRIO DAS OBRAS PÚBLICAS, HABITAÇÃO E URBANISMO",
+    "min_abbr": "Obras Públicas",
+    "total": 26185660,
+    "anos": {
+      "2026": 7434982,
+      "2027": 8176982,
+      "2028": 3265532,
+      "2029": 4854082,
+      "2030": 2454082
+    },
+    "don": 8270409,
+    "empr": 9707250,
+    "interno": 8208000
+  },
+  {
+    "code": "774940293",
+    "nome": "Projecto Multinacional De Construção De Estrada  Boké-Quebo (Incluindo Seguimento E Avaliação)",
+    "financiador": "BAD",
+    "fin_norm": "BAD",
+    "ministerio": "MINISTÉRIO DAS OBRAS PÚBLICAS, HABITAÇÃO E URBANISMO",
+    "min_abbr": "Obras Públicas",
+    "total": 5864000,
+    "anos": {
+      "2026": 964000,
+      "2027": 2050000,
+      "2028": 950000,
+      "2029": 950000,
+      "2030": 950000
+    },
+    "don": 5034000,
+    "empr": 0,
+    "interno": 830000
+  },
+  {
+    "code": "712790122",
+    "nome": "Projecto Multinacional De Melhoramento Dos Corredores Rodoviários Bissau-Dakar (Fase I): Construção Estrada Farim Tanaf-Sandinieri (Incluindo Estudos Ambiental E Social Da Ponte Farim)",
+    "financiador": "BAD/BID",
+    "fin_norm": "BAD/BID",
+    "ministerio": "MINISTÉRIO DAS OBRAS PÚBLICAS, HABITAÇÃO E URBANISMO",
+    "min_abbr": "Obras Públicas",
+    "total": 21103884,
+    "anos": {
+      "2026": 5153884,
+      "2027": 4200000,
+      "2028": 2750000,
+      "2029": 6250000,
+      "2030": 2750000
+    },
+    "don": 6650000,
+    "empr": 10053884,
+    "interno": 4400000
+  },
+  {
+    "code": "719940101",
+    "nome": "Projecto De Construção Da Estaçao De Pesagem Em Safim -Fiscalização-",
+    "financiador": "UEMOA",
+    "fin_norm": "UEMOA",
+    "ministerio": "MINISTÉRIO DAS OBRAS PÚBLICAS, HABITAÇÃO E URBANISMO",
+    "min_abbr": "Obras Públicas",
+    "total": 50000,
+    "anos": {
+      "2026": 50000,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 50000
+  },
+  {
+    "code": "774990111",
+    "nome": "Projeto Vias Urbanas De Bissau-Obras De Conceçao E Execuçao 5ª Fase",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DAS OBRAS PÚBLICAS, HABITAÇÃO E URBANISMO",
+    "min_abbr": "Obras Públicas",
+    "total": 5427000,
+    "anos": {
+      "2026": 1327000,
+      "2027": 2100000,
+      "2028": 100000,
+      "2029": 800000,
+      "2030": 1100000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 5427000
+  },
+  {
+    "code": "774940291",
+    "nome": "Programa De Manutenção Corrente Da Rede Rodoviária Nacional E Vias Urbanas De Bissau",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DAS OBRAS PÚBLICAS, HABITAÇÃO E URBANISMO",
+    "min_abbr": "Obras Públicas",
+    "total": 8800000,
+    "anos": {
+      "2026": 500000,
+      "2027": 200000,
+      "2028": 200000,
+      "2029": 5200000,
+      "2030": 2700000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 8800000
+  },
+  {
+    "code": "711790223",
+    "nome": "Projeto De Construção De Estrada Quinhamel-Piquil",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DAS OBRAS PÚBLICAS, HABITAÇÃO E URBANISMO",
+    "min_abbr": "Obras Públicas",
+    "total": 12600000,
+    "anos": {
+      "2026": 6000000,
+      "2027": 400000,
+      "2028": 400000,
+      "2029": 400000,
+      "2030": 5400000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 12600000
+  },
+  {
+    "code": "711790142",
+    "nome": "Projeto De Construção De Estrada Gabu-Pirada (1X2 Vias Em Betão Betuminoso) - 56Km",
+    "financiador": "N/A",
+    "fin_norm": "N/A",
+    "ministerio": "MINISTÉRIO DAS OBRAS PÚBLICAS, HABITAÇÃO E URBANISMO",
+    "min_abbr": "Obras Públicas",
+    "total": 13305000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 8000000,
+      "2029": 5305000,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 13305000
+  },
+  {
+    "code": "711790122",
+    "nome": "Projeto De Reconstrução De Corredor Rodoviario Safim-Jugudul - 43Km",
+    "financiador": "N/A",
+    "fin_norm": "N/A",
+    "ministerio": "MINISTÉRIO DAS OBRAS PÚBLICAS, HABITAÇÃO E URBANISMO",
+    "min_abbr": "Obras Públicas",
+    "total": 60000000,
+    "anos": {
+      "2026": 0,
+      "2027": 12000000,
+      "2028": 15000000,
+      "2029": 18000000,
+      "2030": 15000000
+    },
+    "don": 13400000,
+    "empr": 46600000,
+    "interno": 0
+  },
+  {
+    "code": "749930101",
+    "nome": "Projecto Reabilitação Das Infraestruturas E Das Redes De Observações Meteorológicas(Bissau;Bafata)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DOS TRANSPORTES  TELECOMUNICAÇÃO E ECONOMIA DIGITAL",
+    "min_abbr": "Transportes",
+    "total": 460000,
+    "anos": {
+      "2026": 5000,
+      "2027": 95000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 320000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 460000
+  },
+  {
+    "code": "749930301",
+    "nome": "Projecto De Reparação Das Insfraestruturas E Aquisição De Equipamentos Da Estação Meteologica De Bolama",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DOS TRANSPORTES  TELECOMUNICAÇÃO E ECONOMIA DIGITAL",
+    "min_abbr": "Transportes",
+    "total": 85000,
+    "anos": {
+      "2026": 10000,
+      "2027": 30000,
+      "2028": 15000,
+      "2029": 15000,
+      "2030": 15000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 85000
+  },
+  {
+    "code": "771943801",
+    "nome": "Projecto Aplicação Integral E Concomitante Do Regulamento 14/2005/Cm/Uemoa (Sensibilizacão E Formação)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DOS TRANSPORTES  TELECOMUNICAÇÃO E ECONOMIA DIGITAL",
+    "min_abbr": "Transportes",
+    "total": 70000,
+    "anos": {
+      "2026": 10000,
+      "2027": 15000,
+      "2028": 15000,
+      "2029": 15000,
+      "2030": 15000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 70000
+  },
+  {
+    "code": "779941191",
+    "nome": "Projecto Estabelecimento Da Unidade De Gestão Estatal Directa Dos Transportes Público",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DOS TRANSPORTES  TELECOMUNICAÇÃO E ECONOMIA DIGITAL",
+    "min_abbr": "Transportes",
+    "total": 90000,
+    "anos": {
+      "2026": 10000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 90000
+  },
+  {
+    "code": "441940102",
+    "nome": "Projecto Regional De Integração Digital (Wardip)",
+    "financiador": "BM",
+    "fin_norm": "BM",
+    "ministerio": "MINISTÉRIO DOS TRANSPORTES  TELECOMUNICAÇÃO E ECONOMIA DIGITAL",
+    "min_abbr": "Transportes",
+    "total": 4929579,
+    "anos": {
+      "2026": 464579,
+      "2027": 580000,
+      "2028": 295000,
+      "2029": 295000,
+      "2030": 3295000
+    },
+    "don": 1829579,
+    "empr": 0,
+    "interno": 3100000
+  },
+  {
+    "code": "771990101",
+    "nome": "Projeto De Promoção Da Transparencia E Responsabilização Da Governação Da Guiné-Bissau / Dim",
+    "financiador": "PNUD",
+    "fin_norm": "PNUD",
+    "ministerio": "MINISTÉRIO DOS TRANSPORTES  TELECOMUNICAÇÃO E ECONOMIA DIGITAL",
+    "min_abbr": "Transportes",
+    "total": 975000,
+    "anos": {
+      "2026": 350000,
+      "2027": 250000,
+      "2028": 125000,
+      "2029": 125000,
+      "2030": 125000
+    },
+    "don": 975000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "771990201",
+    "nome": "Projeto De Construção De Sede De Itma E Data Center",
+    "financiador": "PROCURA",
+    "fin_norm": "PROCURA",
+    "ministerio": "MINISTÉRIO DOS TRANSPORTES  TELECOMUNICAÇÃO E ECONOMIA DIGITAL",
+    "min_abbr": "Transportes",
+    "total": 22897000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 4000000,
+      "2029": 15000000,
+      "2030": 3897000
+    },
+    "don": 6613950,
+    "empr": 12283050,
+    "interno": 4000000
+  },
+  {
+    "code": "771990301",
+    "nome": "Projeto De Construção Da Rede Nacional Fibra Optica-Orango",
+    "financiador": "PROCURA",
+    "fin_norm": "PROCURA",
+    "ministerio": "MINISTÉRIO DOS TRANSPORTES  TELECOMUNICAÇÃO E ECONOMIA DIGITAL",
+    "min_abbr": "Transportes",
+    "total": 28000000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 8000000,
+      "2029": 10000000,
+      "2030": 10000000
+    },
+    "don": 9100000,
+    "empr": 16900000,
+    "interno": 2000000
+  },
+  {
+    "code": "771990132",
+    "nome": "Projeto De Construção De Porto Regional De Buba",
+    "financiador": "PROCURA",
+    "fin_norm": "PROCURA",
+    "ministerio": "MINISTÉRIO DOS TRANSPORTES  TELECOMUNICAÇÃO E ECONOMIA DIGITAL",
+    "min_abbr": "Transportes",
+    "total": 18947000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 18947000
+    },
+    "don": 5406000,
+    "empr": 10041000,
+    "interno": 3500000
+  },
+  {
+    "code": "771990401",
+    "nome": "Projeto De Construção De Doka, Sistema Da Rampa Para Subida De Navios - Estaleiro Molinete Eletrico Com Capacidade De 85 Toneladas",
+    "financiador": "PROCURA",
+    "fin_norm": "PROCURA",
+    "ministerio": "MINISTÉRIO DOS TRANSPORTES  TELECOMUNICAÇÃO E ECONOMIA DIGITAL",
+    "min_abbr": "Transportes",
+    "total": 6716000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 6716000
+    },
+    "don": 1377000,
+    "empr": 2559000,
+    "interno": 2780000
+  },
+  {
+    "code": "619940101",
+    "nome": "Programa Sobrevivencia E Desenvolvimento Da Criança \"Saúde E Nutrição Da Mãe E Da Criança\"",
+    "financiador": "UNICEF/PAM/PLAN",
+    "fin_norm": "UNICEF/PAM/PLAN",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 6502000,
+    "anos": {
+      "2026": 1002000,
+      "2027": 1000000,
+      "2028": 1500000,
+      "2029": 1500000,
+      "2030": 1500000
+    },
+    "don": 6502000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "611940702",
+    "nome": "Projecto De Nutrição_Pam: Fornecimentos De Alimentos Complimentares  Para Crianças De 6 - 23 Meses Para Prevenção  De Desnutrição Cronica",
+    "financiador": "PAM",
+    "fin_norm": "PAM",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 2902000,
+    "anos": {
+      "2026": 502000,
+      "2027": 600000,
+      "2028": 600000,
+      "2029": 600000,
+      "2030": 600000
+    },
+    "don": 2902000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "611940401",
+    "nome": "Projecto Nutrição_Pam:Tratamento De Amamentação Das Crianças De 6-59 Meses",
+    "financiador": "PAM",
+    "fin_norm": "PAM",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 0,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "611940601",
+    "nome": "Projecto Crianças E Sida",
+    "financiador": "Sist.NU/UNICEF",
+    "fin_norm": "Sist.NU/UNICEF",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 1913000,
+    "anos": {
+      "2026": 313000,
+      "2027": 400000,
+      "2028": 400000,
+      "2029": 400000,
+      "2030": 400000
+    },
+    "don": 1913000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "613931501",
+    "nome": "Projecto De Cg-Pnds Programa Da Redução Da Incidência Da Malária",
+    "financiador": "FM",
+    "fin_norm": "FM",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 4267673,
+    "anos": {
+      "2026": 717673,
+      "2027": 800000,
+      "2028": 800000,
+      "2029": 800000,
+      "2030": 1150000
+    },
+    "don": 3467673,
+    "empr": 0,
+    "interno": 800000
+  },
+  {
+    "code": "613931601",
+    "nome": "Programa Tb/Vhis - Rs",
+    "financiador": "FM",
+    "fin_norm": "FM",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 3564824,
+    "anos": {
+      "2026": 664824,
+      "2027": 650000,
+      "2028": 600000,
+      "2029": 600000,
+      "2030": 1050000
+    },
+    "don": 2614824,
+    "empr": 0,
+    "interno": 950000
+  },
+  {
+    "code": "613937801",
+    "nome": "Projecto De Reforços Dos Serviços De Saúde Reprodutiiva De Qualidade E Da Prevenção Do Hvi/Sida- Gbs03P01 E 08",
+    "financiador": "U.E./FNUAP",
+    "fin_norm": "U.E./FNUAP",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 2307200,
+    "anos": {
+      "2026": 507200,
+      "2027": 450000,
+      "2028": 450000,
+      "2029": 450000,
+      "2030": 450000
+    },
+    "don": 2307200,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "613921001",
+    "nome": "Iniciativa Equipa Europa: Apoio Ao Instituto Nacional De Saúde Pública Da Guiné-Bissau (Inasa)",
+    "financiador": "EU",
+    "fin_norm": "EU",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 2923077,
+    "anos": {
+      "2026": 623077,
+      "2027": 575000,
+      "2028": 575000,
+      "2029": 575000,
+      "2030": 575000
+    },
+    "don": 2923077,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "613921101",
+    "nome": "Reforçar O Sistema De Saúde Rumo À Cobertura Universal De Saúde (Pro-Saude)",
+    "financiador": "EU",
+    "fin_norm": "EU",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 2400000,
+    "anos": {
+      "2026": 500000,
+      "2027": 475000,
+      "2028": 475000,
+      "2029": 475000,
+      "2030": 475000
+    },
+    "don": 2400000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "611126303",
+    "nome": "Programa De Suportes De  Aprivisionamento De Vacinas- Contrapartida De Gavi",
+    "financiador": "GAVI",
+    "fin_norm": "GAVI",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 5148688,
+    "anos": {
+      "2026": 898688,
+      "2027": 1250000,
+      "2028": 1000000,
+      "2029": 1000000,
+      "2030": 1000000
+    },
+    "don": 2598688,
+    "empr": 0,
+    "interno": 2550000
+  },
+  {
+    "code": "611941201",
+    "nome": "Projecto De Cooperação Portuguesa(Custos De_Tratamento Dos Guineenses Atraves De  Junta Medica Nacional)",
+    "financiador": "COOP.PORT.",
+    "fin_norm": "COOP.PORT.",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 630000,
+    "anos": {
+      "2026": 150000,
+      "2027": 120000,
+      "2028": 120000,
+      "2029": 120000,
+      "2030": 120000
+    },
+    "don": 630000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "611991191",
+    "nome": "Projecto Digitalização De Sistema De Saúde \"Sightsavers\"",
+    "financiador": "SIGHTSAVERS",
+    "fin_norm": "SIGHTSAVERS",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 921883,
+    "anos": {
+      "2026": 201883,
+      "2027": 180000,
+      "2028": 180000,
+      "2029": 180000,
+      "2030": 180000
+    },
+    "don": 921883,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "619990132",
+    "nome": "Projeto De Reforço Da Iniciativa-Piloto Do Unfpa No Centro De Saúde De Buba Para Reduzir A Mortalidade Materna E Neonatal Nas Regiões De Gabu E Bafata No Período 2024-2025",
+    "financiador": "UNFPA/ FM",
+    "fin_norm": "UNFPA/ FM",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 2351618,
+    "anos": {
+      "2026": 551618,
+      "2027": 450000,
+      "2028": 450000,
+      "2029": 450000,
+      "2030": 450000
+    },
+    "don": 2351618,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "619990232",
+    "nome": "Projecto Compra De Medicamentos E Produtos Maternos De Primeira Necessidade (Kits De Cesariana, Kits De Parto)",
+    "financiador": "UNFPA",
+    "fin_norm": "UNFPA",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 1620172,
+    "anos": {
+      "2026": 420172,
+      "2027": 300000,
+      "2028": 300000,
+      "2029": 300000,
+      "2030": 300000
+    },
+    "don": 1620172,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "719921201",
+    "nome": "Projeto De Construção De Edificio De Gavi/Dsive",
+    "financiador": "GAVI",
+    "fin_norm": "GAVI",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 3023216,
+    "anos": {
+      "2026": 623216,
+      "2027": 600000,
+      "2028": 600000,
+      "2029": 600000,
+      "2030": 600000
+    },
+    "don": 2348216,
+    "empr": 0,
+    "interno": 675000
+  },
+  {
+    "code": "719931301",
+    "nome": "Projeto De Reforço De Sistemas E Compitencias De Saúde E De Criação De Empregos Para Jovens E Mulheres Na Guine-Bissa (Psce) (Reabilitação E Ampliação De Hospital De Catio, Centros De Saude De Tite, Có E Cumtuboel)",
+    "financiador": "BAD",
+    "fin_norm": "BAD",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 2140000,
+    "anos": {
+      "2026": 540000,
+      "2027": 400000,
+      "2028": 400000,
+      "2029": 400000,
+      "2030": 400000
+    },
+    "don": 2140000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "672931101",
+    "nome": "Projeto De Melhoria De Acesso Saude, Sexual E Reprodutiva",
+    "financiador": "EUA.SOUTAMTHONSON",
+    "fin_norm": "EUA.SOUTAMTHONSON",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 1200000,
+    "anos": {
+      "2026": 200000,
+      "2027": 250000,
+      "2028": 250000,
+      "2029": 250000,
+      "2030": 250000
+    },
+    "don": 1200000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "672931201",
+    "nome": "Projeto Da Analise De Situação De Oncologia",
+    "financiador": "OMS",
+    "fin_norm": "OMS",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 1000000,
+    "anos": {
+      "2026": 200000,
+      "2027": 200000,
+      "2028": 200000,
+      "2029": 200000,
+      "2030": 200000
+    },
+    "don": 1000000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "613931901",
+    "nome": "Projecto Fundo Global De Malaria (Gc7)",
+    "financiador": "PNUD/UNICEF",
+    "fin_norm": "PNUD/UNICEF",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 2300000,
+    "anos": {
+      "2026": 500000,
+      "2027": 450000,
+      "2028": 450000,
+      "2029": 450000,
+      "2030": 450000
+    },
+    "don": 2300000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "611943201",
+    "nome": "C19Rm 2021 Funding_Guiné Bissau\" Mecanismo De Resposta À Covid-19 Financiamento Adicional Para A Guiné-Bissau C19Rm",
+    "financiador": "PNUD",
+    "fin_norm": "PNUD",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 300000,
+    "anos": {
+      "2026": 300000,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 300000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "619949301",
+    "nome": "Projecto De Assistência Social Hospitalar, Apoio Aos Pacientes Carenciados",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 475000,
+    "anos": {
+      "2026": 25000,
+      "2027": 125000,
+      "2028": 75000,
+      "2029": 75000,
+      "2030": 175000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 475000
+  },
+  {
+    "code": "619949401",
+    "nome": "Projecto De Reforço De Capacidade De Comité De Coordenação Multi-Sectorial Ccm - Funcionamento",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 315000,
+    "anos": {
+      "2026": 15000,
+      "2027": 75000,
+      "2028": 75000,
+      "2029": 75000,
+      "2030": 75000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 315000
+  },
+  {
+    "code": "611947201",
+    "nome": "Projecto Reforço De Capacidade Institucional Do Inasa",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 270000,
+    "anos": {
+      "2026": 20000,
+      "2027": 100000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 270000
+  },
+  {
+    "code": "613930101",
+    "nome": "Programa Anual De Pacto Para Parceria De Fornecimento / Aprovisionamento Do Unfpa",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 130000,
+    "anos": {
+      "2026": 10000,
+      "2027": 30000,
+      "2028": 30000,
+      "2029": 30000,
+      "2030": 30000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 130000
+  },
+  {
+    "code": "719990191",
+    "nome": "Projecto Reabil. Do Edificio Do Hospital Raul Follreou/Fiscalização",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 725000,
+    "anos": {
+      "2026": 75000,
+      "2027": 200000,
+      "2028": 150000,
+      "2029": 150000,
+      "2030": 150000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 725000
+  },
+  {
+    "code": "719990291",
+    "nome": "Projecto Reabil. Do Edificio Do Serviço Materno Infantil/Saúde Nutrição",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 475000,
+    "anos": {
+      "2026": 75000,
+      "2027": 100000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 100000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 475000
+  },
+  {
+    "code": "719990101",
+    "nome": "Projecto Reabilitações Dos Centros De Saúde A Nivel Do Pais",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 3350000,
+    "anos": {
+      "2026": 100000,
+      "2027": 1000000,
+      "2028": 400000,
+      "2029": 450000,
+      "2030": 1400000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 3350000
+  },
+  {
+    "code": "719990691",
+    "nome": "Projecto Reabilitação De Centro De Saúde Mental Osvaldo Vieira De Brá/Enterramento",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 600000,
+    "anos": {
+      "2026": 50000,
+      "2027": 200000,
+      "2028": 100000,
+      "2029": 150000,
+      "2030": 100000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 600000
+  },
+  {
+    "code": "719990791",
+    "nome": "Projecto Reabilitação Do Edificio Do Hospital  Regional De   Mansoa",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 700000,
+    "anos": {
+      "2026": 50000,
+      "2027": 150000,
+      "2028": 100000,
+      "2029": 300000,
+      "2030": 100000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 700000
+  },
+  {
+    "code": "719990891",
+    "nome": "Projecto De Reabilitação De Laboratorio Nacional De Saude Publica",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 732100,
+    "anos": {
+      "2026": 75000,
+      "2027": 250000,
+      "2028": 100000,
+      "2029": 207100,
+      "2030": 100000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 732100
+  },
+  {
+    "code": "619990101",
+    "nome": "Projeto De Capacitação Em Cuidados Obstetricos E Neonatais Completo",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 550000,
+    "anos": {
+      "2026": 50000,
+      "2027": 75000,
+      "2028": 75000,
+      "2029": 75000,
+      "2030": 275000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 550000
+  },
+  {
+    "code": "669931201",
+    "nome": "Projeto De Equidade De Acesso A Assistentica Sanitaria Entre As Mulheres E Crianças",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 550000,
+    "anos": {
+      "2026": 100000,
+      "2027": 150000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 100000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 550000
+  },
+  {
+    "code": "611943301",
+    "nome": "Projecto Cancro Infantil",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 975000,
+    "anos": {
+      "2026": 75000,
+      "2027": 100000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 600000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 975000
+  },
+  {
+    "code": "611940701",
+    "nome": "Projeto De Construção Da Fabrica De Medicamento",
+    "financiador": "N/A",
+    "fin_norm": "N/A",
+    "ministerio": "MINISTÉRIO DA SAÚDE PUBLICA",
+    "min_abbr": "Saúde",
+    "total": 3000000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 0,
+      "2029": 2000000,
+      "2030": 1000000
+    },
+    "don": 2500000,
+    "empr": 0,
+    "interno": 500000
+  },
+  {
+    "code": "774910392",
+    "nome": "Projecto De Equidade E Qualidade Da Educação",
+    "financiador": "Sist.NU/UNICEF",
+    "fin_norm": "Sist.NU/UNICEF",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 1300100,
+    "anos": {
+      "2026": 300100,
+      "2027": 400000,
+      "2028": 200000,
+      "2029": 200000,
+      "2030": 200000
+    },
+    "don": 1300100,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "451941601",
+    "nome": "Projecto De Cp Novo Programa De Apoio Ao Setor Da Educação - Programa De Reforço De Capacidades Do Sistema Educativo (Precase)",
+    "financiador": "COP.PT/INST.CAM.",
+    "fin_norm": "COP.PT/INST.CAM.",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 0,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "451942001",
+    "nome": "Projecto Unidades De Apoio Pedagógico",
+    "financiador": "COP.PT/INST.CAM.",
+    "fin_norm": "COP.PT/INST.CAM.",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 600000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 200000,
+      "2029": 200000,
+      "2030": 200000
+    },
+    "don": 600000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "992943301",
+    "nome": "Projecto De Educação De Qualidade, Inclusiva E Participativa (Equip 2)",
+    "financiador": "PLAN INBTERNATIONAL",
+    "fin_norm": "PLAN INBTERNATIONAL",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 1010000,
+    "anos": {
+      "2026": 260000,
+      "2027": 300000,
+      "2028": 150000,
+      "2029": 150000,
+      "2030": 150000
+    },
+    "don": 1010000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "992944801",
+    "nome": "Projecto De Mereece (Melhoria Do Rendimento Escolar E Economico Das Comunidades Educativas Na Guinébissau",
+    "financiador": "USAID/PLAN",
+    "fin_norm": "USAID/PLAN",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 640000,
+    "anos": {
+      "2026": 100000,
+      "2027": 150000,
+      "2028": 130000,
+      "2029": 130000,
+      "2030": 130000
+    },
+    "don": 640000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "411942401",
+    "nome": "Projecto De Plan Meninas Preparadas Para Transformar O Futuro  De Apreender  A Fortalecer (Spad)",
+    "financiador": "CNO SPAD",
+    "fin_norm": "CNO SPAD",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 270000,
+    "anos": {
+      "2026": 140000,
+      "2027": 130000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 270000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "411940401",
+    "nome": "Projecto De Cso-La/2017/389-769 - Boa Governação E Transparência Na Educação. Experiência Piloto Entre Sociedade Civil E Estado Na Região Bafatá",
+    "financiador": "U.E/FEC",
+    "fin_norm": "U.E/FEC",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 0,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "411949001",
+    "nome": "Projecto Nô Firma Pa Nô Dritus  - Bolama Integração Das Temáticas Dos Direitos Humanos E Cidadania No Currículo Escolar E Nas Praticas Educativas, Familiares E Comunitárias",
+    "financiador": "U.E/FEC",
+    "fin_norm": "U.E/FEC",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 0,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "411951001",
+    "nome": "Projecto De Planeamento,Estatisticas E Sistemas De Informação Ao Serviço Do Desenvolvimento Da Educação Na Guiné-Bissau (Peside)",
+    "financiador": "U.E",
+    "fin_norm": "U.E",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 450000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 150000,
+      "2029": 150000,
+      "2030": 150000
+    },
+    "don": 450000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "411931001",
+    "nome": "Projecto Melhorar A Gestão, Supervisão E Eficácia Do Sistema Educativo Da Guiné-Bissau “Gsese-Gb”",
+    "financiador": "EU",
+    "fin_norm": "EU",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 1476443,
+    "anos": {
+      "2026": 270899,
+      "2027": 250000,
+      "2028": 318514,
+      "2029": 318514,
+      "2030": 318514
+    },
+    "don": 1476443,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "411942601",
+    "nome": "Projecto Jp Projecto De Apoio Para Cantinas  (Educação )",
+    "financiador": "JAPAO",
+    "fin_norm": "JAPAO",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 1499058,
+    "anos": {
+      "2026": 637029,
+      "2027": 637029,
+      "2028": 75000,
+      "2029": 75000,
+      "2030": 75000
+    },
+    "don": 1499058,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "451948601",
+    "nome": "Projecto-Cp De Apoio À Faculdade De Direito De Bissau (Fdb)",
+    "financiador": "COP.PT",
+    "fin_norm": "COP.PT",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 755000,
+    "anos": {
+      "2026": 80000,
+      "2027": 75000,
+      "2028": 200000,
+      "2029": 200000,
+      "2030": 200000
+    },
+    "don": 755000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "719991401",
+    "nome": "Projeto De Construção De Jardins Modernas Infantis E Complexos Politecnicos Ultra Modernas Na Republica Da Guiné-Bissau",
+    "financiador": "ESPANHA/RUSIA",
+    "fin_norm": "ESPANHA/RUSIA",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 1450000,
+    "anos": {
+      "2026": 300000,
+      "2027": 400000,
+      "2028": 250000,
+      "2029": 250000,
+      "2030": 250000
+    },
+    "don": 700000,
+    "empr": 0,
+    "interno": 750000
+  },
+  {
+    "code": "411920301",
+    "nome": "Projecto Construção De Refeitorios",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 1195000,
+    "anos": {
+      "2026": 100000,
+      "2027": 750000,
+      "2028": 115000,
+      "2029": 115000,
+      "2030": 115000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 1195000
+  },
+  {
+    "code": "451946601",
+    "nome": "Projecto Complemento Ao Peside (Aquisição De Equipamentos, Materiais E Recuperação Das Séries De Dados 2015-2021,",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 322000,
+    "anos": {
+      "2026": 25000,
+      "2027": 87000,
+      "2028": 70000,
+      "2029": 70000,
+      "2030": 70000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 322000
+  },
+  {
+    "code": "451944501",
+    "nome": "Projeto De Revisão Dos Programas E Elaboração De Coletâneas Para O Ensino Secundário",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 695000,
+    "anos": {
+      "2026": 25000,
+      "2027": 70000,
+      "2028": 200000,
+      "2029": 200000,
+      "2030": 200000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 695000
+  },
+  {
+    "code": "411920501",
+    "nome": "Projecto Construção E Reparação De Salas De Aulas E Edificios",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 2255000,
+    "anos": {
+      "2026": 200000,
+      "2027": 705000,
+      "2028": 350000,
+      "2029": 650000,
+      "2030": 350000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 2255000
+  },
+  {
+    "code": "411920601",
+    "nome": "Projecto Aquisição De Carteiras",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 1975100,
+    "anos": {
+      "2026": 300000,
+      "2027": 778000,
+      "2028": 75000,
+      "2029": 175000,
+      "2030": 647100
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 1975100
+  },
+  {
+    "code": "411920101",
+    "nome": "Reparação Do Centro De Educação A Distancia \"Universidade Virtual Africana\"",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 230000,
+    "anos": {
+      "2026": 5000,
+      "2027": 75000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 230000
+  },
+  {
+    "code": "411920202",
+    "nome": "Projecto Construção Do Centro De Recursos Para As Escola Normal, Normal Superior E Uac \"Lab Viirtual\"",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 280000,
+    "anos": {
+      "2026": 50000,
+      "2027": 90000,
+      "2028": 30000,
+      "2029": 80000,
+      "2030": 30000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 280000
+  },
+  {
+    "code": "421940101",
+    "nome": "Projecto Implementação Da Política De Bibliotecas Escolares E Preservação Do Património Documental (Biblioteca Nacional E Arquivo",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 45000,
+    "anos": {
+      "2026": 15000,
+      "2027": 30000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 45000
+  },
+  {
+    "code": "421940301",
+    "nome": "Projeto De Relançamento De Educação E Formação Técnica E Profissional Para Emprego",
+    "financiador": "N/A",
+    "fin_norm": "N/A",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 800000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 0,
+      "2029": 400000,
+      "2030": 400000
+    },
+    "don": 800000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "421940401",
+    "nome": "Projeto De Construção De Um Liceu Comunitario - Enafor",
+    "financiador": "N/A",
+    "fin_norm": "N/A",
+    "ministerio": "MINISTÉRIO DA EDUCAÇÃO NACIONAL, ENSINO SUPERIOR E INVESTIGAÇÃO CIENTIFICA",
+    "min_abbr": "Educação",
+    "total": 712000,
+    "anos": {
+      "2026": 0,
+      "2027": 0,
+      "2028": 0,
+      "2029": 356000,
+      "2030": 356000
+    },
+    "don": 712000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "359940223",
+    "nome": "Projecto De Fortelecimento Familiar (Canchungo)",
+    "financiador": "SOS HOLANDA",
+    "fin_norm": "SOS HOLANDA",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 1027000,
+    "anos": {
+      "2026": 279400,
+      "2027": 189400,
+      "2028": 169400,
+      "2029": 169400,
+      "2030": 219400
+    },
+    "don": 837000,
+    "empr": 0,
+    "interno": 190000
+  },
+  {
+    "code": "619471242",
+    "nome": "Projecto De Empoderamento Das Mulheres De Gabú",
+    "financiador": "SOS ALEMANHA",
+    "fin_norm": "SOS ALEMANHA",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 1115000,
+    "anos": {
+      "2026": 423000,
+      "2027": 323000,
+      "2028": 123000,
+      "2029": 123000,
+      "2030": 123000
+    },
+    "don": 1115000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "619471342",
+    "nome": "Projecto Escola De Familia",
+    "financiador": "SOS ALEMANHA",
+    "fin_norm": "SOS ALEMANHA",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 400000,
+    "anos": {
+      "2026": 100000,
+      "2027": 75000,
+      "2028": 75000,
+      "2029": 75000,
+      "2030": 75000
+    },
+    "don": 400000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "619471111",
+    "nome": "Projecto De Fortelecimento Familiar Em Bissau",
+    "financiador": "SOS ALEMANHA",
+    "fin_norm": "SOS ALEMANHA",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 485000,
+    "anos": {
+      "2026": 85000,
+      "2027": 100000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 100000
+    },
+    "don": 275000,
+    "empr": 0,
+    "interno": 210000
+  },
+  {
+    "code": "619471311",
+    "nome": "Projecto De Fortelecimento Familiar Em Gabu",
+    "financiador": "SOS ALEMANHA",
+    "fin_norm": "SOS ALEMANHA",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 210000,
+    "anos": {
+      "2026": 50000,
+      "2027": 40000,
+      "2028": 40000,
+      "2029": 40000,
+      "2030": 40000
+    },
+    "don": 210000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "619471211",
+    "nome": "Projeto Sangue Novo Em Bissau",
+    "financiador": "SOS ALEMANHA",
+    "fin_norm": "SOS ALEMANHA",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 370000,
+    "anos": {
+      "2026": 70000,
+      "2027": 75000,
+      "2028": 75000,
+      "2029": 75000,
+      "2030": 75000
+    },
+    "don": 370000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "619471442",
+    "nome": "Projeto Sangue Novo Em Gabu",
+    "financiador": "SOS ALEMANHA",
+    "fin_norm": "SOS ALEMANHA",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 490000,
+    "anos": {
+      "2026": 90000,
+      "2027": 100000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 100000
+    },
+    "don": 490000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "611920103",
+    "nome": "Proteção Social",
+    "financiador": "UNICEF",
+    "fin_norm": "UNICEF",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 1700000,
+    "anos": {
+      "2026": 450000,
+      "2027": 500000,
+      "2028": 250000,
+      "2029": 250000,
+      "2030": 250000
+    },
+    "don": 1700000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "361940101",
+    "nome": "Projecto Piloto De Criação De Auto-Empregos Para Jovens E Mulheres Nas Zonas Fronteiriças \"Promig\"",
+    "financiador": "CEDEAO/GOV. ESPANHA",
+    "fin_norm": "CEDEAO/GOV. ESPANHA",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 460000,
+    "anos": {
+      "2026": 84000,
+      "2027": 94000,
+      "2028": 94000,
+      "2029": 94000,
+      "2030": 94000
+    },
+    "don": 460000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "361940201",
+    "nome": "Projecto Implementação Da Programação De Desenolvimento Social ( Bolsa De Excelencia, Tratamento De Fistula E Autonomização  Financeira Das Mulheres)",
+    "financiador": "CEDEAO/CCDG",
+    "fin_norm": "CEDEAO/CCDG",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 701743,
+    "anos": {
+      "2026": 101743,
+      "2027": 150000,
+      "2028": 150000,
+      "2029": 150000,
+      "2030": 150000
+    },
+    "don": 491743,
+    "empr": 0,
+    "interno": 210000
+  },
+  {
+    "code": "611940602",
+    "nome": "Projecto De Reforço Das Capacidades De Voluntariado Na Guiné-Bissau",
+    "financiador": "PNUD",
+    "fin_norm": "PNUD",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 500000,
+    "anos": {
+      "2026": 100000,
+      "2027": 100000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 100000
+    },
+    "don": 500000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "669990101",
+    "nome": "Projecto Conjunto Para A Eliminacao Da Mutilacao Genital Feminina-Fase 4",
+    "financiador": "UNFPA/ UNICEF",
+    "fin_norm": "UNFPA/ UNICEF",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 746102,
+    "anos": {
+      "2026": 190551,
+      "2027": 210551,
+      "2028": 115000,
+      "2029": 115000,
+      "2030": 115000
+    },
+    "don": 666102,
+    "empr": 0,
+    "interno": 80000
+  },
+  {
+    "code": "611920101",
+    "nome": "Projeto De Desenvolvimento Integrado De Uma Rede De Proteção Social Na Guiné-Bissau",
+    "financiador": "COOP. PORT",
+    "fin_norm": "COOP. PORT",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 2260742,
+    "anos": {
+      "2026": 512148,
+      "2027": 512148,
+      "2028": 412148,
+      "2029": 412148,
+      "2030": 412148
+    },
+    "don": 2135742,
+    "empr": 0,
+    "interno": 125000
+  },
+  {
+    "code": "992920101",
+    "nome": "Projecto De Combate A Fenomino De Trabalho Infantil, Das Crianças Mendigas, Promover A Sua Reinserção Social E Familiar",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 175000,
+    "anos": {
+      "2026": 10000,
+      "2027": 35000,
+      "2028": 20000,
+      "2029": 70000,
+      "2030": 40000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 175000
+  },
+  {
+    "code": "669940101",
+    "nome": "Projecto De Construção E Equipamentos De Um Comlexo Multifuncioal E Profissioalizante",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 96000,
+    "anos": {
+      "2026": 16000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 96000
+  },
+  {
+    "code": "669940801",
+    "nome": "Projecto De Apoio As Vitimas De Calamidades Natural",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 840000,
+    "anos": {
+      "2026": 20000,
+      "2027": 170000,
+      "2028": 150000,
+      "2029": 350000,
+      "2030": 150000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 840000
+  },
+  {
+    "code": "619470101",
+    "nome": "Projecto Federação De Associações De Defesa E Promoção Dos Direitos Das Pessoas Com Deficiencia-Gb(Fadpdgb)",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 90000,
+    "anos": {
+      "2026": 10000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 90000
+  },
+  {
+    "code": "669940201",
+    "nome": "Projecto Mapeamento Geral De Pessoas Com Deficiencia Ao Nivel Nacional",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 225000,
+    "anos": {
+      "2026": 40000,
+      "2027": 45000,
+      "2028": 40000,
+      "2029": 60000,
+      "2030": 40000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 225000
+  },
+  {
+    "code": "719940201",
+    "nome": "Projecto Construção De Centro De Acolhimento  Para Pessoas Com Deficiencias E Da Terceira Idade",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 420000,
+    "anos": {
+      "2026": 35000,
+      "2027": 45000,
+      "2028": 35000,
+      "2029": 235000,
+      "2030": 70000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 420000
+  },
+  {
+    "code": "669941901",
+    "nome": "Projecto De Mobilidade E Saneamento Inclusiva Para Todos E Assistencia Alimentar Medica E Medicamentos Para Vitimas A Alta Vunerabilidade",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 115000,
+    "anos": {
+      "2026": 20000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 35000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 115000
+  },
+  {
+    "code": "619471301",
+    "nome": "Projectto De Plataforma Nacional Das Organizações Das Pessoas Com Dificiencia Para O Desenvolvimento Inclusivo",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 110000,
+    "anos": {
+      "2026": 10000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 40000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 110000
+  },
+  {
+    "code": "669941001",
+    "nome": "Projecto De Emplementação Do Esquema Padrão Para Institucionalização Do Genero Nos Ministérios E Instituição Do Estado",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA  MULHER, FAMILIA E SOLIDARIEDADE SOCIAL",
+    "min_abbr": "Solidariedade",
+    "total": 200000,
+    "anos": {
+      "2026": 30000,
+      "2027": 30000,
+      "2028": 30000,
+      "2029": 80000,
+      "2030": 30000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 200000
+  },
+  {
+    "code": "271920101",
+    "nome": "Projecto De Reabilitação Do Tribunal Regional De Oio E Tribunal De Sectores De Canchungo E Mansoa (Justiça Pa Tudo Djintis)",
+    "financiador": "PNUD",
+    "fin_norm": "PNUD",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 1526853,
+    "anos": {
+      "2026": 429101,
+      "2027": 439101,
+      "2028": 219550,
+      "2029": 219550,
+      "2030": 219550
+    },
+    "don": 1526853,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "252940201",
+    "nome": "Projecto De Construindo Um Observatório Da Sociedade Civil Para De Economia Ilícita",
+    "financiador": "PNUD",
+    "fin_norm": "PNUD",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 596986,
+    "anos": {
+      "2026": 146986,
+      "2027": 150000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 100000
+    },
+    "don": 596986,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "271940101",
+    "nome": "Projecto De Etabilização Politica E Reforma",
+    "financiador": "PNUD",
+    "fin_norm": "PNUD",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 670000,
+    "anos": {
+      "2026": 150000,
+      "2027": 160000,
+      "2028": 120000,
+      "2029": 120000,
+      "2030": 120000
+    },
+    "don": 670000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "341831101",
+    "nome": "Projecto De Construção De Trs (3) Casas Da Justiça, Buba, Canchungo E Bubaque",
+    "financiador": "PNUD",
+    "fin_norm": "PNUD",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 2050000,
+    "anos": {
+      "2026": 550000,
+      "2027": 600000,
+      "2028": 300000,
+      "2029": 300000,
+      "2030": 300000
+    },
+    "don": 2050000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "611920102",
+    "nome": "Projecto De Proteçao Da Criança",
+    "financiador": "SIST.NU/UNICEF",
+    "fin_norm": "SIST.NU/UNICEF",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 1529950,
+    "anos": {
+      "2026": 425990,
+      "2027": 425990,
+      "2028": 225990,
+      "2029": 225990,
+      "2030": 225990
+    },
+    "don": 1529950,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "139990101",
+    "nome": "Projeto De Construção De Instituições Fortes Pela Consolidação Da Paz / Dim",
+    "financiador": "PNUD",
+    "fin_norm": "PNUD",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 1050000,
+    "anos": {
+      "2026": 300000,
+      "2027": 300000,
+      "2028": 150000,
+      "2029": 150000,
+      "2030": 150000
+    },
+    "don": 1050000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "139931201",
+    "nome": "Projecto Melhorar O Acesso Inclusivo À Justiça Através Do Empoderamento Legal E Da Reforma Judicial Na Guiné-Bissau-/ Justisa Pa Tudu Djinti",
+    "financiador": "EU",
+    "fin_norm": "EU",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 1479785,
+    "anos": {
+      "2026": 355957,
+      "2027": 355957,
+      "2028": 255957,
+      "2029": 255957,
+      "2030": 255957
+    },
+    "don": 1479785,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "279920323",
+    "nome": "Projecto De Emergencia Nacional, Combate Ao Narco-Trafico E Crime Organizado",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 300000,
+    "anos": {
+      "2026": 10000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 140000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 300000
+  },
+  {
+    "code": "611940703",
+    "nome": "Projecto De Reabilitação De Tribunais E Estabilicimentos Prisionais (Quinhamel, Gabu E Bafata)",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 210000,
+    "anos": {
+      "2026": 10000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 210000
+  },
+  {
+    "code": "341920102",
+    "nome": "Projecto De Construcçao De Prisao De Ilonde (Limpeza E Vedação)",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 425000,
+    "anos": {
+      "2026": 25000,
+      "2027": 100000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 100000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 425000
+  },
+  {
+    "code": "341920201",
+    "nome": "Projecto De Vedação Do Terreno Da Futura Sede Nacional Da Policia Judiciária - Pj",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 225000,
+    "anos": {
+      "2026": 25000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 225000
+  },
+  {
+    "code": "341920301",
+    "nome": "Projecto De Vedação Do Terreno Da Futura Sede Nacional Do Centro Nacional De Formação Judiciária - Cenfoj",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 225000,
+    "anos": {
+      "2026": 25000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 225000
+  },
+  {
+    "code": "341920401",
+    "nome": "Projecto Construção De Quatro (4) Casas Da Justiça, Buba, Canchungo, Bubaque E Catió",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA JUSTIÇA E DIREITOS HUMANOS",
+    "min_abbr": "Justiça",
+    "total": 230000,
+    "anos": {
+      "2026": 30000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 230000
+  },
+  {
+    "code": "411920201",
+    "nome": "Projecto De Apoio Desenvolvimento Do Sistema De Formação  Profissional Na Guiné-Bissau",
+    "financiador": "BID",
+    "fin_norm": "BID",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO PÚBLICA, TRABALHO, EMPREGO, FORMAÇÃO PROFISSIONAL E SEGURANÇA SOCIAL",
+    "min_abbr": "Adm. Pública",
+    "total": 8813769,
+    "anos": {
+      "2026": 2214326,
+      "2027": 3299444,
+      "2028": 1100000,
+      "2029": 1100000,
+      "2030": 1100000
+    },
+    "don": 484882,
+    "empr": 7858887,
+    "interno": 470000
+  },
+  {
+    "code": "431920101",
+    "nome": "Projecto De Apoio A Gestão De Administração Pública- Pagap",
+    "financiador": "BAD",
+    "fin_norm": "BAD",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO PÚBLICA, TRABALHO, EMPREGO, FORMAÇÃO PROFISSIONAL E SEGURANÇA SOCIAL",
+    "min_abbr": "Adm. Pública",
+    "total": 1220000,
+    "anos": {
+      "2026": 520000,
+      "2027": 700000,
+      "2028": 0,
+      "2029": 0,
+      "2030": 0
+    },
+    "don": 1100000,
+    "empr": 0,
+    "interno": 120000
+  },
+  {
+    "code": "431920201",
+    "nome": "Projecto De Reforço De Setor Publico",
+    "financiador": "BM",
+    "fin_norm": "BM",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO PÚBLICA, TRABALHO, EMPREGO, FORMAÇÃO PROFISSIONAL E SEGURANÇA SOCIAL",
+    "min_abbr": "Adm. Pública",
+    "total": 2750000,
+    "anos": {
+      "2026": 550000,
+      "2027": 700000,
+      "2028": 500000,
+      "2029": 500000,
+      "2030": 500000
+    },
+    "don": 2750000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "432920201",
+    "nome": "Projecto Centro De Formação Profissional Brasil Guiné-Bissau",
+    "financiador": "BRASIL",
+    "fin_norm": "BRASIL",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO PÚBLICA, TRABALHO, EMPREGO, FORMAÇÃO PROFISSIONAL E SEGURANÇA SOCIAL",
+    "min_abbr": "Adm. Pública",
+    "total": 890000,
+    "anos": {
+      "2026": 170000,
+      "2027": 180000,
+      "2028": 180000,
+      "2029": 180000,
+      "2030": 180000
+    },
+    "don": 890000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "411921701",
+    "nome": "Programa De Apoio A Inserção Profissional Para  Joves Na Guiné-Bissau",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO DA ADMINISTRAÇÃO PÚBLICA, TRABALHO, EMPREGO, FORMAÇÃO PROFISSIONAL E SEGURANÇA SOCIAL",
+    "min_abbr": "Adm. Pública",
+    "total": 285000,
+    "anos": {
+      "2026": 10000,
+      "2027": 50000,
+      "2028": 75000,
+      "2029": 75000,
+      "2030": 75000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 285000
+  },
+  {
+    "code": "619990201",
+    "nome": "Projecto Desenvolvimento Dos Adolescentes E Jovens",
+    "financiador": "FNUAP",
+    "fin_norm": "FNUAP",
+    "ministerio": "MINISTÉRIO  DA CULTURA , JUVENTUDE   E DESPORTOS",
+    "min_abbr": "Cultura/Juventude",
+    "total": 380000,
+    "anos": {
+      "2026": 60000,
+      "2027": 80000,
+      "2028": 80000,
+      "2029": 80000,
+      "2030": 80000
+    },
+    "don": 380000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "519940101",
+    "nome": "Projecto Politicas E Instituições Inclusivas Para Uma Sociedade Pacífica",
+    "financiador": "FNUAP/UJAB44",
+    "fin_norm": "FNUAP/UJAB44",
+    "ministerio": "MINISTÉRIO  DA CULTURA , JUVENTUDE   E DESPORTOS",
+    "min_abbr": "Cultura/Juventude",
+    "total": 1771430,
+    "anos": {
+      "2026": 274286,
+      "2027": 374286,
+      "2028": 374286,
+      "2029": 374286,
+      "2030": 374286
+    },
+    "don": 1771430,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "519940201",
+    "nome": "Projeto De Estabilidade Política E Reforma",
+    "financiador": "FNUAP/UJAB93",
+    "fin_norm": "FNUAP/UJAB93",
+    "ministerio": "MINISTÉRIO  DA CULTURA , JUVENTUDE   E DESPORTOS",
+    "min_abbr": "Cultura/Juventude",
+    "total": 712818,
+    "anos": {
+      "2026": 112818,
+      "2027": 150000,
+      "2028": 150000,
+      "2029": 150000,
+      "2030": 150000
+    },
+    "don": 712818,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "523930891",
+    "nome": "Projecto De Estudo De Recuperação De 8 (Oito) Cine-Teatros E Clubes Regionais Incluindo Sedes Regionais De Cultura",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO  DA CULTURA , JUVENTUDE   E DESPORTOS",
+    "min_abbr": "Cultura/Juventude",
+    "total": 905000,
+    "anos": {
+      "2026": 20000,
+      "2027": 100000,
+      "2028": 95000,
+      "2029": 95000,
+      "2030": 595000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 905000
+  },
+  {
+    "code": "523940191",
+    "nome": "Projecto De Vedação E Titularização De Pálacio De Cultura Em Bissau, Escola De Musica, Dança, Teatro E Escultura E Compra De Terreno (Fiscalização)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO  DA CULTURA , JUVENTUDE   E DESPORTOS",
+    "min_abbr": "Cultura/Juventude",
+    "total": 520000,
+    "anos": {
+      "2026": 20000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 350000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 520000
+  },
+  {
+    "code": "992442501",
+    "nome": "Projecto Promover Saúde Juvenil",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO  DA CULTURA , JUVENTUDE   E DESPORTOS",
+    "min_abbr": "Cultura/Juventude",
+    "total": 295000,
+    "anos": {
+      "2026": 20000,
+      "2027": 50000,
+      "2028": 75000,
+      "2029": 75000,
+      "2030": 75000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 295000
+  },
+  {
+    "code": "411931201",
+    "nome": "Projetos De Estudos Para Construção De Centro De Formação Futebolistica, Centro Medecina Desportiva E 4 Praças De Desportivas (Fitness Park)",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO  DA CULTURA , JUVENTUDE   E DESPORTOS",
+    "min_abbr": "Cultura/Juventude",
+    "total": 215000,
+    "anos": {
+      "2026": 15000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 215000
+  },
+  {
+    "code": "711931191",
+    "nome": "Projeto De Requalificação  De Polivalentes Desportivo Estadio Lino Correia",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO  DA CULTURA , JUVENTUDE   E DESPORTOS",
+    "min_abbr": "Cultura/Juventude",
+    "total": 190000,
+    "anos": {
+      "2026": 10000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 120000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 190000
+  },
+  {
+    "code": "711931491",
+    "nome": "Projecto De Aquisição De Equipamentos Electronicos Para  Federações Combate Na G.B.",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTÉRIO  DA CULTURA , JUVENTUDE   E DESPORTOS",
+    "min_abbr": "Cultura/Juventude",
+    "total": 250000,
+    "anos": {
+      "2026": 20000,
+      "2027": 45000,
+      "2028": 45000,
+      "2029": 45000,
+      "2030": 95000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 250000
+  },
+  {
+    "code": "749941594",
+    "nome": "Projecto De Implementação De Praticas De  Agricultura Inteligente No Leste Do País",
+    "financiador": "BOAD/F.A.Clim",
+    "fin_norm": "BOAD/F.A.Clim",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 2390000,
+    "anos": {
+      "2026": 226000,
+      "2027": 516000,
+      "2028": 516000,
+      "2029": 516000,
+      "2030": 616000
+    },
+    "don": 1880000,
+    "empr": 0,
+    "interno": 510000
+  },
+  {
+    "code": "992940331",
+    "nome": "Projeto 2 De Investimento Para Resiliencia Das Zonas Costeiras Da Africa Ocidental (Wca-P175525)",
+    "financiador": "BM",
+    "fin_norm": "BM",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 1908000,
+    "anos": {
+      "2026": 308000,
+      "2027": 400000,
+      "2028": 400000,
+      "2029": 400000,
+      "2030": 400000
+    },
+    "don": 1908000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "992942331",
+    "nome": "Sobrivivencia Das Tartarugas Marinhas Na Africaocdental \"2º Fase\"",
+    "financiador": "MAVA/TARTARUGA",
+    "fin_norm": "MAVA/TARTARUGA",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 690000,
+    "anos": {
+      "2026": 138000,
+      "2027": 138000,
+      "2028": 138000,
+      "2029": 138000,
+      "2030": 138000
+    },
+    "don": 690000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "991990131",
+    "nome": "Projecto De Reforço Da Conectividade Ecológica No Complexo Dulombi-Boé Tchetche (Projeto Conectividade Ecológico)",
+    "financiador": "GEF7",
+    "fin_norm": "GEF7",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 430000,
+    "anos": {
+      "2026": 70000,
+      "2027": 90000,
+      "2028": 90000,
+      "2029": 90000,
+      "2030": 90000
+    },
+    "don": 430000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "991990231",
+    "nome": "Projecto De Resiliencia Climatica Ao Longo Da Via Migratoria Do Atlantico Este (Iki)",
+    "financiador": "GOVERNO ALEMAO",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 520000,
+    "anos": {
+      "2026": 104000,
+      "2027": 104000,
+      "2028": 104000,
+      "2029": 104000,
+      "2030": 104000
+    },
+    "don": 520000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "991990331",
+    "nome": "Projecto Gestão Sustentável Dos Recursos Marinhos E Melhoria De Meios De Substituição Nas Amp Do Arquipélago Dos Bijagos - Baf (\"Azul Bijagós\")",
+    "financiador": "PRCM",
+    "fin_norm": "PRCM",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 1475000,
+    "anos": {
+      "2026": 215000,
+      "2027": 315000,
+      "2028": 315000,
+      "2029": 315000,
+      "2030": 315000
+    },
+    "don": 1475000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "849941501",
+    "nome": "Projecto Promover O Melhor Acesso À Serviços Energéticos Modernos Atraves De Mini Redes Sustentáveis E Tecnologias De Bioenergias De Baixo Carbono Entre As Comunidades Dependentes Das Florestas Da Guiné-Bissau",
+    "financiador": "GEF/PNUD",
+    "fin_norm": "GEF/PNUD",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 712351,
+    "anos": {
+      "2026": 111270,
+      "2027": 150270,
+      "2028": 150270,
+      "2029": 150270,
+      "2030": 150270
+    },
+    "don": 712351,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "849940992",
+    "nome": "Projecto Sap  Adaptacao De Sistemas De Producao Agricola Em Zonas Costeiras Do Nordeste Da Guinea Bissau",
+    "financiador": "FVC/OSS/ADPP",
+    "fin_norm": "FVC/OSS/ADPP",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 494600,
+    "anos": {
+      "2026": 94600,
+      "2027": 100000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 100000
+    },
+    "don": 494600,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "849941001",
+    "nome": "Projecto Readiness Reforcar As Capacidades Institucionais Da Cedeao E O Acesso Dos Estados Membros Ao Finaciamento Climatico Para Apoiar A Implementacao Das Prioridades Sectoriais Da Agricultura Da Estrategia Climatica Regional Da Cedeao",
+    "financiador": "FVC/ECOWAS",
+    "fin_norm": "FVC/ECOWAS",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 451030,
+    "anos": {
+      "2026": 90206,
+      "2027": 90206,
+      "2028": 90206,
+      "2029": 90206,
+      "2030": 90206
+    },
+    "don": 451030,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "849941101",
+    "nome": "Projecto Readiness Fortalecer As Capacidades Dos Governos Subnacionais Da  Uemoa Para Aceder O Financiamento Climatico E Desenvolver Um Pipeline De Projectos Para Apoiar As Metas Climaticas De Seus Paises",
+    "financiador": "FVC/UCGL",
+    "fin_norm": "FVC/UCGL",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 801250,
+    "anos": {
+      "2026": 160250,
+      "2027": 160250,
+      "2028": 160250,
+      "2029": 160250,
+      "2030": 160250
+    },
+    "don": 801250,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "849941201",
+    "nome": "Projecto Readiness Estabelecimento De Um Processo Nacional De Planeamento Da  Adaptacao Na Guinea Bissau",
+    "financiador": "FVC/PNUD",
+    "fin_norm": "FVC/PNUD",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 500000,
+    "anos": {
+      "2026": 100000,
+      "2027": 100000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 100000
+    },
+    "don": 500000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "849940102",
+    "nome": "Projecto Readiness \"Apoio Institucional E Tecnico Para A Preparacao Para O Redd+ Na Africa Ocidental",
+    "financiador": "FVC/FAO",
+    "fin_norm": "FVC/FAO",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 779997,
+    "anos": {
+      "2026": 155999,
+      "2027": 155999,
+      "2028": 155999,
+      "2029": 155999,
+      "2030": 155999
+    },
+    "don": 779997,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "849940892",
+    "nome": "Projeto Reserva De Biosfera Cacheu, Jeta E Pexice ( Oceano 5)",
+    "financiador": "GEF/BOAD",
+    "fin_norm": "GEF/BOAD",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 1000000,
+    "anos": {
+      "2026": 200000,
+      "2027": 200000,
+      "2028": 200000,
+      "2029": 200000,
+      "2030": 200000
+    },
+    "don": 1000000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "849941301",
+    "nome": "Projecto Fundo Ambiental",
+    "financiador": "PORTUGAL",
+    "fin_norm": "PORTUGAL",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 597016,
+    "anos": {
+      "2026": 119403,
+      "2027": 119403,
+      "2028": 119403,
+      "2029": 119403,
+      "2030": 119403
+    },
+    "don": 597016,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "849941401",
+    "nome": "Projecto Reforçar A Informação Climática E Os Sistemas De Alerta Precoce Para O Desenvolvimento Resiliente Às Alterações Climáticas E Adaptação Às Alterações Climáticas Na Guiné-Bissau (Alerta Precoce)",
+    "financiador": "GEF/PNUD",
+    "fin_norm": "GEF/PNUD",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 505000,
+    "anos": {
+      "2026": 101000,
+      "2027": 101000,
+      "2028": 101000,
+      "2029": 101000,
+      "2030": 101000
+    },
+    "don": 505000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "749940101",
+    "nome": "Projeto De Reforço Da Informação Climatica E Dos Sistemas De Alerta Precoce Para Um Desenvolvimento Resiliente As Alterações Climaticas E Adptação Na Guiné-Bissau",
+    "financiador": "PNUD",
+    "fin_norm": "PNUD",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 1900000,
+    "anos": {
+      "2026": 380000,
+      "2027": 380000,
+      "2028": 380000,
+      "2029": 380000,
+      "2030": 380000
+    },
+    "don": 1900000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "992941431",
+    "nome": "Promover Um Melhor,Acesso A Serviço Energeticosmodernos Através Minirredes Sustentaveis E Tecnologia De Bioenergia Hipocarbonicas",
+    "financiador": "GEF",
+    "fin_norm": "GEF",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 1859024,
+    "anos": {
+      "2026": 371805,
+      "2027": 371805,
+      "2028": 371805,
+      "2029": 371805,
+      "2030": 371805
+    },
+    "don": 1859024,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "992941531",
+    "nome": "Reforço De Sistema De Informação Climatico E De Alerta Rapida Para O Desenvolvimento Resiliente Ao Clima E Adaptação As Mudanças Climaticas Ns Guiné-Bissau",
+    "financiador": "GEF",
+    "fin_norm": "GEF",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 1812867,
+    "anos": {
+      "2026": 362573,
+      "2027": 362573,
+      "2028": 362573,
+      "2029": 362573,
+      "2030": 362573
+    },
+    "don": 1812867,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "991931431",
+    "nome": "Projeto Darwing-Coexistencia Entre Humanos E Chinpanzés",
+    "financiador": "UNIVERSITE EXETER",
+    "fin_norm": "UNIVERSITE EXETER",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 900000,
+    "anos": {
+      "2026": 100000,
+      "2027": 200000,
+      "2028": 200000,
+      "2029": 200000,
+      "2030": 200000
+    },
+    "don": 900000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "849940701",
+    "nome": "Projecto De Reforço De Capacidade Ibap (Corredor Tchetchi, Salif-Xitole E Cuntabane-Quebo, Etc)",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 270000,
+    "anos": {
+      "2026": 10000,
+      "2027": 60000,
+      "2028": 60000,
+      "2029": 60000,
+      "2030": 80000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 270000
+  },
+  {
+    "code": "992944301",
+    "nome": "Projecto Areas Protegidas E Resiliencia Mudanças Climaticas (Funcionamento Da Estrutura De Gestão)",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DO  AMBIENTE, BIODIVERSIDADE E AÇÃO CLIMATICA",
+    "min_abbr": "Ambiente",
+    "total": 410000,
+    "anos": {
+      "2026": 10000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 250000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 410000
+  },
+  {
+    "code": "689191502",
+    "nome": "Programa Planificação, Seguimento, Avaliação E Politica Social",
+    "financiador": "PNUD/UNICEF",
+    "fin_norm": "PNUD/UNICEF",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 1191562,
+    "anos": {
+      "2026": 218312,
+      "2027": 318312,
+      "2028": 218312,
+      "2029": 218312,
+      "2030": 218312
+    },
+    "don": 1191562,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "351940101",
+    "nome": "Projecto De Indicadores Multiplos \"Mics 7\"",
+    "financiador": "UNICEF",
+    "fin_norm": "UNICEF",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 1514639,
+    "anos": {
+      "2026": 253660,
+      "2027": 500000,
+      "2028": 253660,
+      "2029": 253660,
+      "2030": 253660
+    },
+    "don": 1514639,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "681940202",
+    "nome": "Projecto Apoio Ao Desenvolvimento De Capacidades De Comité Técnica De Implementação E De Seguimento Do Denarp E Omd \"Cisd\"",
+    "financiador": "FNUAP",
+    "fin_norm": "FNUAP",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 475600,
+    "anos": {
+      "2026": 93900,
+      "2027": 100000,
+      "2028": 93900,
+      "2029": 93900,
+      "2030": 93900
+    },
+    "don": 475600,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "681940101",
+    "nome": "Projecto De Recenseamento Geral Da População E Habitação \"Rgph\"",
+    "financiador": "FNUAP/PNUD",
+    "fin_norm": "FNUAP/PNUD",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 4561516,
+    "anos": {
+      "2026": 852303,
+      "2027": 1002303,
+      "2028": 902303,
+      "2029": 902303,
+      "2030": 902303
+    },
+    "don": 4011516,
+    "empr": 0,
+    "interno": 550000
+  },
+  {
+    "code": "411310202",
+    "nome": "Projecto Regional De Hormonização Melhoria Das Estatisticas (Hiswaca)",
+    "financiador": "BM",
+    "fin_norm": "BM",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 1800000,
+    "anos": {
+      "2026": 300000,
+      "2027": 600000,
+      "2028": 300000,
+      "2029": 300000,
+      "2030": 300000
+    },
+    "don": 1800000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "339990101",
+    "nome": "Projeto De Empreendedorismo Jovens E Mulheres E Facilidades De Desenvolvimento Da Pmes Facilidade Compct Lusophone Fase-1",
+    "financiador": "BAD",
+    "fin_norm": "BAD",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 2984400,
+    "anos": {
+      "2026": 596880,
+      "2027": 536880,
+      "2028": 616880,
+      "2029": 616880,
+      "2030": 616880
+    },
+    "don": 2834400,
+    "empr": 0,
+    "interno": 150000
+  },
+  {
+    "code": "811940105",
+    "nome": "Projecto De Apoio A Implementação Do Protocolo Sobre Livre Circulação",
+    "financiador": "CEDEAO",
+    "fin_norm": "CEDEAO",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 430897,
+    "anos": {
+      "2026": 73179,
+      "2027": 138179,
+      "2028": 73179,
+      "2029": 73179,
+      "2030": 73179
+    },
+    "don": 295897,
+    "empr": 0,
+    "interno": 135000
+  },
+  {
+    "code": "991946502",
+    "nome": "Projecto  De Apoio Para O Desenvolvimento Dos Programa Da Integração Regional (Cedeao)",
+    "financiador": "CEDEAO/GOV. ESPANHA",
+    "fin_norm": "CEDEAO/GOV. ESPANHA",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 357000,
+    "anos": {
+      "2026": 59400,
+      "2027": 119400,
+      "2028": 59400,
+      "2029": 59400,
+      "2030": 59400
+    },
+    "don": 227000,
+    "empr": 0,
+    "interno": 130000
+  },
+  {
+    "code": "991990101",
+    "nome": "Projecto Fundo De Promoção De Desenvolvimento Economico (No Kumpu Terra)",
+    "financiador": "CEDEAO",
+    "fin_norm": "CEDEAO",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 580000,
+    "anos": {
+      "2026": 88000,
+      "2027": 138000,
+      "2028": 118000,
+      "2029": 118000,
+      "2030": 118000
+    },
+    "don": 370000,
+    "empr": 0,
+    "interno": 210000
+  },
+  {
+    "code": "153990101",
+    "nome": "Projecto De Fundo  Regional De Estabilização E Desenvolvimento",
+    "financiador": "CEDEAO",
+    "fin_norm": "CEDEAO",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 2650000,
+    "anos": {
+      "2026": 530000,
+      "2027": 530000,
+      "2028": 530000,
+      "2029": 530000,
+      "2030": 530000
+    },
+    "don": 2650000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "992990301",
+    "nome": "Projeecto Renovação De Ihpc (Inquerito)",
+    "financiador": "UEMOA",
+    "fin_norm": "UEMOA",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 742473,
+    "anos": {
+      "2026": 144495,
+      "2027": 164495,
+      "2028": 144495,
+      "2029": 144495,
+      "2030": 144495
+    },
+    "don": 742473,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "351445602",
+    "nome": "Projecto De Reestruturação De Sistema De Contas Nacionais/Matriz De Contabilidade Social",
+    "financiador": "UEMOA",
+    "fin_norm": "UEMOA",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 146000,
+    "anos": {
+      "2026": 16000,
+      "2027": 82000,
+      "2028": 16000,
+      "2029": 16000,
+      "2030": 16000
+    },
+    "don": 146000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "669931123",
+    "nome": "Projeto De Equidade De Saude E Saneamento (Gnb-Hesp)",
+    "financiador": "JAPÃO",
+    "fin_norm": "JAPÃO",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 147000,
+    "anos": {
+      "2026": 26000,
+      "2027": 43000,
+      "2028": 26000,
+      "2029": 26000,
+      "2030": 26000
+    },
+    "don": 147000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "992990501",
+    "nome": "Projecto De Capita Humano",
+    "financiador": "BM",
+    "fin_norm": "BM",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 5400000,
+    "anos": {
+      "2026": 600000,
+      "2027": 800000,
+      "2028": 2000000,
+      "2029": 2000000,
+      "2030": 0
+    },
+    "don": 5400000,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "821920603",
+    "nome": "Projecto Seguimento E Avaliação Do Programa De Investimento Público",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 380000,
+    "anos": {
+      "2026": 35000,
+      "2027": 140000,
+      "2028": 35000,
+      "2029": 35000,
+      "2030": 135000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 380000
+  },
+  {
+    "code": "711940402",
+    "nome": "Projecto De Reabilitação Do Edificio Do Comissariado Nacional De Ordens Públicas",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 90000,
+    "anos": {
+      "2026": 10000,
+      "2027": 50000,
+      "2028": 10000,
+      "2029": 10000,
+      "2030": 10000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 90000
+  },
+  {
+    "code": "799935002",
+    "nome": "Projecto De Reforço De Capacidades Das Instituições Públicas",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 900000,
+    "anos": {
+      "2026": 50000,
+      "2027": 700000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 900000
+  },
+  {
+    "code": "819920103",
+    "nome": "Projecto Consultores Nacionais  Fair Uemoa",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 50000,
+    "anos": {
+      "2026": 10000,
+      "2027": 10000,
+      "2028": 10000,
+      "2029": 10000,
+      "2030": 10000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 50000
+  },
+  {
+    "code": "992940101",
+    "nome": "Projecto Apoio A Reforma/Dge",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 120000,
+    "anos": {
+      "2026": 15000,
+      "2027": 30000,
+      "2028": 15000,
+      "2029": 15000,
+      "2030": 45000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 120000
+  },
+  {
+    "code": "992940201",
+    "nome": "Projecto De Seguimento   Das  Actividades Das Ongs",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 90000,
+    "anos": {
+      "2026": 10000,
+      "2027": 30000,
+      "2028": 10000,
+      "2029": 10000,
+      "2030": 30000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 90000
+  },
+  {
+    "code": "991240101",
+    "nome": "Projecto Unidade E Coordenação De Seguimento De Parcearia Público-Privado \"Ucsp-Ppp\"",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 80000,
+    "anos": {
+      "2026": 15000,
+      "2027": 20000,
+      "2028": 15000,
+      "2029": 15000,
+      "2030": 15000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 80000
+  },
+  {
+    "code": "992940901",
+    "nome": "Programa De Implementação Do Novo Plano Nacional De Desenvolvimento 2026-2035 (Comité De Pilotagem, Reforço De Capacidade, Seguimento E Avaliação E Comunicação)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 1010000,
+    "anos": {
+      "2026": 60000,
+      "2027": 150000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 600000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 1010000
+  },
+  {
+    "code": "711431401",
+    "nome": "Projecto Guiné-Bissau Investiment",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 1480000,
+    "anos": {
+      "2026": 70000,
+      "2027": 150000,
+      "2028": 70000,
+      "2029": 70000,
+      "2030": 1120000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 1480000
+  },
+  {
+    "code": "689940101",
+    "nome": "Projecto Reforço De Capacidade Institucional Mepir (Aquisiçao De Equipamentos)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 380000,
+    "anos": {
+      "2026": 20000,
+      "2027": 250000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 70000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 380000
+  },
+  {
+    "code": "819491804",
+    "nome": "Projecto  De Reforço De Capacidade Institucional  De Agencia Promoção E Poupança De Micro Credito Aquisição De Equipamentos (Apam)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 100000,
+    "anos": {
+      "2026": 20000,
+      "2027": 20000,
+      "2028": 20000,
+      "2029": 20000,
+      "2030": 20000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 100000
+  },
+  {
+    "code": "819431304",
+    "nome": "Projecto De Reabilitaçao De Delegacias Regionais Do Plano E Estatistica",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 915000,
+    "anos": {
+      "2026": 75000,
+      "2027": 340000,
+      "2028": 150000,
+      "2029": 150000,
+      "2030": 200000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 915000
+  },
+  {
+    "code": "819431004",
+    "nome": "Projecto De Reforço De Capacidades  Institucional  Aquisição De Equipamentos Do Centro De Formalização Das Empresas (Cfe)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA ECONOMIA, PLANO E INTEGRAÇÃO REGIONAL REGIONAL",
+    "min_abbr": "Economia/Plano",
+    "total": 90000,
+    "anos": {
+      "2026": 15000,
+      "2027": 30000,
+      "2028": 15000,
+      "2029": 15000,
+      "2030": 15000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 90000
+  },
+  {
+    "code": "883940192",
+    "nome": "Requalificação Do Centro De Produção De Bambú E Rotins \"Bissau\"",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DO TURISMO E ARTESANATO",
+    "min_abbr": "Turismo",
+    "total": 395000,
+    "anos": {
+      "2026": 20000,
+      "2027": 50000,
+      "2028": 75000,
+      "2029": 75000,
+      "2030": 175000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 395000
+  },
+  {
+    "code": "883940104",
+    "nome": "Projecto Criação Da Camara Nacional De Arte E Ofícios E Antenas Regionais \"Bissau E Regiões\"",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DO TURISMO E ARTESANATO",
+    "min_abbr": "Turismo",
+    "total": 345000,
+    "anos": {
+      "2026": 25000,
+      "2027": 40000,
+      "2028": 60000,
+      "2029": 60000,
+      "2030": 160000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 345000
+  },
+  {
+    "code": "882940302",
+    "nome": "Projecto Criação De Balcões De Informação Turistica No Aeroporto Internacional E Nas Fronteiras Terrestre",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DO TURISMO E ARTESANATO",
+    "min_abbr": "Turismo",
+    "total": 186000,
+    "anos": {
+      "2026": 25000,
+      "2027": 35000,
+      "2028": 42000,
+      "2029": 42000,
+      "2030": 42000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 186000
+  },
+  {
+    "code": "684945003",
+    "nome": "Programa Advocacia, Comunicação E Parcerias",
+    "financiador": "SIST.NU/UNICEF",
+    "fin_norm": "SIST.NU/UNICEF",
+    "ministerio": "MINISTERIO DA  COMUNICAÇÃO SOCIAL",
+    "min_abbr": "Comunicação",
+    "total": 973600,
+    "anos": {
+      "2026": 183600,
+      "2027": 190000,
+      "2028": 200000,
+      "2029": 200000,
+      "2030": 200000
+    },
+    "don": 973600,
+    "empr": 0,
+    "interno": 0
+  },
+  {
+    "code": "532921201",
+    "nome": "Projecto De Reforço De Capacidades (Minist,Tgb,Ang,Rdn,E Nò Pintcha)",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA  COMUNICAÇÃO SOCIAL",
+    "min_abbr": "Comunicação",
+    "total": 930000,
+    "anos": {
+      "2026": 30000,
+      "2027": 100000,
+      "2028": 100000,
+      "2029": 100000,
+      "2030": 600000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 930000
+  },
+  {
+    "code": "532930402",
+    "nome": "Projecto De Aquisição Dos Equipamento",
+    "financiador": "GOV. GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA  COMUNICAÇÃO SOCIAL",
+    "min_abbr": "Comunicação",
+    "total": 440000,
+    "anos": {
+      "2026": 20000,
+      "2027": 40000,
+      "2028": 60000,
+      "2029": 60000,
+      "2030": 260000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 440000
+  },
+  {
+    "code": "532930502",
+    "nome": "Projecto De Reabilitação De Centro Emissoria De Nhacra",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DA  COMUNICAÇÃO SOCIAL",
+    "min_abbr": "Comunicação",
+    "total": 720000,
+    "anos": {
+      "2026": 20000,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 550000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 720000
+  },
+  {
+    "code": "853940101",
+    "nome": "Projecto De Produção De Frangos",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DOS  COMBATENTES DA LIBERDADE DA PATRIA",
+    "min_abbr": "Combatentes",
+    "total": 663600,
+    "anos": {
+      "2026": 30000,
+      "2027": 60900,
+      "2028": 80900,
+      "2029": 70900,
+      "2030": 420900
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 663600
+  },
+  {
+    "code": "831992241",
+    "nome": "Projeto De Industria Agroalimentar",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DOS  COMBATENTES DA LIBERDADE DA PATRIA",
+    "min_abbr": "Combatentes",
+    "total": 410000,
+    "anos": {
+      "2026": 10000,
+      "2027": 70000,
+      "2028": 60000,
+      "2029": 60000,
+      "2030": 210000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 410000
+  },
+  {
+    "code": "711931201",
+    "nome": "Projecto De Reabilitação Das Instalações De Ministério (Cobertura)",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DOS  COMBATENTES DA LIBERDADE DA PATRIA",
+    "min_abbr": "Combatentes",
+    "total": 306000,
+    "anos": {
+      "2026": 10000,
+      "2027": 50000,
+      "2028": 82000,
+      "2029": 82000,
+      "2030": 82000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 306000
+  },
+  {
+    "code": "611940201",
+    "nome": "Prolecto De Assistencia Medica  E Medicamentosa",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DOS  COMBATENTES DA LIBERDADE DA PATRIA",
+    "min_abbr": "Combatentes",
+    "total": 336000,
+    "anos": {
+      "2026": 56000,
+      "2027": 70000,
+      "2028": 70000,
+      "2029": 70000,
+      "2030": 70000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 336000
+  },
+  {
+    "code": "411911101",
+    "nome": "Peojecto De Reforço De Capacidades",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DOS  COMBATENTES DA LIBERDADE DA PATRIA",
+    "min_abbr": "Combatentes",
+    "total": 207625,
+    "anos": {
+      "2026": 7625,
+      "2027": 50000,
+      "2028": 50000,
+      "2029": 50000,
+      "2030": 50000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 207625
+  },
+  {
+    "code": "281990101",
+    "nome": "Projeto De Caami/Gb-Ação Anti Minas E Desminagem Humanitária",
+    "financiador": "GOV.GB",
+    "fin_norm": "Estado",
+    "ministerio": "MINISTERIO DOS  COMBATENTES DA LIBERDADE DA PATRIA",
+    "min_abbr": "Combatentes",
+    "total": 320000,
+    "anos": {
+      "2026": 40000,
+      "2027": 50000,
+      "2028": 80000,
+      "2029": 75000,
+      "2030": 75000
+    },
+    "don": 0,
+    "empr": 0,
+    "interno": 320000
+  }
+]

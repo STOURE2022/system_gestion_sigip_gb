@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+<html lang="pt" id="html-root">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIGIP-GB · Sistema de Gestão do Investimento Público</title>
+<style>
+:root{
+  --ink:#0d1b2a; --ink2:#1b263b; --paper:#f7f5f0; --card:#ffffff;
+  --line:#e2ddd2; --muted:#6b7280; --gold:#c8961e; --gold-dim:#e8d9b0;
+  --ext:#2a6f6b; --int:#b5651d; --empr:#8c3b4a; --don:#2a6f6b;
+  --accent:#0a4d4a; --shadow:0 1px 3px rgba(13,27,42,.08),0 8px 24px rgba(13,27,42,.04);
+  --danger:#c0392b; --success:#1a7a4a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Segoe UI',system-ui,-apple-system,sans-serif;background:var(--paper);color:var(--ink);line-height:1.45;font-size:14px}
+.flag{height:4px;background:linear-gradient(90deg,#ce1126 0 33%,#fcd116 33% 66%,#009e49 66%)}
+header{background:var(--ink);color:#fff;padding:18px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.brand{display:flex;align-items:center;gap:14px}
+.crest{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 40% 35%,var(--gold),#9c7416);display:grid;place-items:center;font-weight:700;color:#fff;font-size:13px;letter-spacing:.5px;box-shadow:inset 0 0 0 2px rgba(255,255,255,.25)}
+.brand h1{font-size:16px;font-weight:600;letter-spacing:.3px}
+.brand p{font-size:11px;opacity:.7;text-transform:uppercase;letter-spacing:1.5px}
+.hgov{font-size:11px;text-align:right;opacity:.8;line-height:1.6}
+.hactions{display:flex;align-items:center;gap:12px}
+.btn-login{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;padding:7px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:600;transition:.15s}
+.btn-login:hover{background:rgba(255,255,255,.22)}
+.btn-lang{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;font-weight:700;letter-spacing:.5px;transition:.15s;white-space:nowrap}
+.btn-lang:hover{background:rgba(255,255,255,.18);color:#fff}
+.btn-lang .al{color:var(--gold)}
+.user-badge{font-size:11px;background:var(--gold);color:#fff;padding:4px 10px;border-radius:20px;font-weight:600}
+.api-status{font-size:10px;padding:3px 8px;border-radius:10px;font-weight:600}
+.api-status.live{background:#1a7a4a;color:#fff}
+.api-status.demo{background:#7a5a10;color:#fff}
+nav{background:var(--ink2);padding:0 28px;display:flex;gap:2px;overflow-x:auto}
+nav button{background:none;border:none;color:#c5cdd8;padding:13px 18px;font-size:13px;cursor:pointer;border-bottom:3px solid transparent;white-space:nowrap;font-weight:500;transition:.15s}
+nav button:hover{color:#fff}
+nav button.active{color:#fff;border-bottom-color:var(--gold)}
+main{padding:24px 28px;max-width:1320px;margin:0 auto}
+.view{display:none}.view.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:2px;color:var(--gold);font-weight:700;margin-bottom:4px}
+.vtitle{font-size:22px;font-weight:600;margin-bottom:2px;color:var(--ink)}
+.vsub{color:var(--muted);font-size:13px;margin-bottom:22px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin-bottom:24px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--gold)}
+.kpi .lab{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:600}
+.kpi .val{font-size:26px;font-weight:700;margin-top:6px;color:var(--ink);font-variant-numeric:tabular-nums}
+.kpi .unit{font-size:12px;color:var(--muted);font-weight:500}
+.kpi .sub{font-size:11px;color:var(--ext);margin-top:4px;font-weight:600}
+.grid2{display:grid;grid-template-columns:1.4fr 1fr;gap:18px;margin-bottom:18px}
+@media(max-width:900px){.grid2{grid-template-columns:1fr}}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:20px;box-shadow:var(--shadow)}
+.panel h3{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--ink2);margin-bottom:16px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
+.panel h3 .note{font-size:10px;color:var(--muted);font-weight:500;letter-spacing:.5px;text-transform:none}
+.bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;font-size:12px}
+.bar-row .nm{width:130px;flex-shrink:0;color:var(--ink2);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.bar-track{flex:1;background:#f0ece3;border-radius:4px;height:18px;position:relative;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--ext));transition:width .6s ease}
+.bar-row .vv{width:74px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600;flex-shrink:0}
+.stack{display:flex;height:34px;border-radius:6px;overflow:hidden;margin:10px 0 6px;border:1px solid var(--line)}
+.stack > div{display:grid;place-items:center;color:#fff;font-size:11px;font-weight:600;transition:.3s}
+.legend{display:flex;gap:16px;font-size:11px;color:var(--muted);flex-wrap:wrap}
+.legend span{display:flex;align-items:center;gap:5px}
+.dot{width:9px;height:9px;border-radius:2px;display:inline-block}
+.yearchart{display:flex;align-items:flex-end;gap:14px;height:180px;padding-top:10px}
+.ybar{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%}
+.ybar .cols{flex:1;display:flex;align-items:flex-end;gap:3px;width:100%;justify-content:center}
+.ycol{width:30%;border-radius:3px 3px 0 0;min-height:2px;transition:height .6s ease}
+.ybar .yl{font-size:12px;font-weight:600;color:var(--ink2)}
+.ybar .yt{font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums}
+.toolbar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
+.toolbar input,.toolbar select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:13px;background:#fff;color:var(--ink);font-family:inherit}
+.toolbar input{flex:1;min-width:200px}
+.toolbar input:focus,.toolbar select:focus{outline:none;border-color:var(--gold)}
+.count{font-size:12px;color:var(--muted);margin-left:auto}
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+thead th{text-align:left;padding:11px 12px;background:#f4f1ea;color:var(--ink2);font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.5px;border-bottom:2px solid var(--gold-dim);position:sticky;top:0;cursor:pointer;user-select:none}
+thead th:hover{background:#ece7dc}
+thead th.num,td.num{text-align:right;font-variant-numeric:tabular-nums}
+tbody td{padding:10px 12px;border-bottom:1px solid #f0ece3;vertical-align:top}
+tbody tr:hover{background:#faf8f3}
+.tag{display:inline-block;padding:2px 8px;border-radius:20px;font-size:10.5px;font-weight:600;background:var(--gold-dim);color:#7a5a10}
+.tag.ext{background:#d4e8e6;color:#1d514e}.tag.est{background:#f0dcc4;color:#7a4612}
+.code{font-family:'Consolas',monospace;font-size:11px;color:var(--muted)}
+.pname{font-weight:500;color:var(--ink);max-width:340px}
+.tablewrap{background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden;box-shadow:var(--shadow);max-height:620px;overflow-y:auto}
+.foot{margin-top:28px;padding:18px 0;border-top:1px solid var(--line);font-size:11px;color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+.pill{display:inline-flex;align-items:center;gap:6px;background:#eef3f2;color:var(--accent);padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
+.banner{border-radius:8px;padding:12px 16px;font-size:12px;margin-bottom:20px;display:flex;gap:10px;align-items:flex-start}
+.banner.info{background:linear-gradient(135deg,#fef9ec,#fdf3d6);border:1px solid var(--gold-dim);color:#7a5a10}
+.banner.success{background:#eaf5ee;border:1px solid #a5d6b5;color:#1a5a30}
+.mini{font-size:11px;color:var(--muted);margin-top:3px}
+/* Login modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:grid;place-items:center;z-index:1000;animation:fade .2s ease}
+.modal{background:#fff;border-radius:14px;padding:40px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.modal h2{font-size:20px;font-weight:700;margin-bottom:6px;color:var(--ink)}
+.modal p{font-size:13px;color:var(--muted);margin-bottom:24px}
+.form-group{margin-bottom:16px}
+.form-group label{display:block;font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
+.form-group input{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:inherit;transition:.15s}
+.form-group input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,150,30,.15)}
+.btn-primary{width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+.btn-primary:hover{background:#0d6560}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed}
+.form-error{color:var(--danger);font-size:12px;margin-top:8px;display:none}
+.modal-skip{text-align:center;margin-top:16px;font-size:12px;color:var(--muted)}
+.modal-skip a{color:var(--accent);cursor:pointer;text-decoration:underline}
+/* Loading */
+.loading{text-align:center;padding:40px;color:var(--muted);font-size:13px}
+.spinner{width:28px;height:28px;border:3px solid var(--line);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite;margin:0 auto 12px}
+@keyframes spin{to{transform:rotate(360deg)}}
+/* Workflow badges */
+.wf{display:inline-block;padding:2px 9px;border-radius:20px;font-size:10.5px;font-weight:700;letter-spacing:.4px}
+.wf-RASCUNHO{background:#dbeafe;color:#1d4ed8}
+.wf-SUBMETIDO{background:#fef3c7;color:#92400e}
+.wf-VALIDADO{background:#d1fae5;color:#065f46}
+/* Small action buttons */
+.btn-sm{padding:4px 10px;border-radius:5px;font-size:11px;font-weight:600;cursor:pointer;border:1px solid transparent;font-family:inherit;transition:.12s;white-space:nowrap;display:inline-block}
+.btn-edit{background:#eff6ff;color:#1d4ed8;border-color:#bfdbfe}.btn-edit:hover{background:#dbeafe}
+.btn-sub{background:#fef3c7;color:#92400e;border-color:#fde68a}.btn-sub:hover{background:#fde68a}
+.btn-val{background:#d1fae5;color:#065f46;border-color:#a7f3d0}.btn-val:hover{background:#a7f3d0}
+.btn-rej{background:#fee2e2;color:#991b1b;border-color:#fca5a5}.btn-rej:hover{background:#fca5a5}
+.btn-del{background:#f9fafb;color:#6b7280;border-color:#d1d5db}.btn-del:hover{background:#f3f4f6;color:#111827}
+.btn-add{background:var(--accent);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
+.btn-add:hover{background:#0d6560}
+/* Wide modal */
+.modal-wide{max-width:820px;padding:28px 32px;max-height:92vh;overflow-y:auto}
+.modal-tabs{display:flex;border-bottom:2px solid var(--line);margin-bottom:22px}
+.modal-tab{padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:none;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit;transition:.12s}
+.modal-tab.active{color:var(--ink);border-bottom-color:var(--gold)}
+.tab-pane{display:none}.tab-pane.active{display:block}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.form-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+@media(max-width:600px){.form-row,.form-row3{grid-template-columns:1fr}}
+.form-group select,.form-group textarea{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit;background:#fff;transition:.15s;color:var(--ink)}
+.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,150,30,.15)}
+.form-group textarea{resize:vertical;min-height:56px}
+.form-group input[type="date"]{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit}
+/* Programming grid */
+.prog-grid{width:100%;border-collapse:collapse;margin-top:4px;font-size:12.5px}
+.prog-grid th{background:#f4f1ea;padding:8px 10px;font-size:11px;font-weight:700;text-align:center;border:1px solid var(--line);white-space:nowrap}
+.prog-grid td{padding:4px 6px;border:1px solid var(--line)}
+.prog-grid td:first-child{font-weight:700;text-align:center;background:#fafaf8;color:var(--ink2);width:54px}
+.prog-grid input{width:100%;border:none;background:none;font-size:12.5px;text-align:right;font-family:inherit;padding:4px 6px;min-width:90px}
+.prog-grid input:focus{outline:1px solid var(--gold);border-radius:3px;background:#fffde7}
+.prog-total{font-size:11px;color:var(--muted);margin-top:8px;text-align:right}
+/* Confirm sub-modal */
+.confirm-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:grid;place-items:center;z-index:2000;animation:fade .15s ease}
+.confirm-box{background:#fff;border-radius:12px;padding:28px;max-width:400px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.confirm-box h3{font-size:16px;font-weight:700;margin-bottom:8px}
+.confirm-box p{font-size:13px;color:var(--muted);margin-bottom:18px}
+.confirm-actions{display:flex;gap:10px;justify-content:flex-end}
+/* Saisie view */
+.saisie-toolbar{display:flex;gap:10px;margin-bottom:16px;align-items:center;flex-wrap:wrap}
+.saisie-toolbar input{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:13px;flex:1;min-width:180px;font-family:inherit}
+.saisie-toolbar input:focus{outline:none;border-color:var(--gold)}
+.saisie-toolbar select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:13px;background:#fff;font-family:inherit}
+.row-actions{display:flex;gap:5px;flex-wrap:wrap}
+/* Sintese / Resumo table */
+.sintese-pane{margin-top:0}
+.resumo-wrap{overflow-x:auto;background:var(--card);border:1px solid var(--line);border-radius:0 0 10px 10px;box-shadow:var(--shadow)}
+.resumo-tbl{width:100%;border-collapse:collapse;font-size:12px;min-width:900px}
+.resumo-tbl thead tr.rh1 th{background:#2a3f52;color:#fff;padding:7px 10px;text-align:center;font-size:11px;font-weight:700;letter-spacing:.3px;border:1px solid #3a5068;white-space:nowrap}
+.resumo-tbl thead tr.rh2 th{background:#3a5068;color:#d0dce8;padding:5px 8px;text-align:center;font-size:10px;font-weight:600;border:1px solid #4a607a;white-space:nowrap}
+.resumo-tbl tbody td{padding:6px 9px;border:1px solid #e8e4da;font-variant-numeric:tabular-nums;white-space:nowrap}
+.resumo-tbl tbody td.dim-label{font-weight:600;color:var(--ink2);white-space:normal;min-width:150px;max-width:220px}
+.resumo-tbl tbody td.num-cell{text-align:right;color:var(--ink);font-size:11.5px}
+.resumo-tbl tbody td.pct-cell{text-align:right;color:var(--muted);font-size:10.5px}
+.resumo-tbl tbody td.total-cell{text-align:right;font-weight:700;color:var(--accent);font-size:12px}
+.resumo-tbl tfoot tr.grand-row td{background:#f4f1ea;font-weight:700;padding:7px 9px;border:1px solid #d8d4cc;font-size:12px}
+.resumo-tbl tfoot tr.grand-row td.num-cell{color:var(--accent)}
+.resumo-tbl tbody tr:hover td{background:#faf8f3}
+.sintese-error{background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;border-radius:8px;padding:12px 16px;font-size:13px;margin-top:12px}
+</style>
+</head>
+<body>
+<div class="flag"></div>
+<header>
+  <div class="brand">
+    <div class="crest">GB</div>
+    <div><h1>SIGIP&middot;GB</h1><p data-i18n="brand_sub">Sistema de Gestão do Investimento Público</p></div>
+  </div>
+  <div class="hgov" id="hgov-text">República da Guiné-Bissau<br>Ministério da Economia, Plano e Integração Regional<br><b>Direcção-Geral do Plano &mdash; PIP 2026&ndash;2030</b></div>
+  <div class="hactions">
+    <button class="btn-lang" id="btn-lang" onclick="toggleLang()" title="Mudar língua / Changer de langue"><span id="lang-label-1" class="al">PT</span> | <span id="lang-label-2">FR</span></button>
+    <span id="api-badge" class="api-status demo">DEMO</span>
+    <span id="user-info"></span>
+    <button id="btn-login-header" class="btn-login" onclick="showLogin()" data-i18n="btn_login">Entrar</button>
+  </div>
+</header>
+<nav>
+  <button class="active" data-v="dash" data-i18n="nav_dash">Painel Nacional</button>
+  <button data-v="proj" data-i18n="nav_proj">Projectos</button>
+  <button data-v="min" data-i18n="nav_min">Ministérios</button>
+  <button data-v="fin" data-i18n="nav_fin">Financiadores</button>
+  <button data-v="prog" data-i18n="nav_prog">Programação Plurianual</button>
+  <button data-v="saisie" id="nav-saisie" style="display:none" data-i18n="nav_saisie">Saisie</button>
+  <button data-v="sintese" id="nav-sintese" style="display:none" data-i18n="nav_sintese">Síntese</button>
+</nav>
+<main>
+  <div id="main-banner" class="banner info">
+    <span style="font-size:16px">&#9888;</span>
+    <div id="main-banner-text"><b>Modo demonstração</b> &mdash; dados reais do PIP 2026&ndash;2030 (292 projectos, 631 mil milhões FCFA). Entre com as suas credenciais para aceder à API em tempo real. Valores em <b>milhões de FCFA</b> salvo indicação.</div>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div class="view active" id="dash">
+    <div class="eyebrow" data-i18n="eyebrow_dash">Visão Consolidada</div>
+    <div class="vtitle" data-i18n="vtitle_dash">Painel Nacional do Investimento Público</div>
+    <div class="vsub" data-i18n="vsub_dash">Programa de Investimento Público &mdash; Plano Nacional de Desenvolvimento 2026&ndash;2030</div>
+    <div class="kpis" id="kpis"><div class="loading"><div class="spinner"></div><span data-i18n="loading">A carregar...</span></div></div>
+    <div class="grid2">
+      <div class="panel">
+        <h3 id="panel-by-ministry-h3">Investimento por Ministério <span class="note">Top 10 &middot; total 2026&ndash;2030</span></h3>
+        <div id="minbars"><div class="loading"><div class="spinner"></div></div></div>
+      </div>
+      <div class="panel">
+        <h3 data-i18n="panel_financing">Estrutura de Financiamento</h3>
+        <div class="stack" id="finstack"></div>
+        <div class="legend" style="margin-top:10px">
+          <span><i class="dot" style="background:var(--don)"></i><span data-i18n="legend_donations">Donativos</span></span>
+          <span><i class="dot" style="background:var(--empr)"></i><span data-i18n="legend_loans">Empréstimos</span></span>
+          <span><i class="dot" style="background:var(--int)"></i><span data-i18n="legend_state">Contrib. Estado</span></span>
+        </div>
+        <div style="margin-top:22px">
+          <h3 data-i18n="panel_ext_int">Fontes Externas vs Internas</h3>
+          <div class="stack" id="extint"></div>
+          <div class="legend" style="margin-top:10px">
+            <span><i class="dot" style="background:var(--ext)"></i><span data-i18n="legend_external">Financiamento Externo</span></span>
+            <span><i class="dot" style="background:var(--int)"></i><span data-i18n="legend_internal">Financiamento Interno</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3 id="panel-trajectory-h3">Trajectória de Programação 2026&ndash;2030 <span class="note">por fonte, milhões FCFA</span></h3>
+      <div class="yearchart" id="yearchart"></div>
+      <div class="legend" style="margin-top:14px;justify-content:center">
+        <span><i class="dot" style="background:var(--don)"></i><span data-i18n="legend_donations">Donativos</span></span>
+        <span><i class="dot" style="background:var(--empr)"></i><span data-i18n="legend_loans">Empréstimos</span></span>
+        <span><i class="dot" style="background:var(--int)"></i><span data-i18n="legend_state">Contrib. Estado</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTOS -->
+  <div class="view" id="proj">
+    <div class="eyebrow" data-i18n="eyebrow_proj">Carteira de Projectos</div>
+    <div class="vtitle" data-i18n="vtitle_proj">Projectos de Investimento</div>
+    <div class="vsub" data-i18n="vsub_proj">Pesquise, filtre e ordene os 292 projectos do PIP</div>
+    <div class="toolbar">
+      <input id="search" data-i18n-ph="search_placeholder" placeholder="Pesquisar por nome, código ou financiador...">
+      <select id="fmin"><option value="" data-i18n="all_ministries">Todos os ministérios</option></select>
+      <select id="ffin">
+        <option value="" data-i18n="all_sources">Todas as fontes</option>
+        <option value="ext" data-i18n="filter_ext">Externo</option>
+        <option value="est" data-i18n="filter_state">Estado</option>
+      </select>
+      <span class="count" id="pcount"></span>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th data-s="code" data-i18n="th_code">Código</th>
+          <th data-s="nome" data-i18n="th_project">Projecto</th>
+          <th data-s="min_abbr" data-i18n="th_ministry">Ministério</th>
+          <th data-s="financiador" data-i18n="th_financier">Financiador</th>
+          <th class="num" data-s="total" data-i18n="th_total">Total PND</th>
+        </tr></thead>
+        <tbody id="ptbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- MINISTERIOS -->
+  <div class="view" id="min">
+    <div class="eyebrow" data-i18n="eyebrow_min">Análise Sectorial</div>
+    <div class="vtitle" data-i18n="vtitle_min">Investimento por Ministério</div>
+    <div class="vsub" data-i18n="vsub_min">Repartição dos 631 mil milhões FCFA entre os 26 ministérios e instituições</div>
+    <div class="panel"><div id="minfull"></div></div>
+  </div>
+
+  <!-- FINANCIADORES -->
+  <div class="view" id="fin">
+    <div class="eyebrow" data-i18n="eyebrow_fin">Parceiros e Fontes</div>
+    <div class="vtitle" data-i18n="vtitle_fin">Financiadores do PIP</div>
+    <div class="vsub" data-i18n="vsub_fin">Parceiros técnicos e financeiros, e contribuição do Estado</div>
+    <div class="panel"><div id="finfull"></div></div>
+  </div>
+
+  <!-- PROGRAMAÇÃO -->
+  <div class="view" id="prog">
+    <div class="eyebrow" data-i18n="eyebrow_prog">Quadro Plurianual</div>
+    <div class="vtitle" data-i18n="vtitle_prog">Programação Plurianual</div>
+    <div class="vsub" data-i18n="vsub_prog">Distribuição anual do investimento total, 2026&ndash;2030</div>
+    <div class="kpis" id="progkpis"></div>
+    <div class="panel">
+      <h3 data-i18n="panel_annual">Evolução anual do total programado</h3>
+      <div class="yearchart" id="progchart"></div>
+    </div>
+  </div>
+
+  <!-- SAISIE CONTINUE -->
+  <div class="view" id="saisie">
+    <div class="eyebrow" id="saisie-eyebrow" data-i18n="eyebrow_saisie">Saisie Continue</div>
+    <div class="vtitle" id="saisie-vtitle" data-i18n="vtitle_saisie">Gestão de Projectos</div>
+    <div class="vsub" id="saisie-vsub" data-i18n="vsub_saisie">Criar, editar e acompanhar os projectos do seu ministério</div>
+    <div class="saisie-toolbar">
+      <button class="btn-add" id="btn-new-project" style="display:none" onclick="openProjectForm(null)" data-i18n="btn_new_project">+ Novo Projecto</button>
+      <input id="saisie-search" data-i18n-ph="search_placeholder" placeholder="Pesquisar...">
+      <select id="saisie-fwf">
+        <option value="" data-i18n="all_statuses">Todos os estados</option>
+        <option value="RASCUNHO" data-i18n="wf_RASCUNHO">Rascunho</option>
+        <option value="SUBMETIDO" data-i18n="wf_SUBMETIDO">Submetido</option>
+        <option value="VALIDADO" data-i18n="wf_VALIDADO">Validado</option>
+      </select>
+      <span class="count" id="saisie-count"></span>
+    </div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr>
+          <th data-i18n="th_code">Código</th>
+          <th data-i18n="th_project">Projecto</th>
+          <th data-i18n="th_ministry">Ministério</th>
+          <th data-i18n="th_wf_status">Estado</th>
+          <th class="num" data-i18n="th_total">Total</th>
+          <th data-i18n="th_actions">Acções</th>
+        </tr></thead>
+        <tbody id="saisie-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SINTESE -->
+  <div class="view" id="sintese">
+    <div class="eyebrow" data-i18n="eyebrow_sintese">Síntese do PIP</div>
+    <div class="vtitle" data-i18n="vtitle_sintese">Quadros de Síntese</div>
+    <div class="vsub" data-i18n="vsub_sintese">Resumos por Pilar PND, Sector, Natureza da Despesa e Prioridade Governamental</div>
+
+    <!-- Sintese controls -->
+    <div class="toolbar" style="margin-bottom:16px;gap:10px;flex-wrap:wrap">
+      <select id="sintese-year" style="padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:13px;background:#fff;font-family:inherit">
+        <option value="" data-i18n="sintese_all_years">Todos os anos</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+        <option value="2030">2030</option>
+      </select>
+      <label style="display:flex;align-items:center;gap:6px;font-size:13px;cursor:pointer">
+        <input type="checkbox" id="sintese-validated"> <span data-i18n="sintese_validated_only">Apenas validados</span>
+      </label>
+      <button onclick="loadSintese()" class="btn-add" style="padding:9px 18px" data-i18n="sintese_refresh">Actualizar</button>
+    </div>
+
+    <!-- Sintese sub-tabs -->
+    <div class="modal-tabs" style="margin-bottom:0">
+      <button class="modal-tab active" id="stab-pnd" onclick="switchSinteseTab('pnd')" data-i18n="stab_pnd">PND</button>
+      <button class="modal-tab" id="stab-sector" onclick="switchSinteseTab('sector')" data-i18n="stab_sector">Sectores</button>
+      <button class="modal-tab" id="stab-nat" onclick="switchSinteseTab('nat')" data-i18n="stab_nat">Natureza Despesa</button>
+      <button class="modal-tab" id="stab-gov" onclick="switchSinteseTab('gov')" data-i18n="stab_gov">Prior. Governo</button>
+    </div>
+
+    <div id="sintese-pnd-pane" class="sintese-pane">
+      <div id="sintese-pnd-content"><div class="loading"><div class="spinner"></div><span data-i18n="loading">A carregar...</span></div></div>
+    </div>
+    <div id="sintese-sector-pane" class="sintese-pane" style="display:none">
+      <div id="sintese-sector-content"><div class="loading"><div class="spinner"></div></div></div>
+    </div>
+    <div id="sintese-nat-pane" class="sintese-pane" style="display:none">
+      <div id="sintese-nat-content"><div class="loading"><div class="spinner"></div></div></div>
+    </div>
+    <div id="sintese-gov-pane" class="sintese-pane" style="display:none">
+      <div id="sintese-gov-content"><div class="loading"><div class="spinner"></div></div></div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>SIGIP&middot;GB &mdash; Dados: DGP/PIP 2026&ndash;2030 &middot; <span id="foot-mode" data-i18n="foot_demo">Modo demonstração</span></span>
+    <span class="pill">&#9679; <span data-i18n="foot_standard">Padrão UEMOA &middot; FCFA</span></span>
+  </div>
+</main>
+
+<!-- Login Modal -->
+<div id="login-modal" class="modal-overlay" style="display:none">
+  <div class="modal">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+      <div class="crest" style="width:36px;height:36px;font-size:11px">GB</div>
+      <div><h2 style="margin:0">SIGIP&middot;GB</h2><p style="margin:0;font-size:11px" data-i18n="login_subtitle">Autenticação segura</p></div>
+    </div>
+    <div class="form-group">
+      <label data-i18n="login_user_label">Utilizador</label>
+      <input id="login-user" type="text" data-i18n-ph="login_user_placeholder" placeholder="nome.utilizador" autocomplete="username">
+    </div>
+    <div class="form-group">
+      <label data-i18n="login_pass_label">Palavra-passe</label>
+      <input id="login-pass" type="password" placeholder="••••••••" autocomplete="current-password">
+    </div>
+    <div id="login-error" class="form-error" data-i18n="login_error">Credenciais inválidas. Tente novamente.</div>
+    <button id="btn-do-login" class="btn-primary" onclick="doLogin()" data-i18n="login_btn">Entrar</button>
+    <div class="modal-skip">
+      <a onclick="closeLogin()" data-i18n="login_skip">Continuar em modo demonstração</a>
+    </div>
+  </div>
+</div>
+
+<!-- Project Form Modal -->
+<div id="project-modal" class="modal-overlay" style="display:none">
+  <div class="modal modal-wide">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+      <h2 id="project-modal-title" style="font-size:18px;font-weight:700;color:var(--ink)">Novo Projecto</h2>
+      <button onclick="closeProjectModal()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);line-height:1">&times;</button>
+    </div>
+    <div class="modal-tabs">
+      <button class="modal-tab active" id="tab-info" onclick="switchTab('info')" data-i18n="tab_info">Identificação</button>
+      <button class="modal-tab" id="tab-prog" onclick="switchTab('prog')" data-i18n="tab_prog_saisie">Programação</button>
+    </div>
+    <!-- Tab 1: Project info -->
+    <div class="tab-pane active" id="pane-info">
+      <div class="form-row" style="margin-bottom:14px">
+        <div class="form-group">
+          <label data-i18n="field_code">Código</label>
+          <input id="f-code" type="text" placeholder="ex: 123456789" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
+        </div>
+        <div class="form-group">
+          <label data-i18n="field_status_exec">Estado de Execução</label>
+          <select id="f-status">
+            <option value="IDENTIFIED">Identificado</option>
+            <option value="IN_PROGRESS">Em Execução</option>
+            <option value="COMPLETED">Concluído</option>
+            <option value="SUSPENDED">Suspenso</option>
+            <option value="CANCELLED">Cancelado</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:14px">
+        <label data-i18n="field_title">Título</label>
+        <input id="f-title" type="text" placeholder="Título completo do projecto" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
+      </div>
+      <div class="form-row" style="margin-bottom:14px">
+        <div class="form-group">
+          <label data-i18n="field_ministry">Ministério</label>
+          <select id="f-ministry"></select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="field_sector">Sector</label>
+          <select id="f-sector"><option value="">—</option></select>
+        </div>
+      </div>
+      <div class="form-row" style="margin-bottom:14px">
+        <div class="form-group">
+          <label data-i18n="field_pillar">Pilar PND</label>
+          <select id="f-pillar"><option value="">—</option></select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="field_financier">Financiador Principal</label>
+          <select id="f-financier"><option value="">—</option></select>
+        </div>
+      </div>
+      <div class="form-row" style="margin-bottom:14px">
+        <div class="form-group">
+          <label data-i18n="field_start_date">Data de Início</label>
+          <input id="f-start" type="date" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
+        </div>
+        <div class="form-group">
+          <label data-i18n="field_end_date">Data de Fim</label>
+          <input id="f-end" type="date" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
+        </div>
+      </div>
+      <div class="form-group" style="margin-bottom:14px">
+        <label data-i18n="field_description">Descrição</label>
+        <textarea id="f-desc" rows="3" placeholder="Descrição do projecto (opcional)"></textarea>
+      </div>
+      <div id="form-error-info" class="form-error"></div>
+    </div>
+    <!-- Tab 2: Pluriannual programming -->
+    <div class="tab-pane" id="pane-prog">
+      <p style="font-size:12px;color:var(--muted);margin-bottom:14px" data-i18n="prog_hint">Insira os montants anuais em FCFA (mínimo 0). O total do projecto será recalculado automaticamente.</p>
+      <div style="overflow-x:auto">
+        <table class="prog-grid">
+          <thead>
+            <tr>
+              <th data-i18n="th_year">Ano</th>
+              <th data-i18n="legend_donations">Donativos (FCFA)</th>
+              <th data-i18n="legend_loans">Empréstimos (FCFA)</th>
+              <th data-i18n="legend_state">Contrib. Estado (FCFA)</th>
+              <th data-i18n="th_year_total">Total Ano</th>
+            </tr>
+          </thead>
+          <tbody id="prog-rows"></tbody>
+        </table>
+      </div>
+      <div class="prog-total"><span data-i18n="prog_grand_total">Total geral : </span><strong id="prog-grand-total">0</strong> FCFA</div>
+      <div id="form-error-prog" class="form-error"></div>
+    </div>
+    <!-- Modal actions -->
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)">
+      <button onclick="closeProjectModal()" style="padding:10px 20px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit" data-i18n="btn_cancel">Cancelar</button>
+      <button id="btn-save-project" onclick="saveProject()" class="btn-primary" style="width:auto;padding:10px 24px" data-i18n="btn_save">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Confirm / Reject Modal -->
+<div id="confirm-overlay" class="confirm-overlay" style="display:none">
+  <div class="confirm-box">
+    <h3 id="confirm-title">Confirmar</h3>
+    <p id="confirm-msg"></p>
+    <div id="confirm-note-wrap" style="display:none;margin-bottom:14px">
+      <label style="font-size:12px;font-weight:600;color:var(--ink2);display:block;margin-bottom:6px" data-i18n="field_rejection_note">Nota de rejeição (opcional)</label>
+      <textarea id="confirm-note" rows="2" style="width:100%;padding:8px 12px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit;resize:none"></textarea>
+    </div>
+    <div class="confirm-actions">
+      <button onclick="closeConfirm()" style="padding:9px 18px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit" data-i18n="btn_cancel">Cancelar</button>
+      <button id="confirm-ok" class="btn-primary" style="width:auto;padding:9px 18px" data-i18n="btn_confirm">Confirmar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// ============================================================
+// CONFIG
+// ============================================================
+const API_BASE = '/api/v1';
+const ANOS = [2026, 2027, 2028, 2029, 2030];
+const M = 1000; // dados em milhares de FCFA → dividir por 1000 para milhões
+let ACCESS_TOKEN = localStorage.getItem('sigip_token') || null;
+let DEMO_MODE = true;
+let PIP_DATA = [];
+
+// ============================================================
+// I18N — TRANSLATIONS
+// ============================================================
+let CL = localStorage.getItem('sigip_lang') || 'pt'; // current language
+
+const I18N = {
+  pt: {
+    brand_sub: 'Sistema de Gestão do Investimento Público',
+    hgov: 'República da Guiné-Bissau<br>Ministério da Economia, Plano e Integração Regional<br><b>Direcção-Geral do Plano &mdash; PIP 2026&ndash;2030</b>',
+    btn_login: 'Entrar',
+    btn_logout: 'Sair',
+    nav_dash: 'Painel Nacional',
+    nav_proj: 'Projectos',
+    nav_min: 'Ministérios',
+    nav_fin: 'Financiadores',
+    nav_prog: 'Programação Plurianual',
+    banner_demo_html: '<b>Modo demonstração</b> &mdash; dados reais do PIP 2026&ndash;2030 (292 projectos). Entre para aceder à API. Valores em <b>milhões de FCFA</b>.',
+    banner_live_html: '<b>Ligado à API</b> &mdash; dados em tempo real da base de dados SIGIP-GB.',
+    eyebrow_dash: 'Visão Consolidada',
+    vtitle_dash: 'Painel Nacional do Investimento Público',
+    vsub_dash: 'Programa de Investimento Público &mdash; Plano Nacional de Desenvolvimento 2026&ndash;2030',
+    panel_by_ministry: 'Investimento por Ministério',
+    panel_financing: 'Estrutura de Financiamento',
+    legend_donations: 'Donativos',
+    legend_loans: 'Empréstimos',
+    legend_state: 'Contrib. Estado',
+    legend_external: 'Financiamento Externo',
+    legend_internal: 'Financiamento Interno',
+    panel_ext_int: 'Fontes Externas vs Internas',
+    panel_trajectory: 'Trajectória de Programação 2026&ndash;2030',
+    note_top10: 'Top 10 &middot; total 2026&ndash;2030',
+    note_per_source: 'por fonte, milhões FCFA',
+    eyebrow_proj: 'Carteira de Projectos',
+    vtitle_proj: 'Projectos de Investimento',
+    vsub_proj: 'Pesquise, filtre e ordene os 292 projectos do PIP',
+    search_placeholder: 'Pesquisar por nome, código ou financiador...',
+    all_ministries: 'Todos os ministérios',
+    all_sources: 'Todas as fontes',
+    filter_ext: 'Externo',
+    filter_state: 'Estado',
+    th_code: 'Código',
+    th_project: 'Projecto',
+    th_ministry: 'Ministério',
+    th_financier: 'Financiador',
+    th_total: 'Total PND',
+    eyebrow_min: 'Análise Sectorial',
+    vtitle_min: 'Investimento por Ministério',
+    vsub_min: 'Repartição dos 631 mil milhões FCFA entre os 26 ministérios e instituições',
+    eyebrow_fin: 'Parceiros e Fontes',
+    vtitle_fin: 'Financiadores do PIP',
+    vsub_fin: 'Parceiros técnicos e financeiros, e contribuição do Estado',
+    eyebrow_prog: 'Quadro Plurianual',
+    vtitle_prog: 'Programação Plurianual',
+    vsub_prog: 'Distribuição anual do investimento total, 2026&ndash;2030',
+    panel_annual: 'Evolução anual do total programado',
+    foot_demo: 'Modo demonstração',
+    foot_live: 'API em tempo real',
+    foot_standard: 'Padrão UEMOA &middot; FCFA',
+    kpi_total: 'Total PIP 2026-2030',
+    kpi_external: 'Financiamento Externo',
+    kpi_state: 'Contribuição do Estado',
+    kpi_ministries: 'Ministérios / Instituições',
+    kpi_of_total: '% do total',
+    kpi_financiers: 'financiadores',
+    kpi_projects: 'projectos',
+    kpi_programmed: 'Programado',
+    loading: 'A carregar...',
+    login_subtitle: 'Autenticação segura',
+    login_user_label: 'Utilizador',
+    login_user_placeholder: 'nome.utilizador',
+    login_pass_label: 'Palavra-passe',
+    login_btn: 'Entrar',
+    login_loading: 'A autenticar...',
+    login_error: 'Credenciais inválidas. Tente novamente.',
+    login_skip: 'Continuar em modo demonstração',
+    count_suffix: 'projectos',
+    nav_saisie: 'Saisie',
+    eyebrow_saisie: 'Saisie Contínua',
+    vtitle_saisie: 'Gestão de Projectos',
+    vsub_saisie: 'Criar, editar e acompanhar os projectos do seu ministério',
+    vsub_saisie_dgp: 'Validar e acompanhar todos os projectos submetidos pelos ministérios',
+    btn_new_project: '+ Novo Projecto',
+    all_statuses: 'Todos os estados',
+    wf_RASCUNHO: 'Rascunho',
+    wf_SUBMETIDO: 'Submetido',
+    wf_VALIDADO: 'Validado',
+    th_wf_status: 'Estado',
+    th_actions: 'Acções',
+    tab_info: 'Identificação',
+    tab_prog_saisie: 'Programação',
+    field_code: 'Código',
+    field_title: 'Título',
+    field_ministry: 'Ministério',
+    field_sector: 'Sector',
+    field_pillar: 'Pilar PND',
+    field_financier: 'Financiador Principal',
+    field_status_exec: 'Estado de Execução',
+    field_start_date: 'Data de Início',
+    field_end_date: 'Data de Fim',
+    field_description: 'Descrição',
+    field_rejection_note: 'Nota de rejeição (opcional)',
+    prog_hint: 'Insira os montantes anuais em FCFA (mínimo 0). O total será recalculado automaticamente.',
+    prog_grand_total: 'Total geral : ',
+    th_year: 'Ano',
+    th_year_total: 'Total Ano',
+    btn_cancel: 'Cancelar',
+    btn_save: 'Guardar',
+    btn_confirm: 'Confirmar',
+    btn_edit: 'Editar',
+    btn_submit: 'Submeter',
+    btn_validate: 'Validar',
+    btn_reject: 'Rejeitar',
+    btn_delete: 'Eliminar',
+    btn_unlock: 'Desbloquear',
+    modal_new_project: 'Novo Projecto',
+    modal_edit_project: 'Editar Projecto',
+    confirm_submit_title: 'Submeter Projecto',
+    confirm_submit_msg: 'Confirma a submissão deste projecto para validação pela DGP?',
+    confirm_validate_title: 'Validar Projecto',
+    confirm_validate_msg: 'Confirma a validação deste projecto?',
+    confirm_reject_title: 'Rejeitar Projecto',
+    confirm_reject_msg: 'O projecto será devolvido ao ministério em estado Rascunho.',
+    confirm_delete_title: 'Eliminar Projecto',
+    confirm_delete_msg: 'Esta acção é irreversível. Confirma a eliminação do projecto?',
+    confirm_unlock_title: 'Desbloquear Projecto',
+    confirm_unlock_msg: 'O projecto validado será devolvido ao estado Rascunho.',
+    save_success: 'Guardado com sucesso.',
+    action_success: 'Operação realizada com sucesso.',
+    error_required: 'Preencha todos os campos obrigatórios.',
+    status_IDENTIFIED: 'Identificado',
+    status_IN_PROGRESS: 'Em Execução',
+    status_COMPLETED: 'Concluído',
+    status_SUSPENDED: 'Suspenso',
+    status_CANCELLED: 'Cancelado',
+    nav_sintese: 'Síntese',
+    eyebrow_sintese: 'Síntese do PIP',
+    vtitle_sintese: 'Quadros de Síntese',
+    vsub_sintese: 'Resumos por Pilar PND, Sector, Natureza da Despesa e Prioridade Governamental',
+    sintese_all_years: 'Todos os anos',
+    sintese_validated_only: 'Apenas validados',
+    sintese_refresh: 'Actualizar',
+    stab_pnd: 'PND',
+    stab_sector: 'Sectores',
+    stab_nat: 'Natureza Despesa',
+    stab_gov: 'Prior. Governo',
+    sintese_ext: 'Ext.',
+    sintese_int: 'Int.',
+    sintese_total: 'Total',
+    sintese_pct: '%',
+    sintese_grand_total: 'TOTAL GERAL',
+    sintese_loading: 'A carregar dados de síntese...',
+    sintese_error: 'Erro ao carregar dados de síntese. Verifique a ligação.',
+    sintese_unit: 'Valores em milhões de FCFA',
+  },
+  fr: {
+    brand_sub: "Système de Gestion de l'Investissement Public",
+    hgov: "République de Guinée-Bissau<br>Ministère de l'Économie, du Plan et de l'Intégration Régionale<br><b>Direction Générale du Plan &mdash; PIP 2026&ndash;2030</b>",
+    btn_login: 'Connexion',
+    btn_logout: 'Déconnexion',
+    nav_dash: 'Tableau National',
+    nav_proj: 'Projets',
+    nav_min: 'Ministères',
+    nav_fin: 'Financeurs',
+    nav_prog: 'Programmation Pluriannuelle',
+    banner_demo_html: "<b>Mode démonstration</b> &mdash; données réelles du PIP 2026&ndash;2030 (292 projets). Connectez-vous pour accéder à l'API. Valeurs en <b>millions de FCFA</b>.",
+    banner_live_html: "<b>Connecté à l'API</b> &mdash; données en temps réel de la base de données SIGIP-GB.",
+    eyebrow_dash: 'Vue Consolidée',
+    vtitle_dash: "Tableau National de l'Investissement Public",
+    vsub_dash: "Programme d'Investissement Public &mdash; Plan National de Développement 2026&ndash;2030",
+    panel_by_ministry: 'Investissement par Ministère',
+    panel_financing: 'Structure de Financement',
+    legend_donations: 'Dons',
+    legend_loans: 'Prêts',
+    legend_state: 'Contrib. État',
+    legend_external: 'Financement Externe',
+    legend_internal: 'Financement Interne',
+    panel_ext_int: 'Sources Externes vs Internes',
+    panel_trajectory: 'Trajectoire de Programmation 2026&ndash;2030',
+    note_top10: 'Top 10 &middot; total 2026&ndash;2030',
+    note_per_source: 'par source, millions FCFA',
+    eyebrow_proj: 'Portefeuille de Projets',
+    vtitle_proj: "Projets d'Investissement",
+    vsub_proj: 'Recherchez, filtrez et triez les 292 projets du PIP',
+    search_placeholder: 'Rechercher par nom, code ou financeur...',
+    all_ministries: 'Tous les ministères',
+    all_sources: 'Toutes les sources',
+    filter_ext: 'Externe',
+    filter_state: 'État',
+    th_code: 'Code',
+    th_project: 'Projet',
+    th_ministry: 'Ministère',
+    th_financier: 'Financeur',
+    th_total: 'Total PND',
+    eyebrow_min: 'Analyse Sectorielle',
+    vtitle_min: 'Investissement par Ministère',
+    vsub_min: 'Répartition des 631 milliards FCFA entre les 26 ministères et institutions',
+    eyebrow_fin: 'Partenaires et Sources',
+    vtitle_fin: 'Financeurs du PIP',
+    vsub_fin: "Partenaires techniques et financiers, et contribution de l'État",
+    eyebrow_prog: 'Cadre Pluriannuel',
+    vtitle_prog: 'Programmation Pluriannuelle',
+    vsub_prog: "Distribution annuelle de l'investissement total, 2026&ndash;2030",
+    panel_annual: 'Évolution annuelle du total programmé',
+    foot_demo: 'Mode démonstration',
+    foot_live: 'API en temps réel',
+    foot_standard: 'Standard UEMOA &middot; FCFA',
+    kpi_total: 'Total PIP 2026-2030',
+    kpi_external: 'Financement Externe',
+    kpi_state: "Contribution de l'État",
+    kpi_ministries: 'Ministères / Institutions',
+    kpi_of_total: '% du total',
+    kpi_financiers: 'financeurs',
+    kpi_projects: 'projets',
+    kpi_programmed: 'Programmé',
+    loading: 'Chargement...',
+    login_subtitle: 'Authentification sécurisée',
+    login_user_label: 'Utilisateur',
+    login_user_placeholder: 'nom.utilisateur',
+    login_pass_label: 'Mot de passe',
+    login_btn: 'Se connecter',
+    login_loading: 'Connexion en cours...',
+    login_error: 'Identifiants invalides. Réessayez.',
+    login_skip: 'Continuer en mode démonstration',
+    count_suffix: 'projets',
+    nav_saisie: 'Saisie',
+    eyebrow_saisie: 'Saisie Continue',
+    vtitle_saisie: 'Gestion des Projets',
+    vsub_saisie: 'Créer, modifier et suivre les projets de votre ministère',
+    vsub_saisie_dgp: 'Valider et suivre tous les projets soumis par les ministères',
+    btn_new_project: '+ Nouveau Projet',
+    all_statuses: 'Tous les états',
+    wf_RASCUNHO: 'Brouillon',
+    wf_SUBMETIDO: 'Soumis',
+    wf_VALIDADO: 'Validé',
+    th_wf_status: 'État',
+    th_actions: 'Actions',
+    tab_info: 'Identification',
+    tab_prog_saisie: 'Programmation',
+    field_code: 'Code',
+    field_title: 'Titre',
+    field_ministry: 'Ministère',
+    field_sector: 'Secteur',
+    field_pillar: 'Pilier PND',
+    field_financier: 'Financeur Principal',
+    field_status_exec: "État d'Exécution",
+    field_start_date: 'Date de Début',
+    field_end_date: 'Date de Fin',
+    field_description: 'Description',
+    field_rejection_note: 'Note de rejet (optionnelle)',
+    prog_hint: 'Saisissez les montants annuels en FCFA (minimum 0). Le total sera recalculé automatiquement.',
+    prog_grand_total: 'Total général : ',
+    th_year: 'Année',
+    th_year_total: 'Total Année',
+    btn_cancel: 'Annuler',
+    btn_save: 'Enregistrer',
+    btn_confirm: 'Confirmer',
+    btn_edit: 'Modifier',
+    btn_submit: 'Soumettre',
+    btn_validate: 'Valider',
+    btn_reject: 'Rejeter',
+    btn_delete: 'Supprimer',
+    btn_unlock: 'Déverrouiller',
+    modal_new_project: 'Nouveau Projet',
+    modal_edit_project: 'Modifier le Projet',
+    confirm_submit_title: 'Soumettre le Projet',
+    confirm_submit_msg: 'Confirmez-vous la soumission de ce projet à la DGP pour validation ?',
+    confirm_validate_title: 'Valider le Projet',
+    confirm_validate_msg: 'Confirmez-vous la validation de ce projet ?',
+    confirm_reject_title: 'Rejeter le Projet',
+    confirm_reject_msg: 'Le projet sera renvoyé au ministère en état Brouillon.',
+    confirm_delete_title: 'Supprimer le Projet',
+    confirm_delete_msg: 'Cette action est irréversible. Confirmez-vous la suppression ?',
+    confirm_unlock_title: 'Déverrouiller le Projet',
+    confirm_unlock_msg: 'Le projet validé sera remis en état Brouillon.',
+    save_success: 'Enregistré avec succès.',
+    action_success: 'Opération réalisée avec succès.',
+    error_required: 'Veuillez remplir tous les champs obligatoires.',
+    status_IDENTIFIED: 'Identifié',
+    status_IN_PROGRESS: 'En Cours',
+    status_COMPLETED: 'Terminé',
+    status_SUSPENDED: 'Suspendu',
+    status_CANCELLED: 'Annulé',
+    nav_sintese: 'Synthèse',
+    eyebrow_sintese: 'Synthèse du PIP',
+    vtitle_sintese: 'Tableaux de Synthèse',
+    vsub_sintese: 'Résumés par Pilier PND, Secteur, Nature des Dépenses et Priorité Gouvernementale',
+    sintese_all_years: 'Toutes les années',
+    sintese_validated_only: 'Seulement validés',
+    sintese_refresh: 'Actualiser',
+    stab_pnd: 'PND',
+    stab_sector: 'Secteurs',
+    stab_nat: 'Nature Dépenses',
+    stab_gov: 'Prior. Gouv.',
+    sintese_ext: 'Ext.',
+    sintese_int: 'Int.',
+    sintese_total: 'Total',
+    sintese_pct: '%',
+    sintese_grand_total: 'TOTAL GÉNÉRAL',
+    sintese_loading: 'Chargement des données de synthèse...',
+    sintese_error: 'Erreur lors du chargement des données de synthèse.',
+    sintese_unit: 'Valeurs en millions de FCFA',
+  }
+};
+
+function T(key) {
+  return (I18N[CL] && I18N[CL][key] !== undefined) ? I18N[CL][key] : (I18N['pt'][key] || key);
+}
+
+function applyLang(lang) {
+  CL = lang;
+  localStorage.setItem('sigip_lang', lang);
+  document.getElementById('html-root').lang = lang;
+
+  // Toggle button highlight
+  document.getElementById('lang-label-1').className = lang === 'pt' ? 'al' : '';
+  document.getElementById('lang-label-2').className = lang === 'fr' ? 'al' : '';
+
+  // Update all [data-i18n] text content
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.innerHTML = T(key);
+  });
+
+  // Update placeholder attributes
+  document.querySelectorAll('[data-i18n-ph]').forEach(el => {
+    const key = el.getAttribute('data-i18n-ph');
+    el.placeholder = T(key);
+  });
+
+  // Update special composite elements
+  document.getElementById('hgov-text').innerHTML = T('hgov');
+
+  // Update panels with notes (composite HTML)
+  document.getElementById('panel-by-ministry-h3').innerHTML =
+    T('panel_by_ministry') + ' <span class="note">' + T('note_top10') + '</span>';
+  document.getElementById('panel-trajectory-h3').innerHTML =
+    T('panel_trajectory') + ' <span class="note">' + T('note_per_source') + '</span>';
+
+  // Update banner if in DEMO mode (login button text is handled by updateAuthUI)
+  if (DEMO_MODE) {
+    document.getElementById('main-banner').className = 'banner info';
+    document.getElementById('main-banner').innerHTML =
+      '<span style="font-size:16px">&#9888;</span><div id="main-banner-text">' + T('banner_demo_html') + '</div>';
+    document.getElementById('foot-mode').innerHTML = T('foot_demo');
+    const loginBtn = document.getElementById('btn-login-header');
+    if (loginBtn && loginBtn.onclick === showLogin) loginBtn.innerHTML = T('btn_login');
+  } else {
+    document.getElementById('main-banner').className = 'banner success';
+    document.getElementById('main-banner').innerHTML =
+      '<span style="font-size:16px">&#10003;</span><div id="main-banner-text">' + T('banner_live_html') + '</div>';
+    document.getElementById('foot-mode').innerHTML = T('foot_live');
+    const loginBtn = document.getElementById('btn-login-header');
+    if (loginBtn) loginBtn.innerHTML = T('btn_logout');
+  }
+
+  // Update filter dropdowns (re-render projects toolbar)
+  const fminEl = document.getElementById('fmin');
+  if (fminEl && PIP_DATA.length > 0) {
+    const currentVal = fminEl.value;
+    const mins = [...new Set(PIP_DATA.map(p => p.min_abbr))].sort();
+    fminEl.innerHTML = '<option value="">' + T('all_ministries') + '</option>' +
+      mins.map(m => `<option${currentVal === m ? ' selected' : ''}>${m}</option>`).join('');
+  } else if (fminEl) {
+    fminEl.querySelector('option[value=""]').innerHTML = T('all_ministries');
+  }
+  const ffEl = document.getElementById('ffin');
+  if (ffEl) {
+    const ffVal = ffEl.value;
+    ffEl.innerHTML =
+      `<option value="">${T('all_sources')}</option>` +
+      `<option value="ext"${ffVal==='ext'?' selected':''}>${T('filter_ext')}</option>` +
+      `<option value="est"${ffVal==='est'?' selected':''}>${T('filter_state')}</option>`;
+  }
+
+  // Re-render dynamic views if data is loaded
+  if (PIP_DATA.length > 0) {
+    updateTable();
+    renderProgramming();
+    if (window._lastDashboardArgs) {
+      renderDashboard(...window._lastDashboardArgs);
+    }
+  }
+}
+
+function toggleLang() {
+  applyLang(CL === 'pt' ? 'fr' : 'pt');
+}
+
+// ============================================================
+// FORMATTERS
+// ============================================================
+const fmt = n => new Intl.NumberFormat('pt-PT', {maximumFractionDigits: 0}).format(Math.round(n / M));
+const fmtB = n => new Intl.NumberFormat('pt-PT', {maximumFractionDigits: 1}).format(n / 1e6) + ' Md';
+const sum = (a, k) => a.reduce((s, x) => s + (k ? (x[k] || 0) : x), 0);
+
+// ============================================================
+// AUTH
+// ============================================================
+function showLogin() {
+  document.getElementById('login-modal').style.display = 'grid';
+  document.getElementById('login-user').focus();
+}
+function closeLogin() {
+  document.getElementById('login-modal').style.display = 'none';
+  document.getElementById('login-error').style.display = 'none';
+}
+async function doLogin() {
+  const btn = document.getElementById('btn-do-login');
+  const user = document.getElementById('login-user').value.trim();
+  const pass = document.getElementById('login-pass').value;
+  const errEl = document.getElementById('login-error');
+  errEl.style.display = 'none';
+  btn.disabled = true;
+  btn.textContent = T('login_loading');
+  try {
+    const resp = await fetch(`/api/v1/auth/token/`, {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({username: user, password: pass})
+    });
+    if (!resp.ok) throw new Error('Unauthorized');
+    const data = await resp.json();
+    ACCESS_TOKEN = data.access;
+    localStorage.setItem('sigip_token', ACCESS_TOKEN);
+    closeLogin();
+    await initFromAPI();
+  } catch {
+    errEl.style.display = 'block';
+    errEl.textContent = T('login_error');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = T('login_btn');
+  }
+}
+function logout() {
+  ACCESS_TOKEN = null;
+  USER = null;
+  localStorage.removeItem('sigip_token');
+  DEMO_MODE = true;
+  document.getElementById('nav-saisie').style.display = 'none';
+  const _navSintese = document.getElementById('nav-sintese');
+  if (_navSintese) _navSintese.style.display = 'none';
+  SINTESE_CACHE = {};
+  document.getElementById('btn-new-project').style.display = 'none';
+  document.getElementById('user-info').innerHTML = '';
+  // Switch away from saisie if active
+  const saisieBtn = document.getElementById('nav-saisie');
+  if (saisieBtn && saisieBtn.classList.contains('active')) {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    document.querySelector('nav button[data-v="dash"]').classList.add('active');
+    document.getElementById('dash').classList.add('active');
+  }
+  updateAuthUI(false);
+  loadDemoData();
+}
+function updateAuthUI(isLive) {
+  const badge = document.getElementById('api-badge');
+  const loginBtn = document.getElementById('btn-login-header');
+  const banner = document.getElementById('main-banner');
+  const footMode = document.getElementById('foot-mode');
+  if (isLive) {
+    DEMO_MODE = false;
+    badge.textContent = 'LIVE';
+    badge.className = 'api-status live';
+    loginBtn.textContent = T('btn_logout');
+    loginBtn.onclick = logout;
+    banner.className = 'banner success';
+    banner.innerHTML = '<span style="font-size:16px">&#10003;</span><div id="main-banner-text">' + T('banner_live_html') + '</div>';
+    footMode.innerHTML = T('foot_live');
+  } else {
+    DEMO_MODE = true;
+    badge.textContent = 'DEMO';
+    badge.className = 'api-status demo';
+    loginBtn.textContent = T('btn_login');
+    loginBtn.onclick = showLogin;
+    banner.className = 'banner info';
+    banner.innerHTML = '<span style="font-size:16px">&#9888;</span><div id="main-banner-text">' + T('banner_demo_html') + '</div>';
+    footMode.innerHTML = T('foot_demo');
+  }
+}
+
+// ============================================================
+// API DATA FETCHING
+// ============================================================
+async function apiFetch(path) {
+  const headers = {'Content-Type': 'application/json'};
+  if (ACCESS_TOKEN) headers['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
+  const resp = await fetch(`${API_BASE}${path}`, {headers});
+  if (!resp.ok) throw new Error(`API ${resp.status}`);
+  return resp.json();
+}
+
+async function initFromAPI() {
+  try {
+    const [dashboard, projects] = await Promise.all([
+      apiFetch('/dashboard/'),
+      apiFetch('/projects/?page_size=500'),
+    ]);
+    DEMO_MODE = false;
+    updateAuthUI(true);
+    renderFromAPI(dashboard, projects.results || projects);
+    // Load user profile and ref data after auth confirmed
+    await fetchUserProfile();
+    loadRefData(); // async, no need to await
+  } catch (e) {
+    console.warn('API indisponível, modo demonstração:', e.message);
+    ACCESS_TOKEN = null;
+    localStorage.removeItem('sigip_token');
+    loadDemoData();
+  }
+}
+
+function renderFromAPI(dashboard, projects) {
+  PIP_DATA = (projects || []).map(p => ({
+    code: p.code,
+    nome: p.title,
+    financiador: p.financier_short || p.financier_name || '',
+    fin_norm: p.financier_type === 'ESTADO' ? 'Estado' : (p.financier_short || p.financier_name || ''),
+    ministerio: p.ministry_name || '',
+    min_abbr: p.ministry_short || p.ministry_name || '',
+    total: parseFloat(p.total_programmed || p.total_cost || 0),
+    anos: p.programming_by_year ? Object.fromEntries(
+      ANOS.map(a => [a, parseFloat(p.programming_by_year[a]?.total || 0)])
+    ) : {},
+    don: p.financier_type === 'ESTADO' ? 0 : 1,
+    empr: 0,
+    interno: p.financier_type === 'ESTADO' ? 1 : 0,
+  }));
+
+  renderDashboard(
+    dashboard.total_pip_fcfa,
+    dashboard.total_donations_fcfa + dashboard.total_loans_fcfa,
+    dashboard.total_state_fcfa,
+    dashboard.total_donations_fcfa,
+    dashboard.total_loans_fcfa,
+    dashboard.by_ministry,
+    dashboard.by_year
+  );
+  renderProjects();
+  renderMinistries();
+  renderFinanciers();
+  renderProgramming();
+}
+
+// ============================================================
+// EMBEDDED DEMO DATA
+// ============================================================
+const EMBEDDED_DATA=[{"code":"111920101","nome":"Projeto De Reforço De Capacidade Da Assembleia Nacional Popular","financiador":"GOV.GB","fin_norm":"Estado","ministerio":"ASSEMBLEIA NACIONAL POPULAR","min_abbr":"ANP","total":0,"anos":{"2026":0,"2027":0,"2028":0,"2029":0,"2030":0},"don":0,"empr":0,"interno":0},{"code":"111920201","nome":"Reforço De Capacidade De Assembleia Nacional Popular","financiador":"GOV.GB","fin_norm":"Estado","ministerio":"ASSEMBLEIA NACIONAL POPULAR","min_abbr":"ANP","total":275000,"anos":{"2026":0,"2027":50000,"2028":75000,"2029":75000,"2030":75000},"don":0,"empr":0,"interno":275000},{"code":"343920101","nome":"Projecto De Apoio A Gestão De Administração Pública","financiador":"BAD","fin_norm":"BAD","ministerio":"MINISTÉRIO DA PRESIDENCIA DO CONSELHO DE MINISTROS","min_abbr":"Presidência CM","total":186000,"anos":{"2026":10000,"2027":50000,"2028":42000,"2029":42000,"2030":42000},"don":0,"empr":0,"interno":186000},{"code":"611921202","nome":"Projecto Compras De Medicamentos Cecom","financiador":"GOV. GB","fin_norm":"Estado","ministerio":"MINISTÉRIO DA PRESIDENCIA DO CONSELHO DE MINISTROS","min_abbr":"Presidência CM","total":2550000,"anos":{"2026":50000,"2027":1000000,"2028":500000,"2029":500000,"2030":500000},"don":0,"empr":0,"interno":2550000}];
+
+function loadDemoData() {
+  fetch('/static/pip_data.json')
+    .then(r => r.json())
+    .then(data => { PIP_DATA = data; renderAll(); })
+    .catch(() => {
+      fetch('../scripts/pip_data.json')
+        .then(r => r.json())
+        .then(data => { PIP_DATA = data; renderAll(); })
+        .catch(() => { PIP_DATA = EMBEDDED_DATA; renderAll(); });
+    });
+}
+
+// ============================================================
+// RENDER ALL
+// ============================================================
+function renderAll() {
+  const T_ = sum(PIP_DATA, 'total');
+  const Tdon = sum(PIP_DATA, 'don');
+  const Tempr = sum(PIP_DATA, 'empr');
+  const Tint = sum(PIP_DATA, 'interno');
+  const Text = Tdon + Tempr;
+
+  renderDashboardFromRaw(T_, Text, Tint, Tdon, Tempr);
+  renderProjects();
+  renderMinistries();
+  renderFinanciers();
+  renderProgramming();
+}
+
+function renderDashboardFromRaw(T_, Text, Tint, Tdon, Tempr) {
+  const byMin = minAgg();
+  const byYear = ANOS.map(a => ({
+    fiscal_year: a,
+    total: sum(PIP_DATA.map(p => ({v: (p.anos && p.anos[a]) || 0})), 'v'),
+    donations: sum(PIP_DATA.filter(p => p.don && !p.empr).map(p => ({v: (p.anos && p.anos[a]) || 0})), 'v'),
+    loans: sum(PIP_DATA.filter(p => p.empr).map(p => ({v: (p.anos && p.anos[a]) || 0})), 'v'),
+    state_contribution: sum(PIP_DATA.filter(p => p.fin_norm === 'Estado').map(p => ({v: (p.anos && p.anos[a]) || 0})), 'v'),
+  }));
+
+  renderDashboard(T_, Text, Tint, Tdon, Tempr,
+    byMin.map(([k, v]) => ({short_name: k, name: k, total: v, project_count: PIP_DATA.filter(p => p.min_abbr === k).length})),
+    byYear
+  );
+}
+
+function renderDashboard(T_, Text, Tint, Tdon, Tempr, byMinistry, byYear) {
+  // Save args for re-render on language change
+  window._lastDashboardArgs = [T_, Text, Tint, Tdon, Tempr, byMinistry, byYear];
+
+  // KPIs
+  const kpis = [
+    {lab: T('kpi_total'), val: fmt(T_), unit: 'M FCFA', sub: fmtB(T_) + ' · ' + PIP_DATA.length + ' ' + T('kpi_projects')},
+    {lab: T('kpi_external'), val: fmt(Text), unit: 'M FCFA', sub: T_ > 0 ? (100 * Text / T_).toFixed(1) + T('kpi_of_total') : ''},
+    {lab: T('kpi_state'), val: fmt(Tint), unit: 'M FCFA', sub: T_ > 0 ? (100 * Tint / T_).toFixed(1) + T('kpi_of_total') : ''},
+    {lab: T('kpi_ministries'), val: new Set(PIP_DATA.map(p => p.ministerio)).size, unit: '', sub: new Set(PIP_DATA.map(p => p.fin_norm)).size + ' ' + T('kpi_financiers')},
+  ];
+  document.getElementById('kpis').innerHTML = kpis.map(k =>
+    `<div class="kpi"><div class="lab">${k.lab}</div><div class="val">${k.val} <span class="unit">${k.unit}</span></div><div class="sub">${k.sub}</div></div>`
+  ).join('');
+
+  // Ministry bars top 10
+  const topMin = [...byMinistry].sort((a, b) => b.total - a.total).slice(0, 10);
+  const maxM = topMin[0]?.total || 1;
+  document.getElementById('minbars').innerHTML = topMin.map(m =>
+    `<div class="bar-row"><span class="nm" title="${m.name}">${m.short_name || m.name}</span><div class="bar-track"><div class="bar-fill" style="width:${100 * m.total / maxM}%"></div></div><span class="vv">${fmt(m.total)}</span></div>`
+  ).join('');
+
+  // Financing stack
+  document.getElementById('finstack').innerHTML = '';
+  document.getElementById('extint').innerHTML = '';
+  [
+    ['var(--don)', Tdon, T('legend_donations')],
+    ['var(--empr)', Tempr, T('legend_loans')],
+    ['var(--int)', Tint, T('legend_state')]
+  ].forEach(([c, v, l]) => {
+    if (!T_) return;
+    const d = document.createElement('div');
+    d.style.background = c; d.style.width = (100 * v / T_) + '%';
+    d.textContent = (100 * v / T_).toFixed(0) + '%';
+    d.title = l + ': ' + fmt(v) + ' M FCFA';
+    document.getElementById('finstack').appendChild(d);
+  });
+  [['var(--ext)', Text], ['var(--int)', Tint]].forEach(([c, v]) => {
+    if (!T_) return;
+    const d = document.createElement('div');
+    d.style.background = c; d.style.width = (100 * v / T_) + '%';
+    d.textContent = (100 * v / T_).toFixed(0) + '%';
+    document.getElementById('extint').appendChild(d);
+  });
+
+  // Year chart
+  const maxY = Math.max(...byYear.map(y => y.total), 1);
+  function renderYearChart(el) {
+    el.innerHTML = byYear.map(y => {
+      const h = 100 * y.total / maxY;
+      return `<div class="ybar"><div class="cols"><div class="ycol" style="height:${h}%;background:linear-gradient(180deg,var(--accent),var(--ext))" title="${fmt(y.total)} M FCFA"></div></div><div class="yl">${y.fiscal_year}</div><div class="yt">${fmt(y.total)}</div></div>`;
+    }).join('');
+  }
+  renderYearChart(document.getElementById('yearchart'));
+  window._byYear = byYear;
+}
+
+// ============================================================
+// PROJECTS TABLE
+// ============================================================
+let sortKey = 'total', sortDir = -1;
+
+function minAgg() {
+  const d = {};
+  PIP_DATA.forEach(p => { const k = p.min_abbr; d[k] = (d[k] || 0) + p.total; });
+  return Object.entries(d).sort((a, b) => b[1] - a[1]);
+}
+
+function renderProjects() {
+  const mins = [...new Set(PIP_DATA.map(p => p.min_abbr))].sort();
+  const fminEl = document.getElementById('fmin');
+  fminEl.innerHTML = '<option value="">' + T('all_ministries') + '</option>' + mins.map(m => `<option>${m}</option>`).join('');
+  const ffEl = document.getElementById('ffin');
+  ffEl.innerHTML =
+    `<option value="">${T('all_sources')}</option>` +
+    `<option value="ext">${T('filter_ext')}</option>` +
+    `<option value="est">${T('filter_state')}</option>`;
+  updateTable();
+}
+
+function updateTable() {
+  const q = (document.getElementById('search')?.value || '').toLowerCase();
+  const fm = document.getElementById('fmin')?.value || '';
+  const ff = document.getElementById('ffin')?.value || '';
+  let rows = PIP_DATA.filter(p => {
+    if (q && !(p.nome.toLowerCase().includes(q) || String(p.code).includes(q) || p.financiador.toLowerCase().includes(q))) return false;
+    if (fm && p.min_abbr !== fm) return false;
+    if (ff === 'ext' && p.fin_norm === 'Estado') return false;
+    if (ff === 'est' && p.fin_norm !== 'Estado') return false;
+    return true;
+  });
+  rows.sort((a, b) => {
+    let av = a[sortKey] ?? '', bv = b[sortKey] ?? '';
+    if (typeof av === 'string') av = av.toLowerCase();
+    if (typeof bv === 'string') bv = bv.toLowerCase();
+    return av < bv ? -sortDir : av > bv ? sortDir : 0;
+  });
+  document.getElementById('pcount').textContent = rows.length + ' ' + T('count_suffix');
+  document.getElementById('ptbody').innerHTML = rows.map(p =>
+    `<tr>
+      <td><span class="code">${p.code}</span></td>
+      <td><div class="pname">${esc(p.nome)}</div><div class="mini">${esc(p.ministerio)}</div></td>
+      <td>${esc(p.min_abbr)}</td>
+      <td><span class="tag ${p.fin_norm === 'Estado' ? 'est' : 'ext'}">${esc(p.fin_norm)}</span></td>
+      <td class="num">${fmt(p.total)}</td>
+    </tr>`
+  ).join('');
+}
+
+// ============================================================
+// MINISTRIES & FINANCIERS
+// ============================================================
+function renderMinistries() {
+  const ma = minAgg();
+  const Tt = sum(PIP_DATA, 'total');
+  const maxM = ma[0]?.[1] || 1;
+  document.getElementById('minfull').innerHTML = ma.map(([n, v], i) =>
+    `<div class="bar-row"><span class="nm" style="width:170px" title="${n}">${i + 1}. ${n}</span><div class="bar-track"><div class="bar-fill" style="width:${100 * v / maxM}%"></div></div><span class="vv">${fmt(v)}</span><span class="vv" style="width:48px;color:var(--muted)">${Tt > 0 ? (100 * v / Tt).toFixed(1) : 0}%</span></div>`
+  ).join('');
+}
+
+function renderFinanciers() {
+  const d = {};
+  PIP_DATA.forEach(p => { const k = p.fin_norm; d[k] = (d[k] || 0) + p.total; });
+  const fa = Object.entries(d).sort((a, b) => b[1] - a[1]);
+  const Tt = sum(PIP_DATA, 'total');
+  const maxF = fa[0]?.[1] || 1;
+  document.getElementById('finfull').innerHTML = fa.slice(0, 30).map(([n, v], i) =>
+    `<div class="bar-row"><span class="nm" style="width:170px" title="${n}">${i + 1}. ${n}</span><div class="bar-track"><div class="bar-fill" style="width:${100 * v / maxF}%;background:linear-gradient(90deg,#5a3a6b,#8c5fa3)"></div></div><span class="vv">${fmt(v)}</span><span class="vv" style="width:48px;color:var(--muted)">${Tt > 0 ? (100 * v / Tt).toFixed(1) : 0}%</span></div>`
+  ).join('');
+}
+
+// ============================================================
+// PROGRAMMING
+// ============================================================
+function renderProgramming() {
+  const byYear = window._byYear || ANOS.map(a => ({
+    fiscal_year: a,
+    total: sum(PIP_DATA.map(p => ({v: (p.anos && p.anos[a]) || 0})), 'v')
+  }));
+  const maxY = Math.max(...byYear.map(y => y.total), 1);
+  document.getElementById('progkpis').innerHTML = byYear.map(y =>
+    `<div class="kpi"><div class="lab">${T('kpi_programmed')} ${y.fiscal_year}</div><div class="val">${fmt(y.total)} <span class="unit">M</span></div><div class="sub">${fmtB(y.total)}</div></div>`
+  ).join('');
+  document.getElementById('progchart').innerHTML = byYear.map(y => {
+    const h = 100 * y.total / maxY;
+    return `<div class="ybar"><div class="cols"><div class="ycol" style="height:${h}%;background:linear-gradient(180deg,var(--accent),var(--ext))" title="${fmt(y.total)} M FCFA"></div></div><div class="yl">${y.fiscal_year}</div><div class="yt">${fmt(y.total)}</div></div>`;
+  }).join('');
+}
+
+// ============================================================
+// USER PROFILE & SAISIE STATE
+// ============================================================
+let USER = null; // filled after login: {id, username, role, ministry, ministry_name, ...}
+let SAISIE_PROJECTS = []; // current saisie project list
+let EDIT_PROJECT_ID = null; // null = create, number = edit
+let REF_DATA = {}; // {sectors, pillars, financiers, ministries}
+
+function canWrite() {
+  if (!USER) return false;
+  return ['ADMIN', 'DGP_ANALYST', 'MINISTRY_AGENT'].includes(USER.role);
+}
+function isDGP() { return USER && ['DGP_ANALYST', 'VALIDATOR', 'ADMIN'].includes(USER.role); }
+function isAgent() { return USER && USER.role === 'MINISTRY_AGENT'; }
+function isAdmin() { return USER && USER.role === 'ADMIN'; }
+
+async function fetchUserProfile() {
+  try {
+    USER = await apiFetch('/auth/users/me/');
+    // Show saisie tab for agents and DGP
+    if (canWrite() || isDGP()) {
+      document.getElementById('nav-saisie').style.display = '';
+    }
+    // Show sintese tab for all authenticated users
+    const navSintese = document.getElementById('nav-sintese');
+    if (navSintese) navSintese.style.display = '';
+    // Show "New Project" button only for agents (and DGP/ADMIN can edit too)
+    if (isAgent() || isDGP() || isAdmin()) {
+      document.getElementById('btn-new-project').style.display = '';
+    }
+    // Update saisie subtitle
+    if (isDGP()) {
+      document.getElementById('saisie-vsub').setAttribute('data-i18n', 'vsub_saisie_dgp');
+      document.getElementById('saisie-vsub').innerHTML = T('vsub_saisie_dgp');
+    }
+    // Show user badge
+    const badge = document.getElementById('user-info');
+    if (badge) {
+      badge.innerHTML = `<span class="user-badge">${esc(USER.first_name || USER.username)} &mdash; ${esc(USER.role_display || USER.role)}</span>`;
+    }
+  } catch(e) {
+    console.warn('Could not fetch user profile:', e.message);
+  }
+}
+
+// ============================================================
+// REFERENCE DATA (sectors, pillars, financiers, ministries)
+// ============================================================
+async function loadRefData() {
+  try {
+    const [sectors, pillars, financiers, ministries] = await Promise.all([
+      apiFetch('/sectors/?page_size=200'),
+      apiFetch('/pillars/?page_size=50'),
+      apiFetch('/financiers/?page_size=200'),
+      apiFetch('/ministries/?page_size=100'),
+    ]);
+    REF_DATA.sectors    = (sectors.results    || sectors    || []);
+    REF_DATA.pillars    = (pillars.results    || pillars    || []);
+    REF_DATA.financiers = (financiers.results || financiers || []);
+    REF_DATA.ministries = (ministries.results || ministries || []);
+  } catch(e) {
+    console.warn('loadRefData error:', e.message);
+    REF_DATA = {sectors:[], pillars:[], financiers:[], ministries:[]};
+  }
+}
+
+// ============================================================
+// SAISIE VIEW
+// ============================================================
+async function loadSaisie() {
+  if (!ACCESS_TOKEN) return;
+  document.getElementById('saisie-tbody').innerHTML =
+    '<tr><td colspan="6"><div class="loading"><div class="spinner"></div></div></td></tr>';
+  try {
+    const data = await apiFetch('/projects/?page_size=500');
+    SAISIE_PROJECTS = (data.results || data || []).map(p => ({
+      id: p.id,
+      code: p.code,
+      title: p.title,
+      ministry_short: p.ministry_short || p.ministry_name || '',
+      ministry_name: p.ministry_name || '',
+      ministry: p.ministry,
+      workflow_status: p.workflow_status || 'RASCUNHO',
+      workflow_status_display: p.workflow_status_display || p.workflow_status,
+      total_cost: parseFloat(p.total_cost || 0),
+      status: p.status,
+      updated_at: p.updated_at,
+      sector: p.sector,
+      pillar: p.pillar,
+      principal_financier: p.principal_financier,
+      description: p.description || '',
+      start_date: p.start_date || '',
+      end_date: p.end_date || '',
+    }));
+    renderSaisieTable();
+  } catch(e) {
+    document.getElementById('saisie-tbody').innerHTML =
+      '<tr><td colspan="6" style="text-align:center;color:var(--danger);padding:24px">' + esc(e.message) + '</td></tr>';
+  }
+}
+
+function renderSaisieTable() {
+  const q = (document.getElementById('saisie-search')?.value || '').toLowerCase();
+  const wf = document.getElementById('saisie-fwf')?.value || '';
+  let rows = SAISIE_PROJECTS.filter(p => {
+    if (q && !(p.title.toLowerCase().includes(q) || String(p.code).includes(q))) return false;
+    if (wf && p.workflow_status !== wf) return false;
+    return true;
+  });
+  document.getElementById('saisie-count').textContent = rows.length + ' ' + T('count_suffix');
+
+  document.getElementById('saisie-tbody').innerHTML = rows.map(p => {
+    const wfBadge = `<span class="wf wf-${p.workflow_status}">${T('wf_' + p.workflow_status) || p.workflow_status}</span>`;
+    const totalFmt = new Intl.NumberFormat('pt-PT', {maximumFractionDigits:0}).format(Math.round(p.total_cost / 1000));
+    const actions = buildRowActions(p);
+    return `<tr>
+      <td><span class="code">${esc(p.code)}</span></td>
+      <td><div class="pname">${esc(p.title)}</div></td>
+      <td style="font-size:11px;color:var(--muted)">${esc(p.ministry_short)}</td>
+      <td>${wfBadge}</td>
+      <td class="num">${totalFmt} M</td>
+      <td><div class="row-actions">${actions}</div></td>
+    </tr>`;
+  }).join('');
+}
+
+function buildRowActions(p) {
+  const btns = [];
+  const wf = p.workflow_status;
+  // Edit: agent on RASCUNHO, DGP/admin on non-VALIDADO
+  if (wf === 'RASCUNHO' || isDGP() || isAdmin()) {
+    if (!(wf === 'VALIDADO' && isAgent())) {
+      btns.push(`<button class="btn-sm btn-edit" onclick="openProjectForm(${p.id})">${T('btn_edit')}</button>`);
+    }
+  }
+  // Submit: agent on RASCUNHO or DGP
+  if (wf === 'RASCUNHO' && (isAgent() || isDGP() || isAdmin())) {
+    btns.push(`<button class="btn-sm btn-sub" onclick="confirmAction('submit',${p.id},'${esc(p.title)}')">${T('btn_submit')}</button>`);
+  }
+  // Validate: DGP/VALIDATOR/ADMIN on SUBMETIDO
+  if (wf === 'SUBMETIDO' && isDGP()) {
+    btns.push(`<button class="btn-sm btn-val" onclick="confirmAction('validate',${p.id},'${esc(p.title)}')">${T('btn_validate')}</button>`);
+    btns.push(`<button class="btn-sm btn-rej" onclick="confirmAction('reject',${p.id},'${esc(p.title)}')">${T('btn_reject')}</button>`);
+  }
+  // Unlock: ADMIN on VALIDADO
+  if (wf === 'VALIDADO' && isAdmin()) {
+    btns.push(`<button class="btn-sm btn-rej" onclick="confirmAction('unlock',${p.id},'${esc(p.title)}')">${T('btn_unlock')}</button>`);
+  }
+  // Delete: RASCUNHO only
+  if (wf === 'RASCUNHO' && !isDGP()) {
+    btns.push(`<button class="btn-sm btn-del" onclick="confirmAction('delete',${p.id},'${esc(p.title)}')">${T('btn_delete')}</button>`);
+  }
+  return btns.join('');
+}
+
+// ============================================================
+// PROJECT FORM MODAL
+// ============================================================
+async function openProjectForm(projectId) {
+  EDIT_PROJECT_ID = projectId;
+  document.getElementById('project-modal-title').textContent =
+    projectId ? T('modal_edit_project') : T('modal_new_project');
+  document.getElementById('form-error-info').style.display = 'none';
+  document.getElementById('form-error-prog').style.display = 'none';
+
+  // Load ref data if needed
+  if (!REF_DATA.sectors || REF_DATA.sectors.length === 0) await loadRefData();
+
+  // Populate dropdowns
+  populateSelect('f-sector', REF_DATA.sectors, 'id', 'label', '—');
+  populateSelect('f-pillar', REF_DATA.pillars, 'id', s => s.code + ' – ' + s.label, '—');
+  populateSelect('f-financier', REF_DATA.financiers, 'id', s => s.short_name || s.name, '—');
+
+  // Ministry dropdown: agents see only their own, DGP sees all
+  if (isAgent() && USER.ministry) {
+    document.getElementById('f-ministry').innerHTML =
+      `<option value="${USER.ministry}">${esc(USER.ministry_name || USER.ministry_short || '')}</option>`;
+    document.getElementById('f-ministry').disabled = true;
+  } else {
+    populateSelect('f-ministry', REF_DATA.ministries, 'id', s => s.short_name || s.name, '—');
+    document.getElementById('f-ministry').disabled = false;
+  }
+
+  // Reset form
+  ['f-code','f-title','f-desc','f-start','f-end'].forEach(id => {
+    document.getElementById(id).value = '';
+  });
+  document.getElementById('f-status').value = 'IDENTIFIED';
+
+  // Build programming rows
+  buildProgRows();
+
+  // Fill form if editing
+  if (projectId) {
+    try {
+      const p = await apiFetch(`/projects/${projectId}/`);
+      document.getElementById('f-code').value  = p.code || '';
+      document.getElementById('f-title').value = p.title || '';
+      document.getElementById('f-desc').value  = p.description || '';
+      document.getElementById('f-status').value = p.status || 'IDENTIFIED';
+      document.getElementById('f-start').value  = p.start_date || '';
+      document.getElementById('f-end').value    = p.end_date || '';
+      if (p.ministry)           setSelectVal('f-ministry',  p.ministry);
+      if (p.sector)             setSelectVal('f-sector',    p.sector);
+      if (p.pillar)             setSelectVal('f-pillar',    p.pillar);
+      if (p.principal_financier) setSelectVal('f-financier', p.principal_financier);
+      // Load programming
+      try {
+        const prog = await apiFetch(`/projects/${projectId}/programming/`);
+        (prog.results || prog || []).forEach(row => {
+          const yr = row.fiscal_year;
+          setProgInput(yr, 'don', row.donations || '0');
+          setProgInput(yr, 'loans', row.loans || '0');
+          setProgInput(yr, 'state', row.state_contribution || '0');
+        });
+        updateProgTotals();
+      } catch(e2) { /* no programming yet */ }
+    } catch(e) {
+      console.warn('Could not load project:', e.message);
+    }
+  }
+
+  switchTab('info');
+  document.getElementById('project-modal').style.display = 'grid';
+}
+
+function closeProjectModal() {
+  document.getElementById('project-modal').style.display = 'none';
+  EDIT_PROJECT_ID = null;
+}
+
+function switchTab(name) {
+  ['info','prog'].forEach(t => {
+    document.getElementById('tab-'+t).classList.toggle('active', t===name);
+    document.getElementById('pane-'+t).classList.toggle('active', t===name);
+  });
+}
+
+function buildProgRows() {
+  const anos = [2026,2027,2028,2029,2030];
+  document.getElementById('prog-rows').innerHTML = anos.map(y => `
+    <tr>
+      <td>${y}</td>
+      <td><input type="number" min="0" id="p-${y}-don" value="0" oninput="updateProgTotals()"></td>
+      <td><input type="number" min="0" id="p-${y}-loans" value="0" oninput="updateProgTotals()"></td>
+      <td><input type="number" min="0" id="p-${y}-state" value="0" oninput="updateProgTotals()"></td>
+      <td id="p-${y}-tot" style="text-align:right;font-weight:600;font-variant-numeric:tabular-nums;font-size:12px">0</td>
+    </tr>`).join('');
+}
+
+function setProgInput(yr, field, val) {
+  const el = document.getElementById(`p-${yr}-${field}`);
+  if (el) el.value = val;
+}
+
+function updateProgTotals() {
+  const anos = [2026,2027,2028,2029,2030];
+  let grand = 0;
+  const nf = n => new Intl.NumberFormat('pt-PT',{maximumFractionDigits:0}).format(n);
+  anos.forEach(y => {
+    const d = parseFloat(document.getElementById(`p-${y}-don`)?.value||0)||0;
+    const l = parseFloat(document.getElementById(`p-${y}-loans`)?.value||0)||0;
+    const s = parseFloat(document.getElementById(`p-${y}-state`)?.value||0)||0;
+    const tot = d+l+s;
+    grand += tot;
+    const el = document.getElementById(`p-${y}-tot`);
+    if(el) el.textContent = nf(tot);
+  });
+  document.getElementById('prog-grand-total').textContent =
+    new Intl.NumberFormat('pt-PT',{maximumFractionDigits:0}).format(grand);
+}
+
+async function saveProject() {
+  const btn = document.getElementById('btn-save-project');
+  btn.disabled = true;
+  const errInfo = document.getElementById('form-error-info');
+  const errProg = document.getElementById('form-error-prog');
+  errInfo.style.display = 'none';
+  errProg.style.display = 'none';
+
+  const code  = document.getElementById('f-code').value.trim();
+  const title = document.getElementById('f-title').value.trim();
+  if (!code || !title) {
+    errInfo.textContent = T('error_required');
+    errInfo.style.display = 'block';
+    switchTab('info');
+    btn.disabled = false;
+    return;
+  }
+
+  const payload = {
+    code,
+    title,
+    description: document.getElementById('f-desc').value.trim(),
+    status: document.getElementById('f-status').value,
+    ministry: document.getElementById('f-ministry').value || undefined,
+    sector: document.getElementById('f-sector').value || null,
+    pillar: document.getElementById('f-pillar').value || null,
+    principal_financier: document.getElementById('f-financier').value || null,
+    start_date: document.getElementById('f-start').value || null,
+    end_date: document.getElementById('f-end').value || null,
+    total_cost: '0',
+  };
+
+  try {
+    let saved;
+    if (EDIT_PROJECT_ID) {
+      saved = await apiMutate('PATCH', `/projects/${EDIT_PROJECT_ID}/`, payload);
+    } else {
+      saved = await apiMutate('POST', '/projects/', payload);
+    }
+    // Save programming
+    const anos = [2026,2027,2028,2029,2030];
+    const programmings = anos.map(y => ({
+      fiscal_year: y,
+      donations: document.getElementById(`p-${y}-don`)?.value || '0',
+      loans: document.getElementById(`p-${y}-loans`)?.value || '0',
+      state_contribution: document.getElementById(`p-${y}-state`)?.value || '0',
+    }));
+    await apiMutate('POST', `/projects/${saved.id}/programming/bulk/`, {programmings});
+    closeProjectModal();
+    await loadSaisie();
+  } catch(e) {
+    const msg = await parseApiError(e);
+    errInfo.textContent = msg;
+    errInfo.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+  }
+}
+
+// ============================================================
+// CONFIRM MODAL (submit / validate / reject / delete / unlock)
+// ============================================================
+let _confirmCallback = null;
+
+function confirmAction(action, projectId, projectTitle) {
+  const titles = {
+    submit:   T('confirm_submit_title'),
+    validate: T('confirm_validate_title'),
+    reject:   T('confirm_reject_title'),
+    delete:   T('confirm_delete_title'),
+    unlock:   T('confirm_unlock_title'),
+  };
+  const msgs = {
+    submit:   T('confirm_submit_msg'),
+    validate: T('confirm_validate_msg'),
+    reject:   T('confirm_reject_msg'),
+    delete:   T('confirm_delete_msg'),
+    unlock:   T('confirm_unlock_msg'),
+  };
+  document.getElementById('confirm-title').textContent = titles[action] || 'Confirmar';
+  document.getElementById('confirm-msg').textContent = `"${projectTitle}" — ${msgs[action] || ''}`;
+  const noteWrap = document.getElementById('confirm-note-wrap');
+  noteWrap.style.display = (action === 'reject' || action === 'unlock') ? '' : 'none';
+  document.getElementById('confirm-note').value = '';
+  _confirmCallback = () => executeAction(action, projectId);
+  document.getElementById('confirm-overlay').style.display = 'grid';
+}
+
+function closeConfirm() {
+  document.getElementById('confirm-overlay').style.display = 'none';
+  _confirmCallback = null;
+}
+
+document.getElementById('confirm-ok').addEventListener('click', async () => {
+  if (_confirmCallback) {
+    document.getElementById('confirm-ok').disabled = true;
+    await _confirmCallback();
+    document.getElementById('confirm-ok').disabled = false;
+  }
+  closeConfirm();
+});
+
+async function executeAction(action, projectId) {
+  try {
+    if (action === 'submit') {
+      await apiMutate('POST', `/projects/${projectId}/submit/`, {});
+    } else if (action === 'validate') {
+      await apiMutate('POST', `/projects/${projectId}/validate/`, {});
+    } else if (action === 'reject') {
+      const note = document.getElementById('confirm-note').value.trim();
+      await apiMutate('POST', `/projects/${projectId}/reject/`, {rejection_note: note});
+    } else if (action === 'unlock') {
+      const note = document.getElementById('confirm-note').value.trim();
+      await apiMutate('POST', `/projects/${projectId}/unlock/`, {rejection_note: note});
+    } else if (action === 'delete') {
+      await apiMutate('DELETE', `/projects/${projectId}/`, null);
+    }
+    await loadSaisie();
+  } catch(e) {
+    const msg = await parseApiError(e);
+    alert(msg);
+  }
+}
+
+// ============================================================
+// API MUTATION HELPER
+// ============================================================
+async function apiMutate(method, path, body) {
+  const headers = {'Content-Type': 'application/json'};
+  if (ACCESS_TOKEN) headers['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
+  const opts = {method, headers};
+  if (body !== null && body !== undefined) opts.body = JSON.stringify(body);
+  const resp = await fetch(`${API_BASE}${path}`, opts);
+  if (!resp.ok) {
+    const err = new Error(`API ${resp.status}`);
+    err.resp = resp;
+    throw err;
+  }
+  if (resp.status === 204) return {};
+  return resp.json();
+}
+
+async function parseApiError(e) {
+  try {
+    const data = await e.resp.json();
+    if (typeof data === 'object') {
+      const msgs = Object.values(data).flat();
+      return msgs.join(' ');
+    }
+    return JSON.stringify(data);
+  } catch {
+    return e.message;
+  }
+}
+
+// ============================================================
+// FORM HELPERS
+// ============================================================
+function populateSelect(id, items, valKey, labelFn, emptyLabel) {
+  const sel = document.getElementById(id);
+  const lFn = typeof labelFn === 'function' ? labelFn : (item => item[labelFn]);
+  sel.innerHTML = `<option value="">${emptyLabel || '—'}</option>` +
+    items.map(item => `<option value="${item[valKey]}">${esc(lFn(item))}</option>`).join('');
+}
+
+function setSelectVal(id, val) {
+  const sel = document.getElementById(id);
+  if (sel) sel.value = String(val);
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+document.querySelectorAll('nav button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById(btn.dataset.v).classList.add('active');
+    if (btn.dataset.v === 'saisie' && ACCESS_TOKEN) loadSaisie();
+    if (btn.dataset.v === 'sintese' && ACCESS_TOKEN) { SINTESE_CACHE = {}; fetchSinteseTab(SINTESE_ACTIVE_TAB); }
+  });
+});
+
+// Saisie filters
+['saisie-search', 'saisie-fwf'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', renderSaisieTable);
+});
+
+// Table sort
+document.querySelectorAll('thead th[data-s]').forEach(th => {
+  th.addEventListener('click', () => {
+    if (sortKey === th.dataset.s) sortDir = -sortDir;
+    else { sortKey = th.dataset.s; sortDir = -1; }
+    updateTable();
+  });
+});
+
+// Search / filter
+['search', 'fmin', 'ffin'].forEach(id => {
+  const el = document.getElementById(id);
+  if (el) el.addEventListener('input', updateTable);
+});
+
+// Enter key on login
+document.getElementById('login-pass').addEventListener('keydown', e => {
+  if (e.key === 'Enter') doLogin();
+});
+document.getElementById('login-user').addEventListener('keydown', e => {
+  if (e.key === 'Enter') document.getElementById('login-pass').focus();
+});
+
+// ============================================================
+// SÍNTESE / RESUMO
+// ============================================================
+let SINTESE_ACTIVE_TAB = 'pnd';
+let SINTESE_CACHE = {}; // tab -> response data
+
+const SINTESE_ENDPOINTS = {
+  pnd:    '/resumo/pnd/',
+  sector: '/resumo/sector/',
+  nat:    '/resumo/natureza_despesa/',
+  gov:    '/resumo/prioridade_governo/',
+};
+
+function switchSinteseTab(tab) {
+  SINTESE_ACTIVE_TAB = tab;
+  // Update sub-tab buttons
+  ['pnd', 'sector', 'nat', 'gov'].forEach(t => {
+    const btn = document.getElementById('stab-' + t);
+    if (btn) btn.classList.toggle('active', t === tab);
+  });
+  // Show / hide panes
+  ['pnd', 'sector', 'nat', 'gov'].forEach(t => {
+    const pane = document.getElementById('sintese-' + t + '-pane');
+    if (pane) pane.style.display = t === tab ? '' : 'none';
+  });
+  // Load data if not cached
+  if (!SINTESE_CACHE[tab]) {
+    fetchSinteseTab(tab);
+  }
+}
+
+function getSinteseParams() {
+  const yearEl = document.getElementById('sintese-year');
+  const validatedEl = document.getElementById('sintese-validated');
+  const year = yearEl ? yearEl.value : '';
+  const validated = validatedEl ? validatedEl.checked : false;
+  const params = new URLSearchParams();
+  if (year) params.set('year', year);
+  if (validated) params.set('validated', 'true');
+  return params.toString() ? '?' + params.toString() : '';
+}
+
+async function fetchSinteseTab(tab) {
+  const contentEl = document.getElementById('sintese-' + tab + '-content');
+  if (!contentEl) return;
+  contentEl.innerHTML = '<div class="loading"><div class="spinner"></div><span>' + T('sintese_loading') + '</span></div>';
+  try {
+    const qs = getSinteseParams();
+    const data = await apiFetch(SINTESE_ENDPOINTS[tab] + qs);
+    SINTESE_CACHE[tab] = data;
+    contentEl.innerHTML = renderSinteseTable(data, tab);
+  } catch (e) {
+    contentEl.innerHTML = '<div class="sintese-error">' + T('sintese_error') + ' (' + esc(e.message) + ')</div>';
+  }
+}
+
+async function loadSintese() {
+  // Clear cache so all tabs re-fetch with new params
+  SINTESE_CACHE = {};
+  fetchSinteseTab(SINTESE_ACTIVE_TAB);
+}
+
+function fmtM(v) {
+  // Format value in millions of FCFA (stored in FCFA → divide by 1,000,000)
+  const m = Number(v) / 1e6;
+  return new Intl.NumberFormat('pt-PT', {minimumFractionDigits: 1, maximumFractionDigits: 1}).format(m);
+}
+
+function fmtPct(v) {
+  return Number(v).toFixed(1) + '%';
+}
+
+function renderSinteseTable(data, tab) {
+  const rows = data.rows || [];
+  const grand = (data.grand_total && data.grand_total.years) ? data.grand_total.years : {};
+
+  // Determine years from grand total keys (exclude 'total')
+  const allYears = Object.keys(grand).filter(k => k !== 'total').map(Number).sort();
+
+  // Build header
+  let thead = '<thead>';
+  // Row 1: year groups
+  let rh1 = '<tr class="rh1"><th rowspan="2" style="text-align:left;min-width:150px">' + T('stab_' + tab) + '</th>';
+  allYears.forEach(yr => {
+    rh1 += `<th colspan="4">${yr}</th>`;
+  });
+  rh1 += '<th colspan="4">' + T('sintese_total') + '</th></tr>';
+
+  // Row 2: sub-columns
+  let rh2 = '<tr class="rh2">';
+  const cols = allYears.length + 1; // +1 for total column
+  for (let i = 0; i < cols; i++) {
+    rh2 += `<th>${T('sintese_ext')}</th><th>${T('sintese_int')}</th><th>${T('sintese_total')}</th><th>${T('sintese_pct')}</th>`;
+  }
+  rh2 += '</tr>';
+  thead += rh1 + rh2 + '</thead>';
+
+  // Build body
+  let tbody = '<tbody>';
+  rows.forEach(row => {
+    tbody += '<tr>';
+    tbody += `<td class="dim-label">${esc(row.label || '')}</td>`;
+    allYears.forEach(yr => {
+      const yd = (row.years && row.years[yr]) ? row.years[yr] : {};
+      tbody += `<td class="num-cell">${fmtM(yd.external || 0)}</td>`;
+      tbody += `<td class="num-cell">${fmtM(yd.internal || 0)}</td>`;
+      tbody += `<td class="total-cell">${fmtM(yd.total || 0)}</td>`;
+      tbody += `<td class="pct-cell">${fmtPct(yd.pct || 0)}</td>`;
+    });
+    // Row total
+    const rtot = (row.years && row.years['total']) ? row.years['total'] : {};
+    tbody += `<td class="num-cell">${fmtM(rtot.external || 0)}</td>`;
+    tbody += `<td class="num-cell">${fmtM(rtot.internal || 0)}</td>`;
+    tbody += `<td class="total-cell">${fmtM(rtot.total || 0)}</td>`;
+    tbody += `<td class="pct-cell">${fmtPct(rtot.pct || 0)}</td>`;
+    tbody += '</tr>';
+  });
+  tbody += '</tbody>';
+
+  // Build footer (grand total)
+  let tfoot = '<tfoot><tr class="grand-row">';
+  tfoot += `<td class="dim-label">${T('sintese_grand_total')}</td>`;
+  allYears.forEach(yr => {
+    const gd = grand[yr] || {};
+    tfoot += `<td class="num-cell">${fmtM(gd.external || 0)}</td>`;
+    tfoot += `<td class="num-cell">${fmtM(gd.internal || 0)}</td>`;
+    tfoot += `<td class="total-cell">${fmtM(gd.total || 0)}</td>`;
+    tfoot += `<td class="pct-cell">100.0%</td>`;
+  });
+  const gt = grand['total'] || {};
+  tfoot += `<td class="num-cell">${fmtM(gt.external || 0)}</td>`;
+  tfoot += `<td class="num-cell">${fmtM(gt.internal || 0)}</td>`;
+  tfoot += `<td class="total-cell">${fmtM(gt.total || 0)}</td>`;
+  tfoot += `<td class="pct-cell">100.0%</td>`;
+  tfoot += '</tr></tfoot>';
+
+  return `<div class="resumo-wrap"><table class="resumo-tbl">${thead}${tbody}${tfoot}</table></div>
+          <div style="font-size:11px;color:var(--muted);margin-top:6px;text-align:right">${T('sintese_unit')}</div>`;
+}
+
+// ============================================================
+// UTILS
+// ============================================================
+function esc(s) {
+  return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+// ============================================================
+// INIT
+// ============================================================
+(async function init() {
+  // Apply saved language (updates static text immediately)
+  applyLang(CL);
+  updateAuthUI(false);
+  if (ACCESS_TOKEN) {
+    await initFromAPI();
+  } else {
+    loadDemoData();
+  }
+})();
+</script>
+</body>
+</html>

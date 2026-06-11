@@ -24,7 +24,8 @@ staticfiles/
 
 # Environment
 .env
-.env.*
+.env.local
+.env.production
 *.env
 venv/
 env/

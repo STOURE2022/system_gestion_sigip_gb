@@ -14,3 +14,5 @@ Pillow>=10.0
 django-extensions>=3.2
 whitenoise>=6.6
 gunicorn>=21.2
+django-jazzmin>=3.0
+dj-database-url>=2.1

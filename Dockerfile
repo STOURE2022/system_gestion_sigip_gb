@@ -16,8 +16,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN sed -i 's/\r//' entrypoint.sh && chmod +x entrypoint.sh
-
-EXPOSE 8000
-
-CMD ["./entrypoint.sh"]
+CMD ["sh", "-c", "python manage.py collectstatic --noinput && python manage.py migrate --noinput && gunicorn config.wsgi:application --bind 0.0.0.0:${PORT:-8000} --workers 2 --timeout 120"]

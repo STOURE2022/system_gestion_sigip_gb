@@ -82,12 +82,12 @@ body {
 .hero {
   background:
     linear-gradient(160deg,
-      rgba(10,31,56,.93) 0%,
-      rgba(10,50,40,.88) 55%,
-      rgba(10,31,56,.80) 100%),
-    url("data:image/svg+xml,%3Csvg width='1200' height='600' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='1200' height='600' fill='%230a1428'/%3E%3Ccircle cx='900' cy='120' r='340' fill='%230d2847' opacity='.6'/%3E%3Ccircle cx='200' cy='500' r='280' fill='%23009e49' opacity='.07'/%3E%3C/svg%3E");
+      rgba(10,31,56,.88) 0%,
+      rgba(10,50,40,.82) 50%,
+      rgba(10,31,56,.75) 100%),
+    url("/static/images/hero_construction.jpg");
   background-size: cover;
-  background-position: center;
+  background-position: center 40%;
   padding: 80px 36px 90px;
   text-align: center;
   position: relative;
@@ -333,6 +333,44 @@ body {
   border: 1px solid var(--line);
 }
 
+/* ── Photo strip ──────────────────────────── */
+.photo-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  height: 280px;
+  overflow: hidden;
+}
+.photo-tile {
+  position: relative;
+  overflow: hidden;
+  cursor: default;
+}
+.photo-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s ease;
+  display: block;
+}
+.photo-tile:hover img { transform: scale(1.06); }
+.photo-tile-caption {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  padding: 18px 20px 14px;
+  background: linear-gradient(to top, rgba(10,31,56,.82) 0%, transparent 100%);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .4px;
+  text-transform: uppercase;
+  transition: opacity .3s;
+}
+@media (max-width: 600px) {
+  .photo-strip { grid-template-columns: 1fr; height: auto; }
+  .photo-tile { height: 200px; }
+}
+
 /* ── Login CTA band ───────────────────────── */
 .login-band {
   background: linear-gradient(135deg, var(--navy2) 0%, #0d3a20 100%);
@@ -522,6 +560,22 @@ footer {
   </div>
 </section>
 
+<!-- Photo strip -->
+<div class="photo-strip">
+  <div class="photo-tile">
+    <img src="/static/images/agriculture.jpg" alt="Agriculture — riziculture">
+    <div class="photo-tile-caption" data-i18n="photo_agri">Agriculture &amp; Développement Rural</div>
+  </div>
+  <div class="photo-tile">
+    <img src="/static/images/carte_gb.jpg" alt="Carte de la Guinée-Bissau">
+    <div class="photo-tile-caption" data-i18n="photo_map">Territoire National</div>
+  </div>
+  <div class="photo-tile">
+    <img src="/static/images/energie.jpg" alt="Infrastructure électrique">
+    <div class="photo-tile-caption" data-i18n="photo_energy">Énergie &amp; Infrastructures</div>
+  </div>
+</div>
+
 <!-- Login CTA -->
 <section class="login-band">
   <h2 data-i18n="cta_band_title">Aceder à sua conta</h2>
@@ -581,6 +635,9 @@ const LANG = {
     feat4_title:      'Fluxo de Validação',
     feat4_desc:       'Circuito de validação Rascunho → Submetido → Validado com traçabilidade completa e rastreabilidade das alterações.',
     feat4_badge:      'Auditoria integrada',
+    photo_agri:       'Agricultura &amp; Desenvolvimento Rural',
+    photo_map:        'Território Nacional',
+    photo_energy:     'Energia &amp; Infraestruturas',
     cta_band_title:   'Aceder à sua conta',
     cta_band_desc:    'Para consultar os dados detalhados, introduzir ou validar projectos, é necessário autenticar-se com as suas credenciais institucionais.',
     footer_dgp:       'Direcção-Geral do Plano — República da Guiné-Bissau',
@@ -621,6 +678,9 @@ const LANG = {
     feat4_title:      'Circuit de Validation',
     feat4_desc:       'Circuit Brouillon → Soumis → Validé avec traçabilité complète et suivi des modifications.',
     feat4_badge:      'Audit intégré',
+    photo_agri:       'Agriculture &amp; Développement Rural',
+    photo_map:        'Territoire National',
+    photo_energy:     'Énergie &amp; Infrastructures',
     cta_band_title:   'Accéder à votre compte',
     cta_band_desc:    "Pour consulter les données détaillées, saisir ou valider des projets, veuillez vous authentifier avec vos identifiants institutionnels.",
     footer_dgp:       'Direction Générale du Plan — République de Guinée-Bissau',

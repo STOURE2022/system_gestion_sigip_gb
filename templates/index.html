@@ -393,9 +393,10 @@ tbody tr:hover{background:#faf8f3}
 <!-- Login Modal -->
 <div id="login-modal" class="modal-overlay" style="display:none">
   <div class="modal">
-    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;position:relative">
       <div class="crest" style="width:36px;height:36px;font-size:11px">GB</div>
       <div><h2 style="margin:0">SIGIP&middot;GB</h2><p style="margin:0;font-size:11px" data-i18n="login_subtitle">Autenticação segura</p></div>
+      <a href="/" title="Retourner à l'accueil" style="position:absolute;top:-8px;right:-8px;width:32px;height:32px;border-radius:50%;background:#f3f4f6;border:1px solid #e5e7eb;display:grid;place-items:center;color:#6b7280;font-size:18px;line-height:1;text-decoration:none;transition:.15s" onmouseover="this.style.background='#e5e7eb';this.style.color='#111'" onmouseout="this.style.background='#f3f4f6';this.style.color='#6b7280'">&times;</a>
     </div>
     <div class="form-group">
       <label data-i18n="login_user_label">Utilizador</label>
@@ -408,7 +409,7 @@ tbody tr:hover{background:#faf8f3}
     <div id="login-error" class="form-error" data-i18n="login_error">Credenciais inválidas. Tente novamente.</div>
     <button id="btn-do-login" class="btn-primary" onclick="doLogin()" data-i18n="login_btn">Entrar</button>
     <div class="modal-skip">
-      <a onclick="closeLogin()" data-i18n="login_skip">Continuar em modo demonstração</a>
+      <a href="/" data-i18n="login_back" style="display:inline-flex;align-items:center;gap:5px;color:var(--muted);text-decoration:none;font-size:12px;transition:.15s" onmouseover="this.style.color='var(--ink)'" onmouseout="this.style.color='var(--muted)'">&#8592; <span data-i18n="login_back">Retourner à l'accueil</span></a>
     </div>
   </div>
 </div>
@@ -614,6 +615,7 @@ const I18N = {
     login_loading: 'A autenticar...',
     login_error: 'Credenciais inválidas. Tente novamente.',
     login_skip: 'Continuar em modo demonstração',
+    login_back: 'Voltar ao início',
     count_suffix: 'projectos',
     nav_saisie: 'Saisie',
     eyebrow_saisie: 'Saisie Contínua',
@@ -766,6 +768,7 @@ const I18N = {
     login_loading: 'Connexion en cours...',
     login_error: 'Identifiants invalides. Réessayez.',
     login_skip: 'Continuer en mode démonstration',
+    login_back: "Retourner à l'accueil",
     count_suffix: 'projets',
     nav_saisie: 'Saisie',
     eyebrow_saisie: 'Saisie Continue',

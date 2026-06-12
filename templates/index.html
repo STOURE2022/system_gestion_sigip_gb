@@ -67,12 +67,26 @@ main{padding:24px 28px;max-width:1320px;margin:0 auto}
 .legend{display:flex;gap:16px;font-size:11px;color:var(--muted);flex-wrap:wrap}
 .legend span{display:flex;align-items:center;gap:5px}
 .dot{width:9px;height:9px;border-radius:2px;display:inline-block}
-.yearchart{display:flex;align-items:flex-end;gap:14px;height:180px;padding-top:10px}
-.ybar{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;height:100%}
-.ybar .cols{flex:1;display:flex;align-items:flex-end;gap:3px;width:100%;justify-content:center}
-.ycol{width:30%;border-radius:3px 3px 0 0;min-height:2px;transition:height .6s ease}
-.ybar .yl{font-size:12px;font-weight:600;color:var(--ink2)}
-.ybar .yt{font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums}
+/* ── Stacked trajectory chart ────────────────── */
+.yearchart{display:flex;align-items:flex-end;gap:10px;height:224px;padding:30px 4px 0;position:relative}
+.yearchart-bg{position:absolute;top:30px;left:4px;right:4px;bottom:48px;pointer-events:none;
+  background:repeating-linear-gradient(to bottom,#e8e4d9 0,#e8e4d9 1px,transparent 1px,transparent 33.33%);
+  opacity:.45}
+.ybar{flex:1;display:flex;flex-direction:column;align-items:center;height:100%;position:relative}
+.ybar-stack{width:min(70%,56px);flex:1;display:flex;flex-direction:column;justify-content:flex-end;position:relative}
+.ybar-inner{width:100%;border-radius:5px 5px 0 0;overflow:hidden;
+  display:flex;flex-direction:column-reverse;
+  transform-origin:bottom;animation:growUp .65s cubic-bezier(.4,0,.2,1) both}
+@keyframes growUp{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}
+.ybar-seg{width:100%;flex-shrink:0}
+.ybar-seg.don {background:var(--don)}
+.ybar-seg.empr{background:var(--empr)}
+.ybar-seg.int {background:var(--int)}
+.ybar-growth{position:absolute;top:-20px;left:50%;transform:translateX(-50%);
+  font-size:9px;font-weight:700;padding:2px 6px;border-radius:10px;white-space:nowrap;
+  background:#d1fae5;color:#065f46}
+.ybar .yl{font-size:11px;font-weight:700;color:var(--ink2);margin-top:7px}
+.ybar .yt{font-size:10px;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:2px}
 .toolbar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;align-items:center}
 .toolbar input,.toolbar select{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:13px;background:#fff;color:var(--ink);font-family:inherit}
 .toolbar input{flex:1;min-width:200px}
@@ -240,13 +254,16 @@ tbody tr:hover{background:#faf8f3}
       </div>
     </div>
     <div class="panel">
-      <h3 id="panel-trajectory-h3">Trajectória de Programação 2026&ndash;2030 <span class="note">por fonte, milhões FCFA</span></h3>
-      <div class="yearchart" id="yearchart"></div>
-      <div class="legend" style="margin-top:14px;justify-content:center">
-        <span><i class="dot" style="background:var(--don)"></i><span data-i18n="legend_donations">Donativos</span></span>
-        <span><i class="dot" style="background:var(--empr)"></i><span data-i18n="legend_loans">Empréstimos</span></span>
-        <span><i class="dot" style="background:var(--int)"></i><span data-i18n="legend_state">Contrib. Estado</span></span>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-wrap:wrap;gap:8px">
+        <h3 id="panel-trajectory-h3" style="margin:0" data-i18n="panel_trajectory">Trajectoire de Programmation 2026&ndash;2030</h3>
+        <div class="legend" style="margin:0;gap:12px">
+          <span><i class="dot" style="background:var(--don)"></i><span data-i18n="legend_donations">Donativos</span></span>
+          <span><i class="dot" style="background:var(--empr)"></i><span data-i18n="legend_loans">Empréstimos</span></span>
+          <span><i class="dot" style="background:var(--int)"></i><span data-i18n="legend_state">Contrib. Estado</span></span>
+        </div>
       </div>
+      <div class="mini" data-i18n="note_per_source" style="margin-bottom:6px">par source, millions FCFA</div>
+      <div class="yearchart" id="yearchart"><div class="yearchart-bg"></div></div>
     </div>
   </div>
 
@@ -1132,9 +1149,21 @@ function renderDashboardFromRaw(T_, Text, Tint, Tdon, Tempr) {
   const byYear = ANOS.map(a => ({
     fiscal_year: a,
     total: sum(PIP_DATA.map(p => ({v: (p.anos && p.anos[a]) || 0})), 'v'),
-    donations: sum(PIP_DATA.filter(p => p.don && !p.empr).map(p => ({v: (p.anos && p.anos[a]) || 0})), 'v'),
-    loans: sum(PIP_DATA.filter(p => p.empr).map(p => ({v: (p.anos && p.anos[a]) || 0})), 'v'),
-    state_contribution: sum(PIP_DATA.filter(p => p.fin_norm === 'Estado').map(p => ({v: (p.anos && p.anos[a]) || 0})), 'v'),
+    donations: sum(PIP_DATA.map(p => {
+      const yr = (p.anos && p.anos[a]) || 0;
+      const t = (p.don||0) + (p.empr||0) + (p.interno||0);
+      return { v: t > 0 ? yr * (p.don||0) / t : 0 };
+    }), 'v'),
+    loans: sum(PIP_DATA.map(p => {
+      const yr = (p.anos && p.anos[a]) || 0;
+      const t = (p.don||0) + (p.empr||0) + (p.interno||0);
+      return { v: t > 0 ? yr * (p.empr||0) / t : 0 };
+    }), 'v'),
+    state_contribution: sum(PIP_DATA.map(p => {
+      const yr = (p.anos && p.anos[a]) || 0;
+      const t = (p.don||0) + (p.empr||0) + (p.interno||0);
+      return { v: t > 0 ? yr * (p.interno||0) / t : (p.fin_norm === 'Estado' ? yr : 0) };
+    }), 'v'),
   }));
 
   renderDashboard(T_, Text, Tint, Tdon, Tempr,
@@ -1188,13 +1217,41 @@ function renderDashboard(T_, Text, Tint, Tdon, Tempr, byMinistry, byYear) {
     document.getElementById('extint').appendChild(d);
   });
 
-  // Year chart
+  // Year chart — stacked bars by source
+  const TRAJ_H = 150; // px for bar area
   const maxY = Math.max(...byYear.map(y => y.total), 1);
   function renderYearChart(el) {
-    el.innerHTML = byYear.map(y => {
-      const h = 100 * y.total / maxY;
-      return `<div class="ybar"><div class="cols"><div class="ycol" style="height:${h}%;background:linear-gradient(180deg,var(--accent),var(--ext))" title="${fmt(y.total)} M FCFA"></div></div><div class="yl">${y.fiscal_year}</div><div class="yt">${fmt(y.total)}</div></div>`;
-    }).join('');
+    // preserve the bg grid div, append bars
+    const grid = el.querySelector('.yearchart-bg');
+    el.innerHTML = '';
+    if (grid) el.appendChild(grid);
+    byYear.forEach((y, i) => {
+      const barH = Math.max(Math.round(TRAJ_H * y.total / maxY), 4);
+      const don   = y.donations          || 0;
+      const empr  = y.loans              || 0;
+      const state = y.state_contribution || 0;
+      const seg   = don + empr + state;
+      const pDon   = seg > 0 ? (don   / seg * 100).toFixed(1) : 100;
+      const pEmpr  = seg > 0 ? (empr  / seg * 100).toFixed(1) : 0;
+      const pState = seg > 0 ? (state / seg * 100).toFixed(1) : 0;
+      const growth = i > 0 && byYear[i-1].total > 0
+        ? Math.round((y.total - byYear[i-1].total) / byYear[i-1].total * 100) : null;
+      const tip = `${y.fiscal_year}\nDons: ${fmt(don)}\nEmp: ${fmt(empr)}\nEst: ${fmt(state)}\nTotal: ${fmt(y.total)} M`;
+      const col = document.createElement('div');
+      col.className = 'ybar';
+      col.innerHTML = `
+        <div class="ybar-stack">
+          ${growth !== null ? `<span class="ybar-growth">+${growth}%</span>` : ''}
+          <div class="ybar-inner" style="height:${barH}px;animation-delay:${i * 0.09}s" title="${tip}">
+            <div class="ybar-seg int"  style="height:${pState}%"></div>
+            <div class="ybar-seg empr" style="height:${pEmpr}%"></div>
+            <div class="ybar-seg don"  style="height:${pDon}%"></div>
+          </div>
+        </div>
+        <div class="yl">${y.fiscal_year}</div>
+        <div class="yt">${fmt(y.total)}</div>`;
+      el.appendChild(col);
+    });
   }
   renderYearChart(document.getElementById('yearchart'));
   window._byYear = byYear;
@@ -1287,10 +1344,32 @@ function renderProgramming() {
   document.getElementById('progkpis').innerHTML = byYear.map(y =>
     `<div class="kpi"><div class="lab">${T('kpi_programmed')} ${y.fiscal_year}</div><div class="val">${fmt(y.total)} <span class="unit">M</span></div><div class="sub">${fmtB(y.total)}</div></div>`
   ).join('');
-  document.getElementById('progchart').innerHTML = byYear.map(y => {
-    const h = 100 * y.total / maxY;
-    return `<div class="ybar"><div class="cols"><div class="ycol" style="height:${h}%;background:linear-gradient(180deg,var(--accent),var(--ext))" title="${fmt(y.total)} M FCFA"></div></div><div class="yl">${y.fiscal_year}</div><div class="yt">${fmt(y.total)}</div></div>`;
-  }).join('');
+  const progEl = document.getElementById('progchart');
+  progEl.innerHTML = '';
+  byYear.forEach((y, i) => {
+    const barH = Math.max(Math.round(150 * y.total / maxY), 4);
+    const don   = y.donations          || 0;
+    const empr  = y.loans              || 0;
+    const state = y.state_contribution || 0;
+    const seg   = don + empr + state;
+    const pDon   = seg > 0 ? (don   / seg * 100).toFixed(1) : 100;
+    const pEmpr  = seg > 0 ? (empr  / seg * 100).toFixed(1) : 0;
+    const pState = seg > 0 ? (state / seg * 100).toFixed(1) : 0;
+    const col = document.createElement('div');
+    col.className = 'ybar';
+    col.innerHTML = `
+      <div class="ybar-stack">
+        <div class="ybar-inner" style="height:${barH}px;animation-delay:${i * 0.09}s"
+             title="${y.fiscal_year}: ${fmt(y.total)} M FCFA">
+          <div class="ybar-seg int"  style="height:${pState}%"></div>
+          <div class="ybar-seg empr" style="height:${pEmpr}%"></div>
+          <div class="ybar-seg don"  style="height:${pDon}%"></div>
+        </div>
+      </div>
+      <div class="yl">${y.fiscal_year}</div>
+      <div class="yt">${fmt(y.total)}</div>`;
+    progEl.appendChild(col);
+  });
 }
 
 // ============================================================

@@ -10,6 +10,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, Sp
 from sigip.resumo_views import (
     ResumoPNDView, ResumoSectorView,
     ResumoNaturezaDespesaView, ResumoPrioridadeGovernoView,
+    ResumoFuncaoEstadoView, ResumoFuncionamentoInvestimentoView,
     ResumoExportView,
 )
 
@@ -30,6 +31,8 @@ urlpatterns = [
     path('api/v1/resumo/sector/', ResumoSectorView.as_view(), name='resumo-sector'),
     path('api/v1/resumo/natureza_despesa/', ResumoNaturezaDespesaView.as_view(), name='resumo-natureza-despesa'),
     path('api/v1/resumo/prioridade_governo/', ResumoPrioridadeGovernoView.as_view(), name='resumo-prioridade-governo'),
+    path('api/v1/resumo/funcao_estado/', ResumoFuncaoEstadoView.as_view(), name='resumo-funcao-estado'),
+    path('api/v1/resumo/funcionamento_investimento/', ResumoFuncionamentoInvestimentoView.as_view(), name='resumo-func-inv'),
     path('api/v1/resumo/export/', ResumoExportView.as_view(), name='resumo-export'),
 
     # OpenAPI / Swagger

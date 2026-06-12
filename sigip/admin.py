@@ -7,9 +7,17 @@ from django.utils.translation import gettext_lazy as _
 from django.db.models import Sum
 from .models import (
     Pillar, Sector, GovPriority, Ministry, Financier, ExpenseNature,
-    Project, ProjectFinancier, AnnualProgramming, Disbursement,
+    StateFunction, Project, ProjectFinancier, AnnualProgramming, Disbursement,
     PPProject, PIPVersion
 )
+
+
+@admin.register(StateFunction)
+class StateFunctionAdmin(admin.ModelAdmin):
+    list_display = ['code', 'label', 'order']
+    list_editable = ['order']
+    search_fields = ['code', 'label']
+    ordering = ['order', 'code']
 
 
 @admin.register(Pillar)

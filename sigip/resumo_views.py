@@ -23,7 +23,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from .models import AnnualProgramming
+from .models import AnnualProgramming, StateFunction, ExpenseNature
 
 FISCAL_YEARS = [2026, 2027, 2028, 2029, 2030]
 
@@ -411,6 +411,157 @@ class ResumoPrioridadeGovernoView(APIView):
 # ---------------------------------------------------------------------------
 # Export — Excel (openpyxl)
 # ---------------------------------------------------------------------------
+
+# ---------------------------------------------------------------------------
+# 5. Resumo by StateFunction (Função do Estado – COFOG)
+# ---------------------------------------------------------------------------
+
+class ResumoFuncaoEstadoView(APIView):
+    """
+    GET /api/v1/resumo/funcao_estado/
+    Aggregates AnnualProgramming by StateFunction (COFOG) and fiscal_year.
+    Projects with no state_function are grouped as '(Não Classificado)'.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        qs = _get_base_qs(request)
+        years_to_output = _parse_years(request)
+
+        data = (
+            qs.values(
+                'project__state_function__id',
+                'project__state_function__code',
+                'project__state_function__label',
+                'project__state_function__order',
+                'fiscal_year',
+            )
+            .annotate(
+                donations=Coalesce(Sum('donations'), Value(ZERO, output_field=DecimalField())),
+                loans=Coalesce(Sum('loans'), Value(ZERO, output_field=DecimalField())),
+                state=Coalesce(Sum('state_contribution'), Value(ZERO, output_field=DecimalField())),
+            )
+            .order_by(
+                'project__state_function__order',
+                'project__state_function__code',
+                'fiscal_year',
+            )
+        )
+
+        rows_keys = []
+        rows_meta = {}
+        rows_data = {}
+        grand_total = {yr: {'donations': Decimal('0'), 'loans': Decimal('0'), 'state': Decimal('0')}
+                       for yr in years_to_output}
+
+        for row in data:
+            yr = row['fiscal_year']
+            if yr not in years_to_output:
+                continue
+            sfid    = row['project__state_function__id']
+            sfcode  = row['project__state_function__code'] or ''
+            sflabel = row['project__state_function__label'] or '(Não Classificado)'
+            sforder = row['project__state_function__order'] or 99
+            key = (sfid, sfcode, sflabel, sforder)
+
+            if key not in rows_meta:
+                rows_keys.append(key)
+                rows_meta[key] = {'id': sfid, 'code': sfcode, 'label': sflabel}
+                rows_data[key] = {}
+
+            rows_data[key][yr] = {
+                'donations': row['donations'],
+                'loans':     row['loans'],
+                'state':     row['state'],
+            }
+            grand_total[yr]['donations'] += row['donations']
+            grand_total[yr]['loans']     += row['loans']
+            grand_total[yr]['state']     += row['state']
+
+        ordered = sorted(rows_keys, key=lambda k: (k[3], k[1] or ''))
+        ordered_rows = [(rows_meta[k], rows_data[k]) for k in ordered]
+        return Response(_build_response(ordered_rows, grand_total, years_to_output))
+
+
+# ---------------------------------------------------------------------------
+# 6. Resumo Funcionamento / Investimento (top-level ExpenseNature)
+# ---------------------------------------------------------------------------
+
+class ResumoFuncionamentoInvestimentoView(APIView):
+    """
+    GET /api/v1/resumo/funcionamento_investimento/
+    Aggregates AnnualProgramming by top-level ExpenseNature category
+    (FUNC = Funcionamento, INV = Investimento).
+    Only shows top-level codes (no dash in code, i.e. FUNC and INV).
+    Projects with no expense_nature are grouped as '(Não Classificado)'.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        qs = _get_base_qs(request)
+        years_to_output = _parse_years(request)
+
+        data = (
+            qs.values(
+                'project__expense_nature__id',
+                'project__expense_nature__code',
+                'project__expense_nature__label',
+                'fiscal_year',
+            )
+            .annotate(
+                donations=Coalesce(Sum('donations'), Value(ZERO, output_field=DecimalField())),
+                loans=Coalesce(Sum('loans'), Value(ZERO, output_field=DecimalField())),
+                state=Coalesce(Sum('state_contribution'), Value(ZERO, output_field=DecimalField())),
+            )
+            .order_by('project__expense_nature__code', 'fiscal_year')
+        )
+
+        rows_keys = []
+        rows_meta = {}
+        rows_data = {}
+        grand_total = {yr: {'donations': Decimal('0'), 'loans': Decimal('0'), 'state': Decimal('0')}
+                       for yr in years_to_output}
+
+        for row in data:
+            yr = row['fiscal_year']
+            if yr not in years_to_output:
+                continue
+
+            eid    = row['project__expense_nature__id']
+            ecode  = row['project__expense_nature__code'] or ''
+            elabel = row['project__expense_nature__label'] or '(Não Classificado)'
+
+            # Group sub-codes under their parent:
+            # 'FUNC-BS' → 'FUNC', 'INV-MT' → 'INV'
+            if '-' in ecode:
+                parent_code = ecode.split('-')[0]
+                # Look up top-level label
+                parent = ExpenseNature.objects.filter(code=parent_code).first()
+                eid    = parent.id   if parent else None
+                elabel = parent.label if parent else parent_code
+                ecode  = parent_code
+
+            key = (eid, ecode, elabel)
+
+            if key not in rows_meta:
+                rows_keys.append(key)
+                rows_meta[key] = {'id': eid, 'code': ecode, 'label': elabel}
+                rows_data[key] = {}
+
+            if yr not in rows_data[key]:
+                rows_data[key][yr] = {'donations': Decimal('0'), 'loans': Decimal('0'), 'state': Decimal('0')}
+
+            rows_data[key][yr]['donations'] += row['donations']
+            rows_data[key][yr]['loans']     += row['loans']
+            rows_data[key][yr]['state']     += row['state']
+            grand_total[yr]['donations']    += row['donations']
+            grand_total[yr]['loans']        += row['loans']
+            grand_total[yr]['state']        += row['state']
+
+        ordered = sorted(rows_keys, key=lambda k: (k[1] or 'Z'))
+        ordered_rows = [(rows_meta[k], rows_data[k]) for k in ordered]
+        return Response(_build_response(ordered_rows, grand_total, years_to_output))
+
 
 TAB_LABELS = {
     'pnd':               'RESUMO PND',

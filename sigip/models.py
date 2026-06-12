@@ -197,6 +197,24 @@ WORKFLOW_TRANSITIONS = {
 }
 
 
+class StateFunction(models.Model):
+    """
+    Função do Estado (COFOG – Classification of Functions of Government).
+    Classificação orçamental conforme normas UEMOA/CEDEAO.
+    """
+    code = models.CharField(_('Código'), max_length=10, unique=True)
+    label = models.CharField(_('Denominação'), max_length=255)
+    order = models.PositiveSmallIntegerField(_('Ordem'), default=0)
+
+    class Meta:
+        verbose_name = _('Função do Estado')
+        verbose_name_plural = _('Funções do Estado')
+        ordering = ['order', 'code']
+
+    def __str__(self):
+        return f'{self.code} – {self.label}'
+
+
 class Project(models.Model):
     """
     Projecto do Programa de Investimento Público (PIP) 2026-2030.
@@ -232,6 +250,10 @@ class Project(models.Model):
     expense_nature = models.ForeignKey(
         ExpenseNature, on_delete=models.SET_NULL, null=True, blank=True,
         verbose_name=_('Natureza da Despesa'), related_name='projects'
+    )
+    state_function = models.ForeignKey(
+        'StateFunction', on_delete=models.SET_NULL, null=True, blank=True,
+        verbose_name=_('Função do Estado'), related_name='projects'
     )
 
     # Financiamento

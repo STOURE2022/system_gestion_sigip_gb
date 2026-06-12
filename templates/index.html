@@ -206,6 +206,11 @@ tbody tr:hover{background:#faf8f3}
     <button class="btn-lang" id="btn-lang" onclick="toggleLang()" title="Mudar língua / Changer de langue"><span id="lang-label-1" class="al">PT</span> | <span id="lang-label-2">FR</span></button>
     <span id="api-badge" class="api-status demo">DEMO</span>
     <span id="user-info"></span>
+    <a id="btn-admin-panel" href="/admin/" target="_blank" rel="noopener"
+       style="display:none;background:rgba(200,150,30,.18);border:1px solid rgba(200,150,30,.5);color:var(--gold);padding:5px 12px;border-radius:6px;font-size:11px;font-weight:700;text-decoration:none;letter-spacing:.3px;transition:.15s"
+       onmouseover="this.style.background='rgba(200,150,30,.32)'" onmouseout="this.style.background='rgba(200,150,30,.18)'">
+      &#9881; Admin
+    </a>
     <button id="btn-login-header" class="btn-login" onclick="showLogin()" data-i18n="btn_login">Entrar</button>
   </div>
 </header>
@@ -1412,6 +1417,11 @@ async function fetchUserProfile() {
     const badge = document.getElementById('user-info');
     if (badge) {
       badge.innerHTML = `<span class="user-badge">${esc(USER.first_name || USER.username)} &mdash; ${esc(USER.role_display || USER.role)}</span>`;
+    }
+    // Show /admin button for staff/superusers
+    if (USER.is_staff || USER.is_superuser || isAdmin()) {
+      const adminBtn = document.getElementById('btn-admin-panel');
+      if (adminBtn) adminBtn.style.display = '';
     }
   } catch(e) {
     console.warn('Could not fetch user profile:', e.message);

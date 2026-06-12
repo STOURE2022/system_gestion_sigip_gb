@@ -218,7 +218,7 @@ tbody tr:hover{background:#faf8f3}
 .toast-error  {background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
 .toast-info   {background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe}
 .toast-warning{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
-.toast-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.toast-icon{flex-shrink:0;margin-top:1px;line-height:0}
 .toast-body{flex:1}
 .toast-close{cursor:pointer;opacity:.55;font-size:18px;line-height:1;flex-shrink:0;background:none;border:none;color:inherit;padding:0;margin-top:-1px}
 .toast-close:hover{opacity:1}
@@ -1505,12 +1505,17 @@ async function loadRefData() {
 // TOAST NOTIFICATIONS
 // ============================================================
 function showToast(message, type = 'success', duration = 4500) {
-  const icons = { success: '✓', error: '✕', info: 'ℹ', warning: '⚠' };
+  const icons = {
+    success: `<svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#059669"/><path d="M6 10l3 3 5-5" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+    error:   `<svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#dc2626"/><path d="M7 7l6 6M13 7l-6 6" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>`,
+    info:    `<svg width="18" height="18" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="9" fill="#2563eb"/><rect x="9" y="9" width="2" height="6" rx="1" fill="#fff"/><circle cx="10" cy="6.5" r="1.2" fill="#fff"/></svg>`,
+    warning: `<svg width="18" height="18" viewBox="0 0 20 20" fill="none"><path d="M10 2L18.5 17H1.5L10 2z" fill="#d97706"/><rect x="9" y="8" width="2" height="5" rx="1" fill="#fff"/><circle cx="10" cy="15" r="1.1" fill="#fff"/></svg>`,
+  };
   const container = document.getElementById('toast-container');
   const el = document.createElement('div');
   el.className = `toast toast-${type}`;
   el.innerHTML =
-    `<span class="toast-icon">${icons[type] || '•'}</span>` +
+    `<span class="toast-icon">${icons[type] || ''}</span>` +
     `<span class="toast-body">${message}</span>` +
     `<button class="toast-close" aria-label="Fechar">&times;</button>`;
   container.appendChild(el);

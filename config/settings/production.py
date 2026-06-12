@@ -53,3 +53,9 @@ EMAIL_HOST_USER = config('EMAIL_HOST_USER', default='')
 EMAIL_HOST_PASSWORD = config('EMAIL_HOST_PASSWORD', default='')
 EMAIL_USE_TLS = config('EMAIL_USE_TLS', default=True, cast=bool)
 DEFAULT_FROM_EMAIL = config('DEFAULT_FROM_EMAIL', default='SIGIP-GB <noreply@sigip.gov.gw>')
+
+# ── Celery — pas de worker séparé sur Railway : exécution synchrone ──────────
+# Les tâches (.delay()) tournent directement dans le thread web.
+# Acceptable pour des notifications basse-fréquence (validations ~10/jour).
+CELERY_TASK_ALWAYS_EAGER = True
+CELERY_TASK_EAGER_PROPAGATES = True

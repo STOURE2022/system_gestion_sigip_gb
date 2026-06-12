@@ -78,10 +78,11 @@ main{padding:24px 28px;max-width:1320px;margin:0 auto}
   display:flex;flex-direction:column-reverse;
   transform-origin:bottom;animation:growUp .65s cubic-bezier(.4,0,.2,1) both}
 @keyframes growUp{from{transform:scaleY(0);opacity:0}to{transform:scaleY(1);opacity:1}}
-.ybar-seg{width:100%;flex-shrink:0}
+.ybar-seg{width:100%;flex-shrink:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
 .ybar-seg.don {background:var(--don)}
 .ybar-seg.empr{background:var(--empr)}
 .ybar-seg.int {background:var(--int)}
+.seg-pct{font-size:9px;font-weight:800;color:rgba(255,255,255,.92);letter-spacing:.2px;line-height:1;pointer-events:none;white-space:nowrap}
 .ybar-growth{position:absolute;top:-20px;left:50%;transform:translateX(-50%);
   font-size:9px;font-weight:700;padding:2px 6px;border-radius:10px;white-space:nowrap;
   background:#d1fae5;color:#065f46}
@@ -1243,9 +1244,9 @@ function renderDashboard(T_, Text, Tint, Tdon, Tempr, byMinistry, byYear) {
         <div class="ybar-stack">
           ${growth !== null ? `<span class="ybar-growth">+${growth}%</span>` : ''}
           <div class="ybar-inner" style="height:${barH}px;animation-delay:${i * 0.09}s" title="${tip}">
-            <div class="ybar-seg int"  style="height:${pState}%"></div>
-            <div class="ybar-seg empr" style="height:${pEmpr}%"></div>
-            <div class="ybar-seg don"  style="height:${pDon}%"></div>
+            <div class="ybar-seg int"  style="height:${pState}%">${barH * pState / 100 >= 18 ? `<span class="seg-pct">${Math.round(pState)}%</span>` : ''}</div>
+            <div class="ybar-seg empr" style="height:${pEmpr}%">${barH * pEmpr  / 100 >= 18 ? `<span class="seg-pct">${Math.round(pEmpr)}%</span>`  : ''}</div>
+            <div class="ybar-seg don"  style="height:${pDon}%">${barH  * pDon   / 100 >= 18 ? `<span class="seg-pct">${Math.round(pDon)}%</span>`   : ''}</div>
           </div>
         </div>
         <div class="yl">${y.fiscal_year}</div>
@@ -1361,9 +1362,9 @@ function renderProgramming() {
       <div class="ybar-stack">
         <div class="ybar-inner" style="height:${barH}px;animation-delay:${i * 0.09}s"
              title="${y.fiscal_year}: ${fmt(y.total)} M FCFA">
-          <div class="ybar-seg int"  style="height:${pState}%"></div>
-          <div class="ybar-seg empr" style="height:${pEmpr}%"></div>
-          <div class="ybar-seg don"  style="height:${pDon}%"></div>
+          <div class="ybar-seg int"  style="height:${pState}%">${barH * pState / 100 >= 18 ? `<span class="seg-pct">${Math.round(pState)}%</span>` : ''}</div>
+          <div class="ybar-seg empr" style="height:${pEmpr}%">${barH  * pEmpr  / 100 >= 18 ? `<span class="seg-pct">${Math.round(pEmpr)}%</span>`  : ''}</div>
+          <div class="ybar-seg don"  style="height:${pDon}%">${barH   * pDon   / 100 >= 18 ? `<span class="seg-pct">${Math.round(pDon)}%</span>`   : ''}</div>
         </div>
       </div>
       <div class="yl">${y.fiscal_year}</div>

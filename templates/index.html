@@ -27,6 +27,10 @@ header{background:var(--ink);color:#fff;padding:18px 28px;display:flex;align-ite
 .btn-lang{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;font-weight:700;letter-spacing:.5px;transition:.15s;white-space:nowrap}
 .btn-lang:hover{background:rgba(255,255,255,.18);color:#fff}
 .btn-lang .al{color:var(--gold)}
+.btn-home{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.75);padding:6px 13px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:600;letter-spacing:.3px;transition:.15s;text-decoration:none;display:flex;align-items:center;gap:5px}
+.btn-home:hover{background:rgba(255,255,255,.18);color:#fff}
+#nav-back{color:#9dafc2;padding:13px 16px 13px 14px;font-size:12px;border-right:1px solid rgba(255,255,255,.1);margin-right:4px;letter-spacing:.2px}
+#nav-back:hover{color:#fff;background:rgba(255,255,255,.06)}
 .user-badge{font-size:11px;background:var(--gold);color:#fff;padding:4px 10px;border-radius:20px;font-weight:600}
 .api-status{font-size:10px;padding:3px 8px;border-radius:10px;font-weight:600}
 .api-status.live{background:#1a7a4a;color:#fff}
@@ -183,6 +187,7 @@ tbody tr:hover{background:#faf8f3}
   </div>
   <div class="hgov" id="hgov-text">República da Guiné-Bissau<br>Ministério da Economia, Plano e Integração Regional<br><b>Direcção-Geral do Plano &mdash; PIP 2026&ndash;2030</b></div>
   <div class="hactions">
+    <a href="/" class="btn-home" title="Voltar à página inicial / Retour à l'accueil">&#8592; <span data-i18n="btn_home">Início</span></a>
     <button class="btn-lang" id="btn-lang" onclick="toggleLang()" title="Mudar língua / Changer de langue"><span id="lang-label-1" class="al">PT</span> | <span id="lang-label-2">FR</span></button>
     <span id="api-badge" class="api-status demo">DEMO</span>
     <span id="user-info"></span>
@@ -190,6 +195,7 @@ tbody tr:hover{background:#faf8f3}
   </div>
 </header>
 <nav>
+  <button id="nav-back" style="display:none" onclick="navBack()">&#8592; <span data-i18n="nav_back">Retour</span></button>
   <button class="active" data-v="dash" data-i18n="nav_dash">Painel Nacional</button>
   <button data-v="proj" data-i18n="nav_proj">Projectos</button>
   <button data-v="min" data-i18n="nav_min">Ministérios</button>
@@ -540,8 +546,10 @@ const I18N = {
   pt: {
     brand_sub: 'Sistema de Gestão do Investimento Público',
     hgov: 'República da Guiné-Bissau<br>Ministério da Economia, Plano e Integração Regional<br><b>Direcção-Geral do Plano &mdash; PIP 2026&ndash;2030</b>',
+    btn_home: 'Início',
     btn_login: 'Entrar',
     btn_logout: 'Sair',
+    nav_back: 'Retour',
     nav_dash: 'Painel Nacional',
     nav_proj: 'Projectos',
     nav_min: 'Ministérios',
@@ -690,8 +698,10 @@ const I18N = {
   fr: {
     brand_sub: "Système de Gestion de l'Investissement Public",
     hgov: "République de Guinée-Bissau<br>Ministère de l'Économie, du Plan et de l'Intégration Régionale<br><b>Direction Générale du Plan &mdash; PIP 2026&ndash;2030</b>",
+    btn_home: 'Accueil',
     btn_login: 'Connexion',
     btn_logout: 'Déconnexion',
+    nav_back: 'Retour',
     nav_dash: 'Tableau National',
     nav_proj: 'Projets',
     nav_min: 'Ministères',
@@ -1723,16 +1733,33 @@ function setSelectVal(id, val) {
 }
 
 // ============================================================
-// NAVIGATION
+// NAVIGATION  (with back-button history)
 // ============================================================
-document.querySelectorAll('nav button').forEach(btn => {
+const _viewHistory = [];
+
+function _activateView(viewId) {
+  document.querySelectorAll('nav button[data-v]').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  const viewEl = document.getElementById(viewId);
+  if (viewEl) viewEl.classList.add('active');
+  const navBtn = document.querySelector(`nav button[data-v="${viewId}"]`);
+  if (navBtn) navBtn.classList.add('active');
+  document.getElementById('nav-back').style.display = _viewHistory.length ? '' : 'none';
+  if (viewId === 'saisie' && ACCESS_TOKEN) loadSaisie();
+  if (viewId === 'sintese' && ACCESS_TOKEN) { SINTESE_CACHE = {}; fetchSinteseTab(SINTESE_ACTIVE_TAB); }
+}
+
+function navBack() {
+  if (!_viewHistory.length) return;
+  const prev = _viewHistory.pop();
+  _activateView(prev);
+}
+
+document.querySelectorAll('nav button[data-v]').forEach(btn => {
   btn.addEventListener('click', () => {
-    document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
-    btn.classList.add('active');
-    document.getElementById(btn.dataset.v).classList.add('active');
-    if (btn.dataset.v === 'saisie' && ACCESS_TOKEN) loadSaisie();
-    if (btn.dataset.v === 'sintese' && ACCESS_TOKEN) { SINTESE_CACHE = {}; fetchSinteseTab(SINTESE_ACTIVE_TAB); }
+    const current = document.querySelector('.view.active');
+    if (current && current.id !== btn.dataset.v) _viewHistory.push(current.id);
+    _activateView(btn.dataset.v);
   });
 });
 

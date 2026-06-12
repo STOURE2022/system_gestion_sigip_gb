@@ -241,45 +241,6 @@ body {
 }
 .partner-pill:hover { color: rgba(255,255,255,.7); border-color: rgba(255,255,255,.25); }
 
-/* ── Stats band ───────────────────────────── */
-.stats-band {
-  background: var(--navy3);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-bottom: 3px solid var(--gold);
-}
-.stat-item {
-  text-align: center;
-  padding: 30px 20px;
-  border-right: 1px solid rgba(255,255,255,.07);
-  position: relative;
-  overflow: hidden;
-}
-.stat-item:last-child { border-right: none; }
-.stat-item::before {
-  content: '';
-  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  width: 40px; height: 2px;
-  background: var(--gold);
-  border-radius: 0 0 4px 4px;
-}
-.stat-num {
-  font-size: clamp(28px, 4vw, 46px);
-  font-weight: 900;
-  color: var(--gold2);
-  display: block;
-  line-height: 1;
-  margin-bottom: 7px;
-  letter-spacing: -1px;
-}
-.stat-label {
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 1.5px;
-  color: rgba(255,255,255,.45);
-  font-weight: 600;
-  line-height: 1.4;
-}
 
 /* ── Sector grid ──────────────────────────── */
 .sectors {
@@ -516,7 +477,6 @@ footer {
 /* ── Responsive ───────────────────────────── */
 @media (max-width: 900px) {
   .sector-grid { grid-template-columns: repeat(2, 1fr); }
-  .stats-band  { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 600px) {
   .topnav        { padding: 0 18px; }
@@ -529,7 +489,6 @@ footer {
   .hero-ctas     { flex-direction: column; align-items: center; }
   .cta           { width: 100%; max-width: 300px; justify-content: center; }
   .sector-grid   { grid-template-columns: 1fr; }
-  .stats-band    { grid-template-columns: repeat(2, 1fr); }
   .photo-strip   { grid-template-columns: 1fr; height: auto; }
   .photo-tile    { height: 200px; }
 }
@@ -586,10 +545,6 @@ footer {
       <span class="cta-icon">👁</span>
       <span data-i18n="cta_public">Modo Demonstração</span>
     </a>
-    <a href="/api/docs/" target="_blank" rel="noopener" class="cta cta-ghost">
-      <span class="cta-icon">📄</span>
-      <span data-i18n="cta_docs">API Docs</span>
-    </a>
   </div>
   <div class="hero-trust">
     <span class="hero-trust-label" data-i18n="partners_label">Parceiros técnicos e financeiros</span>
@@ -602,25 +557,6 @@ footer {
   </div>
 </section>
 
-<!-- Stats band -->
-<div class="stats-band">
-  <div class="stat-item">
-    <span class="stat-num">5</span>
-    <span class="stat-label" data-i18n="stat1">Pilares PND</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">3</span>
-    <span class="stat-label" data-i18n="stat2">Fontes de Financiamento</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num">2026<br><small style="font-size:.45em;letter-spacing:0;font-weight:700;color:rgba(255,255,255,.3)">—</small><br>2030</span>
-    <span class="stat-label" data-i18n="stat3">Período do PIP</span>
-  </div>
-  <div class="stat-item">
-    <span class="stat-num" style="font-size:clamp(18px,2.5vw,28px);letter-spacing:0" data-i18n="stat4_val">Tempo Real</span>
-    <span class="stat-label" data-i18n="stat4">Suivi en ligne</span>
-  </div>
-</div>
 
 <!-- Sector cards -->
 <section class="sectors reveal">
@@ -828,7 +764,6 @@ footer {
   </span>
   <nav class="footer-links">
     <a href="/admin/" data-i18n="footer_admin">Administration</a>
-    <a href="/api/docs/" target="_blank" rel="noopener" data-i18n="footer_api">API</a>
   </nav>
 </footer>
 

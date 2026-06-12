@@ -208,6 +208,23 @@ tbody tr:hover{background:#faf8f3}
 .resumo-tbl tfoot tr.grand-row td.num-cell{color:var(--accent)}
 .resumo-tbl tbody tr:hover td{background:#faf8f3}
 .sintese-error{background:#fee2e2;border:1px solid #fca5a5;color:#991b1b;border-radius:8px;padding:12px 16px;font-size:13px;margin-top:12px}
+/* PDF button */
+.btn-pdf{background:#ede9fe;color:#5b21b6;border-color:#c4b5fd}.btn-pdf:hover{background:#ddd6fe}
+/* Toast notifications */
+#toast-container{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:10px;pointer-events:none;max-width:380px}
+.toast{pointer-events:auto;display:flex;align-items:flex-start;gap:10px;padding:13px 16px;border-radius:10px;box-shadow:0 8px 28px rgba(0,0,0,.18);font-size:13px;font-weight:500;line-height:1.45;animation:toast-in .28s cubic-bezier(.4,0,.2,1) both}
+.toast.toast-out{animation:toast-out .26s cubic-bezier(.4,0,.2,1) forwards}
+.toast-success{background:#d1fae5;color:#065f46;border:1px solid #a7f3d0}
+.toast-error  {background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.toast-info   {background:#dbeafe;color:#1d4ed8;border:1px solid #bfdbfe}
+.toast-warning{background:#fef3c7;color:#92400e;border:1px solid #fde68a}
+.toast-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.toast-body{flex:1}
+.toast-close{cursor:pointer;opacity:.55;font-size:18px;line-height:1;flex-shrink:0;background:none;border:none;color:inherit;padding:0;margin-top:-1px}
+.toast-close:hover{opacity:1}
+@keyframes toast-in {from{transform:translateX(110%);opacity:0}to{transform:translateX(0);opacity:1}}
+@keyframes toast-out{from{transform:translateX(0);opacity:1}to{transform:translateX(110%);opacity:0}}
+@media(max-width:480px){#toast-container{left:12px;right:12px;bottom:14px}.toast{font-size:12px}}
 </style>
 </head>
 <body>
@@ -736,6 +753,15 @@ const I18N = {
     sintese_unit: 'Valores expressos em milhões de FCFA',
     sintese_export_xlsx: '⬇ Excel',
     sintese_export_pdf: '⬇ PDF',
+    btn_pdf: '⬇ PDF',
+    toast_submit_ok: 'Projecto submetido à DGP para validação.',
+    toast_validate_ok: 'Projecto validado. Uma notificação foi enviada ao ministério.',
+    toast_reject_ok: 'Projecto devolvido ao ministério para correcções.',
+    toast_unlock_ok: 'Projecto reaberto para edição.',
+    toast_delete_ok: 'Projecto eliminado com sucesso.',
+    toast_pdf_generating: 'A gerar o PDF…',
+    error_pdf_download: 'Erro ao gerar o PDF. Por favor, tente novamente.',
+    error_export: 'Erro ao exportar:',
   },
   fr: {
     brand_sub: "Système de Gestion de l'Investissement Public",
@@ -889,6 +915,15 @@ const I18N = {
     sintese_unit: 'Valeurs en millions de FCFA',
     sintese_export_xlsx: '⬇ Excel',
     sintese_export_pdf: '⬇ PDF',
+    btn_pdf: '⬇ PDF',
+    toast_submit_ok: 'Projet soumis à la DGP pour validation.',
+    toast_validate_ok: 'Projet validé. Une notification a été envoyée au ministère.',
+    toast_reject_ok: 'Projet renvoyé au ministère pour corrections.',
+    toast_unlock_ok: 'Projet rouvert pour modification.',
+    toast_delete_ok: 'Projet supprimé avec succès.',
+    toast_pdf_generating: 'Génération du PDF en cours…',
+    error_pdf_download: 'Erreur lors de la génération du PDF. Veuillez réessayer.',
+    error_export: 'Erreur lors de l\'export :',
   }
 };
 
@@ -1467,6 +1502,54 @@ async function loadRefData() {
 }
 
 // ============================================================
+// TOAST NOTIFICATIONS
+// ============================================================
+function showToast(message, type = 'success', duration = 4500) {
+  const icons = { success: '✓', error: '✕', info: 'ℹ', warning: '⚠' };
+  const container = document.getElementById('toast-container');
+  const el = document.createElement('div');
+  el.className = `toast toast-${type}`;
+  el.innerHTML =
+    `<span class="toast-icon">${icons[type] || '•'}</span>` +
+    `<span class="toast-body">${message}</span>` +
+    `<button class="toast-close" aria-label="Fechar">&times;</button>`;
+  container.appendChild(el);
+
+  let timer;
+  const dismiss = () => {
+    clearTimeout(timer);
+    el.classList.add('toast-out');
+    el.addEventListener('animationend', () => el.remove(), { once: true });
+  };
+  el.querySelector('.toast-close').addEventListener('click', dismiss);
+  timer = setTimeout(dismiss, duration);
+}
+
+// ============================================================
+// PDF DOWNLOAD (projecto validado)
+// ============================================================
+async function downloadProjectPdf(projectId, projectCode) {
+  showToast(T('toast_pdf_generating'), 'info', 8000);
+  try {
+    const resp = await fetch(`${API_BASE}projects/${projectId}/pdf/`, {
+      headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` },
+    });
+    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    const blob = await resp.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `SIGIP-GB_${projectCode}.pdf`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (e) {
+    showToast(T('error_pdf_download'), 'error');
+  }
+}
+
+// ============================================================
 // SAISIE VIEW
 // ============================================================
 async function loadSaisie() {
@@ -1547,6 +1630,10 @@ function buildRowActions(p) {
   // Unlock: ADMIN on VALIDADO
   if (wf === 'VALIDADO' && isAdmin()) {
     btns.push(`<button class="btn-sm btn-rej" onclick="confirmAction('unlock',${p.id},'${esc(p.title)}')">${T('btn_unlock')}</button>`);
+  }
+  // PDF: all authenticated users on VALIDADO
+  if (wf === 'VALIDADO') {
+    btns.push(`<button class="btn-sm btn-pdf" onclick="downloadProjectPdf(${p.id},'${esc(p.code)}')">${T('btn_pdf')}</button>`);
   }
   // Delete: RASCUNHO only
   if (wf === 'RASCUNHO' && !isDGP()) {
@@ -1775,6 +1862,13 @@ document.getElementById('confirm-ok').addEventListener('click', async () => {
 });
 
 async function executeAction(action, projectId) {
+  const successKey = {
+    submit:   'toast_submit_ok',
+    validate: 'toast_validate_ok',
+    reject:   'toast_reject_ok',
+    unlock:   'toast_unlock_ok',
+    delete:   'toast_delete_ok',
+  };
   try {
     if (action === 'submit') {
       await apiMutate('POST', `/projects/${projectId}/submit/`, {});
@@ -1790,9 +1884,10 @@ async function executeAction(action, projectId) {
       await apiMutate('DELETE', `/projects/${projectId}/`, null);
     }
     await loadSaisie();
+    showToast(T(successKey[action] || 'action_success'), 'success');
   } catch(e) {
     const msg = await parseApiError(e);
-    alert(msg);
+    showToast(msg, 'error', 7000);
   }
 }
 
@@ -1970,7 +2065,7 @@ async function exportSintese(fmt) {
     document.body.removeChild(a);
     URL.revokeObjectURL(a.href);
   } catch (e) {
-    alert('Erro ao exportar: ' + e.message);
+    showToast(T('error_export') + ' ' + e.message, 'error');
   }
 }
 
@@ -2122,5 +2217,6 @@ function esc(s) {
   }
 })();
 </script>
+<div id="toast-container"></div>
 </body>
 </html>

@@ -39,7 +39,7 @@ from .filters import (
     ProjectFilter, AnnualProgrammingFilter, DisbursementFilter,
     MinistryFilter, FinancierFilter
 )
-from .tasks import import_pip_data_task
+from .tasks import import_pip_data_task, send_workflow_notification_task
 
 logger = logging.getLogger(__name__)
 
@@ -314,6 +314,8 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
             'workflow_transition': 'RASCUNHO → SUBMETIDO',
         })
 
+        send_workflow_notification_task.delay(project.pk, 'submit', request.user.pk)
+
         serializer = ProjectDetailSerializer(project, context={'request': request})
         return Response(serializer.data)
 
@@ -345,6 +347,8 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
         _log_audit(request, AuditLog.Action.UPDATE, project, {
             'workflow_transition': 'SUBMETIDO → VALIDADO',
         })
+
+        send_workflow_notification_task.delay(project.pk, 'validate', request.user.pk)
 
         serializer = ProjectDetailSerializer(project, context={'request': request})
         return Response(serializer.data)
@@ -383,6 +387,10 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
             'rejection_note': project.rejection_note,
         })
 
+        send_workflow_notification_task.delay(
+            project.pk, 'reject', request.user.pk, project.rejection_note
+        )
+
         serializer_out = ProjectDetailSerializer(project, context={'request': request})
         return Response(serializer_out.data)
 
@@ -418,8 +426,38 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
             'rejection_note': project.rejection_note,
         })
 
+        send_workflow_notification_task.delay(
+            project.pk, 'unlock', request.user.pk, project.rejection_note
+        )
+
         serializer_out = ProjectDetailSerializer(project, context={'request': request})
         return Response(serializer_out.data)
+
+    @action(detail=True, methods=['get'], url_path='pdf',
+            permission_classes=[IsAuthenticated])
+    def download_pdf(self, request, pk=None):
+        """
+        Gera e descarrega a ficha officielle PDF do projecto validé (A4).
+        Apenas disponível para projectos com workflow_status = VALIDADO.
+        """
+        from django.http import HttpResponse
+        from .pdf_generator import generate_project_pdf
+
+        project = self.get_object()
+
+        if project.workflow_status != WorkflowStatus.VALIDADO:
+            return Response(
+                {'error': 'Apenas projectos validados podem ser exportados em PDF.'},
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        pdf_bytes = generate_project_pdf(project)
+
+        response = HttpResponse(pdf_bytes, content_type='application/pdf')
+        response['Content-Disposition'] = (
+            f'attachment; filename="SIGIP-GB_{project.code}.pdf"'
+        )
+        return response
 
     # ------------------------------------------------------------------
     # Programmation annuelle (actions imbriquées)
@@ -455,9 +493,20 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
         """
         project = self.get_object()
 
-        # Vérif lock
+        # Vérif lock — VALIDADO est verrouillé pour tous sauf ADMIN
         user = request.user
-        if user.role == UserRole.MINISTRY_AGENT:
+        if project.workflow_status == WorkflowStatus.VALIDADO:
+            if user.role != UserRole.ADMIN:
+                return Response(
+                    {
+                        'error': (
+                            'A programação de um projecto validado está bloqueada. '
+                            'Apenas o Administrador pode desbloquear o projecto para edição.'
+                        )
+                    },
+                    status=status.HTTP_403_FORBIDDEN,
+                )
+        elif user.role == UserRole.MINISTRY_AGENT:
             if project.workflow_status != WorkflowStatus.RASCUNHO:
                 return Response(
                     {'error': 'A programação só pode ser editada enquanto o projecto está em Rascunho.'},

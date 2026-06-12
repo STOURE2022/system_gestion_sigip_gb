@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SIGIP-GB — Notificação de Projecto</title>
+<style>
+  body{margin:0;padding:0;background:#f0ede6;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;color:#1a1a2e}
+  .wrapper{max-width:600px;margin:32px auto;background:#ffffff;border-radius:10px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.10)}
+  /* Header */
+  .hdr{background:#1a7a6e;padding:28px 32px 20px;text-align:center}
+  .hdr-brand{color:#ffffff;font-size:22px;font-weight:700;letter-spacing:.5px;margin:0 0 4px}
+  .hdr-sub{color:rgba(255,255,255,.75);font-size:11px;margin:0}
+  /* Gold accent bar */
+  .gold-bar{height:4px;background:linear-gradient(90deg,#c8961e,#f0c040,#c8961e)}
+  /* Status badge */
+  .badge-wrap{padding:24px 32px 0;text-align:center}
+  .badge{display:inline-block;padding:10px 24px;border-radius:30px;font-size:13px;font-weight:700;letter-spacing:.4px}
+  .badge-submit  {background:#fef3c7;color:#92400e;border:1.5px solid #fde68a}
+  .badge-validate{background:#d1fae5;color:#065f46;border:1.5px solid #a7f3d0}
+  .badge-reject  {background:#fee2e2;color:#991b1b;border:1.5px solid #fca5a5}
+  .badge-unlock  {background:#dbeafe;color:#1d4ed8;border:1.5px solid #bfdbfe}
+  /* Body */
+  .body{padding:20px 32px 28px}
+  .intro{font-size:14px;color:#374151;margin:0 0 20px;line-height:1.6}
+  /* Project card */
+  .proj-card{background:#f9f7f2;border:1px solid #e5e0d5;border-radius:8px;padding:16px 20px;margin-bottom:20px}
+  .proj-card table{width:100%;border-collapse:collapse}
+  .proj-card td{padding:5px 8px;font-size:13px;vertical-align:top}
+  .proj-card td.label{color:#888888;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.3px;width:38%;white-space:nowrap}
+  .proj-card td.value{color:#1a1a2e;font-weight:500}
+  .proj-card td.code-val{color:#1a7a6e;font-weight:700;font-size:14px}
+  /* Note box */
+  .note-box{background:#fff7ed;border:1px solid #fed7aa;border-left:4px solid #f97316;border-radius:6px;padding:12px 16px;margin-bottom:20px;font-size:13px;color:#7c2d12;line-height:1.5}
+  .note-box strong{display:block;margin-bottom:4px;font-size:11px;text-transform:uppercase;letter-spacing:.3px;color:#ea580c}
+  /* CTA button */
+  .cta-wrap{text-align:center;margin:24px 0 8px}
+  .cta{display:inline-block;background:#1a7a6e;color:#ffffff;text-decoration:none;padding:13px 32px;border-radius:8px;font-size:14px;font-weight:700;letter-spacing:.3px}
+  .cta:hover{background:#0d5a50}
+  /* Divider */
+  hr{border:none;border-top:1px solid #e5e0d5;margin:24px 0}
+  /* Footer */
+  .footer{background:#f4f1ea;padding:16px 32px;text-align:center;font-size:11px;color:#888888;line-height:1.6}
+  .footer a{color:#1a7a6e;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- Header -->
+  <div class="hdr">
+    <p class="hdr-brand">SIGIP&middot;GB</p>
+    <p class="hdr-sub">Sistema de Gestão do Investimento Público &mdash; República da Guiné-Bissau</p>
+  </div>
+  <div class="gold-bar"></div>
+
+  <!-- Status badge -->
+  <div class="badge-wrap">
+    {% if action == 'submit' %}
+      <span class="badge badge-submit">&#128337; Submetido para Validação</span>
+    {% elif action == 'validate' %}
+      <span class="badge badge-validate">&#10003; Projecto Validado</span>
+    {% elif action == 'reject' %}
+      <span class="badge badge-reject">&#8617; Devolvido para Correcções</span>
+    {% elif action == 'unlock' %}
+      <span class="badge badge-unlock">&#128275; Projecto Reaberto</span>
+    {% endif %}
+  </div>
+
+  <!-- Body -->
+  <div class="body">
+
+    <p class="intro">
+      {% if action == 'submit' %}
+        O projecto abaixo foi <strong>submetido à DGP</strong> para validação.
+        Por favor, proceda à análise e tome as medidas necessárias.
+      {% elif action == 'validate' %}
+        O projecto abaixo foi <strong>validado definitivamente</strong> pela Direcção-Geral do Plano
+        no âmbito do Programa de Investimento Público 2026&ndash;2030.
+      {% elif action == 'reject' %}
+        O projecto abaixo foi <strong>devolvido ao ministério</strong> para correcções.
+        Por favor, reveja as observações indicadas e resubmeta após as alterações necessárias.
+      {% elif action == 'unlock' %}
+        O projecto abaixo foi <strong>reaberto pelo Administrador</strong> e colocado no estado Rascunho.
+        Pode agora proceder às alterações solicitadas.
+      {% endif %}
+    </p>
+
+    <!-- Project info card -->
+    <div class="proj-card">
+      <table>
+        <tr>
+          <td class="label">Código</td>
+          <td class="value code-val">{{ project.code }}</td>
+        </tr>
+        <tr>
+          <td class="label">Designação</td>
+          <td class="value">{{ project.title }}</td>
+        </tr>
+        <tr>
+          <td class="label">Ministério</td>
+          <td class="value">{{ project.ministry }}</td>
+        </tr>
+        {% if project.principal_financier %}
+        <tr>
+          <td class="label">Financiador</td>
+          <td class="value">{{ project.principal_financier }}</td>
+        </tr>
+        {% endif %}
+        <tr>
+          <td class="label">Custo total</td>
+          <td class="value"><strong>{{ project.total_cost|floatformat:0 }} FCFA</strong></td>
+        </tr>
+        <tr>
+          <td class="label">Realizado por</td>
+          <td class="value">{{ actor.get_full_name|default:actor.username }}</td>
+        </tr>
+      </table>
+    </div>
+
+    {% if rejection_note %}
+    <div class="note-box">
+      <strong>Observação / Motivo</strong>
+      {{ rejection_note }}
+    </div>
+    {% endif %}
+
+    <div class="cta-wrap">
+      <a href="{{ app_url }}" class="cta">Aceder ao SIGIP&middot;GB &rarr;</a>
+    </div>
+
+    <hr>
+
+    <p style="font-size:12px;color:#888888;text-align:center;margin:0">
+      Esta notificação foi gerada automaticamente pelo sistema SIGIP-GB.<br>
+      Por favor, não responda a este e-mail.
+    </p>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <strong>SIGIP&middot;GB</strong> &mdash; Direcção-Geral do Plano<br>
+    Ministério da Economia, Plano e Integração Regional<br>
+    República da Guiné-Bissau
+  </div>
+
+</div>
+</body>
+</html>

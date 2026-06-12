@@ -1534,7 +1534,11 @@ async function downloadProjectPdf(projectId, projectCode) {
     const resp = await fetch(`${API_BASE}projects/${projectId}/pdf/`, {
       headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` },
     });
-    if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+    if (!resp.ok) {
+      let detail = `HTTP ${resp.status}`;
+      try { const d = await resp.json(); detail = d.error || detail; } catch {}
+      throw new Error(detail);
+    }
     const blob = await resp.blob();
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
@@ -1545,7 +1549,7 @@ async function downloadProjectPdf(projectId, projectCode) {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   } catch (e) {
-    showToast(T('error_pdf_download'), 'error');
+    showToast(e.message || T('error_pdf_download'), 'error', 8000);
   }
 }
 

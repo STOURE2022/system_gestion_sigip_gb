@@ -441,7 +441,6 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
         Apenas disponível para projectos com workflow_status = VALIDADO.
         """
         from django.http import HttpResponse
-        from .pdf_generator import generate_project_pdf
 
         project = self.get_object()
 
@@ -451,7 +450,15 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
-        pdf_bytes = generate_project_pdf(project)
+        try:
+            from .pdf_generator import generate_project_pdf
+            pdf_bytes = generate_project_pdf(project)
+        except Exception as exc:
+            logger.exception(f'PDF generation failed for project {project.code}: {exc}')
+            return Response(
+                {'error': f'Erro na geração do PDF: {exc}'},
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
 
         response = HttpResponse(pdf_bytes, content_type='application/pdf')
         response['Content-Disposition'] = (

@@ -101,11 +101,11 @@ def generate_project_pdf(project) -> bytes:
     # -----------------------------------------------------------------------
     # HEADER
     # -----------------------------------------------------------------------
-    story.append(Paragraph('SIGIP·GB', hdr_title))
+    story.append(Paragraph('SIGIP\u00b7GB', hdr_title))
     story.append(Paragraph(
-        'Sistema de Gestão do Investimento Público — República da Guiné-Bissau', hdr_sub))
+        'Sistema de Gest\u00e3o do Investimento P\u00fablico \u2014 Rep\u00fablica da Guin\u00e9-Bissau', hdr_sub))
     story.append(Paragraph(
-        'Direcção-Geral do Plano &nbsp;|&nbsp; Programa de Investimento Público 2026–2030', hdr_sub))
+        'Direc\u00e7\u00e3o-Geral do Plano  |  Programa de Investimento P\u00fablico 2026\u20132030', hdr_sub))
     story.append(HRFlowable(width='100%', thickness=2, color=TEAL, spaceAfter=3))
     story.append(HRFlowable(width='100%', thickness=1, color=GOLD, spaceAfter=8))
 

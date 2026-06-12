@@ -305,14 +305,13 @@ JAZZMIN_SETTINGS = {
 
     # Top menu
     "topmenu_links": [
-        {"name": "SIGIP·GB", "url": "/", "new_window": False},
-        {"name": "API Docs", "url": "/api/docs/", "new_window": True},
+        {"name": "← Retour à l'application", "url": "/app/", "new_window": False},
         {"model": "core.User"},
     ],
 
     # User menu
     "usermenu_links": [
-        {"name": "SIGIP·GB", "url": "/", "new_window": False},
+        {"name": "← Retour à l'application", "url": "/app/", "new_window": False},
     ],
 
     # Sidebar

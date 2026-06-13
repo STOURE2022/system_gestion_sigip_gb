@@ -78,7 +78,16 @@ main{padding:24px 28px;max-width:1320px;margin:0 auto}
 .bar-row .nm{width:130px;flex-shrink:0;color:var(--ink2);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .bar-track{flex:1;background:#f0ece3;border-radius:4px;height:18px;position:relative;overflow:hidden}
 .bar-fill{height:100%;border-radius:4px;background:linear-gradient(90deg,var(--accent),var(--ext));transition:width .6s ease}
+.bar-stacked{display:flex;height:100%;border-radius:4px;overflow:hidden}
+.s-don{background:var(--don)}.s-empr{background:var(--empr)}.s-int{background:var(--int)}
 .bar-row .vv{width:74px;text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:600;flex-shrink:0}
+/* Saisie: groupement par ministère */
+.min-grp-hdr td{background:var(--bg-panel,#faf9f7);border-top:2px solid var(--accent);padding:7px 10px!important}
+.min-grp-hdr .min-hdr-name{font-size:12px;font-weight:700;color:var(--ink2);letter-spacing:.02em}
+.min-grp-hdr .min-hdr-badge{margin-left:8px;font-size:10px;color:var(--muted);background:#ede9e2;border-radius:10px;padding:1px 7px}
+.min-grp-hdr .min-hdr-total{float:right;font-size:11px;font-weight:600;color:var(--accent)}
+/* Trajectory legend with % */
+.leg-pct{font-weight:700;margin-left:3px}
 .stack{display:flex;height:34px;border-radius:6px;overflow:hidden;margin:10px 0 6px;border:1px solid var(--line)}
 .stack > div{display:grid;place-items:center;color:#fff;font-size:11px;font-weight:600;transition:.3s}
 .legend{display:flex;gap:16px;font-size:11px;color:var(--muted);flex-wrap:wrap}
@@ -296,7 +305,7 @@ tbody tr:hover{background:#faf8f3}
     <div class="panel">
       <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;flex-wrap:wrap;gap:8px">
         <h3 id="panel-trajectory-h3" style="margin:0" data-i18n="panel_trajectory">Trajectoire de Programmation 2026&ndash;2030</h3>
-        <div class="legend" style="margin:0;gap:12px">
+        <div id="traj-legend" class="legend" style="margin:0;gap:12px">
           <span><i class="dot" style="background:var(--don)"></i><span data-i18n="legend_donations">Donativos</span></span>
           <span><i class="dot" style="background:var(--empr)"></i><span data-i18n="legend_loans">Empréstimos</span></span>
           <span><i class="dot" style="background:var(--int)"></i><span data-i18n="legend_state">Contrib. Estado</span></span>
@@ -1224,10 +1233,17 @@ function renderDashboardFromRaw(T_, Text, Tint, Tdon, Tempr) {
     }), 'v'),
   }));
 
-  renderDashboard(T_, Text, Tint, Tdon, Tempr,
-    byMin.map(([k, v]) => ({short_name: k, name: k, total: v, project_count: PIP_DATA.filter(p => p.min_abbr === k).length})),
-    byYear
-  );
+  // Build per-ministry source breakdown for demo mode
+  const byMinistryFull = byMin.map(([k, v]) => {
+    const grpProjects = PIP_DATA.filter(p => p.min_abbr === k);
+    const don   = grpProjects.reduce((s, p) => s + (p.don   || 0), 0);
+    const empr  = grpProjects.reduce((s, p) => s + (p.empr  || 0), 0);
+    const state = grpProjects.reduce((s, p) => s + (p.interno || 0), 0);
+    return {short_name: k, name: k, total: v, project_count: grpProjects.length,
+            donations: don, loans: empr, state_contribution: state};
+  });
+
+  renderDashboard(T_, Text, Tint, Tdon, Tempr, byMinistryFull, byYear);
 }
 
 function renderDashboard(T_, Text, Tint, Tdon, Tempr, byMinistry, byYear) {
@@ -1245,12 +1261,31 @@ function renderDashboard(T_, Text, Tint, Tdon, Tempr, byMinistry, byYear) {
     `<div class="kpi"><div class="lab">${k.lab}</div><div class="val">${k.val} <span class="unit">${k.unit}</span></div><div class="sub">${k.sub}</div></div>`
   ).join('');
 
-  // Ministry bars top 10
+  // Ministry bars top 10 — stacked don/empr/estado
   const topMin = [...byMinistry].sort((a, b) => b.total - a.total).slice(0, 10);
   const maxM = topMin[0]?.total || 1;
-  document.getElementById('minbars').innerHTML = topMin.map(m =>
-    `<div class="bar-row"><span class="nm" title="${m.name}">${m.short_name || m.name}</span><div class="bar-track"><div class="bar-fill" style="width:${100 * m.total / maxM}%"></div></div><span class="vv">${fmt(m.total)}</span></div>`
-  ).join('');
+  document.getElementById('minbars').innerHTML = topMin.map(m => {
+    const don   = m.donations          || 0;
+    const empr  = m.loans              || 0;
+    const state = m.state_contribution || 0;
+    const seg   = don + empr + state || m.total || 1;
+    const pD = (100 * don  / seg).toFixed(1);
+    const pE = (100 * empr / seg).toFixed(1);
+    const pI = (100 - parseFloat(pD) - parseFloat(pE)).toFixed(1);
+    const barW = (100 * m.total / maxM).toFixed(1);
+    const tip = `${m.name}\nDons: ${fmt(don)} M · ${pD}%\nEmp: ${fmt(empr)} M · ${pE}%\nEstado: ${fmt(state)} M · ${pI}%\nTotal: ${fmt(m.total)} M`;
+    return `<div class="bar-row">
+      <span class="nm" title="${m.name}">${m.short_name || m.name}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${barW}%;background:none;padding:0" title="${tip}">
+        <div class="bar-stacked">
+          <div class="s-don"  style="width:${pD}%"></div>
+          <div class="s-empr" style="width:${pE}%"></div>
+          <div class="s-int"  style="width:${pI}%"></div>
+        </div>
+      </div></div>
+      <span class="vv">${fmt(m.total)}</span>
+    </div>`;
+  }).join('');
 
   // Financing stack
   document.getElementById('finstack').innerHTML = '';
@@ -1313,6 +1348,22 @@ function renderDashboard(T_, Text, Tint, Tdon, Tempr, byMinistry, byYear) {
   }
   renderYearChart(document.getElementById('yearchart'));
   window._byYear = byYear;
+
+  // B+C — Trajectory legend with dynamic % per source
+  const totalAllY = byYear.reduce((s, y) => s + (y.total || 0), 0) || 1;
+  const sumDon    = byYear.reduce((s, y) => s + (y.donations || 0), 0);
+  const sumEmpr   = byYear.reduce((s, y) => s + (y.loans || 0), 0);
+  const sumState  = byYear.reduce((s, y) => s + (y.state_contribution || 0), 0);
+  const leg = document.getElementById('traj-legend');
+  if (leg) {
+    const pD = (100 * sumDon   / totalAllY).toFixed(1);
+    const pE = (100 * sumEmpr  / totalAllY).toFixed(1);
+    const pI = (100 * sumState / totalAllY).toFixed(1);
+    leg.innerHTML =
+      `<span><i class="dot" style="background:var(--don)"></i><span>${T('legend_donations')}</span><b class="leg-pct" style="color:var(--don)">${pD}%</b></span>` +
+      `<span><i class="dot" style="background:var(--empr)"></i><span>${T('legend_loans')}</span><b class="leg-pct" style="color:var(--empr)">${pE}%</b></span>` +
+      `<span><i class="dot" style="background:var(--int)"></i><span>${T('legend_state')}</span><b class="leg-pct" style="color:var(--int)">${pI}%</b></span>`;
+  }
 }
 
 // ============================================================
@@ -1603,19 +1654,38 @@ function renderSaisieTable() {
   });
   document.getElementById('saisie-count').textContent = rows.length + ' ' + T('count_suffix');
 
-  document.getElementById('saisie-tbody').innerHTML = rows.map(p => {
-    const wfBadge = `<span class="wf wf-${p.workflow_status}">${T('wf_' + p.workflow_status) || p.workflow_status}</span>`;
-    const totalFmt = new Intl.NumberFormat('pt-PT', {maximumFractionDigits:0}).format(Math.round(p.total_cost / 1000));
-    const actions = buildRowActions(p);
-    return `<tr>
-      <td><span class="code">${esc(p.code)}</span></td>
-      <td><div class="pname">${esc(p.title)}</div></td>
-      <td style="font-size:11px;color:var(--muted)">${esc(p.ministry_short)}</td>
-      <td>${wfBadge}</td>
-      <td class="num">${totalFmt} M</td>
-      <td><div class="row-actions">${actions}</div></td>
-    </tr>`;
-  }).join('');
+  // Group by ministry
+  const groups = {};
+  rows.forEach(p => {
+    const key = p.ministry || '_none';
+    if (!groups[key]) groups[key] = {name: p.ministry_name || p.ministry_short || '—', projects: [], total: 0};
+    groups[key].projects.push(p);
+    groups[key].total += p.total_cost || 0;
+  });
+  const sortedGroups = Object.entries(groups).sort((a, b) => b[1].total - a[1].total);
+
+  const numFmt = v => new Intl.NumberFormat('pt-PT', {maximumFractionDigits:0}).format(Math.round(v / 1000));
+  let html = '';
+  sortedGroups.forEach(([, grp]) => {
+    html += `<tr class="min-grp-hdr"><td colspan="6">
+      <span class="min-hdr-name">${esc(grp.name)}</span>
+      <span class="min-hdr-badge">${grp.projects.length}</span>
+      <span class="min-hdr-total">${numFmt(grp.total)} M FCFA</span>
+    </td></tr>`;
+    grp.projects.forEach(p => {
+      const wfBadge = `<span class="wf wf-${p.workflow_status}">${T('wf_' + p.workflow_status) || p.workflow_status}</span>`;
+      const actions = buildRowActions(p);
+      html += `<tr>
+        <td><span class="code">${esc(p.code)}</span></td>
+        <td><div class="pname">${esc(p.title)}</div></td>
+        <td style="font-size:11px;color:var(--muted)">${esc(p.ministry_short)}</td>
+        <td>${wfBadge}</td>
+        <td class="num">${numFmt(p.total_cost)} M</td>
+        <td><div class="row-actions">${actions}</div></td>
+      </tr>`;
+    });
+  });
+  document.getElementById('saisie-tbody').innerHTML = html;
 }
 
 function buildRowActions(p) {

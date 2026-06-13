@@ -790,7 +790,10 @@ class DashboardView(APIView):
                 total=Coalesce(
                     Sum(F('donations') + F('loans') + F('state_contribution')),
                     Value(Decimal('0'))
-                )
+                ),
+                donations=Coalesce(Sum('donations'), Value(Decimal('0'))),
+                loans=Coalesce(Sum('loans'), Value(Decimal('0'))),
+                state_contribution=Coalesce(Sum('state_contribution'), Value(Decimal('0'))),
             )
             .order_by('-total')
         )
@@ -809,6 +812,9 @@ class DashboardView(APIView):
                 'short_name': row['ministry_short'] or '',
                 'project_count': by_ministry_counts.get(mid, 0),
                 'total': t,
+                'donations': float(row['donations'] or 0),
+                'loans': float(row['loans'] or 0),
+                'state_contribution': float(row['state_contribution'] or 0),
                 'percentage': round(t / total_pip * 100, 2) if total_pip > 0 else 0,
             })
 

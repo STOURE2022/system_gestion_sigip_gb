@@ -53,6 +53,7 @@ YEAR_COLS = {
 }
 GRAND_TOTAL_IDX = 28   # col AC
 MAIN_SHEET = 'GLOBAL FINANÇAS '   # trailing space is intentional
+ALT_SHEETS = ['PIP 2026_2030 GB']  # alternative sheet names with same layout
 
 REFERENCE_TOTALS = {
     # Reference values (milliers FCFA) from official Excel – used for QC
@@ -344,13 +345,23 @@ class Command(BaseCommand):
         self.stdout.write(f'A ler: {excel_path}')
         wb = openpyxl.load_workbook(excel_path, read_only=True, data_only=True)
 
-        if MAIN_SHEET not in wb.sheetnames:
+        # Find the right sheet: main or alternatives
+        sheet_name = None
+        if MAIN_SHEET in wb.sheetnames:
+            sheet_name = MAIN_SHEET
+        else:
+            for alt in ALT_SHEETS:
+                if alt in wb.sheetnames:
+                    sheet_name = alt
+                    break
+        if not sheet_name:
             available = ', '.join(wb.sheetnames)
             raise CommandError(
                 f'Folha "{MAIN_SHEET}" não encontrada. Folhas disponíveis: {available}'
             )
 
-        ws = wb[MAIN_SHEET]
+        self.stdout.write(f'Folha: {sheet_name}')
+        ws = wb[sheet_name]
 
         with transaction.atomic():
             if self.dry_run:

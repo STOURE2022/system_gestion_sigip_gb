@@ -1,0 +1,16 @@
+/* Highlight the Import de Dados link in top navbar */
+#header .navbar-nav a[href*="import-data"] {
+  background: linear-gradient(135deg, #c8961e, #e8b84b) !important;
+  color: #fff !important;
+  padding: 6px 16px !important;
+  border-radius: 6px !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  letter-spacing: .3px;
+  transition: .15s;
+  text-decoration: none !important;
+}
+#header .navbar-nav a[href*="import-data"]:hover {
+  background: linear-gradient(135deg, #e8b84b, #c8961e) !important;
+  transform: translateY(-1px);
+}

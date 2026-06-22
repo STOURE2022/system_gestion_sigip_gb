@@ -221,7 +221,7 @@ DJANGO_CELERY_RESULTS_TASK_ID_MAX_LENGTH = 191
 # drf-spectacular (OpenAPI)
 # ---------------------------------------------------------------------------
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'SIGIP-GB API',
+    'TITLE': 'SGPIP API',
     'DESCRIPTION': (
         'Sistema de Gestão do Investimento Público da República da Guiné-Bissau. '
         'API para gestão do Programa de Investimento Público (PIP) 2026-2030.'
@@ -291,13 +291,13 @@ SIGIP_AMOUNT_UNIT = 'FCFA'
 # ---------------------------------------------------------------------------
 JAZZMIN_SETTINGS = {
     # Title and branding
-    "site_title": "SIGIP·GB Admin",
-    "site_header": "SIGIP·GB",
-    "site_brand": "SIGIP·GB",
+    "site_title": "SGPIP Admin",
+    "site_header": "SGPIP",
+    "site_brand": "SGPIP",
     "site_logo": None,
     "login_logo": None,
     "site_icon": None,
-    "welcome_sign": "Bem-vindo ao SIGIP·GB — Sistema de Gestão do Investimento Público",
+    "welcome_sign": "Bienvenue — Système de Gestion du Programme d'Investissement Public",
     "copyright": "DGP — República da Guiné-Bissau",
 
     # Search
@@ -306,6 +306,7 @@ JAZZMIN_SETTINGS = {
     # Top menu
     "topmenu_links": [
         {"name": "← Retour à l'application", "url": "/app/", "new_window": False},
+        {"name": "📥 Import de Dados", "url": "/admin/import-data/", "new_window": False, "icon": "fas fa-file-import"},
         {"model": "core.User"},
     ],
 
@@ -351,7 +352,7 @@ JAZZMIN_SETTINGS = {
 
     # UI tweaks
     "related_modal_active": True,
-    "custom_css": None,
+    "custom_css": "css/admin_custom.css",
     "custom_js": None,
     "use_google_fonts_cdn": False,
     "show_ui_builder": False,
@@ -368,7 +369,7 @@ JAZZMIN_UI_TWEAKS = {
     "footer_small_text": False,
     "body_small_text": False,
     "brand_small_text": False,
-    "brand_colour": "navbar-teal",      # bande de marque vert SIGIP
+    "brand_colour": "navbar-teal",      # bande de marque vert SGPIP
     "accent": "accent-teal",
     "navbar": "navbar-white",           # barre du haut blanche (plus noire)
     "no_navbar_border": False,

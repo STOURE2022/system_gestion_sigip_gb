@@ -1,0 +1,85 @@
+{% extends "admin/base_site.html" %}
+{% load i18n %}
+
+{% block title %}Import de Dados — SGPIP{% endblock %}
+
+{% block branding %}
+<div id="site-name" style="display:flex;align-items:center;gap:14px">
+  <a href="{% url 'admin:index' %}" style="color:#fff;text-decoration:none;font-size:15px;font-weight:700;letter-spacing:.3px">
+    SGPIP &mdash; Administration
+  </a>
+  <a href="/app/"
+     style="background:rgba(200,150,30,.25);border:1px solid rgba(200,150,30,.6);
+            color:#e8b84b;padding:5px 14px;border-radius:6px;font-size:11px;
+            font-weight:700;text-decoration:none;letter-spacing:.3px;
+            transition:background .15s;white-space:nowrap"
+     onmouseover="this.style.background='rgba(200,150,30,.45)'"
+     onmouseout="this.style.background='rgba(200,150,30,.25)'">
+    &#8592; SGPIP
+  </a>
+</div>
+{% endblock %}
+
+{% block content %}
+<style>
+  .import-card { background:#fff; border-radius:12px; padding:28px 32px; max-width:700px; box-shadow:0 2px 12px rgba(0,0,0,.08); margin-bottom:24px; }
+  .import-card h2 { font-size:20px; font-weight:700; margin-bottom:6px; color:#0d1b2a; }
+  .import-card p { font-size:13px; color:#6b7280; margin-bottom:18px; }
+  .import-form label { font-size:13px; font-weight:600; color:#1b263b; display:block; margin-bottom:6px; }
+  .import-form input[type=file] { padding:10px; border:2px dashed #d1d5db; border-radius:8px; width:100%; font-size:13px; background:#f9fafb; cursor:pointer; margin-bottom:14px; }
+  .import-form input[type=file]:hover { border-color:#0a4d4a; background:#f0fdf4; }
+  .import-form .options { display:flex; gap:18px; margin-bottom:18px; flex-wrap:wrap; }
+  .import-form .options label { display:flex; align-items:center; gap:6px; font-weight:500; cursor:pointer; }
+  .import-form .options input[type=checkbox] { accent-color:#0a4d4a; }
+  .btn-import { background:linear-gradient(135deg,#0a4d4a,#0d6560); color:#fff; border:none; padding:11px 28px; border-radius:8px; font-size:14px; font-weight:700; cursor:pointer; transition:.15s; }
+  .btn-import:hover { background:linear-gradient(135deg,#0d6560,#0a4d4a); transform:translateY(-1px); }
+  .btn-import:disabled { opacity:.5; cursor:not-allowed; transform:none; }
+  .result-box { background:#f8fafc; border:1px solid #e2e8f0; border-radius:10px; padding:20px 24px; margin-top:20px; font-family:'Segoe UI Mono',monospace; font-size:12px; white-space:pre-wrap; line-height:1.6; max-height:400px; overflow-y:auto; }
+  .result-box.success { border-color:#16a34a; background:#f0fdf4; }
+  .result-box.error { border-color:#dc2626; background:#fef2f2; }
+  .format-info { background:#fffbeb; border:1px solid #fbbf24; border-radius:8px; padding:14px 18px; font-size:12px; color:#92400e; margin-bottom:20px; }
+  .format-info b { color:#78350f; }
+  .spinner { display:none; border:3px solid #e5e7eb; border-top:3px solid #0a4d4a; border-radius:50%; width:20px; height:20px; animation:spin .8s linear infinite; margin-left:12px; vertical-align:middle; }
+  @keyframes spin { to { transform:rotate(360deg); } }
+</style>
+
+<div class="import-card">
+  <h2>&#128229; Import de Dados</h2>
+  <p>Importer des projets et programmations depuis un fichier CSV, Excel (.xlsx) ou JSON.</p>
+
+  <div class="format-info">
+    <b>Formats accept&eacute;s :</b><br>
+    &bull; <b>Excel PIP officiel</b> (.xlsx) &mdash; format DGP/DPDEP avec feuille &laquo; GLOBAL FINAN&Ccedil;AS &raquo; ou &laquo; PIP 2026_2030 GB &raquo;<br>
+    &bull; <b>CSV / Excel / JSON standardis&eacute;</b> &mdash; colonnes : code, title, ministry, financier, don_2026..2030, emp_2026..2030, state_2026..2030
+  </div>
+
+  <form method="post" enctype="multipart/form-data" class="import-form" id="import-form">
+    {% csrf_token %}
+    <label for="id_file">Fichier &agrave; importer</label>
+    <input type="file" name="file" id="id_file" accept=".csv,.xlsx,.xls,.json" required>
+
+    <div class="options">
+      <label><input type="checkbox" name="dry_run" checked> Simulation (dry-run)</label>
+      <label><input type="checkbox" name="skip_qc"> Ignorer le contr&ocirc;le qualit&eacute;</label>
+      <label><input type="checkbox" name="use_pip_excel"> Format PIP officiel Excel</label>
+    </div>
+
+    <button type="submit" class="btn-import" id="btn-import">
+      Lancer l'import
+    </button>
+    <span class="spinner" id="spinner"></span>
+  </form>
+
+  {% if result %}
+  <div class="result-box {% if error %}error{% else %}success{% endif %}">{{ result }}</div>
+  {% endif %}
+</div>
+
+<script>
+document.getElementById('import-form').addEventListener('submit', function() {
+  document.getElementById('btn-import').disabled = true;
+  document.getElementById('btn-import').textContent = 'Import en cours...';
+  document.getElementById('spinner').style.display = 'inline-block';
+});
+</script>
+{% endblock %}

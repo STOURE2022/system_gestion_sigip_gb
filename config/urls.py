@@ -7,6 +7,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
+from sigip.admin_views import import_data_view
 from sigip.resumo_views import (
     ResumoPNDView, ResumoSectorView,
     ResumoNaturezaDespesaView, ResumoPrioridadeGovernoView,
@@ -14,11 +15,14 @@ from sigip.resumo_views import (
     ResumoExportView,
 )
 
-admin.site.site_header = 'SIGIP-GB – Administração'
-admin.site.site_title = 'SIGIP-GB'
-admin.site.index_title = 'Gestão do Investimento Público – Guiné-Bissau'
+admin.site.site_header = 'SGPIP – Administration'
+admin.site.site_title = 'SGPIP'
+admin.site.index_title = "Système de Gestion du Programme d'Investissement Public – Guinée-Bissau"
 
 urlpatterns = [
+    # Admin import (must be before admin/ to avoid being caught by admin)
+    path('admin/import-data/', import_data_view, name='admin-import-data'),
+
     # Admin
     path('admin/', admin.site.urls),
 

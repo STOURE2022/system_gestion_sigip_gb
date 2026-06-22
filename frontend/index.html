@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SIGIP-GB · Sistema de Gestão do Investimento Público</title>
+<title>SGPIP · Sistema de Gestão do Programa de Investimento Público</title>
 <style>
 :root{
   --ink:#0d1b2a; --ink2:#1b263b; --paper:#f7f5f0; --card:#ffffff;
@@ -179,7 +179,7 @@ tbody tr:hover{background:#faf8f3}
 <header>
   <div class="brand">
     <div class="crest">GB</div>
-    <div><h1>SIGIP&middot;GB</h1><p data-i18n="brand_sub">Sistema de Gestão do Investimento Público</p></div>
+    <div><h1>SGPIP</h1><p data-i18n="brand_sub">Sistema de Gestão do Programa de Investimento Público</p></div>
   </div>
   <div class="hgov" id="hgov-text">República da Guiné-Bissau<br>Ministério da Economia, Plano e Integração Regional<br><b>Direcção-Geral do Plano &mdash; PIP 2026&ndash;2030</b></div>
   <div class="hactions">
@@ -221,7 +221,7 @@ tbody tr:hover{background:#faf8f3}
         <div class="legend" style="margin-top:10px">
           <span><i class="dot" style="background:var(--don)"></i><span data-i18n="legend_donations">Donativos</span></span>
           <span><i class="dot" style="background:var(--empr)"></i><span data-i18n="legend_loans">Empréstimos</span></span>
-          <span><i class="dot" style="background:var(--int)"></i><span data-i18n="legend_state">Contrib. Estado</span></span>
+          <span><i class="dot" style="background:var(--int)"></i><span data-i18n="legend_state">Financ. interno</span></span>
         </div>
         <div style="margin-top:22px">
           <h3 data-i18n="panel_ext_int">Fontes Externas vs Internas</h3>
@@ -239,7 +239,7 @@ tbody tr:hover{background:#faf8f3}
       <div class="legend" style="margin-top:14px;justify-content:center">
         <span><i class="dot" style="background:var(--don)"></i><span data-i18n="legend_donations">Donativos</span></span>
         <span><i class="dot" style="background:var(--empr)"></i><span data-i18n="legend_loans">Empréstimos</span></span>
-        <span><i class="dot" style="background:var(--int)"></i><span data-i18n="legend_state">Contrib. Estado</span></span>
+        <span><i class="dot" style="background:var(--int)"></i><span data-i18n="legend_state">Financ. interno</span></span>
       </div>
     </div>
   </div>
@@ -278,6 +278,9 @@ tbody tr:hover{background:#faf8f3}
     <div class="eyebrow" data-i18n="eyebrow_min">Análise Sectorial</div>
     <div class="vtitle" data-i18n="vtitle_min">Investimento por Ministério</div>
     <div class="vsub" data-i18n="vsub_min">Repartição dos 631 mil milhões FCFA entre os 26 ministérios e instituições</div>
+    <div class="saisie-toolbar">
+      <button class="btn-add" id="btn-new-ministry" style="display:none" onclick="openMinistryForm()" data-i18n="btn_new_ministry">+ Novo Ministério</button>
+    </div>
     <div class="panel"><div id="minfull"></div></div>
   </div>
 
@@ -377,7 +380,7 @@ tbody tr:hover{background:#faf8f3}
   </div>
 
   <div class="foot">
-    <span>SIGIP&middot;GB &mdash; Dados: DGP/PIP 2026&ndash;2030 &middot; <span id="foot-mode" data-i18n="foot_demo">Modo demonstração</span></span>
+    <span>SGPIP &mdash; Dados: DGP/PIP 2026&ndash;2030 &middot; <span id="foot-mode" data-i18n="foot_demo">Modo demonstração</span></span>
     <span class="pill">&#9679; <span data-i18n="foot_standard">Padrão UEMOA &middot; FCFA</span></span>
   </div>
 </main>
@@ -387,7 +390,7 @@ tbody tr:hover{background:#faf8f3}
   <div class="modal">
     <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px">
       <div class="crest" style="width:36px;height:36px;font-size:11px">GB</div>
-      <div><h2 style="margin:0">SIGIP&middot;GB</h2><p style="margin:0;font-size:11px" data-i18n="login_subtitle">Autenticação segura</p></div>
+      <div><h2 style="margin:0">SGPIP</h2><p style="margin:0;font-size:11px" data-i18n="login_subtitle">Autenticação segura</p></div>
     </div>
     <div class="form-group">
       <label data-i18n="login_user_label">Utilizador</label>
@@ -484,7 +487,7 @@ tbody tr:hover{background:#faf8f3}
               <th data-i18n="th_year">Ano</th>
               <th data-i18n="legend_donations">Donativos (FCFA)</th>
               <th data-i18n="legend_loans">Empréstimos (FCFA)</th>
-              <th data-i18n="legend_state">Contrib. Estado (FCFA)</th>
+              <th data-i18n="legend_state">Financ. interno do Estado (FCFA)</th>
               <th data-i18n="th_year_total">Total Ano</th>
             </tr>
           </thead>
@@ -498,6 +501,39 @@ tbody tr:hover{background:#faf8f3}
     <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)">
       <button onclick="closeProjectModal()" style="padding:10px 20px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit" data-i18n="btn_cancel">Cancelar</button>
       <button id="btn-save-project" onclick="saveProject()" class="btn-primary" style="width:auto;padding:10px 24px" data-i18n="btn_save">Guardar</button>
+    </div>
+  </div>
+</div>
+
+<!-- Ministry Form Modal -->
+<div id="ministry-modal" class="modal-overlay" style="display:none">
+  <div class="modal" style="max-width:520px;padding:28px 32px">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
+      <h2 id="ministry-modal-title" style="font-size:18px;font-weight:700;color:var(--ink)" data-i18n="ministry_modal_title">Novo Ministério</h2>
+      <button onclick="closeMinistryModal()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);line-height:1">&times;</button>
+    </div>
+    <div class="form-group" style="margin-bottom:14px">
+      <label data-i18n="field_ministry_name">Nome do Ministério</label>
+      <input id="fm-name" type="text" placeholder="Ex: Ministère de l'Éducation Nationale" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
+    </div>
+    <div class="form-group" style="margin-bottom:14px">
+      <label data-i18n="field_short_name">Sigla</label>
+      <input id="fm-short" type="text" placeholder="Ex: MEN" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
+    </div>
+    <div class="form-row" style="margin-bottom:14px">
+      <div class="form-group">
+        <label data-i18n="field_pillar">Pilar PND</label>
+        <select id="fm-pillar"><option value="">—</option></select>
+      </div>
+      <div class="form-group">
+        <label data-i18n="field_gov_priority">Prioridade Governamental</label>
+        <select id="fm-govpriority"><option value="">—</option></select>
+      </div>
+    </div>
+    <div id="ministry-form-error" class="form-error"></div>
+    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)">
+      <button onclick="closeMinistryModal()" style="padding:10px 20px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit" data-i18n="btn_cancel">Cancelar</button>
+      <button id="btn-save-ministry" onclick="saveMinistry()" class="btn-primary" style="width:auto;padding:10px 24px" data-i18n="btn_save">Guardar</button>
     </div>
   </div>
 </div>
@@ -536,7 +572,7 @@ let CL = localStorage.getItem('sigip_lang') || 'pt'; // current language
 
 const I18N = {
   pt: {
-    brand_sub: 'Sistema de Gestão do Investimento Público',
+    brand_sub: 'Sistema de Gestão do Programa de Investimento Público',
     hgov: 'República da Guiné-Bissau<br>Ministério da Economia, Plano e Integração Regional<br><b>Direcção-Geral do Plano &mdash; PIP 2026&ndash;2030</b>',
     btn_login: 'Entrar',
     btn_logout: 'Sair',
@@ -546,7 +582,7 @@ const I18N = {
     nav_fin: 'Financiadores',
     nav_prog: 'Programação Plurianual',
     banner_demo_html: '<b>Modo demonstração</b> &mdash; dados reais do PIP 2026&ndash;2030 (292 projectos). Entre para aceder à API. Valores em <b>milhões de FCFA</b>.',
-    banner_live_html: '<b>Ligado à API</b> &mdash; dados em tempo real da base de dados SIGIP-GB.',
+    banner_live_html: '<b>Ligado à API</b> &mdash; dados em tempo real da base de dados SGPIP.',
     eyebrow_dash: 'Visão Consolidada',
     vtitle_dash: 'Painel Nacional do Investimento Público',
     vsub_dash: 'Programa de Investimento Público &mdash; Plano Nacional de Desenvolvimento 2026&ndash;2030',
@@ -554,7 +590,7 @@ const I18N = {
     panel_financing: 'Estrutura de Financiamento',
     legend_donations: 'Donativos',
     legend_loans: 'Empréstimos',
-    legend_state: 'Contrib. Estado',
+    legend_state: 'Financ. interno',
     legend_external: 'Financiamento Externo',
     legend_internal: 'Financiamento Interno',
     panel_ext_int: 'Fontes Externas vs Internas',
@@ -589,7 +625,7 @@ const I18N = {
     foot_standard: 'Padrão UEMOA &middot; FCFA',
     kpi_total: 'Total PIP 2026-2030',
     kpi_external: 'Financiamento Externo',
-    kpi_state: 'Contribuição do Estado',
+    kpi_state: 'Financiamento interno do Estado',
     kpi_ministries: 'Ministérios / Instituições',
     kpi_of_total: '% do total',
     kpi_financiers: 'financiadores',
@@ -611,6 +647,11 @@ const I18N = {
     vsub_saisie: 'Criar, editar e acompanhar os projectos do seu ministério',
     vsub_saisie_dgp: 'Validar e acompanhar todos os projectos submetidos pelos ministérios',
     btn_new_project: '+ Novo Projecto',
+    btn_new_ministry: '+ Novo Ministério',
+    ministry_modal_title: 'Novo Ministério',
+    field_ministry_name: 'Nome do Ministério',
+    field_short_name: 'Sigla',
+    field_gov_priority: 'Prioridade Governamental',
     all_statuses: 'Todos os estados',
     wf_RASCUNHO: 'Rascunho',
     wf_SUBMETIDO: 'Submetido',
@@ -684,7 +725,7 @@ const I18N = {
     sintese_unit: 'Valores em milhões de FCFA',
   },
   fr: {
-    brand_sub: "Système de Gestion de l'Investissement Public",
+    brand_sub: "Système de Gestion du Programme d'Investissement Public",
     hgov: "République de Guinée-Bissau<br>Ministère de l'Économie, du Plan et de l'Intégration Régionale<br><b>Direction Générale du Plan &mdash; PIP 2026&ndash;2030</b>",
     btn_login: 'Connexion',
     btn_logout: 'Déconnexion',
@@ -694,7 +735,7 @@ const I18N = {
     nav_fin: 'Financeurs',
     nav_prog: 'Programmation Pluriannuelle',
     banner_demo_html: "<b>Mode démonstration</b> &mdash; données réelles du PIP 2026&ndash;2030 (292 projets). Connectez-vous pour accéder à l'API. Valeurs en <b>millions de FCFA</b>.",
-    banner_live_html: "<b>Connecté à l'API</b> &mdash; données en temps réel de la base de données SIGIP-GB.",
+    banner_live_html: "<b>Connecté à l'API</b> &mdash; données en temps réel de la base de données SGPIP.",
     eyebrow_dash: 'Vue Consolidée',
     vtitle_dash: "Tableau National de l'Investissement Public",
     vsub_dash: "Programme d'Investissement Public &mdash; Plan National de Développement 2026&ndash;2030",
@@ -702,7 +743,7 @@ const I18N = {
     panel_financing: 'Structure de Financement',
     legend_donations: 'Dons',
     legend_loans: 'Prêts',
-    legend_state: 'Contrib. État',
+    legend_state: 'Financ. interne',
     legend_external: 'Financement Externe',
     legend_internal: 'Financement Interne',
     panel_ext_int: 'Sources Externes vs Internes',
@@ -737,7 +778,7 @@ const I18N = {
     foot_standard: 'Standard UEMOA &middot; FCFA',
     kpi_total: 'Total PIP 2026-2030',
     kpi_external: 'Financement Externe',
-    kpi_state: "Contribution de l'État",
+    kpi_state: "Financement interne d'État",
     kpi_ministries: 'Ministères / Institutions',
     kpi_of_total: '% du total',
     kpi_financiers: 'financeurs',
@@ -759,6 +800,11 @@ const I18N = {
     vsub_saisie: 'Créer, modifier et suivre les projets de votre ministère',
     vsub_saisie_dgp: 'Valider et suivre tous les projets soumis par les ministères',
     btn_new_project: '+ Nouveau Projet',
+    btn_new_ministry: '+ Nouveau Ministère',
+    ministry_modal_title: 'Nouveau Ministère',
+    field_ministry_name: 'Nom du Ministère',
+    field_short_name: 'Sigle',
+    field_gov_priority: 'Priorité Gouvernementale',
     all_statuses: 'Tous les états',
     wf_RASCUNHO: 'Brouillon',
     wf_SUBMETIDO: 'Soumis',
@@ -973,6 +1019,7 @@ function logout() {
   if (_navSintese) _navSintese.style.display = 'none';
   SINTESE_CACHE = {};
   document.getElementById('btn-new-project').style.display = 'none';
+  document.getElementById('btn-new-ministry').style.display = 'none';
   document.getElementById('user-info').innerHTML = '';
   // Switch away from saisie if active
   const saisieBtn = document.getElementById('nav-saisie');
@@ -1033,7 +1080,7 @@ async function initFromAPI() {
     renderFromAPI(dashboard, projects.results || projects);
     // Load user profile and ref data after auth confirmed
     await fetchUserProfile();
-    loadRefData(); // async, no need to await
+    loadRefData().then(() => renderMinistries()); // re-render with all ministries
   } catch (e) {
     console.warn('API indisponível, modo demonstração:', e.message);
     ACCESS_TOKEN = null;
@@ -1238,11 +1285,87 @@ function updateTable() {
 // ============================================================
 function renderMinistries() {
   const ma = minAgg();
+  const aggMap = Object.fromEntries(ma);
   const Tt = sum(PIP_DATA, 'total');
+  // Merge REF_DATA ministries (includes those with 0 projects)
+  if (REF_DATA.ministries && REF_DATA.ministries.length) {
+    REF_DATA.ministries.forEach(m => {
+      const key = m.short_name || m.name;
+      if (!(key in aggMap)) {
+        ma.push([key, 0]);
+        aggMap[key] = 0;
+      }
+    });
+  }
   const maxM = ma[0]?.[1] || 1;
   document.getElementById('minfull').innerHTML = ma.map(([n, v], i) =>
-    `<div class="bar-row"><span class="nm" style="width:170px" title="${n}">${i + 1}. ${n}</span><div class="bar-track"><div class="bar-fill" style="width:${100 * v / maxM}%"></div></div><span class="vv">${fmt(v)}</span><span class="vv" style="width:48px;color:var(--muted)">${Tt > 0 ? (100 * v / Tt).toFixed(1) : 0}%</span></div>`
+    `<div class="bar-row"><span class="nm" style="width:170px" title="${n}">${i + 1}. ${n}</span><div class="bar-track"><div class="bar-fill" style="width:${v > 0 ? 100 * v / maxM : 0}%"></div></div><span class="vv">${fmt(v)}</span><span class="vv" style="width:48px;color:var(--muted)">${Tt > 0 ? (100 * v / Tt).toFixed(1) : 0}%</span></div>`
   ).join('');
+}
+
+// ── Ministry CRUD ──────────────────────────────────────────
+async function openMinistryForm() {
+  // Populate pillar dropdown
+  const pillars = REF_DATA.pillars || [];
+  const selPillar = document.getElementById('fm-pillar');
+  selPillar.innerHTML = '<option value="">—</option>' + pillars.map(p =>
+    `<option value="${p.id}">${esc(p.code)} – ${esc(p.label)}</option>`
+  ).join('');
+  // Populate gov priority dropdown
+  try {
+    const gp = await apiFetch('/gov-priorities/?page_size=50');
+    const priorities = gp.results || gp || [];
+    const selGP = document.getElementById('fm-govpriority');
+    selGP.innerHTML = '<option value="">—</option>' + priorities.map(p =>
+      `<option value="${p.id}">${esc(p.label)}</option>`
+    ).join('');
+  } catch(e) { console.warn('Could not load gov priorities:', e.message); }
+  // Reset form
+  document.getElementById('fm-name').value = '';
+  document.getElementById('fm-short').value = '';
+  document.getElementById('ministry-form-error').style.display = 'none';
+  document.getElementById('ministry-modal').style.display = '';
+}
+
+function closeMinistryModal() {
+  document.getElementById('ministry-modal').style.display = 'none';
+}
+
+async function saveMinistry() {
+  const btn = document.getElementById('btn-save-ministry');
+  btn.disabled = true;
+  const errEl = document.getElementById('ministry-form-error');
+  errEl.style.display = 'none';
+
+  const name = document.getElementById('fm-name').value.trim();
+  const short_name = document.getElementById('fm-short').value.trim();
+  if (!name) {
+    errEl.textContent = T('error_required') || 'Preencha o nome do ministério.';
+    errEl.style.display = 'block';
+    btn.disabled = false;
+    return;
+  }
+
+  const payload = {
+    name,
+    short_name,
+    pillar: document.getElementById('fm-pillar').value || null,
+    gov_priority: document.getElementById('fm-govpriority').value || null,
+  };
+
+  try {
+    await apiMutate('POST', '/ministries/', payload);
+    closeMinistryModal();
+    // Reload ref data and re-render
+    await loadRefData();
+    renderMinistries();
+  } catch(e) {
+    const msg = await parseApiError(e);
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+  } finally {
+    btn.disabled = false;
+  }
 }
 
 function renderFinanciers() {
@@ -1303,6 +1426,10 @@ async function fetchUserProfile() {
     // Show "New Project" button only for agents (and DGP/ADMIN can edit too)
     if (isAgent() || isDGP() || isAdmin()) {
       document.getElementById('btn-new-project').style.display = '';
+    }
+    // Show "New Ministry" button only for ADMIN/DGP
+    if (isDGP() || isAdmin()) {
+      document.getElementById('btn-new-ministry').style.display = '';
     }
     // Update saisie subtitle
     if (isDGP()) {

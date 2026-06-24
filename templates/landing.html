@@ -94,13 +94,15 @@ body {
 .hero {
   min-height: 100svh;
   background:
-    linear-gradient(160deg,
-      rgba(7,22,40,.70) 0%,
-      rgba(10,50,40,.58) 55%,
-      rgba(7,22,40,.52) 100%),
-    url("/static/images/hero_construction.jpg");
+    linear-gradient(100deg,
+      rgba(7,22,40,.90) 0%,
+      rgba(9,33,58,.74) 30%,
+      rgba(12,45,75,.46) 56%,
+      rgba(18,60,90,.24) 80%,
+      rgba(22,70,100,.14) 100%),
+    url("/static/images/finance_institution.jpg");
   background-size: cover;
-  background-position: center 40%;
+  background-position: center 60%;
   background-attachment: fixed;
   padding: 100px 40px 96px;
   display: flex;
@@ -146,6 +148,27 @@ body {
   50%       { box-shadow: 0 0 0 6px rgba(0,158,73,.1);  }
 }
 .hero-flag-icon { font-size: 36px; margin-bottom: 8px; display: block; }
+/* CSS flag chip (renders on Windows, unlike the emoji) */
+.hero-flag {
+  width: 56px; height: 38px;
+  border-radius: 6px; overflow: hidden;
+  display: grid; grid-template-columns: 38% 62%;
+  box-shadow: 0 6px 18px rgba(0,0,0,.35);
+  margin: 0 auto 14px;
+  align-self: center;
+}
+.hero-flag .fl-left {
+  background: var(--red);
+  display: grid; place-items: center;
+  color: #000; font-size: 17px; line-height: 1;
+}
+.hero-flag .fl-right { display: grid; grid-template-rows: 1fr 1fr; }
+.hero-flag .fl-y { background: var(--yellow); }
+.hero-flag .fl-g { background: var(--green); }
+/* readability boosts on the hero copy */
+.hero-inner .hero-title  { text-shadow: 0 3px 24px rgba(3,12,24,.55); }
+.hero-inner .hero-tagline { text-shadow: 0 2px 12px rgba(3,12,24,.5); color: rgba(255,255,255,.92); }
+.hero-inner .hero-republic { text-shadow: 0 2px 10px rgba(3,12,24,.5); }
 .hero-republic {
   font-size: 11px; font-weight: 700;
   letter-spacing: 3px; text-transform: uppercase;
@@ -466,6 +489,198 @@ footer {
 .footer-links a { color: rgba(255,255,255,.3); text-decoration: none; transition: .15s; }
 .footer-links a:hover { color: rgba(255,255,255,.75); }
 
+/* ══════════════════════════════════════════════════════════════
+   MERGED FEATURES (dashboard mockup, stats band, FAQ, floating btns)
+   Themed into the SGPIP navy + gold institutional palette.
+   ══════════════════════════════════════════════════════════════ */
+
+/* ── Hero two-column layout (copy left / product right) ───────── */
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 52px;
+  align-items: center;
+  max-width: 1240px;
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  text-align: left;
+}
+.hero-inner .hero-badge,
+.hero-inner .hero-flag-icon,
+.hero-inner .hero-republic { margin-left: 0; }
+.hero-inner .hero-flag { margin-left: auto; margin-right: auto; }
+.hero-inner .hero-flag-icon { display: inline-block; }
+.hero-inner .hero-title { text-align: left; }
+.hero-inner .hero-divider { margin: 22px 0; }
+.hero-inner .hero-tagline { margin: 0 0 36px; max-width: 560px; }
+.hero-inner .hero-ctas { justify-content: flex-start; margin-bottom: 32px; }
+.hero-copy { display: flex; flex-direction: column; }
+
+/* trust row sits under the copy column, left aligned */
+.hero-inner .hero-trust { justify-content: flex-start; max-width: 560px; }
+
+/* ── Product / dashboard mockup ───────────────────────────────── */
+.product-shell { position: relative; min-height: 540px; }
+.product-orb {
+  position: absolute;
+  inset: auto -70px -50px auto;
+  width: 260px; height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(200,150,30,.30), transparent 68%);
+  pointer-events: none;
+}
+.main-dashboard {
+  position: relative; z-index: 2;
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.16);
+  border-radius: 28px;
+  padding: 16px;
+  box-shadow: 0 30px 80px rgba(3,12,24,.55);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+.browser-bar {
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 18px 18px 10px 10px;
+  padding: 11px 15px;
+  display: flex; justify-content: space-between; align-items: center;
+  margin-bottom: 12px;
+}
+.browser-dots { display: flex; gap: 6px; }
+.browser-dots i { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,.25); }
+.browser-bar small { font-weight: 700; color: rgba(255,255,255,.55); font-size: 11px; }
+.dash-grid {
+  background: rgba(255,255,255,.96);
+  border-radius: 14px 14px 22px 22px;
+  padding: 16px;
+}
+.dash-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 16px; margin-bottom: 16px;
+}
+.dash-header h3 { color: var(--navy); font-size: 16px; font-weight: 800; letter-spacing: -.3px; }
+.dash-header small { color: var(--muted); font-weight: 700; font-size: 11px; }
+.tag-live {
+  padding: 6px 10px; border-radius: 100px;
+  color: #0a7a38; background: #e6f5ed;
+  font-size: 11px; font-weight: 800; white-space: nowrap;
+}
+.tag-live::before { content: '● '; }
+.kpi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9px; margin-bottom: 12px; }
+.kpi {
+  border-radius: 12px; border: 1px solid var(--line);
+  background: linear-gradient(180deg, #fff, var(--paper));
+  padding: 12px;
+}
+.kpi small { color: var(--muted); font-weight: 800; font-size: 10.5px; }
+.kpi strong { display: block; color: var(--navy); font-size: 21px; letter-spacing: -.6px; margin-top: 4px; }
+.analytics { display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 10px; }
+.chart-card, .ranking-card {
+  border: 1px solid var(--line); border-radius: 16px; padding: 14px; background: #fff;
+}
+.chart-title {
+  display: flex; justify-content: space-between;
+  color: var(--navy); font-size: 12px; font-weight: 800; margin-bottom: 14px;
+}
+.chart-title span { color: var(--muted); font-weight: 700; }
+.bars {
+  height: 150px; display: flex; align-items: end; gap: 8px;
+  padding: 12px; border-radius: 12px;
+  background:
+    linear-gradient(rgba(13,40,71,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(13,40,71,.035) 1px, transparent 1px);
+  background-size: 100% 30px, 36px 100%;
+}
+.bar {
+  flex: 1; border-radius: 8px 8px 3px 3px; min-height: 26px;
+  background: linear-gradient(180deg, var(--green), #54b97e);
+  animation: barGrow .9s cubic-bezier(.25,.8,.4,1) both;
+  transform-origin: bottom;
+}
+.bar:nth-child(2), .bar:nth-child(5) { background: linear-gradient(180deg, var(--gold2), var(--gold3)); }
+.bar:nth-child(4) { background: linear-gradient(180deg, var(--red), #e0606e); }
+@keyframes barGrow { from { transform: scaleY(0); } to { transform: scaleY(1); } }
+.ranking-card h4 { color: var(--navy); font-size: 12px; font-weight: 800; margin-bottom: 14px; }
+.ranking { display: grid; gap: 10px; }
+.rank-item { display: grid; gap: 6px; }
+.rank-label { display: flex; justify-content: space-between; font-size: 11px; color: var(--muted); font-weight: 800; }
+.progress { height: 7px; background: #eef2f6; border-radius: 100px; overflow: hidden; }
+.progress span { display: block; height: 100%; border-radius: 100px; background: var(--green); }
+.floating-card {
+  position: absolute; z-index: 3; left: -24px; bottom: 24px; width: 232px;
+  background: rgba(13,40,71,.85);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: 0 20px 50px rgba(3,12,24,.5);
+  border-radius: 20px; padding: 16px;
+  backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
+}
+.floating-card h4 { color: #fff; margin-bottom: 7px; font-size: 13px; font-weight: 800; }
+.floating-card p { color: rgba(255,255,255,.6); font-size: 11.5px; margin-bottom: 12px; line-height: 1.5; }
+.mini-line {
+  height: 40px; border-radius: 11px;
+  background:
+    linear-gradient(135deg, rgba(0,158,73,.25), transparent 62%),
+    repeating-linear-gradient(90deg, rgba(200,150,30,.4) 0 7px, transparent 7px 15px);
+}
+
+/* ── Stats band (KPI metrics) ─────────────────────────────────── */
+.stats-band-section { padding: 64px 40px 8px; max-width: 1240px; margin: 0 auto; }
+.stats-band {
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px;
+  max-width: 1140px; margin: 0 auto;
+}
+.metric {
+  background: var(--navy); color: #fff; border-radius: 18px;
+  padding: 26px 24px; position: relative; overflow: hidden; min-height: 148px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.metric::after {
+  content: ''; position: absolute; width: 120px; height: 120px;
+  right: -38px; bottom: -38px; border-radius: 50%;
+  background: rgba(200,150,30,.16);
+}
+.metric:nth-child(2) { background: linear-gradient(135deg, #0a5e34, var(--green)); }
+.metric:nth-child(3) { background: var(--navy2); }
+.metric:nth-child(4) { background: linear-gradient(135deg, #7a1320, var(--red)); }
+.metric strong { display: block; font-size: 36px; font-weight: 900; letter-spacing: -1.5px; margin-bottom: 8px; position: relative; z-index: 1; }
+.metric span { color: rgba(255,255,255,.75); font-size: 13px; font-weight: 700; position: relative; z-index: 1; line-height: 1.4; }
+
+/* ── FAQ ──────────────────────────────────────────────────────── */
+.faq-section { padding: 72px 40px; max-width: 1160px; margin: 0 auto; }
+.faq-grid {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px;
+  max-width: 980px; margin: 36px auto 0;
+}
+.faq-item {
+  background: #fff; border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 24px;
+  box-shadow: 0 6px 20px rgba(13,40,71,.05);
+  transition: .22s;
+}
+.faq-item:hover { border-color: #b5c3d3; box-shadow: 0 10px 30px rgba(13,40,71,.09); transform: translateY(-2px); }
+.faq-item h3 { color: var(--navy); font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.faq-item p { color: var(--muted); font-size: 13px; line-height: 1.6; }
+
+/* ── Floating action buttons ──────────────────────────────────── */
+.floating-actions {
+  position: fixed; right: 22px; bottom: 22px; z-index: 900;
+  display: grid; gap: 11px;
+}
+.float-btn {
+  width: 50px; height: 50px; border-radius: 15px;
+  display: grid; place-items: center;
+  font-size: 19px; font-weight: 900; text-decoration: none;
+  box-shadow: 0 16px 38px rgba(7,22,40,.3);
+  border: 1px solid rgba(255,255,255,.5);
+  transition: .22s;
+}
+.float-btn:hover { transform: translateY(-3px) scale(1.04); }
+.float-faq { background: #fff; color: var(--navy); }
+.float-top { background: linear-gradient(135deg, var(--gold), #9c7416); color: #fff; }
+
 /* ── Reveal animation ─────────────────────── */
 .reveal {
   opacity: 0;
@@ -481,6 +696,16 @@ footer {
   .hero    { background-attachment: scroll; }
   .sectors { padding: 64px 28px; }
   .features{ padding: 64px 28px; }
+  .hero-inner    { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero-inner .hero-title,
+  .hero-inner .hero-divider { text-align: center; }
+  .hero-inner .hero-divider { margin: 22px auto; }
+  .hero-inner .hero-tagline { margin: 0 auto 36px; }
+  .hero-inner .hero-ctas,
+  .hero-inner .hero-trust   { justify-content: center; margin-left: auto; margin-right: auto; }
+  .hero-inner .hero-badge   { margin-left: auto; margin-right: auto; }
+  .product-shell { min-height: auto; max-width: 540px; margin: 0 auto; }
+  .floating-card { position: relative; left: 0; bottom: 0; margin-top: 16px; width: 100%; }
 }
 
 /* Tablet — 900px */
@@ -488,6 +713,7 @@ footer {
   .sector-grid  { grid-template-columns: repeat(2, 1fr); }
   .feat-grid    { grid-template-columns: repeat(2, 1fr); }
   .topnav       { padding: 0 24px; }
+  .stats-band   { grid-template-columns: repeat(2, 1fr); }
 }
 
 /* Tablet small — 768px */
@@ -533,6 +759,16 @@ footer {
   /* Sector cards */
   .sector-card  { height: 190px; }
   .sector-desc  { display: none; }         /* trop petit pour le hover reveal */
+
+  /* Merged components */
+  .stats-band-section { padding: 48px 16px 0; }
+  .stats-band   { grid-template-columns: 1fr; }
+  .faq-section  { padding: 48px 16px; }
+  .faq-grid     { grid-template-columns: 1fr; }
+  .analytics    { grid-template-columns: 1fr; }
+  .kpi-grid     { grid-template-columns: repeat(3, 1fr); }
+  .floating-actions { right: 14px; bottom: 14px; }
+  .float-btn    { width: 46px; height: 46px; border-radius: 13px; }
 }
 
 /* Très petit — 380px */
@@ -543,7 +779,7 @@ footer {
 }
 </style>
 </head>
-<body>
+<body id="top">
 
 <!-- Flag bar -->
 <div class="flag-bar"></div>
@@ -570,39 +806,143 @@ footer {
 
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-badge">
-    <span class="hero-badge-dot"></span>
-    <span data-i18n="hero_badge">Plataforma Nacional · PIP 2026–2030</span>
+  <div class="hero-inner">
+    <div class="hero-copy">
+      <div class="hero-badge">
+        <span class="hero-badge-dot"></span>
+        <span data-i18n="hero_badge">Plataforma Nacional · PIP 2026–2030</span>
+      </div>
+      <div class="hero-flag" aria-label="Drapeau de la Guinée-Bissau">
+        <div class="fl-left">★</div>
+        <div class="fl-right"><div class="fl-y"></div><div class="fl-g"></div></div>
+      </div>
+      <p class="hero-republic" data-i18n="republic">República da Guiné-Bissau</p>
+      <h1 class="hero-title">SGPIP</h1>
+      <div class="hero-divider"></div>
+      <p class="hero-tagline" data-i18n="hero_tagline">
+        A plataforma nacional de planificação, acompanhamento e comunicação
+        do Programa de Investimento Público da Guiné-Bissau.
+      </p>
+      <div class="hero-ctas">
+        <a href="/app/" class="cta cta-primary">
+          <span class="cta-icon">🔒</span>
+          <span data-i18n="cta_login">Entrar na Plataforma</span>
+        </a>
+        <a href="/app/" class="cta cta-outline">
+          <span class="cta-icon">👁</span>
+          <span data-i18n="cta_public">Modo Demonstração</span>
+        </a>
+      </div>
+      <div class="hero-trust">
+        <span class="hero-trust-label" data-i18n="partners_label">Parceiros técnicos e financeiros</span>
+        <span class="partner-pill">BAD</span>
+        <span class="partner-pill">Banco Mundial</span>
+        <span class="partner-pill">União Europeia</span>
+        <span class="partner-pill">PNUD</span>
+        <span class="partner-pill">CEDEAO</span>
+        <span class="partner-pill">UEMOA</span>
+      </div>
+    </div>
+
+    <!-- Product / dashboard mockup -->
+    <div class="product-shell">
+      <div class="product-orb"></div>
+      <div class="main-dashboard">
+        <div class="browser-bar">
+          <div class="browser-dots"><i></i><i></i><i></i></div>
+          <small>sgpip.gov.gw/tableau-de-bord</small>
+        </div>
+        <div class="dash-grid">
+          <div class="dash-header">
+            <div>
+              <h3 data-i18n="dash_title">Vue consolidée du PIP</h3>
+              <small data-i18n="dash_sub">Synthèse multi-ministères</small>
+            </div>
+            <span class="tag-live" data-i18n="dash_live">Données actives</span>
+          </div>
+          <div class="kpi-grid">
+            <div class="kpi">
+              <small data-i18n="kpi1">Projets</small>
+              <strong>292</strong>
+            </div>
+            <div class="kpi">
+              <small data-i18n="kpi2">Enveloppe</small>
+              <strong>631 Md</strong>
+            </div>
+            <div class="kpi">
+              <small data-i18n="kpi3">Validés</small>
+              <strong>87%</strong>
+            </div>
+          </div>
+          <div class="analytics">
+            <div class="chart-card">
+              <div class="chart-title">
+                <strong data-i18n="chart_title">Évolution sectorielle</strong>
+                <span>2026</span>
+              </div>
+              <div class="bars">
+                <div class="bar" style="height:58%"></div>
+                <div class="bar" style="height:74%"></div>
+                <div class="bar" style="height:91%"></div>
+                <div class="bar" style="height:48%"></div>
+                <div class="bar" style="height:82%"></div>
+                <div class="bar" style="height:66%"></div>
+                <div class="bar" style="height:88%"></div>
+              </div>
+            </div>
+            <div class="ranking-card">
+              <h4 data-i18n="rank_title">Exécution</h4>
+              <div class="ranking">
+                <div class="rank-item">
+                  <div class="rank-label"><span data-i18n="rank_agri">Agric.</span><strong>92%</strong></div>
+                  <div class="progress"><span style="width:92%"></span></div>
+                </div>
+                <div class="rank-item">
+                  <div class="rank-label"><span data-i18n="rank_infra">Infra.</span><strong>84%</strong></div>
+                  <div class="progress"><span style="width:84%;background:var(--gold)"></span></div>
+                </div>
+                <div class="rank-item">
+                  <div class="rank-label"><span data-i18n="rank_edu">Éduc.</span><strong>78%</strong></div>
+                  <div class="progress"><span style="width:78%"></span></div>
+                </div>
+                <div class="rank-item">
+                  <div class="rank-label"><span data-i18n="rank_fin">Fin.</span><strong>96%</strong></div>
+                  <div class="progress"><span style="width:96%"></span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="floating-card">
+        <h4 data-i18n="float_title">Contrôle qualité</h4>
+        <p data-i18n="float_desc">Validation des champs, suivi des anomalies et statut par ministère.</p>
+        <div class="mini-line"></div>
+      </div>
+    </div>
   </div>
-  <span class="hero-flag-icon">🇬🇼</span>
-  <p class="hero-republic" data-i18n="republic">República da Guiné-Bissau</p>
-  <h1 class="hero-title">
-    SGPIP
-    <em data-i18n="hero_acro">Sistema de Gestão do Programa de Investimento Público</em>
-  </h1>
-  <div class="hero-divider"></div>
-  <p class="hero-tagline" data-i18n="hero_tagline">
-    A plataforma nacional de planificação, acompanhamento e comunicação
-    do Programa de Investimento Público da Guiné-Bissau.
-  </p>
-  <div class="hero-ctas">
-    <a href="/app/" class="cta cta-primary">
-      <span class="cta-icon">🔒</span>
-      <span data-i18n="cta_login">Entrar na Plataforma</span>
-    </a>
-    <a href="/app/" class="cta cta-outline">
-      <span class="cta-icon">👁</span>
-      <span data-i18n="cta_public">Modo Demonstração</span>
-    </a>
-  </div>
-  <div class="hero-trust">
-    <span class="hero-trust-label" data-i18n="partners_label">Parceiros técnicos e financeiros</span>
-    <span class="partner-pill">BAD</span>
-    <span class="partner-pill">Banco Mundial</span>
-    <span class="partner-pill">União Europeia</span>
-    <span class="partner-pill">PNUD</span>
-    <span class="partner-pill">CEDEAO</span>
-    <span class="partner-pill">UEMOA</span>
+</section>
+
+
+<!-- Stats band -->
+<section class="stats-band-section reveal">
+  <div class="stats-band">
+    <div class="metric">
+      <strong>292</strong>
+      <span data-i18n="metric1">projets inscrits au PIP 2026–2030</span>
+    </div>
+    <div class="metric">
+      <strong>631 Md</strong>
+      <span data-i18n="metric2">FCFA d'enveloppe programmée</span>
+    </div>
+    <div class="metric">
+      <strong>5</strong>
+      <span data-i18n="metric3">piliers stratégiques du PND</span>
+    </div>
+    <div class="metric">
+      <strong>24/7</strong>
+      <span data-i18n="metric4">suivi en ligne sécurisé</span>
+    </div>
   </div>
 </section>
 
@@ -790,6 +1130,34 @@ footer {
   </div>
 </section>
 
+<!-- FAQ -->
+<section class="faq-section reveal" id="faq">
+  <p class="section-eyebrow" data-i18n="faq_eyebrow">FAQ</p>
+  <h2 class="section-title" data-i18n="faq_title">Questions fréquentes</h2>
+  <p class="section-sub" data-i18n="faq_sub">
+    Des réponses claires sur l'accès, la sécurité et l'exploitation des données du PIP.
+  </p>
+  <div class="faq-grid">
+    <article class="faq-item">
+      <h3 data-i18n="faq1_q">Qui peut accéder à la plateforme ?</h3>
+      <p data-i18n="faq1_a">L'accès est réservé aux profils habilités : agents ministériels, analystes DGP, validateurs et administrateurs institutionnels.</p>
+    </article>
+    <article class="faq-item">
+      <h3 data-i18n="faq2_q">Les données sont-elles sécurisées ?</h3>
+      <p data-i18n="faq2_a">Oui. La plateforme repose sur une authentification institutionnelle, une gestion des rôles et un journal d'audit des actions sensibles.</p>
+    </article>
+    <article class="faq-item">
+      <h3 data-i18n="faq3_q">Peut-on exporter les rapports ?</h3>
+      <p data-i18n="faq3_a">Les utilisateurs autorisés génèrent des exports Excel et PDF pour les synthèses sectorielles et les tableaux consolidés du PIP.</p>
+    </article>
+    <article class="faq-item">
+      <h3 data-i18n="faq4_q">Comment demander un compte ?</h3>
+      <p data-i18n="faq4_a">La demande se fait auprès de la Direction-Générale du Plan, puis elle est validée selon le niveau d'habilitation institutionnel.</p>
+    </article>
+  </div>
+</section>
+
+
 <!-- Login CTA band -->
 <section class="login-band">
   <div class="login-band-inner">
@@ -816,8 +1184,13 @@ footer {
   </nav>
 </footer>
 
+<!-- Floating action buttons -->
+<div class="floating-actions" aria-label="Actions rapides">
+  <a href="#faq" class="float-btn float-faq" title="FAQ" aria-label="Aller à la FAQ">?</a>
+  <a href="#top" class="float-btn float-top" title="Retour en haut" aria-label="Retour en haut">↑</a>
+</div>
+
 <script>
-// ── i18n ──────────────────────────────────────────────────────
 const LANG = {
   pt: {
     brand_sub:        'Sistema de Gestão do Programa de Investimento Público',
@@ -884,6 +1257,35 @@ const LANG = {
     footer_dgp:       'Direcção-Geral do Plano — República da Guiné-Bissau',
     footer_admin:     'Administração',
     footer_api:       'API',
+    dash_title:       'Visão consolidada do PIP',
+    dash_sub:         'Síntese multi-ministerial',
+    dash_live:        'Dados activos',
+    kpi1:             'Projectos',
+    kpi2:             'Envelope',
+    kpi3:             'Validados',
+    chart_title:      'Evolução sectorial',
+    rank_title:       'Execução',
+    rank_agri:        'Agric.',
+    rank_infra:       'Infra.',
+    rank_edu:         'Educ.',
+    rank_fin:         'Fin.',
+    float_title:      'Controlo de qualidade',
+    float_desc:       'Validação dos campos, seguimento das anomalias e estado por ministério.',
+    metric1:          'projectos inscritos no PIP 2026–2030',
+    metric2:          'FCFA de envelope programado',
+    metric3:          'pilares estratégicos do PND',
+    metric4:          'seguimento em linha seguro',
+    faq_eyebrow:      'FAQ',
+    faq_title:        'Perguntas frequentes',
+    faq_sub:          'Respostas claras sobre o acesso, a segurança e a exploração dos dados do PIP.',
+    faq1_q:           'Quem pode aceder à plataforma?',
+    faq1_a:           'O acesso é reservado aos perfis habilitados: agentes ministeriais, analistas DGP, validadores e administradores institucionais.',
+    faq2_q:           'Os dados estão seguros?',
+    faq2_a:           'Sim. A plataforma assenta numa autenticação institucional, gestão de perfis e registo de auditoria das acções sensíveis.',
+    faq3_q:           'É possível exportar os relatórios?',
+    faq3_a:           'Os utilizadores autorizados geram exportações Excel e PDF das sínteses sectoriais e dos quadros consolidados do PIP.',
+    faq4_q:           'Como solicitar uma conta?',
+    faq4_a:           'O pedido faz-se junto da Direcção-Geral do Plano, sendo validado conforme o nível de habilitação institucional.',
   },
   fr: {
     brand_sub:        "Système de Gestion du Programme d'Investissement Public",
@@ -950,6 +1352,35 @@ const LANG = {
     footer_dgp:       'Direction Générale du Plan — République de Guinée-Bissau',
     footer_admin:     'Administration',
     footer_api:       'API',
+    dash_title:       'Vue consolidée du PIP',
+    dash_sub:         'Synthèse multi-ministères',
+    dash_live:        'Données actives',
+    kpi1:             'Projets',
+    kpi2:             'Enveloppe',
+    kpi3:             'Validés',
+    chart_title:      'Évolution sectorielle',
+    rank_title:       'Exécution',
+    rank_agri:        'Agric.',
+    rank_infra:       'Infra.',
+    rank_edu:         'Éduc.',
+    rank_fin:         'Fin.',
+    float_title:      'Contrôle qualité',
+    float_desc:       'Validation des champs, suivi des anomalies et statut par ministère.',
+    metric1:          'projets inscrits au PIP 2026–2030',
+    metric2:          "FCFA d'enveloppe programmée",
+    metric3:          'piliers stratégiques du PND',
+    metric4:          'suivi en ligne sécurisé',
+    faq_eyebrow:      'FAQ',
+    faq_title:        'Questions fréquentes',
+    faq_sub:          "Des réponses claires sur l'accès, la sécurité et l'exploitation des données du PIP.",
+    faq1_q:           'Qui peut accéder à la plateforme ?',
+    faq1_a:           "L'accès est réservé aux profils habilités : agents ministériels, analystes DGP, validateurs et administrateurs institutionnels.",
+    faq2_q:           'Les données sont-elles sécurisées ?',
+    faq2_a:           "Oui. La plateforme repose sur une authentification institutionnelle, une gestion des rôles et un journal d'audit des actions sensibles.",
+    faq3_q:           'Peut-on exporter les rapports ?',
+    faq3_a:           'Les utilisateurs autorisés génèrent des exports Excel et PDF pour les synthèses sectorielles et les tableaux consolidés du PIP.',
+    faq4_q:           'Comment demander un compte ?',
+    faq4_a:           "La demande se fait auprès de la Direction-Générale du Plan, puis elle est validée selon le niveau d'habilitation institutionnel.",
   }
 };
 

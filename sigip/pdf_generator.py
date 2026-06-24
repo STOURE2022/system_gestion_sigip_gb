@@ -2,7 +2,6 @@
 SGPIP PDF Generator
 Génère la fiche officielle d'un projet PIP validé en PDF A4.
 """
-import math
 from io import BytesIO
 from decimal import Decimal
 
@@ -35,60 +34,28 @@ WHITE     = colors.white
 LINE_CLR  = colors.HexColor('#d5d0c6')
 
 
-def _draw_star(canvas, cx, cy, r, n=5, color=None):
-    """Draw an n-pointed star at (cx, cy) with radius r."""
-    if color:
-        canvas.setFillColor(color)
-        canvas.setStrokeColor(color)
-    points = []
-    for i in range(n * 2):
-        angle = math.radians(90 + i * 180 / n)
-        rad = r if i % 2 == 0 else r * 0.4
-        points.append(cx + rad * math.cos(angle))
-        points.append(cy + rad * math.sin(angle))
-    p = canvas.beginPath()
-    p.moveTo(points[0], points[1])
-    for i in range(2, len(points), 2):
-        p.lineTo(points[i], points[i + 1])
-    p.close()
-    canvas.drawPath(p, fill=1, stroke=0)
+import os
+from django.conf import settings
+
+ESCUDO_PATH = os.path.join(settings.BASE_DIR, 'static', 'images', 'escudo_gb.png')
 
 
 def _draw_watermark(canvas, doc):
-    """Draw a very faint Guinea-Bissau coat of arms watermark in the center."""
+    """Draw the Guinea-Bissau coat of arms as a faint centered watermark."""
     canvas.saveState()
     w, h = A4
-    cx, cy = w / 2, h / 2
+    size = 10 * cm
+    x = (w - size) / 2
+    y = (h - size) / 2
 
-    # Large faint circle
-    canvas.setFillAlpha(0.04)
-    canvas.setFillColor(colors.HexColor('#333333'))
-    canvas.circle(cx, cy, 6 * cm, fill=1, stroke=0)
-
-    # Inner circle
-    canvas.setFillAlpha(0.03)
-    canvas.circle(cx, cy, 4.5 * cm, fill=1, stroke=0)
-
-    # Star (black star of Guinea-Bissau)
     canvas.setFillAlpha(0.06)
-    _draw_star(canvas, cx, cy + 1.2 * cm, 1.8 * cm, 5, colors.HexColor('#333333'))
-
-    # Laurel branches (simplified as two arcs)
-    canvas.setStrokeAlpha(0.05)
-    canvas.setStrokeColor(colors.HexColor('#333333'))
-    canvas.setLineWidth(2.5)
-    p = canvas.beginPath()
-    p.arc(cx - 4 * cm, cy - 4 * cm, cx - 0.5 * cm, cy + 2 * cm, 30, 120)
-    canvas.drawPath(p, fill=0, stroke=1)
-    p = canvas.beginPath()
-    p.arc(cx + 0.5 * cm, cy - 4 * cm, cx + 4 * cm, cy + 2 * cm, 30, 120)
-    canvas.drawPath(p, fill=0, stroke=1)
-
-    # Text
-    canvas.setFillAlpha(0.05)
-    canvas.setFont('Helvetica-Bold', 7)
-    canvas.setFillColor(colors.HexColor('#333333'))
-    canvas.drawCentredString(cx, cy - 3.8 * cm, 'REPÚBLICA DA GUINÉ-BISSAU')
+    try:
+        canvas.drawImage(
+            ESCUDO_PATH, x, y, width=size, height=size,
+            mask='auto', preserveAspectRatio=True, anchor='c'
+        )
+    except Exception:
+        pass  # skip if image not found
 
     canvas.restoreState()
 

@@ -742,6 +742,12 @@ class DisbursementViewSet(viewsets.ModelViewSet):
             raise PermissionDenied('Não pode modificar uma despesa submetida ou validada.')
         serializer.save()
 
+    def perform_destroy(self, instance):
+        if instance.workflow_status in ('SUBMETIDO', 'VALIDADO'):
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied('Não pode eliminar uma despesa submetida ou validada.')
+        serializer.save()
+
     @action(detail=True, methods=['post'], url_path='submit')
     def submit(self, request, pk=None):
         """Agent submits disbursement to DGP for validation."""

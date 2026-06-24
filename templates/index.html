@@ -1150,6 +1150,7 @@ const I18N = {
     disb_reject_reason: 'Motivo da rejeição:',
     disb_detail_title: 'Detalhe da Despesa',
     disb_edit_title: 'Editar Despesa',
+    disb_delete_confirm: 'Tem a certeza que deseja eliminar esta declaração?',
     disb_rejection_reason: 'Motivo da Rejeição',
     disb_rejected_msg: 'Esta despesa foi rejeitada pela DGP. Corrija e resubmeta.',
     disb_validated_msg: 'Esta despesa foi validada e contabilizada.',
@@ -1372,6 +1373,7 @@ const I18N = {
     disb_reject_reason: 'Motif du rejet :',
     disb_detail_title: 'Détail de la Dépense',
     disb_edit_title: 'Modifier la Dépense',
+    disb_delete_confirm: 'Êtes-vous sûr de vouloir supprimer cette déclaration ?',
     disb_rejection_reason: 'Motif du Rejet',
     disb_rejected_msg: 'Cette dépense a été rejetée par la DGP. Corrigez et resoumettez.',
     disb_validated_msg: 'Cette dépense a été validée et comptabilisée.',
@@ -2668,7 +2670,7 @@ function renderDeclarations(decls) {
         <td><span class="exec-rate-badge" style="background:${wb};color:${wc}">${esc(d.workflow_status_display || d.workflow_status)}</span></td>
         <td style="text-align:left">${d.justification_file_url ? `<a href="${d.justification_file_url}" target="_blank" onclick="event.stopPropagation()" class="hbtn hbtn-ghost" style="color:var(--accent);font-size:10px;padding:3px 8px">&#128196; ${T('disb_view_file')}</a>` : '—'}</td>
         <td style="white-space:nowrap" onclick="event.stopPropagation()">
-          ${canSubmit ? `<button class="btn-sm btn-edit" onclick="editDisb(${d.id})">${T('btn_edit')}</button> <button class="btn-sm btn-sub" onclick="submitDisb(${d.id})">${T('btn_submit')}</button>` : ''}
+          ${canSubmit ? `<button class="btn-sm btn-edit" onclick="editDisb(${d.id})">${T('btn_edit')}</button> <button class="btn-sm btn-sub" onclick="submitDisb(${d.id})">${T('btn_submit')}</button> <button class="btn-sm btn-del" onclick="deleteDisb(${d.id})">&times;</button>` : ''}
           ${canValidate ? `<button class="btn-sm btn-val" onclick="validateDisb(${d.id})">${T('btn_validate')}</button> <button class="btn-sm btn-rej" onclick="rejectDisb(${d.id})">${T('btn_reject')}</button>` : ''}
           ${d.workflow_status === 'REJEITADO' ? `<span style="font-size:14px;color:var(--danger)" title="${esc(d.rejection_note || '')}">&#9888;</span>` : ''}
         </td>
@@ -2858,6 +2860,16 @@ async function rejectDisb(id) {
   if (note === null) return;
   try { await apiMutate('POST', `/disbursements/${id}/reject/`, {rejection_note: note}); await loadExecution(); }
   catch(e) { alert(await parseApiError(e)); }
+}
+
+async function deleteDisb(id) {
+  if (!confirm(T('disb_delete_confirm') || 'Tem a certeza que deseja eliminar esta declaração?')) return;
+  try {
+    const headers = {'Authorization': `Bearer ${ACCESS_TOKEN}`};
+    const resp = await fetch(`${API_BASE}/disbursements/${id}/`, {method:'DELETE', headers});
+    if (!resp.ok && resp.status !== 204) { throw new Error(`API ${resp.status}`); }
+    await loadExecution();
+  } catch(e) { alert(e.message); }
 }
 
 // ============================================================

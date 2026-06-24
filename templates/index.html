@@ -39,6 +39,54 @@ header{background:var(--ink);color:#fff;padding:14px 28px;display:flex;align-ite
   .user-badge{max-width:100px}
   .btn-lang{padding:4px 7px;font-size:10px}
 }
+/* ── Responsive: tablet ───────────────── */
+@media(max-width:768px){
+  main{padding:16px 14px}
+  nav{padding:0 14px}
+  .kpis{grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+  .kpi .val{font-size:20px}
+  /* Modal */
+  .modal-wide{max-width:100%;margin:8px;border-radius:12px;max-height:96vh}
+  .modal-header-bar{padding:16px 18px}
+  .modal-body{padding:18px}
+  .modal-tabs{flex-direction:column;gap:4px}
+  /* Project detail */
+  .detail-hero{padding:20px;border-radius:10px}
+  .detail-hero h2{font-size:17px;max-width:100%}
+  .detail-kpis{grid-template-columns:1fr 1fr;gap:10px}
+  .detail-kpi .dk-value{font-size:18px}
+  .detail-grid{grid-template-columns:1fr}
+  .prog-chart-area{height:90px}
+  /* Tables */
+  .tablewrap{max-height:500px}
+  .prog-detail-table{font-size:11px}
+  .prog-detail-table th,.prog-detail-table td{padding:7px 6px}
+  .saisie-toolbar{flex-direction:column;align-items:stretch}
+}
+/* ── Responsive: mobile ───────────────── */
+@media(max-width:480px){
+  .kpis{grid-template-columns:1fr}
+  .detail-kpis{grid-template-columns:1fr}
+  .detail-kpi{padding:12px 14px}
+  .detail-hero h2{font-size:15px}
+  .detail-hero .detail-badges{gap:5px}
+  .detail-hero .detail-badge{font-size:9px;padding:3px 10px}
+  .detail-section{padding:14px 16px}
+  .detail-row{flex-direction:column;gap:2px;align-items:flex-start}
+  .detail-row .dvalue{text-align:left}
+  .prog-chart-area{height:70px;gap:4px}
+  .prog-col .pc-year{font-size:9px}
+  .prog-col .pc-val{font-size:8px}
+  .prog-legend{gap:10px;font-size:10px}
+  /* Modal */
+  .modal-overlay{padding:0;align-items:flex-end}
+  .modal{border-radius:16px 16px 0 0;max-height:95vh}
+  .modal-wide{margin:0;border-radius:16px 16px 0 0;max-height:95vh}
+  .form-row{grid-template-columns:1fr}
+  /* Nav scroll */
+  nav button{padding:10px 12px;font-size:12px}
+  .toolbar input{min-width:120px}
+}
 .btn-login{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;padding:7px 16px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:600;transition:.15s}
 .btn-login:hover{background:rgba(255,255,255,.22)}
 .btn-lang{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);padding:5px 10px;border-radius:6px;font-size:11px;cursor:pointer;font-family:inherit;font-weight:700;letter-spacing:.5px;transition:.15s;white-space:nowrap}

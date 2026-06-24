@@ -598,8 +598,8 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
         </div>
       </div>
       <div class="form-group" style="margin-bottom:14px">
-        <label data-i18n="field_title">Título</label>
-        <input id="f-title" type="text" placeholder="Título completo do projecto" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
+        <label data-i18n="field_title">Nome do Projecto</label>
+        <input id="f-title" type="text" placeholder="Nome completo do projecto" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
       </div>
       <div class="form-row" style="margin-bottom:14px">
         <div class="form-group">
@@ -611,15 +611,9 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
           <select id="f-sector"><option value="">—</option></select>
         </div>
       </div>
-      <div class="form-row" style="margin-bottom:14px">
-        <div class="form-group">
-          <label data-i18n="field_pillar">Pilar PND</label>
-          <select id="f-pillar"><option value="">—</option></select>
-        </div>
-        <div class="form-group">
-          <label data-i18n="field_financier">Financiador Principal</label>
-          <select id="f-financier"><option value="">—</option></select>
-        </div>
+      <div class="form-group" style="margin-bottom:14px">
+        <label data-i18n="field_financier">Financiador Principal</label>
+        <select id="f-financier"><option value="">—</option></select>
       </div>
       <div class="form-row" style="margin-bottom:14px">
         <div class="form-group">
@@ -768,7 +762,7 @@ const I18N = {
     filter_ext: 'Externo',
     filter_state: 'Estado',
     th_code: 'Código',
-    th_project: 'Designação do Projecto',
+    th_project: 'Nome do Projecto',
     th_ministry: 'Ministério',
     th_financier: 'Financiador',
     th_total: 'Total PND',
@@ -834,7 +828,7 @@ const I18N = {
     tab_info: 'Identificação',
     tab_prog_saisie: 'Programação',
     field_code: 'Código do Projecto',
-    field_title: 'Designação',
+    field_title: 'Nome do Projecto',
     field_ministry: 'Ministério responsável',
     field_sector: 'Sector',
     field_pillar: 'Pilar PND',
@@ -945,7 +939,7 @@ const I18N = {
     filter_ext: 'Externe',
     filter_state: 'État',
     th_code: 'Code',
-    th_project: 'Intitulé du Projet',
+    th_project: 'Nom du Projet',
     th_ministry: 'Ministère',
     th_financier: 'Bailleur de fonds',
     th_total: 'Total PND',
@@ -1011,7 +1005,7 @@ const I18N = {
     tab_info: 'Identification',
     tab_prog_saisie: 'Programmation',
     field_code: 'Code du Projet',
-    field_title: 'Intitulé du Projet',
+    field_title: 'Nom du Projet',
     field_ministry: 'Ministère de tutelle',
     field_sector: 'Secteur',
     field_pillar: 'Pilier PND',

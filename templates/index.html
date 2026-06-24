@@ -349,14 +349,15 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
 .exec-filters{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
 .exec-filters select{padding:9px 14px;border:1.5px solid var(--line);border-radius:9px;font-size:13px;font-family:inherit;background:#fff;cursor:pointer;transition:.15s;color:var(--ink);min-width:160px}
 .exec-filters select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(10,77,74,.1)}
-.exec-year-chart{display:flex;gap:12px;align-items:flex-end;height:140px;padding:10px 0}
-.exec-yc{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
-.exec-yc .eyc-bars{display:flex;gap:3px;align-items:flex-end;width:100%;justify-content:center;height:90px}
-.exec-yc .eyc-bar{width:40%;max-width:32px;border-radius:4px 4px 0 0;transition:height .5s ease;position:relative}
-.exec-yc .eyc-bar.prog{background:linear-gradient(180deg,#0d6560,var(--accent))}
-.exec-yc .eyc-bar.disb{background:linear-gradient(180deg,#e8b84b,var(--gold))}
-.exec-yc .eyc-year{font-size:11px;font-weight:700;color:var(--ink2)}
-.exec-yc .eyc-rate{font-size:9px;font-weight:700;padding:2px 6px;border-radius:10px;background:#f0fdf4;color:#065f46}
+.exec-year-chart{display:flex;gap:16px;align-items:flex-end;height:240px;padding:16px 0}
+.exec-yc{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px}
+.exec-yc .eyc-bars{display:flex;gap:5px;align-items:flex-end;width:100%;justify-content:center;height:160px}
+.exec-yc .eyc-bar{width:38%;max-width:44px;border-radius:5px 5px 0 0;transition:height .6s ease;position:relative;min-height:3px}
+.exec-yc .eyc-bar.prog{background:linear-gradient(180deg,#0d6560,var(--accent));box-shadow:0 -2px 6px rgba(10,77,74,.15)}
+.exec-yc .eyc-bar.disb{background:linear-gradient(180deg,#e8b84b,var(--gold));box-shadow:0 -2px 6px rgba(200,150,30,.2)}
+.exec-yc .eyc-year{font-size:12px;font-weight:700;color:var(--ink2);margin-top:4px}
+.exec-yc .eyc-val{font-size:10px;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+.exec-yc .eyc-rate{font-size:10px;font-weight:700;padding:3px 8px;border-radius:10px;background:#f0fdf4;color:#065f46}
 .exec-yc .eyc-rate.zero{background:#f5f3ee;color:var(--muted)}
 .exec-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
 .exec-table th{text-align:right;padding:10px 12px;background:linear-gradient(135deg,#f8f6f0,#f4f1ea);color:var(--ink2);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.6px;border-bottom:2px solid var(--gold-dim)}
@@ -2596,14 +2597,15 @@ function renderExecution(d) {
   const byYear = d.by_year || [];
   const maxY = Math.max(...byYear.map(y => y.programmed), 1);
   document.getElementById('exec-year-chart').innerHTML = byYear.map(y => {
-    const hProg = Math.max(y.programmed / maxY * 80, 2);
-    const hDisb = Math.max(y.disbursed / maxY * 80, y.disbursed > 0 ? 2 : 0);
+    const hProg = Math.max(y.programmed / maxY * 140, 3);
+    const hDisb = Math.max(y.disbursed / maxY * 140, y.disbursed > 0 ? 3 : 0);
     const rateClass = y.rate > 0 ? '' : 'zero';
     return `<div class="exec-yc">
-      <div class="eyc-rate ${rateClass}">${y.rate.toFixed(0)}%</div>
+      <div class="eyc-rate ${rateClass}">${y.rate.toFixed(1)}%</div>
+      <div class="eyc-val">${fmt(y.programmed)} M</div>
       <div class="eyc-bars">
-        <div class="eyc-bar prog" style="height:${hProg}px" title="${T('exec_programmed')}: ${fmtN(y.programmed)}"></div>
-        <div class="eyc-bar disb" style="height:${hDisb}px" title="${T('exec_disbursed')}: ${fmtN(y.disbursed)}"></div>
+        <div class="eyc-bar prog" style="height:${hProg}px" title="${T('exec_programmed')}: ${fmtN(y.programmed)} FCFA"></div>
+        <div class="eyc-bar disb" style="height:${hDisb}px" title="${T('exec_disbursed')}: ${fmtN(y.disbursed)} FCFA"></div>
       </div>
       <div class="eyc-year">${y.year}</div>
     </div>`;

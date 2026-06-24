@@ -8,7 +8,7 @@ from .views import (
     MinistryViewSet, FinancierViewSet, ExpenseNatureViewSet,
     ProjectViewSet, AnnualProgrammingViewSet, DisbursementViewSet,
     PPProjectViewSet, PIPVersionViewSet,
-    DashboardView, ExecutionDashboardView, ImportView
+    DashboardView, ExecutionDashboardView, NotificationCountsView, ImportView
 )
 
 router = DefaultRouter()
@@ -28,5 +28,6 @@ urlpatterns = [
     path('', include(router.urls)),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
     path('dashboard/execution/', ExecutionDashboardView.as_view(), name='dashboard-execution'),
+    path('notifications/counts/', NotificationCountsView.as_view(), name='notification-counts'),
     path('import/', ImportView.as_view(), name='import'),
 ]

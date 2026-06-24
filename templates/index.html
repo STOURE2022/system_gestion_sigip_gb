@@ -406,6 +406,20 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
 @keyframes toast-in {from{transform:translateX(110%);opacity:0}to{transform:translateX(0);opacity:1}}
 @keyframes toast-out{from{transform:translateX(0);opacity:1}to{transform:translateX(110%);opacity:0}}
 @media(max-width:480px){#toast-container{left:12px;right:12px;bottom:14px}.toast{font-size:12px}}
+/* Notification bell + badges */
+.notif-bell{position:relative;cursor:pointer;font-size:18px;line-height:1;padding:4px 6px;display:none}
+.notif-bell .notif-count{position:absolute;top:-4px;right:-6px;background:var(--danger);color:#fff;font-size:9px;font-weight:800;min-width:18px;height:18px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px;box-shadow:0 1px 4px rgba(192,57,43,.4);animation:notifPulse 2s ease infinite}
+@keyframes notifPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+.nav-badge{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;border-radius:9px;font-size:9px;font-weight:800;padding:0 5px;margin-left:6px;vertical-align:middle}
+.nav-badge.red{background:var(--danger);color:#fff}
+.nav-badge.gold{background:var(--gold);color:#fff}
+.alert-banner{border-radius:10px;padding:12px 18px;font-size:13px;margin-bottom:16px;display:none;align-items:center;gap:10px;animation:fade .3s ease}
+.alert-banner.alert-warning{background:linear-gradient(135deg,#fef3c7,#fefce8);border:1px solid #fbbf24;color:#92400e}
+.alert-banner.alert-danger{background:linear-gradient(135deg,#fee2e2,#fef2f2);border:1px solid #fca5a5;color:#991b1b}
+.alert-banner.alert-info{background:linear-gradient(135deg,#dbeafe,#eff6ff);border:1px solid #93c5fd;color:#1d4ed8}
+.alert-banner .alert-icon{font-size:18px;flex-shrink:0}
+.alert-banner .alert-text{flex:1;line-height:1.5}
+.alert-banner .alert-text b{font-weight:700}
 </style>
 </head>
 <body>
@@ -427,6 +441,7 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
     <div class="ha-sep"></div>
     <div class="ha-group">
       <span id="user-info"></span>
+      <span id="notif-bell" class="notif-bell" title="Notificações">&#128276;<span id="notif-count" class="notif-count" style="display:none">0</span></span>
       <a id="btn-import-data" href="/admin/import-data/" target="_blank" rel="noopener" class="hbtn hbtn-accent" style="display:none" data-i18n="btn_import">&#128229; Import</a>
       <a id="btn-admin-panel" href="/admin/" target="_blank" rel="noopener" class="hbtn hbtn-gold" style="display:none">&#9881; <span class="admin-label">Admin</span></a>
       <button id="btn-login-header" class="hbtn hbtn-login" onclick="showLogin()" data-i18n="btn_login">Entrar</button>
@@ -564,6 +579,7 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
     <div class="eyebrow" data-i18n="eyebrow_exec">Acompanhamento Financeiro</div>
     <div class="vtitle" data-i18n="vtitle_exec">Execução Orçamental</div>
     <div class="vsub" data-i18n="vsub_exec">Comparação entre montantes programados e efectivamente desembolsados por ministério</div>
+    <div id="exec-alert" class="alert-banner" style="display:none"></div>
 
     <!-- Toolbar -->
     <div class="exec-filters">
@@ -622,6 +638,7 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
     <div class="eyebrow" id="saisie-eyebrow" data-i18n="eyebrow_saisie">Saisie Continue</div>
     <div class="vtitle" id="saisie-vtitle" data-i18n="vtitle_saisie">Gestão de Projectos</div>
     <div class="vsub" id="saisie-vsub" data-i18n="vsub_saisie">Criar, editar e acompanhar os projectos do seu ministério</div>
+    <div id="saisie-alert" class="alert-banner" style="display:none"></div>
     <div class="saisie-toolbar">
       <button class="btn-add" id="btn-new-project" style="display:none" onclick="openProjectForm(null)" data-i18n="btn_new_project">+ Novo Projecto</button>
       <input id="saisie-search" data-i18n-ph="search_placeholder" placeholder="Pesquisar...">
@@ -1126,6 +1143,10 @@ const I18N = {
     disb_view_file: 'Ver ficheiro',
     disb_reject_reason: 'Motivo da rejeição:',
     btn_save_submit: 'Guardar e Submeter',
+    notif_projects_pending: 'projecto(s) aguardam validação da DGP',
+    notif_projects_rejected: 'projecto(s) rejeitado(s) — necessitam correcção',
+    notif_disb_pending: 'declaração(ões) de despesa aguardam validação',
+    notif_disb_rejected: 'declaração(ões) de despesa rejeitada(s) — corrija e resubmeta',
     nav_sintese: 'Síntese',
     eyebrow_sintese: 'Síntese do PIP',
     vtitle_sintese: 'Quadros de Síntese',
@@ -1332,6 +1353,10 @@ const I18N = {
     disb_view_file: 'Voir fichier',
     disb_reject_reason: 'Motif du rejet :',
     btn_save_submit: 'Enregistrer et Soumettre',
+    notif_projects_pending: 'projet(s) en attente de validation DGP',
+    notif_projects_rejected: 'projet(s) rejeté(s) — nécessitent correction',
+    notif_disb_pending: 'déclaration(s) de dépense en attente de validation',
+    notif_disb_rejected: 'déclaration(s) de dépense rejetée(s) — corrigez et resoumettez',
     nav_sintese: 'Synthèse',
     eyebrow_sintese: 'Synthèse du PIP',
     vtitle_sintese: 'Tableaux de Synthèse',
@@ -1574,6 +1599,7 @@ async function initFromAPI() {
     renderFromAPI(dashboard, projects.results || projects);
     // Load user profile and ref data after auth confirmed
     await fetchUserProfile();
+    fetchNotifCounts(); // load notification badges
     loadRefData().then(() => renderMinistries()); // re-render with all ministries
   } catch (e) {
     console.warn('API indisponível, modo demonstração:', e.message);
@@ -2259,6 +2285,100 @@ function canWrite() {
 function isDGP() { return USER && ['DGP_ANALYST', 'VALIDATOR', 'ADMIN'].includes(USER.role); }
 function isAgent() { return USER && USER.role === 'MINISTRY_AGENT'; }
 function isAdmin() { return USER && USER.role === 'ADMIN'; }
+
+// ── Notification counts ────────────────────────────────────
+let NOTIF_COUNTS = {};
+async function fetchNotifCounts() {
+  if (!ACCESS_TOKEN) return;
+  try {
+    NOTIF_COUNTS = await apiFetch('/notifications/counts/');
+    renderNotifBadges();
+  } catch(e) { console.warn('notif counts error:', e.message); }
+}
+
+function renderNotifBadges() {
+  const c = NOTIF_COUNTS;
+  const total = c.total || 0;
+
+  // Bell icon
+  const bell = document.getElementById('notif-bell');
+  const bellCount = document.getElementById('notif-count');
+  if (bell && total > 0) {
+    bell.style.display = '';
+    bellCount.textContent = total;
+    bellCount.style.display = '';
+  } else if (bell) {
+    bellCount.style.display = 'none';
+  }
+
+  // Nav badges — Saisie
+  const navSaisie = document.getElementById('nav-saisie');
+  if (navSaisie) {
+    // Remove old badge
+    const oldBadge = navSaisie.querySelector('.nav-badge');
+    if (oldBadge) oldBadge.remove();
+    const saisieCount = (c.projects_pending_validation || 0) + (c.projects_rejected || 0);
+    if (saisieCount > 0) {
+      const badge = document.createElement('span');
+      badge.className = 'nav-badge ' + (c.projects_pending_validation > 0 ? 'gold' : 'red');
+      badge.textContent = saisieCount;
+      navSaisie.appendChild(badge);
+    }
+  }
+
+  // Nav badges — Execução
+  const navExec = document.getElementById('nav-execucao');
+  if (navExec) {
+    const oldBadge = navExec.querySelector('.nav-badge');
+    if (oldBadge) oldBadge.remove();
+    const execCount = (c.disbursements_pending_validation || 0) + (c.disbursements_rejected || 0);
+    if (execCount > 0) {
+      const badge = document.createElement('span');
+      badge.className = 'nav-badge ' + (c.disbursements_pending_validation > 0 ? 'gold' : 'red');
+      badge.textContent = execCount;
+      navExec.appendChild(badge);
+    }
+  }
+
+  // Alert banners
+  renderAlertBanners();
+}
+
+function renderAlertBanners() {
+  const c = NOTIF_COUNTS;
+
+  // Saisie alert
+  const saisieAlert = document.getElementById('saisie-alert');
+  if (saisieAlert) {
+    if (c.projects_pending_validation > 0 && (isDGP() || isAdmin())) {
+      saisieAlert.className = 'alert-banner alert-warning';
+      saisieAlert.style.display = 'flex';
+      saisieAlert.innerHTML = `<span class="alert-icon">&#9888;</span><div class="alert-text"><b>${c.projects_pending_validation}</b> ${T('notif_projects_pending')}</div>`;
+    } else if (c.projects_rejected > 0 && isAgent()) {
+      saisieAlert.className = 'alert-banner alert-danger';
+      saisieAlert.style.display = 'flex';
+      saisieAlert.innerHTML = `<span class="alert-icon">&#9888;</span><div class="alert-text"><b>${c.projects_rejected}</b> ${T('notif_projects_rejected')}</div>`;
+    } else {
+      saisieAlert.style.display = 'none';
+    }
+  }
+
+  // Execução alert
+  const execAlert = document.getElementById('exec-alert');
+  if (execAlert) {
+    if (c.disbursements_pending_validation > 0 && (isDGP() || isAdmin())) {
+      execAlert.className = 'alert-banner alert-warning';
+      execAlert.style.display = 'flex';
+      execAlert.innerHTML = `<span class="alert-icon">&#128276;</span><div class="alert-text"><b>${c.disbursements_pending_validation}</b> ${T('notif_disb_pending')}</div>`;
+    } else if (c.disbursements_rejected > 0 && isAgent()) {
+      execAlert.className = 'alert-banner alert-danger';
+      execAlert.style.display = 'flex';
+      execAlert.innerHTML = `<span class="alert-icon">&#9888;</span><div class="alert-text"><b>${c.disbursements_rejected}</b> ${T('notif_disb_rejected')}</div>`;
+    } else {
+      execAlert.style.display = 'none';
+    }
+  }
+}
 
 async function fetchUserProfile() {
   try {
@@ -3015,6 +3135,7 @@ function _activateView(viewId) {
   if (viewId === 'saisie' && ACCESS_TOKEN) loadSaisie();
   if (viewId === 'execucao' && ACCESS_TOKEN) loadExecution();
   if (viewId === 'sintese' && ACCESS_TOKEN) { SINTESE_CACHE = {}; fetchSinteseTab(SINTESE_ACTIVE_TAB); }
+  if (ACCESS_TOKEN) fetchNotifCounts();
 }
 
 function navBack() {

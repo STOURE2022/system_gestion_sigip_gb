@@ -173,3 +173,79 @@ def send_workflow_notification_task(project_id, action, actor_id, rejection_note
         f'{sent}/{len(recipients)} emails sent'
     )
     return {'status': 'success', 'sent': sent, 'total': len(recipients)}
+
+
+@shared_task(name='sigip.send_disbursement_notification', max_retries=2)
+def send_disbursement_notification_task(disbursement_id, action, actor_id, rejection_note=''):
+    """
+    Email notification for disbursement workflow transitions.
+    action: 'submit' | 'validate' | 'reject'
+    """
+    from django.contrib.auth import get_user_model
+    from django.core.mail import send_mail
+    from sigip.models import Disbursement
+    from core.models import UserRole
+
+    User = get_user_model()
+
+    try:
+        disb = Disbursement.objects.select_related(
+            'project', 'project__ministry', 'submitted_by'
+        ).get(pk=disbursement_id)
+        actor = User.objects.get(pk=actor_id)
+    except Exception as exc:
+        logger.error(f'[disb-notification] Object not found: {exc}')
+        return {'status': 'error', 'message': str(exc)}
+
+    active_with_email = User.objects.filter(is_active=True).exclude(email='')
+
+    if action == 'submit':
+        recipients = list(
+            active_with_email.filter(
+                role__in=[UserRole.ADMIN, UserRole.DGP_ANALYST, UserRole.VALIDATOR]
+            ).values_list('email', flat=True)
+        )
+    else:
+        recipients = list(
+            active_with_email.filter(
+                role=UserRole.MINISTRY_AGENT,
+                ministry=disb.project.ministry,
+            ).values_list('email', flat=True)
+        )
+        if disb.submitted_by and disb.submitted_by.email:
+            if disb.submitted_by.email not in recipients:
+                recipients.append(disb.submitted_by.email)
+
+    if not recipients:
+        return {'status': 'skipped', 'reason': 'no_recipients'}
+
+    subjects = {
+        'submit':   f'[SGPIP] Despesa submetida — {disb.project.code} ({disb.fiscal_year}/{disb.period})',
+        'validate': f'[SGPIP] Despesa validada — {disb.project.code} ({disb.fiscal_year}/{disb.period})',
+        'reject':   f'[SGPIP] Despesa rejeitada — {disb.project.code} ({disb.fiscal_year}/{disb.period})',
+    }
+    subject = subjects.get(action, f'[SGPIP] Actualização despesa — {disb.project.code}')
+
+    action_labels = {'submit': 'Submetida', 'validate': 'Validada', 'reject': 'Rejeitada'}
+    plain = (
+        f"DESPESA {action_labels.get(action, action).upper()}\n\n"
+        f"Projecto: {disb.project.code} — {disb.project.title}\n"
+        f"Ministerio: {disb.project.ministry}\n"
+        f"Periodo: {disb.fiscal_year}/{disb.period}\n"
+        f"Montante realizado: {disb.actual_amount} FCFA\n"
+        f"Realizado por: {actor.get_full_name() or actor.username}\n"
+    )
+    if rejection_note:
+        plain += f"Motivo: {rejection_note}\n"
+
+    sent = 0
+    for email in recipients:
+        try:
+            send_mail(subject=subject, message=plain, from_email=None,
+                      recipient_list=[email], fail_silently=False)
+            sent += 1
+        except Exception as exc:
+            logger.error(f'[disb-notification] Failed: {email}: {exc}')
+
+    logger.info(f'[disb-notification] {action} {disb}: {sent}/{len(recipients)} sent')
+    return {'status': 'success', 'sent': sent, 'total': len(recipients)}

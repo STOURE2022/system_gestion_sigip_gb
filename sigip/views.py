@@ -748,6 +748,11 @@ class DisbursementViewSet(viewsets.ModelViewSet):
         disb.submitted_by = request.user
         disb.submitted_at = timezone.now()
         disb.save()
+        try:
+            from .tasks import send_disbursement_notification_task
+            send_disbursement_notification_task.delay(disb.id, 'submit', request.user.id)
+        except Exception:
+            pass
         return Response(DisbursementSerializer(disb, context={'request': request}).data)
 
     @action(detail=True, methods=['post'], url_path='validate')
@@ -764,6 +769,11 @@ class DisbursementViewSet(viewsets.ModelViewSet):
         disb.validated_by = request.user
         disb.validated_at = timezone.now()
         disb.save()
+        try:
+            from .tasks import send_disbursement_notification_task
+            send_disbursement_notification_task.delay(disb.id, 'validate', request.user.id)
+        except Exception:
+            pass
         return Response(DisbursementSerializer(disb, context={'request': request}).data)
 
     @action(detail=True, methods=['post'], url_path='reject')
@@ -776,8 +786,14 @@ class DisbursementViewSet(viewsets.ModelViewSet):
             return Response({'detail': 'Apenas desembolsos submetidos podem ser rejeitados.'},
                             status=status.HTTP_400_BAD_REQUEST)
         disb.workflow_status = 'REJEITADO'
-        disb.rejection_note = request.data.get('rejection_note', '')
+        note = request.data.get('rejection_note', '')
+        disb.rejection_note = note
         disb.save()
+        try:
+            from .tasks import send_disbursement_notification_task
+            send_disbursement_notification_task.delay(disb.id, 'reject', request.user.id, note)
+        except Exception:
+            pass
         return Response(DisbursementSerializer(disb, context={'request': request}).data)
 
 
@@ -1111,6 +1127,56 @@ class ExecutionDashboardView(APIView):
             'by_ministry': by_ministry,
             'by_year': by_year,
         })
+
+
+# ---------------------------------------------------------------------------
+# Notification Counts View
+# ---------------------------------------------------------------------------
+
+class NotificationCountsView(APIView):
+    """
+    Retourne les compteurs d'actions en attente selon le rôle de l'utilisateur.
+    Appelé périodiquement par le frontend pour afficher les badges.
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        user = request.user
+        counts = {
+            'projects_pending_validation': 0,
+            'projects_rejected': 0,
+            'disbursements_pending_validation': 0,
+            'disbursements_rejected': 0,
+            'total': 0,
+        }
+
+        if user.role == UserRole.MINISTRY_AGENT and user.ministry:
+            # Agent: projets rejetés à corriger + déclarations rejetées
+            counts['projects_rejected'] = Project.objects.filter(
+                is_deleted=False, ministry=user.ministry,
+                workflow_status='REJEITADO'
+            ).count()
+            counts['disbursements_rejected'] = Disbursement.objects.filter(
+                project__is_deleted=False, project__ministry=user.ministry,
+                workflow_status='REJEITADO'
+            ).count()
+
+        if user.is_dgp_staff or user.role == UserRole.ADMIN:
+            # DGP: projets soumis en attente + déclarations soumises en attente
+            counts['projects_pending_validation'] = Project.objects.filter(
+                is_deleted=False, workflow_status='SUBMETIDO'
+            ).count()
+            counts['disbursements_pending_validation'] = Disbursement.objects.filter(
+                project__is_deleted=False, workflow_status='SUBMETIDO'
+            ).count()
+
+        counts['total'] = (
+            counts['projects_pending_validation'] +
+            counts['projects_rejected'] +
+            counts['disbursements_pending_validation'] +
+            counts['disbursements_rejected']
+        )
+        return Response(counts)
 
 
 # ---------------------------------------------------------------------------

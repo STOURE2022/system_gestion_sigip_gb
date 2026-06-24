@@ -2,6 +2,7 @@
 SGPIP PDF Generator
 Génère la fiche officielle d'un projet PIP validé en PDF A4.
 """
+import math
 from io import BytesIO
 from decimal import Decimal
 
@@ -32,6 +33,62 @@ GREEN_FG  = colors.HexColor('#065f46')
 GREEN_BD  = colors.HexColor('#a7f3d0')
 WHITE     = colors.white
 LINE_CLR  = colors.HexColor('#d5d0c6')
+
+
+def _draw_star(canvas, cx, cy, r, n=5, color=None):
+    """Draw an n-pointed star at (cx, cy) with radius r."""
+    if color:
+        canvas.setFillColor(color)
+        canvas.setStrokeColor(color)
+    points = []
+    for i in range(n * 2):
+        angle = math.radians(90 + i * 180 / n)
+        rad = r if i % 2 == 0 else r * 0.4
+        points.append(cx + rad * math.cos(angle))
+        points.append(cy + rad * math.sin(angle))
+    p = canvas.beginPath()
+    p.moveTo(points[0], points[1])
+    for i in range(2, len(points), 2):
+        p.lineTo(points[i], points[i + 1])
+    p.close()
+    canvas.drawPath(p, fill=1, stroke=0)
+
+
+def _draw_watermark(canvas, doc):
+    """Draw a faint Guinea-Bissau coat of arms watermark in the center."""
+    canvas.saveState()
+    w, h = A4
+    cx, cy = w / 2, h / 2
+
+    # Large faint circle
+    canvas.setFillColor(colors.HexColor('#00000008'))
+    canvas.circle(cx, cy, 6 * cm, fill=1, stroke=0)
+
+    # Inner circle
+    canvas.setFillColor(colors.HexColor('#00000006'))
+    canvas.circle(cx, cy, 4.5 * cm, fill=1, stroke=0)
+
+    # Star (black star of Guinea-Bissau)
+    _draw_star(canvas, cx, cy + 1.2 * cm, 1.8 * cm, 5, colors.HexColor('#00000010'))
+
+    # Laurel branches (simplified as two arcs)
+    canvas.setStrokeColor(colors.HexColor('#0000000A'))
+    canvas.setLineWidth(3)
+    # Left branch
+    p = canvas.beginPath()
+    p.arc(cx - 4 * cm, cy - 4 * cm, cx - 0.5 * cm, cy + 2 * cm, 30, 120)
+    canvas.drawPath(p, fill=0, stroke=1)
+    # Right branch
+    p = canvas.beginPath()
+    p.arc(cx + 0.5 * cm, cy - 4 * cm, cx + 4 * cm, cy + 2 * cm, 30, 120)
+    canvas.drawPath(p, fill=0, stroke=1)
+
+    # Text "REPÚBLICA DA GUINÉ-BISSAU" as very faint arc
+    canvas.setFont('Helvetica-Bold', 7)
+    canvas.setFillColor(colors.HexColor('#00000009'))
+    canvas.drawCentredString(cx, cy - 3.8 * cm, 'REPÚBLICA DA GUINÉ-BISSAU')
+
+    canvas.restoreState()
 
 
 def _fmt(value):
@@ -90,7 +147,7 @@ def generate_project_pdf(project) -> bytes:
         return ParagraphStyle(name, parent=base, **kw)
 
     hdr_title = st('HdrTitle', fontSize=18, textColor=NAVY,
-                   fontName='Helvetica-Bold', alignment=TA_CENTER, spaceAfter=6)
+                   fontName='Helvetica-Bold', alignment=TA_CENTER, spaceAfter=14)
     hdr_sub   = st('HdrSub', fontSize=8.5, textColor=MUTED,
                    alignment=TA_CENTER, spaceAfter=2)
     sec_head  = st('SecHead', fontSize=9, textColor=WHITE,
@@ -289,5 +346,5 @@ def generate_project_pdf(project) -> bytes:
         note_st,
     ))
 
-    doc.build(story)
+    doc.build(story, onFirstPage=_draw_watermark, onLaterPages=_draw_watermark)
     return buffer.getvalue()

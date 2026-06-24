@@ -2158,7 +2158,6 @@ async function openProjectForm(projectId) {
 
   // Populate dropdowns
   populateSelect('f-sector', REF_DATA.sectors, 'id', 'label', '—');
-  populateSelect('f-pillar', REF_DATA.pillars, 'id', s => s.code + ' – ' + s.label, '—');
   populateSelect('f-financier', REF_DATA.financiers, 'id', s => s.short_name || s.name, '—');
 
   // Ministry dropdown: agents see only their own, DGP sees all
@@ -2192,7 +2191,6 @@ async function openProjectForm(projectId) {
       document.getElementById('f-end').value    = p.end_date || '';
       if (p.ministry)           setSelectVal('f-ministry',  p.ministry);
       if (p.sector)             setSelectVal('f-sector',    p.sector);
-      if (p.pillar)             setSelectVal('f-pillar',    p.pillar);
       if (p.principal_financier) setSelectVal('f-financier', p.principal_financier);
       // Load programming
       try {
@@ -2285,7 +2283,6 @@ async function saveProject() {
     status: document.getElementById('f-status').value,
     ministry: document.getElementById('f-ministry').value || undefined,
     sector: document.getElementById('f-sector').value || null,
-    pillar: document.getElementById('f-pillar').value || null,
     principal_financier: document.getElementById('f-financier').value || null,
     start_date: document.getElementById('f-start').value || null,
     end_date: document.getElementById('f-end').value || null,

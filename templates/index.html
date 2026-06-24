@@ -137,41 +137,78 @@ tbody tr:hover{background:#faf8f3}
 .banner.success{background:#eaf5ee;border:1px solid #a5d6b5;color:#1a5a30}
 .mini{font-size:11px;color:var(--muted);margin-top:3px}
 /* Project detail panel */
-#project-detail{display:none;animation:fade .25s ease}
-#project-detail.active{display:block}
-.detail-back{background:none;border:1px solid var(--line);padding:7px 16px;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;color:var(--ink2);font-family:inherit;transition:.15s;margin-bottom:18px}
-.detail-back:hover{background:var(--line);color:var(--ink)}
-.detail-header{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;margin-bottom:20px;flex-wrap:wrap}
-.detail-header h2{font-size:20px;font-weight:700;color:var(--ink);line-height:1.3}
-.detail-header .detail-code{font-family:'Consolas',monospace;font-size:13px;color:var(--muted);font-weight:500}
-.detail-badges{display:flex;gap:8px;flex-wrap:wrap}
-.detail-badge{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:.3px}
-.detail-badge.status{background:#d4e8e6;color:#1d514e}
-.detail-badge.workflow{background:var(--gold-dim);color:#7a5a10}
-.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+#project-detail{display:none}
+#project-detail.active{display:block;animation:slideUp .35s ease}
+@keyframes slideUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.detail-back{background:#fff;border:1px solid var(--line);padding:8px 18px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;color:var(--ink2);font-family:inherit;transition:.2s;margin-bottom:20px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.detail-back:hover{background:var(--ink);color:#fff;border-color:var(--ink);transform:translateX(-3px)}
+/* Hero banner */
+.detail-hero{background:linear-gradient(135deg,var(--ink) 0%,var(--ink2) 100%);border-radius:14px;padding:28px 32px;margin-bottom:20px;color:#fff;position:relative;overflow:hidden}
+.detail-hero::after{content:"";position:absolute;right:-30px;top:-30px;width:180px;height:180px;border-radius:50%;background:rgba(200,150,30,.1)}
+.detail-hero .detail-code{font-family:'Consolas',monospace;font-size:12px;color:var(--gold);font-weight:700;letter-spacing:1px;margin-bottom:6px}
+.detail-hero h2{font-size:21px;font-weight:700;line-height:1.35;margin-bottom:14px;max-width:80%}
+.detail-hero .detail-badges{display:flex;gap:8px;flex-wrap:wrap}
+.detail-hero .detail-badge{padding:5px 14px;border-radius:20px;font-size:10.5px;font-weight:700;letter-spacing:.4px;backdrop-filter:blur(4px)}
+.detail-hero .badge-status{background:rgba(255,255,255,.15);color:#fff;border:1px solid rgba(255,255,255,.25)}
+.detail-hero .badge-workflow{background:rgba(200,150,30,.25);color:var(--gold);border:1px solid rgba(200,150,30,.4)}
+/* KPI strip */
+.detail-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin-bottom:20px}
+.detail-kpi{background:#fff;border:1px solid var(--line);border-radius:10px;padding:16px 18px;position:relative;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:.2s}
+.detail-kpi:hover{transform:translateY(-2px);box-shadow:0 4px 12px rgba(0,0,0,.08)}
+.detail-kpi::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px}
+.detail-kpi.kpi-total::before{background:var(--accent)}
+.detail-kpi.kpi-ext::before{background:var(--ext)}
+.detail-kpi.kpi-int::before{background:var(--int)}
+.detail-kpi.kpi-fin::before{background:var(--gold)}
+.detail-kpi .dk-label{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:600}
+.detail-kpi .dk-value{font-size:22px;font-weight:800;margin-top:4px;color:var(--ink);font-variant-numeric:tabular-nums}
+.detail-kpi .dk-unit{font-size:11px;color:var(--muted);font-weight:500}
+.detail-kpi .dk-sub{font-size:10px;color:var(--ext);margin-top:3px;font-weight:600}
+/* Grid sections */
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:18px}
 @media(max-width:800px){.detail-grid{grid-template-columns:1fr}}
-.detail-section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px 20px;box-shadow:var(--shadow)}
-.detail-section h3{font-size:12px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--line)}
-.detail-row{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #f5f3ee;font-size:13px}
+.detail-section{background:#fff;border:1px solid var(--line);border-radius:12px;padding:20px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);transition:.15s}
+.detail-section:hover{box-shadow:0 4px 16px rgba(0,0,0,.07)}
+.detail-section h3{font-size:11px;text-transform:uppercase;letter-spacing:1.8px;color:var(--gold);font-weight:700;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid #f5f1e8;display:flex;align-items:center;gap:8px}
+.detail-section h3 .sec-icon{width:22px;height:22px;border-radius:6px;display:grid;place-items:center;font-size:11px;color:#fff}
+.detail-row{display:flex;justify-content:space-between;align-items:center;padding:9px 0;border-bottom:1px solid #f8f6f1;font-size:13px;transition:.1s}
 .detail-row:last-child{border-bottom:none}
-.detail-row .dlabel{color:var(--muted);font-weight:500;flex-shrink:0;width:45%}
+.detail-row:hover{background:#faf9f6;margin:0 -8px;padding:9px 8px;border-radius:6px}
+.detail-row .dlabel{color:var(--muted);font-weight:500;flex-shrink:0}
 .detail-row .dvalue{color:var(--ink);font-weight:600;text-align:right}
 .detail-full{grid-column:1/-1}
-.prog-detail-table{width:100%;border-collapse:collapse;font-size:12.5px;margin-top:8px}
-.prog-detail-table th{text-align:right;padding:8px 10px;background:#f4f1ea;color:var(--ink2);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.5px}
-.prog-detail-table th:first-child{text-align:left}
-.prog-detail-table td{padding:8px 10px;text-align:right;border-bottom:1px solid #f0ece3;font-variant-numeric:tabular-nums}
+/* Programming chart */
+.prog-chart-area{display:flex;gap:8px;align-items:flex-end;height:120px;padding:20px 0 0;margin-bottom:16px}
+.prog-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.prog-col .pc-bar{width:100%;max-width:60px;border-radius:6px 6px 0 0;position:relative;overflow:hidden;transition:height .5s ease;cursor:default}
+.prog-col .pc-seg{width:100%;transition:height .4s ease}
+.prog-col .pc-seg.don{background:linear-gradient(180deg,#2a8f8a,var(--ext))}
+.prog-col .pc-seg.emp{background:linear-gradient(180deg,#a85070,var(--empr))}
+.prog-col .pc-seg.int{background:linear-gradient(180deg,#c49035,var(--int))}
+.prog-col .pc-year{font-size:11px;font-weight:700;color:var(--ink2);margin-top:6px}
+.prog-col .pc-val{font-size:10px;color:var(--muted);font-weight:600;font-variant-numeric:tabular-nums}
+/* Programming table */
+.prog-detail-table{width:100%;border-collapse:separate;border-spacing:0;font-size:12.5px}
+.prog-detail-table th{text-align:right;padding:10px 12px;background:linear-gradient(135deg,#f8f6f0,#f4f1ea);color:var(--ink2);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.6px}
+.prog-detail-table th:first-child{text-align:left;border-radius:8px 0 0 0}
+.prog-detail-table th:last-child{border-radius:0 8px 0 0}
+.prog-detail-table td{padding:10px 12px;text-align:right;border-bottom:1px solid #f0ece3;font-variant-numeric:tabular-nums;font-size:12.5px}
 .prog-detail-table td:first-child{text-align:left;font-weight:600;color:var(--ink2)}
-.prog-detail-table tr.total-row td{font-weight:700;border-top:2px solid var(--gold-dim);background:#faf8f3;color:var(--ink)}
-.prog-bar-wrap{display:flex;gap:6px;align-items:flex-end;height:60px;margin-top:12px}
-.prog-bar-col{flex:1;display:flex;flex-direction:column;align-items:center;gap:3px}
-.prog-bar-col .pb{border-radius:3px 3px 0 0;width:100%;max-width:50px;background:linear-gradient(180deg,var(--accent),var(--ext));transition:.3s}
-.prog-bar-col .py{font-size:10px;color:var(--muted);font-weight:600}
-.prog-bar-col .pv{font-size:9px;color:var(--ink2);font-weight:700}
-tbody tr.clickable{cursor:pointer}
-tbody tr.clickable:hover{background:#f0ece3}
-.detail-loading{text-align:center;padding:40px;color:var(--muted);font-size:14px}
-.detail-desc{font-size:13px;color:var(--ink2);line-height:1.6;padding:8px 0}
+.prog-detail-table tbody tr{transition:.12s}
+.prog-detail-table tbody tr:hover{background:#faf8f3}
+.prog-detail-table tr.total-row td{font-weight:800;border-top:2px solid var(--gold);background:linear-gradient(135deg,#faf8f3,#f5f1e8);color:var(--ink);font-size:13px}
+.prog-detail-table tr.total-row td:first-child{border-radius:0 0 0 8px}
+.prog-detail-table tr.total-row td:last-child{border-radius:0 0 8px 0}
+/* Legend */
+.prog-legend{display:flex;gap:16px;margin-top:14px;font-size:11px;color:var(--muted);flex-wrap:wrap}
+.prog-legend span{display:flex;align-items:center;gap:5px;font-weight:500}
+.prog-legend .ldot{width:10px;height:10px;border-radius:3px}
+/* Description */
+.detail-desc-box{background:linear-gradient(135deg,#f9f8f5,#f5f3ee);border:1px solid var(--line);border-radius:10px;padding:16px 20px;margin-bottom:18px;font-size:13px;color:var(--ink2);line-height:1.7;font-style:italic}
+/* Clickable rows */
+tbody tr.clickable{cursor:pointer;transition:.12s}
+tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
+.detail-loading{text-align:center;padding:60px;color:var(--muted);font-size:14px}
 /* Login modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.5);display:grid;place-items:center;z-index:1000;animation:fade .2s ease}
 .modal{background:#fff;border-radius:14px;padding:40px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
@@ -1545,15 +1582,6 @@ function closeProjectDetail() {
 
 function renderProjectDetail(p) {
   const content = document.getElementById('project-detail-content');
-  const statusColors = {
-    IDENTIFIED: '#6c757d', IN_PROGRESS: '#0d6efd', COMPLETED: '#198754', SUSPENDED: '#ffc107', CANCELLED: '#dc3545'
-  };
-  const wfColors = {
-    RASCUNHO: '#6c757d', SUBMETIDO: '#0d6efd', VALIDADO: '#198754', REJEITADO: '#dc3545'
-  };
-
-  const sColor = statusColors[p.status] || '#6c757d';
-  const wColor = wfColors[p.workflow_status] || '#6c757d';
 
   // Programming data
   const progData = ANOS.map(y => {
@@ -1567,25 +1595,56 @@ function renderProjectDetail(p) {
     };
   });
   const grandTotal = progData.reduce((s, y) => s + y.total, 0);
+  const totalDon = progData.reduce((s, y) => s + y.don, 0);
+  const totalEmp = progData.reduce((s, y) => s + y.emp, 0);
+  const totalState = progData.reduce((s, y) => s + y.state, 0);
+  const totalExt = totalDon + totalEmp;
   const maxYear = Math.max(...progData.map(y => y.total), 1);
+  const pctExt = grandTotal > 0 ? (100 * totalExt / grandTotal).toFixed(1) : '0';
+  const pctInt = grandTotal > 0 ? (100 * totalState / grandTotal).toFixed(1) : '0';
 
   content.innerHTML = `
-    <div class="detail-header">
-      <div>
-        <div class="detail-code">${esc(p.code)}</div>
-        <h2>${esc(p.title)}</h2>
-      </div>
+    <!-- HERO BANNER -->
+    <div class="detail-hero">
+      <div class="detail-code">${esc(p.code)}</div>
+      <h2>${esc(p.title)}</h2>
       <div class="detail-badges">
-        ${p.status_display ? `<span class="detail-badge status" style="background:${sColor}20;color:${sColor}">${esc(p.status_display)}</span>` : ''}
-        ${p.workflow_status_display ? `<span class="detail-badge workflow" style="background:${wColor}20;color:${wColor}">${esc(p.workflow_status_display)}</span>` : ''}
+        ${p.status_display ? `<span class="detail-badge badge-status">${esc(p.status_display)}</span>` : ''}
+        ${p.workflow_status_display ? `<span class="detail-badge badge-workflow">${esc(p.workflow_status_display)}</span>` : ''}
+        ${p.financier_type ? `<span class="detail-badge badge-status">${esc(p.financier_type)}</span>` : ''}
       </div>
     </div>
 
-    ${p.description ? `<div class="detail-section detail-full" style="margin-bottom:16px"><div class="detail-desc">${esc(p.description)}</div></div>` : ''}
+    ${p.description ? `<div class="detail-desc-box">${esc(p.description)}</div>` : ''}
 
+    <!-- KPI STRIP -->
+    <div class="detail-kpis">
+      <div class="detail-kpi kpi-total">
+        <div class="dk-label">${T('detail_total_prog')}</div>
+        <div class="dk-value">${fmt(grandTotal)} <span class="dk-unit">M FCFA</span></div>
+        <div class="dk-sub">${fmtB(grandTotal)}</div>
+      </div>
+      <div class="detail-kpi kpi-ext">
+        <div class="dk-label">${T('kpi_external')}</div>
+        <div class="dk-value">${fmt(totalExt)} <span class="dk-unit">M</span></div>
+        <div class="dk-sub">${pctExt}% ${T('kpi_of_total')}</div>
+      </div>
+      <div class="detail-kpi kpi-int">
+        <div class="dk-label">${T('legend_state')}</div>
+        <div class="dk-value">${fmt(totalState)} <span class="dk-unit">M</span></div>
+        <div class="dk-sub">${pctInt}% ${T('kpi_of_total')}</div>
+      </div>
+      <div class="detail-kpi kpi-fin">
+        <div class="dk-label">${T('th_financier')}</div>
+        <div class="dk-value" style="font-size:16px">${esc(p.financier_name || p.financier_short || '-')}</div>
+        <div class="dk-sub">${esc(p.ministry_short || p.ministry_name || '')}</div>
+      </div>
+    </div>
+
+    <!-- INFO GRID -->
     <div class="detail-grid">
       <div class="detail-section">
-        <h3>${T('detail_identification')}</h3>
+        <h3><span class="sec-icon" style="background:var(--accent)">&#9776;</span> ${T('detail_identification')}</h3>
         <div class="detail-row"><span class="dlabel">${T('th_ministry')}</span><span class="dvalue">${esc(p.ministry_name || p.ministry_short || '-')}</span></div>
         ${p.ministry_short ? `<div class="detail-row"><span class="dlabel">${T('field_short_name')}</span><span class="dvalue">${esc(p.ministry_short)}</span></div>` : ''}
         ${p.sector_label ? `<div class="detail-row"><span class="dlabel">${T('field_sector')}</span><span class="dvalue">${esc(p.sector_label)}</span></div>` : ''}
@@ -1597,22 +1656,50 @@ function renderProjectDetail(p) {
       </div>
 
       <div class="detail-section">
-        <h3>${T('detail_financing')}</h3>
+        <h3><span class="sec-icon" style="background:var(--gold)">&#9733;</span> ${T('detail_financing')}</h3>
         <div class="detail-row"><span class="dlabel">${T('th_financier')}</span><span class="dvalue">${esc(p.financier_name || p.financier_short || '-')}</span></div>
-        ${p.financier_type ? `<div class="detail-row"><span class="dlabel">Type</span><span class="dvalue"><span class="tag ${p.financier_type === 'ESTADO' ? 'est' : 'ext'}">${esc(p.financier_type)}</span></span></div>` : ''}
-        <div class="detail-row"><span class="dlabel">${T('detail_total_prog')}</span><span class="dvalue" style="font-size:16px;color:var(--accent)">${fmt(grandTotal)} M</span></div>
-        ${p.total_programmed_externe !== undefined ? `<div class="detail-row"><span class="dlabel">${T('kpi_external')}</span><span class="dvalue">${fmt(p.total_programmed_externe)} M</span></div>` : ''}
-        ${p.total_programmed_interno !== undefined ? `<div class="detail-row"><span class="dlabel">${T('legend_state')}</span><span class="dvalue">${fmt(p.total_programmed_interno)} M</span></div>` : ''}
-        ${p.total_cost ? `<div class="detail-row"><span class="dlabel">${T('detail_total_cost')}</span><span class="dvalue">${fmt(parseFloat(p.total_cost))} M</span></div>` : ''}
+        ${p.financier_type ? `<div class="detail-row"><span class="dlabel">Type</span><span class="dvalue"><span class="tag ${p.financier_type === 'ESTADO' ? 'est' : 'ext'}" style="font-size:11px">${esc(p.financier_type)}</span></span></div>` : ''}
+        <div class="detail-row"><span class="dlabel">${T('legend_donations')}</span><span class="dvalue" style="color:var(--ext)">${fmtN(totalDon)} FCFA</span></div>
+        <div class="detail-row"><span class="dlabel">${T('legend_loans')}</span><span class="dvalue" style="color:var(--empr)">${fmtN(totalEmp)} FCFA</span></div>
+        <div class="detail-row"><span class="dlabel">${T('legend_state')}</span><span class="dvalue" style="color:var(--int)">${fmtN(totalState)} FCFA</span></div>
+        <!-- Mini breakdown bar -->
+        <div style="display:flex;height:8px;border-radius:4px;overflow:hidden;margin-top:12px;background:#f0ece3">
+          ${totalDon > 0 ? `<div style="width:${100*totalDon/Math.max(grandTotal,1)}%;background:var(--ext)" title="${T('legend_donations')}"></div>` : ''}
+          ${totalEmp > 0 ? `<div style="width:${100*totalEmp/Math.max(grandTotal,1)}%;background:var(--empr)" title="${T('legend_loans')}"></div>` : ''}
+          ${totalState > 0 ? `<div style="width:${100*totalState/Math.max(grandTotal,1)}%;background:var(--int)" title="${T('legend_state')}"></div>` : ''}
+        </div>
       </div>
     </div>
 
+    <!-- PROGRAMMING -->
     <div class="detail-section detail-full">
-      <h3>${T('detail_programming')}</h3>
-      <div class="prog-bar-wrap">
-        ${progData.map(y => `<div class="prog-bar-col"><div class="pv">${fmt(y.total)}</div><div class="pb" style="height:${Math.max(y.total / maxYear * 50, 2)}px"></div><div class="py">${y.year}</div></div>`).join('')}
+      <h3><span class="sec-icon" style="background:var(--ext)">&#9650;</span> ${T('detail_programming')}</h3>
+
+      <!-- Stacked bar chart -->
+      <div class="prog-chart-area">
+        ${progData.map(y => {
+          const hDon = y.don / maxYear * 90;
+          const hEmp = y.emp / maxYear * 90;
+          const hSt = y.state / maxYear * 90;
+          return `<div class="prog-col">
+            <div class="pc-val">${fmt(y.total)}</div>
+            <div class="pc-bar" style="height:${Math.max((y.total/maxYear)*90, 3)}px;display:flex;flex-direction:column-reverse">
+              ${y.don > 0 ? `<div class="pc-seg don" style="height:${hDon}px"></div>` : ''}
+              ${y.emp > 0 ? `<div class="pc-seg emp" style="height:${hEmp}px"></div>` : ''}
+              ${y.state > 0 ? `<div class="pc-seg int" style="height:${hSt}px"></div>` : ''}
+            </div>
+            <div class="pc-year">${y.year}</div>
+          </div>`;
+        }).join('')}
       </div>
-      <table class="prog-detail-table">
+
+      <div class="prog-legend">
+        <span><span class="ldot" style="background:var(--ext)"></span>${T('legend_donations')}</span>
+        <span><span class="ldot" style="background:var(--empr)"></span>${T('legend_loans')}</span>
+        <span><span class="ldot" style="background:var(--int)"></span>${T('legend_state')}</span>
+      </div>
+
+      <table class="prog-detail-table" style="margin-top:16px">
         <thead><tr>
           <th>${T('th_year')}</th>
           <th>${T('legend_donations')}</th>
@@ -1630,9 +1717,9 @@ function renderProjectDetail(p) {
           </tr>`).join('')}
           <tr class="total-row">
             <td>TOTAL</td>
-            <td>${fmtN(progData.reduce((s,y) => s+y.don, 0))}</td>
-            <td>${fmtN(progData.reduce((s,y) => s+y.emp, 0))}</td>
-            <td>${fmtN(progData.reduce((s,y) => s+y.state, 0))}</td>
+            <td>${fmtN(totalDon)}</td>
+            <td>${fmtN(totalEmp)}</td>
+            <td>${fmtN(totalState)}</td>
             <td>${fmtN(grandTotal)}</td>
           </tr>
         </tbody>

@@ -932,6 +932,110 @@ class DashboardView(APIView):
 
 
 # ---------------------------------------------------------------------------
+# Execution Dashboard View
+# ---------------------------------------------------------------------------
+
+class ExecutionDashboardView(APIView):
+    """
+    Agrégation de l'exécution budgétaire par ministère.
+    Retourne programmé vs décaissé avec taux d'exécution.
+    Filtrable par ?year=2026 et ?period=Q1
+    """
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request, *args, **kwargs):
+        year = request.query_params.get('year')
+        period = request.query_params.get('period')
+
+        # Base querysets
+        prog_qs = AnnualProgramming.objects.filter(
+            project__is_deleted=False, version=1
+        )
+        disb_qs = Disbursement.objects.filter(project__is_deleted=False)
+
+        if year:
+            prog_qs = prog_qs.filter(fiscal_year=int(year))
+            disb_qs = disb_qs.filter(fiscal_year=int(year))
+        if period:
+            disb_qs = disb_qs.filter(period=period)
+
+        # Global totals
+        global_prog = prog_qs.aggregate(
+            total=Coalesce(
+                Sum('donations') + Sum('loans') + Sum('state_contribution'),
+                Value(Decimal('0'))
+            )
+        )['total']
+        global_disb = disb_qs.aggregate(
+            total=Coalesce(Sum('actual_amount'), Value(Decimal('0')))
+        )['total']
+        global_rate = round(float(global_disb) / float(global_prog) * 100, 2) if global_prog > 0 else 0
+
+        # By ministry
+        ministry_prog = dict(
+            prog_qs.values_list('project__ministry__id').annotate(
+                total=Sum('donations') + Sum('loans') + Sum('state_contribution')
+            ).values_list('project__ministry__id', 'total')
+        )
+        ministry_disb = dict(
+            disb_qs.values('project__ministry__id').annotate(
+                total=Sum('actual_amount')
+            ).values_list('project__ministry__id', 'total')
+        )
+
+        ministries = Ministry.objects.all().order_by('name')
+        by_ministry = []
+        for m in ministries:
+            prog = float(ministry_prog.get(m.id, 0) or 0)
+            disb = float(ministry_disb.get(m.id, 0) or 0)
+            rate = round(disb / prog * 100, 2) if prog > 0 else 0
+            by_ministry.append({
+                'id': m.id,
+                'name': m.name,
+                'short_name': m.short_name,
+                'programmed': prog,
+                'disbursed': disb,
+                'execution_rate': rate,
+            })
+
+        # Sort by programmed descending
+        by_ministry.sort(key=lambda x: x['programmed'], reverse=True)
+
+        # By year (for chart)
+        by_year = []
+        for yr in [2026, 2027, 2028, 2029, 2030]:
+            yr_prog = prog_qs.filter(fiscal_year=yr).aggregate(
+                total=Coalesce(
+                    Sum('donations') + Sum('loans') + Sum('state_contribution'),
+                    Value(Decimal('0'))
+                )
+            )['total']
+            yr_disb_qs = Disbursement.objects.filter(
+                project__is_deleted=False, fiscal_year=yr
+            )
+            if period:
+                yr_disb_qs = yr_disb_qs.filter(period=period)
+            yr_disb = yr_disb_qs.aggregate(
+                total=Coalesce(Sum('actual_amount'), Value(Decimal('0')))
+            )['total']
+            by_year.append({
+                'year': yr,
+                'programmed': float(yr_prog),
+                'disbursed': float(yr_disb),
+                'rate': round(float(yr_disb) / float(yr_prog) * 100, 2) if yr_prog > 0 else 0,
+            })
+
+        return Response({
+            'global_programmed': float(global_prog),
+            'global_disbursed': float(global_disb),
+            'global_rate': global_rate,
+            'project_count': Project.objects.filter(is_deleted=False).count(),
+            'by_ministry': by_ministry,
+            'by_year': by_year,
+        })
+
+
+# ---------------------------------------------------------------------------
 # Import View
 # ---------------------------------------------------------------------------
 

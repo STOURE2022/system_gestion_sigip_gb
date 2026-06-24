@@ -345,6 +345,29 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
 .confirm-box h3{font-size:16px;font-weight:700;margin-bottom:8px}
 .confirm-box p{font-size:13px;color:var(--muted);margin-bottom:18px}
 .confirm-actions{display:flex;gap:10px;justify-content:flex-end}
+/* Execution view */
+.exec-filters{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.exec-filters select{padding:9px 14px;border:1.5px solid var(--line);border-radius:9px;font-size:13px;font-family:inherit;background:#fff;cursor:pointer;transition:.15s;color:var(--ink);min-width:160px}
+.exec-filters select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(10,77,74,.1)}
+.exec-year-chart{display:flex;gap:12px;align-items:flex-end;height:140px;padding:10px 0}
+.exec-yc{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px}
+.exec-yc .eyc-bars{display:flex;gap:3px;align-items:flex-end;width:100%;justify-content:center;height:90px}
+.exec-yc .eyc-bar{width:40%;max-width:32px;border-radius:4px 4px 0 0;transition:height .5s ease;position:relative}
+.exec-yc .eyc-bar.prog{background:linear-gradient(180deg,#0d6560,var(--accent))}
+.exec-yc .eyc-bar.disb{background:linear-gradient(180deg,#e8b84b,var(--gold))}
+.exec-yc .eyc-year{font-size:11px;font-weight:700;color:var(--ink2)}
+.exec-yc .eyc-rate{font-size:9px;font-weight:700;padding:2px 6px;border-radius:10px;background:#f0fdf4;color:#065f46}
+.exec-yc .eyc-rate.zero{background:#f5f3ee;color:var(--muted)}
+.exec-table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px}
+.exec-table th{text-align:right;padding:10px 12px;background:linear-gradient(135deg,#f8f6f0,#f4f1ea);color:var(--ink2);font-weight:700;font-size:10px;text-transform:uppercase;letter-spacing:.6px;border-bottom:2px solid var(--gold-dim)}
+.exec-table th:first-child{text-align:left}
+.exec-table td{padding:11px 12px;text-align:right;border-bottom:1px solid #f0ece3;font-variant-numeric:tabular-nums}
+.exec-table td:first-child{text-align:left;font-weight:600;color:var(--ink2);max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.exec-table tbody tr{transition:.12s}
+.exec-table tbody tr:hover{background:#faf8f3}
+.exec-progress-bar{height:8px;border-radius:4px;background:#f0ece3;overflow:hidden;position:relative}
+.exec-progress-fill{height:100%;border-radius:4px;transition:width .6s ease}
+.exec-rate-badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:700;min-width:52px;text-align:center}
 /* Saisie view */
 .saisie-toolbar{display:flex;gap:10px;margin-bottom:16px;align-items:center;flex-wrap:wrap}
 .saisie-toolbar input{padding:9px 12px;border:1px solid var(--line);border-radius:7px;font-size:13px;flex:1;min-width:180px;font-family:inherit}
@@ -417,6 +440,7 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
   <button data-v="min" data-i18n="nav_min">Ministérios</button>
   <button data-v="fin" data-i18n="nav_fin">Financiadores</button>
   <button data-v="prog" data-i18n="nav_prog">Programação Plurianual</button>
+  <button data-v="execucao" id="nav-execucao" style="display:none" data-i18n="nav_execucao">Execução</button>
   <button data-v="saisie" id="nav-saisie" style="display:none" data-i18n="nav_saisie">Saisie</button>
   <button data-v="sintese" id="nav-sintese" style="display:none" data-i18n="nav_sintese">Síntese</button>
 </nav>
@@ -532,6 +556,63 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
     <div class="panel">
       <h3 data-i18n="panel_annual">Evolução anual do total programado</h3>
       <div class="yearchart" id="progchart"></div>
+    </div>
+  </div>
+
+  <!-- EXECUÇÃO ORÇAMENTAL -->
+  <div class="view" id="execucao">
+    <div class="eyebrow" data-i18n="eyebrow_exec">Acompanhamento Financeiro</div>
+    <div class="vtitle" data-i18n="vtitle_exec">Execução Orçamental</div>
+    <div class="vsub" data-i18n="vsub_exec">Comparação entre montantes programados e efectivamente desembolsados por ministério</div>
+
+    <!-- Filters -->
+    <div class="exec-filters">
+      <select id="exec-year" onchange="loadExecution()">
+        <option value="" data-i18n="exec_all_years">Todos os anos</option>
+        <option value="2026">2026</option>
+        <option value="2027">2027</option>
+        <option value="2028">2028</option>
+        <option value="2029">2029</option>
+        <option value="2030">2030</option>
+      </select>
+      <select id="exec-period" onchange="loadExecution()">
+        <option value="" data-i18n="exec_all_periods">Todos os períodos</option>
+        <option value="Q1">1º Trimestre</option>
+        <option value="Q2">2º Trimestre</option>
+        <option value="Q3">3º Trimestre</option>
+        <option value="Q4">4º Trimestre</option>
+        <option value="ANNUAL">Anual</option>
+      </select>
+    </div>
+
+    <!-- KPIs -->
+    <div id="exec-kpis" class="detail-kpis" style="margin-bottom:20px"></div>
+
+    <!-- Year chart -->
+    <div class="detail-section" style="margin-bottom:20px">
+      <h3><span class="sec-icon" style="background:var(--accent)">&#9650;</span> <span data-i18n="exec_by_year">Evolução Anual</span></h3>
+      <div id="exec-year-chart" class="exec-year-chart"></div>
+      <div class="prog-legend" style="margin-top:10px">
+        <span><span class="ldot" style="background:var(--accent)"></span> <span data-i18n="exec_programmed">Programado</span></span>
+        <span><span class="ldot" style="background:var(--gold)"></span> <span data-i18n="exec_disbursed">Desembolsado</span></span>
+      </div>
+    </div>
+
+    <!-- Ministry table -->
+    <div class="detail-section">
+      <h3><span class="sec-icon" style="background:var(--gold)">&#9733;</span> <span data-i18n="exec_by_ministry">Execução por Ministério</span></h3>
+      <div class="tablewrap" style="max-height:none;border:none;box-shadow:none;border-radius:0">
+        <table class="exec-table" id="exec-table">
+          <thead><tr>
+            <th style="text-align:left" data-i18n="th_ministry">Ministério</th>
+            <th data-i18n="exec_programmed">Programado</th>
+            <th data-i18n="exec_disbursed">Desembolsado</th>
+            <th data-i18n="exec_rate">Taxa</th>
+            <th style="width:180px" data-i18n="exec_progress">Progresso</th>
+          </tr></thead>
+          <tbody id="exec-tbody"></tbody>
+        </table>
+      </div>
     </div>
   </div>
 
@@ -958,6 +1039,21 @@ const I18N = {
     status_COMPLETED: 'Concluído',
     status_SUSPENDED: 'Suspenso',
     status_CANCELLED: 'Cancelado',
+    nav_execucao: 'Execução',
+    eyebrow_exec: 'Acompanhamento Financeiro',
+    vtitle_exec: 'Execução Orçamental',
+    vsub_exec: 'Comparação entre montantes programados e efectivamente desembolsados por ministério',
+    exec_all_years: 'Todos os anos',
+    exec_all_periods: 'Todos os períodos',
+    exec_programmed: 'Programado',
+    exec_disbursed: 'Desembolsado',
+    exec_rate: 'Taxa de Execução',
+    exec_progress: 'Progresso',
+    exec_by_year: 'Evolução Anual',
+    exec_by_ministry: 'Execução por Ministério',
+    exec_gap: 'Saldo por Desembolsar',
+    exec_remaining: 'por executar',
+    exec_no_data: 'Nenhum desembolso registado. Utilize a administração para adicionar dados.',
     nav_sintese: 'Síntese',
     eyebrow_sintese: 'Síntese do PIP',
     vtitle_sintese: 'Quadros de Síntese',
@@ -1135,6 +1231,21 @@ const I18N = {
     status_COMPLETED: 'Achevé',
     status_SUSPENDED: 'Suspendu',
     status_CANCELLED: 'Annulé',
+    nav_execucao: 'Exécution',
+    eyebrow_exec: 'Suivi Financier',
+    vtitle_exec: 'Exécution Budgétaire',
+    vsub_exec: 'Comparaison entre montants programmés et effectivement décaissés par ministère',
+    exec_all_years: 'Toutes les années',
+    exec_all_periods: 'Toutes les périodes',
+    exec_programmed: 'Programmé',
+    exec_disbursed: 'Décaissé',
+    exec_rate: "Taux d'Exécution",
+    exec_progress: 'Progression',
+    exec_by_year: 'Évolution Annuelle',
+    exec_by_ministry: 'Exécution par Ministère',
+    exec_gap: 'Reste à Décaisser',
+    exec_remaining: 'à exécuter',
+    exec_no_data: "Aucun décaissement enregistré. Utilisez l'administration pour ajouter des données.",
     nav_sintese: 'Synthèse',
     eyebrow_sintese: 'Synthèse du PIP',
     vtitle_sintese: 'Tableaux de Synthèse',
@@ -1304,6 +1415,8 @@ function logout() {
   localStorage.removeItem('sigip_token');
   DEMO_MODE = true;
   document.getElementById('nav-saisie').style.display = 'none';
+  const _navExec = document.getElementById('nav-execucao');
+  if (_navExec) _navExec.style.display = 'none';
   const _navSintese = document.getElementById('nav-sintese');
   if (_navSintese) _navSintese.style.display = 'none';
   SINTESE_CACHE = {};
@@ -1806,6 +1919,65 @@ function renderProjectDetail(p) {
         </tbody>
       </table>
     </div>
+
+    ${renderProjectDisbursements(p)}
+  `;
+}
+
+function renderProjectDisbursements(p) {
+  const disbs = p.disbursements || [];
+  if (!disbs.length && !ACCESS_TOKEN) return '';
+
+  // Aggregate by year
+  const byYear = {};
+  disbs.forEach(d => {
+    const yr = d.fiscal_year;
+    if (!byYear[yr]) byYear[yr] = {programmed: 0, actual: 0};
+    byYear[yr].programmed += parseFloat(d.programmed_amount || 0);
+    byYear[yr].actual += parseFloat(d.actual_amount || 0);
+  });
+
+  const totalProg = disbs.reduce((s, d) => s + parseFloat(d.programmed_amount || 0), 0);
+  const totalActual = disbs.reduce((s, d) => s + parseFloat(d.actual_amount || 0), 0);
+  const totalRate = totalProg > 0 ? (totalActual / totalProg * 100).toFixed(1) : '0.0';
+
+  const rateColor = totalRate >= 75 ? '#065f46' : totalRate >= 50 ? '#92400e' : '#991b1b';
+  const rateBg = totalRate >= 75 ? '#d1fae5' : totalRate >= 50 ? '#fef3c7' : '#fee2e2';
+
+  return `
+    <div class="detail-section detail-full" style="margin-top:16px">
+      <h3><span class="sec-icon" style="background:var(--gold)">&#9733;</span> ${T('exec_rate')}
+        ${disbs.length ? `<span class="exec-rate-badge" style="background:${rateBg};color:${rateColor};margin-left:auto">${totalRate}%</span>` : ''}
+      </h3>
+      ${disbs.length ? `
+        <div style="display:flex;gap:14px;margin-bottom:14px;flex-wrap:wrap">
+          <div style="flex:1;min-width:140px;background:#f8f6f0;border-radius:8px;padding:12px 14px">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:600">${T('exec_programmed')}</div>
+            <div style="font-size:18px;font-weight:800;color:var(--ink);margin-top:4px">${fmtN(totalProg)} <span style="font-size:11px;color:var(--muted)">FCFA</span></div>
+          </div>
+          <div style="flex:1;min-width:140px;background:#f8f6f0;border-radius:8px;padding:12px 14px">
+            <div style="font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--muted);font-weight:600">${T('exec_disbursed')}</div>
+            <div style="font-size:18px;font-weight:800;color:var(--gold);margin-top:4px">${fmtN(totalActual)} <span style="font-size:11px;color:var(--muted)">FCFA</span></div>
+          </div>
+        </div>
+        <div class="exec-progress-bar" style="height:10px;margin-bottom:16px"><div class="exec-progress-fill" style="width:${Math.min(totalRate, 100)}%;background:${rateColor}"></div></div>
+        <table class="prog-detail-table">
+          <thead><tr>
+            <th>${T('th_year')}</th>
+            <th>${T('exec_programmed')} (FCFA)</th>
+            <th>${T('exec_disbursed')} (FCFA)</th>
+            <th>${T('exec_rate')}</th>
+          </tr></thead>
+          <tbody>
+            ${Object.entries(byYear).sort((a,b) => a[0]-b[0]).map(([yr, d]) => {
+              const r = d.programmed > 0 ? (d.actual / d.programmed * 100).toFixed(1) : '0.0';
+              return `<tr><td>${yr}</td><td>${fmtN(d.programmed)}</td><td>${fmtN(d.actual)}</td><td><span class="exec-rate-badge" style="background:${r >= 75 ? '#d1fae5' : r >= 50 ? '#fef3c7' : '#fee2e2'};color:${r >= 75 ? '#065f46' : r >= 50 ? '#92400e' : '#991b1b'}">${r}%</span></td></tr>`;
+            }).join('')}
+            <tr class="total-row"><td>TOTAL</td><td>${fmtN(totalProg)}</td><td>${fmtN(totalActual)}</td><td><span class="exec-rate-badge" style="background:${rateBg};color:${rateColor}">${totalRate}%</span></td></tr>
+          </tbody>
+        </table>
+      ` : `<p style="text-align:center;color:var(--muted);padding:16px;font-size:13px">${T('exec_no_data')}</p>`}
+    </div>
   `;
 }
 
@@ -2007,6 +2179,9 @@ async function fetchUserProfile() {
     if (canWrite() || isDGP()) {
       document.getElementById('nav-saisie').style.display = '';
     }
+    // Show execution tab for all authenticated users
+    const navExec = document.getElementById('nav-execucao');
+    if (navExec) navExec.style.display = '';
     // Show sintese tab for all authenticated users
     const navSintese = document.getElementById('nav-sintese');
     if (navSintese) navSintese.style.display = '';
@@ -2116,6 +2291,88 @@ async function downloadProjectPdf(projectId, projectCode) {
   } catch (e) {
     showToast(e.message || T('error_pdf_download'), 'error', 8000);
   }
+}
+
+// ============================================================
+// EXECUTION VIEW
+// ============================================================
+async function loadExecution() {
+  if (!ACCESS_TOKEN) return;
+  const year = document.getElementById('exec-year')?.value || '';
+  const period = document.getElementById('exec-period')?.value || '';
+  let url = '/dashboard/execution/?';
+  if (year) url += `year=${year}&`;
+  if (period) url += `period=${period}&`;
+
+  try {
+    const d = await apiFetch(url);
+    renderExecution(d);
+  } catch (e) {
+    console.warn('Execution dashboard error:', e.message);
+  }
+}
+
+function renderExecution(d) {
+  const gProg = d.global_programmed || 0;
+  const gDisb = d.global_disbursed || 0;
+  const gRate = d.global_rate || 0;
+  const gap = gProg - gDisb;
+
+  // KPIs
+  document.getElementById('exec-kpis').innerHTML = `
+    <div class="detail-kpi kpi-total">
+      <div class="dk-label">${T('exec_programmed')}</div>
+      <div class="dk-value">${fmt(gProg)} <span class="dk-unit">M FCFA</span></div>
+      <div class="dk-sub">${fmtB(gProg)}</div>
+    </div>
+    <div class="detail-kpi kpi-fin">
+      <div class="dk-label">${T('exec_disbursed')}</div>
+      <div class="dk-value">${fmt(gDisb)} <span class="dk-unit">M FCFA</span></div>
+      <div class="dk-sub">${fmtB(gDisb)}</div>
+    </div>
+    <div class="detail-kpi kpi-ext">
+      <div class="dk-label">${T('exec_rate')}</div>
+      <div class="dk-value">${gRate.toFixed(1)}<span class="dk-unit">%</span></div>
+      <div class="dk-sub">${d.project_count} ${T('kpi_projects')}</div>
+    </div>
+    <div class="detail-kpi kpi-int">
+      <div class="dk-label">${T('exec_gap')}</div>
+      <div class="dk-value">${fmt(gap)} <span class="dk-unit">M</span></div>
+      <div class="dk-sub">${T('exec_remaining')}</div>
+    </div>
+  `;
+
+  // Year chart
+  const byYear = d.by_year || [];
+  const maxY = Math.max(...byYear.map(y => y.programmed), 1);
+  document.getElementById('exec-year-chart').innerHTML = byYear.map(y => {
+    const hProg = Math.max(y.programmed / maxY * 80, 2);
+    const hDisb = Math.max(y.disbursed / maxY * 80, y.disbursed > 0 ? 2 : 0);
+    const rateClass = y.rate > 0 ? '' : 'zero';
+    return `<div class="exec-yc">
+      <div class="eyc-rate ${rateClass}">${y.rate.toFixed(0)}%</div>
+      <div class="eyc-bars">
+        <div class="eyc-bar prog" style="height:${hProg}px" title="${T('exec_programmed')}: ${fmtN(y.programmed)}"></div>
+        <div class="eyc-bar disb" style="height:${hDisb}px" title="${T('exec_disbursed')}: ${fmtN(y.disbursed)}"></div>
+      </div>
+      <div class="eyc-year">${y.year}</div>
+    </div>`;
+  }).join('');
+
+  // Ministry table
+  const ministries = d.by_ministry || [];
+  document.getElementById('exec-tbody').innerHTML = ministries.filter(m => m.programmed > 0).map(m => {
+    const rateColor = m.execution_rate >= 75 ? '#065f46' : m.execution_rate >= 50 ? '#92400e' : m.execution_rate >= 25 ? '#9a3412' : '#991b1b';
+    const rateBg = m.execution_rate >= 75 ? '#d1fae5' : m.execution_rate >= 50 ? '#fef3c7' : m.execution_rate >= 25 ? '#ffedd5' : '#fee2e2';
+    const barColor = m.execution_rate >= 75 ? 'var(--success)' : m.execution_rate >= 50 ? 'var(--gold)' : m.execution_rate >= 25 ? '#ea580c' : 'var(--danger)';
+    return `<tr>
+      <td title="${esc(m.name)}">${esc(m.short_name || m.name)}</td>
+      <td>${fmtN(m.programmed)}</td>
+      <td>${fmtN(m.disbursed)}</td>
+      <td><span class="exec-rate-badge" style="background:${rateBg};color:${rateColor}">${m.execution_rate.toFixed(1)}%</span></td>
+      <td><div class="exec-progress-bar"><div class="exec-progress-fill" style="width:${Math.min(m.execution_rate, 100)}%;background:${barColor}"></div></div></td>
+    </tr>`;
+  }).join('') || `<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px">${T('exec_no_data')}</td></tr>`;
 }
 
 // ============================================================
@@ -2536,6 +2793,7 @@ function _activateView(viewId) {
   if (navBtn) navBtn.classList.add('active');
   document.getElementById('nav-back').style.display = _viewHistory.length ? '' : 'none';
   if (viewId === 'saisie' && ACCESS_TOKEN) loadSaisie();
+  if (viewId === 'execucao' && ACCESS_TOKEN) loadExecution();
   if (viewId === 'sintese' && ACCESS_TOKEN) { SINTESE_CACHE = {}; fetchSinteseTab(SINTESE_ACTIVE_TAB); }
 }
 

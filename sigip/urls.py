@@ -8,7 +8,7 @@ from .views import (
     MinistryViewSet, FinancierViewSet, ExpenseNatureViewSet,
     ProjectViewSet, AnnualProgrammingViewSet, DisbursementViewSet,
     PPProjectViewSet, PIPVersionViewSet,
-    DashboardView, ImportView
+    DashboardView, ExecutionDashboardView, ImportView
 )
 
 router = DefaultRouter()
@@ -27,5 +27,6 @@ router.register('pip-versions', PIPVersionViewSet, basename='pip-version')
 urlpatterns = [
     path('', include(router.urls)),
     path('dashboard/', DashboardView.as_view(), name='dashboard'),
+    path('dashboard/execution/', ExecutionDashboardView.as_view(), name='dashboard-execution'),
     path('import/', ImportView.as_view(), name='import'),
 ]

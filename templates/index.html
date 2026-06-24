@@ -2597,17 +2597,20 @@ function renderExecution(d) {
   const byYear = d.by_year || [];
   const maxY = Math.max(...byYear.map(y => y.programmed), 1);
   document.getElementById('exec-year-chart').innerHTML = byYear.map(y => {
+    const maxBar = Math.max(y.programmed, y.disbursed, 1);
     const hProg = Math.max(y.programmed / maxY * 140, 3);
-    const hDisb = Math.max(y.disbursed / maxY * 140, y.disbursed > 0 ? 3 : 0);
+    const hDisb = Math.min(Math.max(y.disbursed / maxY * 140, y.disbursed > 0 ? 3 : 0), 140);
     const rateClass = y.rate > 0 ? '' : 'zero';
+    const rateOver = y.rate > 100 ? ' style="background:#fef3c7;color:#92400e"' : '';
     return `<div class="exec-yc">
-      <div class="eyc-rate ${rateClass}">${y.rate.toFixed(1)}%</div>
-      <div class="eyc-val">${fmt(y.programmed)} M</div>
+      <div class="eyc-rate ${rateClass}"${rateOver}>${y.rate.toFixed(1)}%</div>
+      <div class="eyc-val" title="${T('exec_programmed')}: ${fmtN(y.programmed)}">${fmt(y.programmed)} M</div>
       <div class="eyc-bars">
         <div class="eyc-bar prog" style="height:${hProg}px" title="${T('exec_programmed')}: ${fmtN(y.programmed)} FCFA"></div>
         <div class="eyc-bar disb" style="height:${hDisb}px" title="${T('exec_disbursed')}: ${fmtN(y.disbursed)} FCFA"></div>
       </div>
       <div class="eyc-year">${y.year}</div>
+      ${y.disbursed > 0 ? `<div class="eyc-val" style="color:var(--gold)">${fmt(y.disbursed)} M</div>` : ''}
     </div>`;
   }).join('');
 

@@ -89,10 +89,10 @@ def generate_project_pdf(project) -> bytes:
         base = kw.pop('parent', styles['Normal'])
         return ParagraphStyle(name, parent=base, **kw)
 
-    hdr_title = st('HdrTitle', fontSize=22, textColor=NAVY,
-                   fontName='Helvetica-Bold', alignment=TA_CENTER, spaceAfter=2)
-    hdr_sub   = st('HdrSub', fontSize=9, textColor=MUTED,
-                   alignment=TA_CENTER, spaceAfter=1)
+    hdr_title = st('HdrTitle', fontSize=18, textColor=NAVY,
+                   fontName='Helvetica-Bold', alignment=TA_CENTER, spaceAfter=6)
+    hdr_sub   = st('HdrSub', fontSize=8.5, textColor=MUTED,
+                   alignment=TA_CENTER, spaceAfter=2)
     sec_head  = st('SecHead', fontSize=9, textColor=WHITE,
                    fontName='Helvetica-Bold', spaceBefore=12, spaceAfter=4,
                    leftIndent=0, backColor=TEAL,
@@ -113,12 +113,15 @@ def generate_project_pdf(project) -> bytes:
     # -----------------------------------------------------------------------
     # HEADER
     # -----------------------------------------------------------------------
+    story.append(Spacer(1, 4))
     story.append(Paragraph('SGPIP', hdr_title))
     story.append(Paragraph(
-        'Sistema de Gestão do Programa de Investimento Público — República da Guiné-Bissau', hdr_sub))
+        'Sistema de Gestão do Programa de Investimento Público', hdr_sub))
     story.append(Paragraph(
-        'Direcção-Geral do Plano  |  Programa de Investimento Público 2026–2030', hdr_sub))
-    story.append(Spacer(1, 4))
+        'República da Guiné-Bissau — Direcção-Geral do Plano', hdr_sub))
+    story.append(Paragraph(
+        'Programa de Investimento Público 2026–2030', hdr_sub))
+    story.append(Spacer(1, 6))
     story.append(HRFlowable(width='100%', thickness=2.5, color=TEAL, spaceAfter=2))
     story.append(HRFlowable(width='100%', thickness=1.2, color=GOLD, spaceAfter=10))
 

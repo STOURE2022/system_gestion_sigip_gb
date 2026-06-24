@@ -2517,7 +2517,7 @@ function showToast(message, type = 'success', duration = 4500) {
 async function downloadProjectPdf(projectId, projectCode) {
   showToast(T('toast_pdf_generating'), 'info', 8000);
   try {
-    const resp = await fetch(`${API_BASE}projects/${projectId}/pdf/`, {
+    const resp = await fetch(`${API_BASE}/projects/${projectId}/pdf/`, {
       headers: { 'Authorization': `Bearer ${ACCESS_TOKEN}` },
     });
     if (!resp.ok) {

@@ -728,13 +728,19 @@ class DisbursementViewSet(viewsets.ModelViewSet):
 
     def perform_create(self, serializer):
         user = self.request.user
-        # Agents can only create for their ministry projects
         project = serializer.validated_data.get('project')
         if user.role == UserRole.MINISTRY_AGENT and user.ministry:
             if project.ministry_id != user.ministry_id:
                 from rest_framework.exceptions import PermissionDenied
                 raise PermissionDenied('Não pode declarar despesas para outro ministério.')
         serializer.save(submitted_by=user)
+
+    def perform_update(self, serializer):
+        disb = self.get_object()
+        if disb.workflow_status in ('SUBMETIDO', 'VALIDADO'):
+            from rest_framework.exceptions import PermissionDenied
+            raise PermissionDenied('Não pode modificar uma despesa submetida ou validada.')
+        serializer.save()
 
     @action(detail=True, methods=['post'], url_path='submit')
     def submit(self, request, pk=None):

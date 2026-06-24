@@ -1149,6 +1149,7 @@ const I18N = {
     disb_view_file: 'Ver ficheiro',
     disb_reject_reason: 'Motivo da rejeição:',
     disb_detail_title: 'Detalhe da Despesa',
+    disb_edit_title: 'Editar Despesa',
     disb_rejection_reason: 'Motivo da Rejeição',
     disb_rejected_msg: 'Esta despesa foi rejeitada pela DGP. Corrija e resubmeta.',
     disb_validated_msg: 'Esta despesa foi validada e contabilizada.',
@@ -1370,6 +1371,7 @@ const I18N = {
     disb_view_file: 'Voir fichier',
     disb_reject_reason: 'Motif du rejet :',
     disb_detail_title: 'Détail de la Dépense',
+    disb_edit_title: 'Modifier la Dépense',
     disb_rejection_reason: 'Motif du Rejet',
     disb_rejected_msg: 'Cette dépense a été rejetée par la DGP. Corrigez et resoumettez.',
     disb_validated_msg: 'Cette dépense a été validée et comptabilisée.',
@@ -2666,7 +2668,7 @@ function renderDeclarations(decls) {
         <td><span class="exec-rate-badge" style="background:${wb};color:${wc}">${esc(d.workflow_status_display || d.workflow_status)}</span></td>
         <td style="text-align:left">${d.justification_file_url ? `<a href="${d.justification_file_url}" target="_blank" onclick="event.stopPropagation()" class="hbtn hbtn-ghost" style="color:var(--accent);font-size:10px;padding:3px 8px">&#128196; ${T('disb_view_file')}</a>` : '—'}</td>
         <td style="white-space:nowrap" onclick="event.stopPropagation()">
-          ${canSubmit ? `<button class="btn-sm btn-sub" onclick="submitDisb(${d.id})">${T('btn_submit')}</button>` : ''}
+          ${canSubmit ? `<button class="btn-sm btn-edit" onclick="editDisb(${d.id})">${T('btn_edit')}</button> <button class="btn-sm btn-sub" onclick="submitDisb(${d.id})">${T('btn_submit')}</button>` : ''}
           ${canValidate ? `<button class="btn-sm btn-val" onclick="validateDisb(${d.id})">${T('btn_validate')}</button> <button class="btn-sm btn-rej" onclick="rejectDisb(${d.id})">${T('btn_reject')}</button>` : ''}
           ${d.workflow_status === 'REJEITADO' ? `<span style="font-size:14px;color:var(--danger)" title="${esc(d.rejection_note || '')}">&#9888;</span>` : ''}
         </td>
@@ -2754,22 +2756,51 @@ function closeDisbDetail() {
 }
 
 // ── Disbursement form ──────────────────────────────────────
+let EDIT_DISB_ID = null; // null = create, number = edit
+
 async function openDisbForm() {
-  // Populate project dropdown (user's projects)
+  EDIT_DISB_ID = null;
   const projects = await apiFetch('/projects/?page_size=500');
   const list = projects.results || projects || [];
   const sel = document.getElementById('fd-project');
   sel.innerHTML = list.map(p => `<option value="${p.id}">${p.code} — ${esc((p.title||'').substring(0,50))}</option>`).join('');
+  sel.disabled = false;
   document.getElementById('fd-programmed').value = '';
   document.getElementById('fd-actual').value = '';
   document.getElementById('fd-notes').value = '';
   document.getElementById('fd-file').value = '';
+  document.getElementById('fd-year').value = '2026';
+  document.getElementById('fd-period').value = 'Q1';
   document.getElementById('disb-form-error').style.display = 'none';
+  document.querySelector('#disb-modal .modal-header-bar h2').textContent = T('disb_modal_title');
+  document.getElementById('disb-modal').style.display = '';
+}
+
+async function editDisb(id) {
+  const d = DISB_LIST.find(x => x.id === id);
+  if (!d) return;
+  EDIT_DISB_ID = id;
+  // Populate dropdown
+  const projects = await apiFetch('/projects/?page_size=500');
+  const list = projects.results || projects || [];
+  const sel = document.getElementById('fd-project');
+  sel.innerHTML = list.map(p => `<option value="${p.id}">${p.code} — ${esc((p.title||'').substring(0,50))}</option>`).join('');
+  sel.value = d.project;
+  sel.disabled = true;
+  document.getElementById('fd-year').value = d.fiscal_year;
+  document.getElementById('fd-period').value = d.period;
+  document.getElementById('fd-programmed').value = d.programmed_amount || '';
+  document.getElementById('fd-actual').value = d.actual_amount || '';
+  document.getElementById('fd-notes').value = d.notes || '';
+  document.getElementById('fd-file').value = '';
+  document.getElementById('disb-form-error').style.display = 'none';
+  document.querySelector('#disb-modal .modal-header-bar h2').textContent = T('disb_edit_title');
   document.getElementById('disb-modal').style.display = '';
 }
 
 function closeDisbModal() {
   document.getElementById('disb-modal').style.display = 'none';
+  EDIT_DISB_ID = null;
 }
 
 async function saveDisbursement(autoSubmit) {
@@ -2795,7 +2826,9 @@ async function saveDisbursement(autoSubmit) {
   try {
     const headers = {};
     if (ACCESS_TOKEN) headers['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
-    const resp = await fetch(`${API_BASE}/disbursements/`, {method:'POST', headers, body: formData});
+    const method = EDIT_DISB_ID ? 'PATCH' : 'POST';
+    const url = EDIT_DISB_ID ? `${API_BASE}/disbursements/${EDIT_DISB_ID}/` : `${API_BASE}/disbursements/`;
+    const resp = await fetch(url, {method, headers, body: formData});
     if (!resp.ok) { const e = new Error(`API ${resp.status}`); e.resp = resp; throw e; }
     const saved = await resp.json();
     if (autoSubmit) {

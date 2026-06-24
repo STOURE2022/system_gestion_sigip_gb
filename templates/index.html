@@ -2746,11 +2746,33 @@ function openDisbDetail(id) {
           ${d.justification_file_url ? `<div class="detail-row"><span class="dlabel">${T('disb_justification')}</span><span class="dvalue"><a href="${d.justification_file_url}" target="_blank" class="hbtn hbtn-accent" style="font-size:11px;padding:5px 14px">&#128196; ${T('disb_view_file')}</a></span></div>` : ''}
         </div>
       </div>
+
+      <!-- Action buttons -->
+      ${_disbDetailActions(d)}
     </div>
   `;
 
   document.getElementById('disb-detail-content').innerHTML = html;
   document.getElementById('disb-detail-modal').style.display = '';
+}
+
+function _disbDetailActions(d) {
+  const canEdit = d.workflow_status === 'RASCUNHO' || d.workflow_status === 'REJEITADO';
+  const canValidate = (isDGP() || isAdmin()) && d.workflow_status === 'SUBMETIDO';
+  if (!canEdit && !canValidate) return '';
+
+  let buttons = '';
+  if (canEdit) {
+    buttons += `<button class="btn-cancel" onclick="closeDisbDetail();deleteDisb(${d.id})" style="color:var(--danger);border-color:#fca5a5">&times; ${T('btn_delete')}</button>`;
+    buttons += `<button class="hbtn hbtn-ghost" style="color:var(--ink);padding:10px 20px;font-size:13px" onclick="closeDisbDetail();editDisb(${d.id})">${T('btn_edit')}</button>`;
+    buttons += `<button class="btn-primary" style="width:auto;padding:10px 24px" onclick="closeDisbDetail();submitDisb(${d.id})">${T('btn_submit')}</button>`;
+  }
+  if (canValidate) {
+    buttons += `<button class="btn-cancel" style="color:var(--danger);border-color:#fca5a5" onclick="closeDisbDetail();rejectDisb(${d.id})">${T('btn_reject')}</button>`;
+    buttons += `<button class="btn-primary" style="width:auto;padding:10px 24px;background:linear-gradient(135deg,#198754,#157347)" onclick="closeDisbDetail();validateDisb(${d.id})">${T('btn_validate')}</button>`;
+  }
+
+  return `<div style="display:flex;justify-content:flex-end;gap:10px;margin-top:22px;padding-top:18px;border-top:2px solid #f0ece3;flex-wrap:wrap">${buttons}</div>`;
 }
 
 function closeDisbDetail() {

@@ -474,7 +474,7 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
 
         response = HttpResponse(pdf_bytes, content_type='application/pdf')
         response['Content-Disposition'] = (
-            f'attachment; filename="SIGIP-GB_{project.code}.pdf"'
+            f'attachment; filename="SGPIP_{project.code}.pdf"'
         )
         return response
 

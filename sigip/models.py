@@ -457,11 +457,24 @@ class DisbursementPeriod(models.TextChoices):
     ANNUAL = 'ANNUAL', _('Anual')
 
 
+class DisbursementStatus(models.TextChoices):
+    RASCUNHO = 'RASCUNHO', _('Rascunho')
+    SUBMETIDO = 'SUBMETIDO', _('Submetido')
+    VALIDADO = 'VALIDADO', _('Validado')
+    REJEITADO = 'REJEITADO', _('Rejeitado')
+
+
+def disbursement_upload_path(instance, filename):
+    return f'disbursements/{instance.project.code}/{filename}'
+
+
 class Disbursement(models.Model):
     """
     Desembolso efectivo vs programado para um projecto.
     Permite seguir a execução financeira por trimestre.
     Montantes em FCFA.
+    Workflow: RASCUNHO → SUBMETIDO → VALIDADO/REJEITADO
+    Apenas desembolsos VALIDADO contam para o cálculo da taxa de execução.
     """
     project = models.ForeignKey(
         Project, on_delete=models.CASCADE,
@@ -487,16 +500,39 @@ class Disbursement(models.Model):
     date = models.DateField(_('Data do Desembolso'), null=True, blank=True)
     notes = models.TextField(_('Notas'), blank=True)
 
+    # Workflow
+    workflow_status = models.CharField(
+        _('Estado de Validação'), max_length=20,
+        choices=DisbursementStatus.choices, default=DisbursementStatus.RASCUNHO,
+    )
+    justification_file = models.FileField(
+        _('Peça Justificativa'), upload_to=disbursement_upload_path,
+        blank=True, null=True,
+        help_text=_('Recibo, factura ou documento comprovativo (PDF, imagem)')
+    )
+    submitted_by = models.ForeignKey(
+        'core.User', on_delete=models.SET_NULL, null=True, blank=True,
+        verbose_name=_('Submetido por'), related_name='submitted_disbursements'
+    )
+    validated_by = models.ForeignKey(
+        'core.User', on_delete=models.SET_NULL, null=True, blank=True,
+        verbose_name=_('Validado por'), related_name='validated_disbursements'
+    )
+    rejection_note = models.TextField(_('Nota de Rejeição'), blank=True)
+    submitted_at = models.DateTimeField(_('Data de Submissão'), null=True, blank=True)
+    validated_at = models.DateTimeField(_('Data de Validação'), null=True, blank=True)
+
     class Meta:
         verbose_name = _('Desembolso')
         verbose_name_plural = _('Desembolsos')
         ordering = ['project', 'fiscal_year', 'period']
         indexes = [
             models.Index(fields=['project', 'fiscal_year']),
+            models.Index(fields=['workflow_status']),
         ]
 
     def __str__(self):
-        return f'{self.project.code} – {self.fiscal_year}/{self.period}'
+        return f'{self.project.code} – {self.fiscal_year}/{self.period} ({self.workflow_status})'
 
     @property
     def execution_rate(self):

@@ -141,20 +141,46 @@ class AnnualProgrammingSerializer(serializers.ModelSerializer):
 class DisbursementSerializer(serializers.ModelSerializer):
     execution_rate = serializers.SerializerMethodField()
     project_code = serializers.CharField(source='project.code', read_only=True)
+    project_title = serializers.CharField(source='project.title', read_only=True)
+    ministry_name = serializers.CharField(source='project.ministry.name', read_only=True, default='')
+    ministry_short = serializers.CharField(source='project.ministry.short_name', read_only=True, default='')
     financier_name = serializers.CharField(source='financier.name', read_only=True)
     period_display = serializers.CharField(source='get_period_display', read_only=True)
+    workflow_status_display = serializers.CharField(source='get_workflow_status_display', read_only=True)
+    submitted_by_name = serializers.CharField(source='submitted_by.username', read_only=True, default='')
+    validated_by_name = serializers.CharField(source='validated_by.username', read_only=True, default='')
+    justification_file_url = serializers.SerializerMethodField()
 
     class Meta:
         model = Disbursement
         fields = [
-            'id', 'project', 'project_code', 'financier', 'financier_name',
+            'id', 'project', 'project_code', 'project_title',
+            'ministry_name', 'ministry_short',
+            'financier', 'financier_name',
             'fiscal_year', 'period', 'period_display',
             'programmed_amount', 'actual_amount', 'execution_rate',
-            'date', 'notes'
+            'date', 'notes',
+            'workflow_status', 'workflow_status_display',
+            'justification_file', 'justification_file_url',
+            'submitted_by', 'submitted_by_name', 'submitted_at',
+            'validated_by', 'validated_by_name', 'validated_at',
+            'rejection_note',
+        ]
+        read_only_fields = [
+            'workflow_status', 'submitted_by', 'submitted_at',
+            'validated_by', 'validated_at', 'rejection_note',
         ]
 
     def get_execution_rate(self, obj):
         return obj.execution_rate
+
+    def get_justification_file_url(self, obj):
+        if obj.justification_file:
+            request = self.context.get('request')
+            if request:
+                return request.build_absolute_uri(obj.justification_file.url)
+            return obj.justification_file.url
+        return None
 
 
 # ---------------------------------------------------------------------------

@@ -565,23 +565,16 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
     <div class="vtitle" data-i18n="vtitle_exec">Execução Orçamental</div>
     <div class="vsub" data-i18n="vsub_exec">Comparação entre montantes programados e efectivamente desembolsados por ministério</div>
 
-    <!-- Filters -->
+    <!-- Toolbar -->
     <div class="exec-filters">
+      <button class="btn-add" id="btn-new-disb" style="display:none" onclick="openDisbForm()" data-i18n="btn_new_disb">+ Declarar Despesa</button>
       <select id="exec-year" onchange="loadExecution()">
         <option value="" data-i18n="exec_all_years">Todos os anos</option>
-        <option value="2026">2026</option>
-        <option value="2027">2027</option>
-        <option value="2028">2028</option>
-        <option value="2029">2029</option>
-        <option value="2030">2030</option>
+        <option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option>
       </select>
       <select id="exec-period" onchange="loadExecution()">
         <option value="" data-i18n="exec_all_periods">Todos os períodos</option>
-        <option value="Q1">1º Trimestre</option>
-        <option value="Q2">2º Trimestre</option>
-        <option value="Q3">3º Trimestre</option>
-        <option value="Q4">4º Trimestre</option>
-        <option value="ANNUAL">Anual</option>
+        <option value="Q1">1º Trimestre</option><option value="Q2">2º Trimestre</option><option value="Q3">3º Trimestre</option><option value="Q4">4º Trimestre</option><option value="ANNUAL">Anual</option>
       </select>
     </div>
 
@@ -599,7 +592,7 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
     </div>
 
     <!-- Ministry table -->
-    <div class="detail-section">
+    <div class="detail-section" style="margin-bottom:20px">
       <h3><span class="sec-icon" style="background:var(--gold)">&#9733;</span> <span data-i18n="exec_by_ministry">Execução por Ministério</span></h3>
       <div class="tablewrap" style="max-height:none;border:none;box-shadow:none;border-radius:0">
         <table class="exec-table" id="exec-table">
@@ -613,6 +606,14 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
           <tbody id="exec-tbody"></tbody>
         </table>
       </div>
+    </div>
+
+    <!-- Declarations list -->
+    <div class="detail-section">
+      <h3><span class="sec-icon" style="background:var(--empr)">&#9998;</span> <span data-i18n="exec_declarations">Declarações de Despesa</span>
+        <span id="exec-pending-badge" style="display:none;margin-left:auto;background:#fef3c7;color:#92400e;padding:3px 10px;border-radius:20px;font-size:10px"></span>
+      </h3>
+      <div id="exec-declarations" style="overflow-x:auto"></div>
     </div>
   </div>
 
@@ -822,6 +823,63 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
       <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:24px;padding-top:18px;border-top:2px solid #f0ece3">
         <button class="btn-cancel" onclick="closeProjectModal()" data-i18n="btn_cancel">Cancelar</button>
         <button id="btn-save-project" onclick="saveProject()" class="btn-primary" style="width:auto;padding:12px 32px" data-i18n="btn_save">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Disbursement Declaration Modal -->
+<div id="disb-modal" class="modal-overlay" style="display:none">
+  <div class="modal modal-wide" style="max-width:620px">
+    <div class="modal-header-bar">
+      <h2 data-i18n="disb_modal_title">Declarar Despesa</h2>
+      <button class="modal-close" onclick="closeDisbModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="form-section-title"><span class="fs-dot"></span> <span data-i18n="detail_identification">Identificação</span></div>
+      <div class="form-group">
+        <label data-i18n="th_project">Projecto</label>
+        <select id="fd-project"></select>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="th_year">Ano Fiscal</label>
+          <select id="fd-year">
+            <option value="2026">2026</option><option value="2027">2027</option><option value="2028">2028</option><option value="2029">2029</option><option value="2030">2030</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label data-i18n="exec_period">Período</label>
+          <select id="fd-period">
+            <option value="Q1">1º Trimestre</option><option value="Q2">2º Trimestre</option><option value="Q3">3º Trimestre</option><option value="Q4">4º Trimestre</option><option value="ANNUAL">Anual</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-section-title"><span class="fs-dot" style="background:var(--gold)"></span> <span data-i18n="detail_financing">Montantes</span></div>
+      <div class="form-row">
+        <div class="form-group">
+          <label data-i18n="exec_programmed">Montante Programado (FCFA)</label>
+          <input id="fd-programmed" type="number" min="0" step="0.01" placeholder="0.00">
+        </div>
+        <div class="form-group">
+          <label data-i18n="exec_disbursed">Montante Realizado (FCFA)</label>
+          <input id="fd-actual" type="number" min="0" step="0.01" placeholder="0.00">
+        </div>
+      </div>
+      <div class="form-section-title"><span class="fs-dot" style="background:var(--ext)"></span> <span data-i18n="disb_justification">Justificativo</span></div>
+      <div class="form-group">
+        <label data-i18n="disb_file">Peça justificativa (PDF, imagem)</label>
+        <input id="fd-file" type="file" accept=".pdf,.jpg,.jpeg,.png,.doc,.docx">
+      </div>
+      <div class="form-group">
+        <label data-i18n="field_description">Notas</label>
+        <textarea id="fd-notes" rows="2" placeholder="Observações (opcional)"></textarea>
+      </div>
+      <div id="disb-form-error" class="form-error"></div>
+      <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:20px;padding-top:16px;border-top:2px solid #f0ece3">
+        <button class="btn-cancel" onclick="closeDisbModal()" data-i18n="btn_cancel">Cancelar</button>
+        <button id="btn-save-disb" onclick="saveDisbursement(false)" class="btn-primary" style="width:auto;padding:12px 24px" data-i18n="btn_save">Guardar Rascunho</button>
+        <button onclick="saveDisbursement(true)" class="btn-primary" style="width:auto;padding:12px 24px;background:linear-gradient(135deg,var(--gold),#b5851a)" data-i18n="btn_save_submit">Guardar e Submeter</button>
       </div>
     </div>
   </div>
@@ -1053,7 +1111,21 @@ const I18N = {
     exec_by_ministry: 'Execução por Ministério',
     exec_gap: 'Saldo por Desembolsar',
     exec_remaining: 'por executar',
-    exec_no_data: 'Nenhum desembolso registado. Utilize a administração para adicionar dados.',
+    exec_no_data: 'Nenhum desembolso validado.',
+    exec_declarations: 'Declarações de Despesa',
+    exec_no_declarations: 'Nenhuma declaração registada. Clique em "+ Declarar Despesa" para começar.',
+    exec_pending: 'pendentes',
+    exec_period: 'Período',
+    btn_new_disb: '+ Declarar Despesa',
+    btn_submit: 'Submeter',
+    btn_validate: 'Validar',
+    btn_reject: 'Rejeitar',
+    disb_modal_title: 'Declarar Despesa',
+    disb_justification: 'Justificativo',
+    disb_file: 'Peça justificativa (PDF, imagem)',
+    disb_view_file: 'Ver ficheiro',
+    disb_reject_reason: 'Motivo da rejeição:',
+    btn_save_submit: 'Guardar e Submeter',
     nav_sintese: 'Síntese',
     eyebrow_sintese: 'Síntese do PIP',
     vtitle_sintese: 'Quadros de Síntese',
@@ -1245,7 +1317,21 @@ const I18N = {
     exec_by_ministry: 'Exécution par Ministère',
     exec_gap: 'Reste à Décaisser',
     exec_remaining: 'à exécuter',
-    exec_no_data: "Aucun décaissement enregistré. Utilisez l'administration pour ajouter des données.",
+    exec_no_data: 'Aucun décaissement validé.',
+    exec_declarations: 'Déclarations de Dépense',
+    exec_no_declarations: 'Aucune déclaration enregistrée. Cliquez sur "+ Déclarer Dépense" pour commencer.',
+    exec_pending: 'en attente',
+    exec_period: 'Période',
+    btn_new_disb: '+ Déclarer Dépense',
+    btn_submit: 'Soumettre',
+    btn_validate: 'Valider',
+    btn_reject: 'Rejeter',
+    disb_modal_title: 'Déclarer Dépense',
+    disb_justification: 'Justificatif',
+    disb_file: 'Pièce justificative (PDF, image)',
+    disb_view_file: 'Voir fichier',
+    disb_reject_reason: 'Motif du rejet :',
+    btn_save_submit: 'Enregistrer et Soumettre',
     nav_sintese: 'Synthèse',
     eyebrow_sintese: 'Synthèse du PIP',
     vtitle_sintese: 'Tableaux de Synthèse',
@@ -1422,6 +1508,8 @@ function logout() {
   SINTESE_CACHE = {};
   document.getElementById('btn-new-project').style.display = 'none';
   document.getElementById('btn-new-ministry').style.display = 'none';
+  const _disbBtn = document.getElementById('btn-new-disb');
+  if (_disbBtn) _disbBtn.style.display = 'none';
   const _importBtn = document.getElementById('btn-import-data');
   if (_importBtn) _importBtn.style.display = 'none';
   const _adminBtn = document.getElementById('btn-admin-panel');
@@ -2304,9 +2392,24 @@ async function loadExecution() {
   if (year) url += `year=${year}&`;
   if (period) url += `period=${period}&`;
 
+  // Show declare button for agents and DGP
+  if (canWrite() || isDGP()) {
+    document.getElementById('btn-new-disb').style.display = '';
+  }
+
   try {
-    const d = await apiFetch(url);
-    renderExecution(d);
+    const [dashboard, declarations] = await Promise.all([
+      apiFetch(url),
+      apiFetch('/disbursements/?page_size=200'),
+    ]);
+    renderExecution(dashboard);
+    renderDeclarations(declarations.results || declarations || []);
+    // Show pending badge for DGP
+    if (dashboard.pending_count > 0 && (isDGP() || isAdmin())) {
+      const badge = document.getElementById('exec-pending-badge');
+      badge.textContent = dashboard.pending_count + ' ' + T('exec_pending');
+      badge.style.display = '';
+    }
   } catch (e) {
     console.warn('Execution dashboard error:', e.message);
   }
@@ -2373,6 +2476,123 @@ function renderExecution(d) {
       <td><div class="exec-progress-bar"><div class="exec-progress-fill" style="width:${Math.min(m.execution_rate, 100)}%;background:${barColor}"></div></div></td>
     </tr>`;
   }).join('') || `<tr><td colspan="5" style="text-align:center;color:var(--muted);padding:24px">${T('exec_no_data')}</td></tr>`;
+}
+
+// ── Declarations table ─────────────────────────────────────
+function renderDeclarations(decls) {
+  const container = document.getElementById('exec-declarations');
+  if (!decls.length) {
+    container.innerHTML = `<p style="text-align:center;color:var(--muted);padding:20px;font-size:13px">${T('exec_no_declarations')}</p>`;
+    return;
+  }
+  const wfColors = {RASCUNHO:'#6c757d',SUBMETIDO:'#0d6efd',VALIDADO:'#198754',REJEITADO:'#dc3545'};
+  const wfBg = {RASCUNHO:'#f5f5f5',SUBMETIDO:'#dbeafe',VALIDADO:'#d1fae5',REJEITADO:'#fee2e2'};
+  container.innerHTML = `<table class="exec-table">
+    <thead><tr>
+      <th style="text-align:left">${T('th_project')}</th>
+      <th>${T('th_year')}</th>
+      <th>${T('exec_period')}</th>
+      <th>${T('exec_disbursed')} (FCFA)</th>
+      <th>${T('exec_rate')}</th>
+      <th>Status</th>
+      <th style="text-align:left">${T('disb_justification')}</th>
+      <th></th>
+    </tr></thead>
+    <tbody>${decls.map(d => {
+      const wc = wfColors[d.workflow_status] || '#6c757d';
+      const wb = wfBg[d.workflow_status] || '#f5f5f5';
+      const canValidate = (isDGP() || isAdmin()) && d.workflow_status === 'SUBMETIDO';
+      const canSubmit = d.workflow_status === 'RASCUNHO';
+      return `<tr>
+        <td style="text-align:left" title="${esc(d.project_title || '')}">${esc(d.project_code)}</td>
+        <td>${d.fiscal_year}</td>
+        <td>${esc(d.period_display || d.period)}</td>
+        <td>${fmtN(parseFloat(d.actual_amount||0))}</td>
+        <td>${d.execution_rate ? d.execution_rate.toFixed(1)+'%' : '—'}</td>
+        <td><span class="exec-rate-badge" style="background:${wb};color:${wc}">${esc(d.workflow_status_display || d.workflow_status)}</span></td>
+        <td style="text-align:left">${d.justification_file_url ? `<a href="${d.justification_file_url}" target="_blank" class="hbtn hbtn-ghost" style="color:var(--accent);font-size:10px;padding:3px 8px">&#128196; ${T('disb_view_file')}</a>` : '—'}</td>
+        <td style="white-space:nowrap">
+          ${canSubmit ? `<button class="btn-sm btn-sub" onclick="submitDisb(${d.id})">${T('btn_submit')}</button>` : ''}
+          ${canValidate ? `<button class="btn-sm btn-val" onclick="validateDisb(${d.id})">${T('btn_validate')}</button> <button class="btn-sm btn-rej" onclick="rejectDisb(${d.id})">${T('btn_reject')}</button>` : ''}
+          ${d.workflow_status === 'REJEITADO' && d.rejection_note ? `<span style="font-size:10px;color:var(--danger)" title="${esc(d.rejection_note)}">&#9888;</span>` : ''}
+        </td>
+      </tr>`;
+    }).join('')}</tbody>
+  </table>`;
+}
+
+// ── Disbursement form ──────────────────────────────────────
+async function openDisbForm() {
+  // Populate project dropdown (user's projects)
+  const projects = await apiFetch('/projects/?page_size=500');
+  const list = projects.results || projects || [];
+  const sel = document.getElementById('fd-project');
+  sel.innerHTML = list.map(p => `<option value="${p.id}">${p.code} — ${esc((p.title||'').substring(0,50))}</option>`).join('');
+  document.getElementById('fd-programmed').value = '';
+  document.getElementById('fd-actual').value = '';
+  document.getElementById('fd-notes').value = '';
+  document.getElementById('fd-file').value = '';
+  document.getElementById('disb-form-error').style.display = 'none';
+  document.getElementById('disb-modal').style.display = '';
+}
+
+function closeDisbModal() {
+  document.getElementById('disb-modal').style.display = 'none';
+}
+
+async function saveDisbursement(autoSubmit) {
+  const errEl = document.getElementById('disb-form-error');
+  errEl.style.display = 'none';
+  const project = document.getElementById('fd-project').value;
+  const actual = document.getElementById('fd-actual').value;
+  if (!project || !actual) {
+    errEl.textContent = T('error_required') || 'Preencha os campos obrigatórios.';
+    errEl.style.display = 'block';
+    return;
+  }
+  const formData = new FormData();
+  formData.append('project', project);
+  formData.append('fiscal_year', document.getElementById('fd-year').value);
+  formData.append('period', document.getElementById('fd-period').value);
+  formData.append('programmed_amount', document.getElementById('fd-programmed').value || '0');
+  formData.append('actual_amount', actual);
+  formData.append('notes', document.getElementById('fd-notes').value);
+  const file = document.getElementById('fd-file').files[0];
+  if (file) formData.append('justification_file', file);
+
+  try {
+    const headers = {};
+    if (ACCESS_TOKEN) headers['Authorization'] = `Bearer ${ACCESS_TOKEN}`;
+    const resp = await fetch(`${API_BASE}/disbursements/`, {method:'POST', headers, body: formData});
+    if (!resp.ok) { const e = new Error(`API ${resp.status}`); e.resp = resp; throw e; }
+    const saved = await resp.json();
+    if (autoSubmit) {
+      await apiMutate('POST', `/disbursements/${saved.id}/submit/`, {});
+    }
+    closeDisbModal();
+    await loadExecution();
+  } catch(e) {
+    const msg = await parseApiError(e);
+    errEl.textContent = msg;
+    errEl.style.display = 'block';
+  }
+}
+
+async function submitDisb(id) {
+  try { await apiMutate('POST', `/disbursements/${id}/submit/`, {}); await loadExecution(); }
+  catch(e) { alert(await parseApiError(e)); }
+}
+
+async function validateDisb(id) {
+  try { await apiMutate('POST', `/disbursements/${id}/validate/`, {}); await loadExecution(); }
+  catch(e) { alert(await parseApiError(e)); }
+}
+
+async function rejectDisb(id) {
+  const note = prompt(T('disb_reject_reason') || 'Motivo da rejeição:');
+  if (note === null) return;
+  try { await apiMutate('POST', `/disbursements/${id}/reject/`, {rejection_note: note}); await loadExecution(); }
+  catch(e) { alert(await parseApiError(e)); }
 }
 
 // ============================================================

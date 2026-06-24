@@ -700,21 +700,85 @@ class AnnualProgrammingViewSet(viewsets.ModelViewSet):
 # ---------------------------------------------------------------------------
 
 class DisbursementViewSet(viewsets.ModelViewSet):
-    """Desembolsos efectivos dos projectos."""
+    """Desembolsos efectivos dos projectos com workflow de validação."""
     serializer_class = DisbursementSerializer
     filterset_class = DisbursementFilter
-    ordering_fields = ['fiscal_year', 'period', 'project__code']
-    ordering = ['project__code', 'fiscal_year', 'period']
+    parser_classes = [MultiPartParser, FormParser, JSONParser]
+    ordering_fields = ['fiscal_year', 'period', 'project__code', 'workflow_status']
+    ordering = ['-submitted_at', 'project__code', 'fiscal_year', 'period']
 
     def get_queryset(self):
-        return Disbursement.objects.select_related(
-            'project', 'financier'
+        qs = Disbursement.objects.select_related(
+            'project', 'project__ministry', 'financier',
+            'submitted_by', 'validated_by'
         ).filter(project__is_deleted=False)
+        # Ministry agents see only their ministry's disbursements
+        user = self.request.user
+        if user.is_authenticated and user.role == UserRole.MINISTRY_AGENT:
+            if user.ministry:
+                qs = qs.filter(project__ministry=user.ministry)
+            else:
+                qs = qs.none()
+        return qs
 
     def get_permissions(self):
         if self.action in ('create', 'update', 'partial_update', 'destroy'):
-            return [IsAdminOrDGP()]
+            return [IsAuthenticated()]
         return [IsAuthenticated()]
+
+    def perform_create(self, serializer):
+        user = self.request.user
+        # Agents can only create for their ministry projects
+        project = serializer.validated_data.get('project')
+        if user.role == UserRole.MINISTRY_AGENT and user.ministry:
+            if project.ministry_id != user.ministry_id:
+                from rest_framework.exceptions import PermissionDenied
+                raise PermissionDenied('Não pode declarar despesas para outro ministério.')
+        serializer.save(submitted_by=user)
+
+    @action(detail=True, methods=['post'], url_path='submit')
+    def submit(self, request, pk=None):
+        """Agent submits disbursement to DGP for validation."""
+        from django.utils import timezone
+        disb = self.get_object()
+        if disb.workflow_status != 'RASCUNHO':
+            return Response({'detail': 'Apenas rascunhos podem ser submetidos.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+        disb.workflow_status = 'SUBMETIDO'
+        disb.submitted_by = request.user
+        disb.submitted_at = timezone.now()
+        disb.save()
+        return Response(DisbursementSerializer(disb, context={'request': request}).data)
+
+    @action(detail=True, methods=['post'], url_path='validate')
+    def validate_disb(self, request, pk=None):
+        """DGP validates a submitted disbursement."""
+        from django.utils import timezone
+        if not (request.user.is_dgp_staff or request.user.role == UserRole.ADMIN):
+            return Response({'detail': 'Sem permissão.'}, status=status.HTTP_403_FORBIDDEN)
+        disb = self.get_object()
+        if disb.workflow_status != 'SUBMETIDO':
+            return Response({'detail': 'Apenas desembolsos submetidos podem ser validados.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+        disb.workflow_status = 'VALIDADO'
+        disb.validated_by = request.user
+        disb.validated_at = timezone.now()
+        disb.save()
+        return Response(DisbursementSerializer(disb, context={'request': request}).data)
+
+    @action(detail=True, methods=['post'], url_path='reject')
+    def reject(self, request, pk=None):
+        """DGP rejects a submitted disbursement."""
+        if not (request.user.is_dgp_staff or request.user.role == UserRole.ADMIN):
+            return Response({'detail': 'Sem permissão.'}, status=status.HTTP_403_FORBIDDEN)
+        disb = self.get_object()
+        if disb.workflow_status != 'SUBMETIDO':
+            return Response({'detail': 'Apenas desembolsos submetidos podem ser rejeitados.'},
+                            status=status.HTTP_400_BAD_REQUEST)
+        disb.workflow_status = 'REJEITADO'
+        disb.rejection_note = request.data.get('rejection_note', '')
+        disb.save()
+        return Response(DisbursementSerializer(disb, context={'request': request}).data)
 
 
 # ---------------------------------------------------------------------------
@@ -946,12 +1010,23 @@ class ExecutionDashboardView(APIView):
     def get(self, request, *args, **kwargs):
         year = request.query_params.get('year')
         period = request.query_params.get('period')
+        user = request.user
 
-        # Base querysets
+        # Ministry filter for agents
+        ministry_filter = Q()
+        if user.role == UserRole.MINISTRY_AGENT and user.ministry:
+            ministry_filter = Q(project__ministry=user.ministry)
+
+        # Base querysets — only VALIDADO disbursements count
         prog_qs = AnnualProgramming.objects.filter(
             project__is_deleted=False, version=1
+        ).filter(ministry_filter if not ministry_filter else Q(project__ministry=user.ministry) if user.role == UserRole.MINISTRY_AGENT and user.ministry else Q())
+        disb_qs = Disbursement.objects.filter(
+            project__is_deleted=False, workflow_status='VALIDADO'
         )
-        disb_qs = Disbursement.objects.filter(project__is_deleted=False)
+        if user.role == UserRole.MINISTRY_AGENT and user.ministry:
+            prog_qs = prog_qs.filter(project__ministry=user.ministry)
+            disb_qs = disb_qs.filter(project__ministry=user.ministry)
 
         if year:
             prog_qs = prog_qs.filter(fiscal_year=int(year))
@@ -972,64 +1047,67 @@ class ExecutionDashboardView(APIView):
         global_rate = round(float(global_disb) / float(global_prog) * 100, 2) if global_prog > 0 else 0
 
         # By ministry
-        ministry_prog = dict(
-            prog_qs.values_list('project__ministry__id').annotate(
-                total=Sum('donations') + Sum('loans') + Sum('state_contribution')
-            ).values_list('project__ministry__id', 'total')
-        )
-        ministry_disb = dict(
-            disb_qs.values('project__ministry__id').annotate(
-                total=Sum('actual_amount')
-            ).values_list('project__ministry__id', 'total')
-        )
+        if user.role == UserRole.MINISTRY_AGENT and user.ministry:
+            ministries = Ministry.objects.filter(id=user.ministry_id)
+        else:
+            ministries = Ministry.objects.all().order_by('name')
 
-        ministries = Ministry.objects.all().order_by('name')
         by_ministry = []
         for m in ministries:
-            prog = float(ministry_prog.get(m.id, 0) or 0)
-            disb = float(ministry_disb.get(m.id, 0) or 0)
-            rate = round(disb / prog * 100, 2) if prog > 0 else 0
-            by_ministry.append({
-                'id': m.id,
-                'name': m.name,
-                'short_name': m.short_name,
-                'programmed': prog,
-                'disbursed': disb,
-                'execution_rate': rate,
-            })
-
-        # Sort by programmed descending
-        by_ministry.sort(key=lambda x: x['programmed'], reverse=True)
-
-        # By year (for chart)
-        by_year = []
-        for yr in [2026, 2027, 2028, 2029, 2030]:
-            yr_prog = prog_qs.filter(fiscal_year=yr).aggregate(
-                total=Coalesce(
-                    Sum('donations') + Sum('loans') + Sum('state_contribution'),
-                    Value(Decimal('0'))
-                )
+            m_prog = prog_qs.filter(project__ministry=m).aggregate(
+                total=Coalesce(Sum('donations') + Sum('loans') + Sum('state_contribution'), Value(Decimal('0')))
             )['total']
-            yr_disb_qs = Disbursement.objects.filter(
-                project__is_deleted=False, fiscal_year=yr
-            )
-            if period:
-                yr_disb_qs = yr_disb_qs.filter(period=period)
-            yr_disb = yr_disb_qs.aggregate(
+            m_disb = disb_qs.filter(project__ministry=m).aggregate(
                 total=Coalesce(Sum('actual_amount'), Value(Decimal('0')))
             )['total']
+            prog = float(m_prog)
+            disb = float(m_disb)
+            rate = round(disb / prog * 100, 2) if prog > 0 else 0
+            by_ministry.append({
+                'id': m.id, 'name': m.name, 'short_name': m.short_name,
+                'programmed': prog, 'disbursed': disb, 'execution_rate': rate,
+            })
+        by_ministry.sort(key=lambda x: x['programmed'], reverse=True)
+
+        # By year
+        by_year = []
+        base_disb = Disbursement.objects.filter(project__is_deleted=False, workflow_status='VALIDADO')
+        if user.role == UserRole.MINISTRY_AGENT and user.ministry:
+            base_disb = base_disb.filter(project__ministry=user.ministry)
+        for yr in [2026, 2027, 2028, 2029, 2030]:
+            yr_prog_qs = prog_qs.filter(fiscal_year=yr) if not year else prog_qs
+            if year and int(year) != yr:
+                by_year.append({'year': yr, 'programmed': 0, 'disbursed': 0, 'rate': 0})
+                continue
+            yr_prog = yr_prog_qs.filter(fiscal_year=yr).aggregate(
+                total=Coalesce(Sum('donations') + Sum('loans') + Sum('state_contribution'), Value(Decimal('0')))
+            )['total']
+            yr_disb_qs = base_disb.filter(fiscal_year=yr)
+            if period:
+                yr_disb_qs = yr_disb_qs.filter(period=period)
+            yr_disb = yr_disb_qs.aggregate(total=Coalesce(Sum('actual_amount'), Value(Decimal('0'))))['total']
             by_year.append({
-                'year': yr,
-                'programmed': float(yr_prog),
-                'disbursed': float(yr_disb),
+                'year': yr, 'programmed': float(yr_prog), 'disbursed': float(yr_disb),
                 'rate': round(float(yr_disb) / float(yr_prog) * 100, 2) if yr_prog > 0 else 0,
             })
+
+        # Pending count for DGP
+        pending_count = 0
+        if user.is_dgp_staff or user.role == UserRole.ADMIN:
+            pending_count = Disbursement.objects.filter(
+                project__is_deleted=False, workflow_status='SUBMETIDO'
+            ).count()
+
+        proj_qs = Project.objects.filter(is_deleted=False)
+        if user.role == UserRole.MINISTRY_AGENT and user.ministry:
+            proj_qs = proj_qs.filter(ministry=user.ministry)
 
         return Response({
             'global_programmed': float(global_prog),
             'global_disbursed': float(global_disb),
             'global_rate': global_rate,
-            'project_count': Project.objects.filter(is_deleted=False).count(),
+            'project_count': proj_qs.count(),
+            'pending_count': pending_count,
             'by_ministry': by_ministry,
             'by_year': by_year,
         })

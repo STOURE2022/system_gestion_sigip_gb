@@ -845,6 +845,11 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
   </div>
 </div>
 
+<!-- Disbursement Detail Modal -->
+<div id="disb-detail-modal" class="modal-overlay" style="display:none" onclick="if(event.target===this)closeDisbDetail()">
+  <div class="modal modal-wide" id="disb-detail-content"></div>
+</div>
+
 <!-- Disbursement Declaration Modal -->
 <div id="disb-modal" class="modal-overlay" style="display:none">
   <div class="modal modal-wide" style="max-width:620px">
@@ -1142,6 +1147,17 @@ const I18N = {
     disb_file: 'Peça justificativa (PDF, imagem)',
     disb_view_file: 'Ver ficheiro',
     disb_reject_reason: 'Motivo da rejeição:',
+    disb_detail_title: 'Detalhe da Despesa',
+    disb_rejection_reason: 'Motivo da Rejeição',
+    disb_rejected_msg: 'Esta despesa foi rejeitada pela DGP. Corrija e resubmeta.',
+    disb_validated_msg: 'Esta despesa foi validada e contabilizada.',
+    disb_submitted_msg: 'Aguardando validação da DGP.',
+    disb_draft_msg: 'Rascunho — submeta para validação.',
+    disb_workflow: 'Histórico',
+    disb_submitted_by: 'Submetido por',
+    disb_submitted_at: 'Data de submissão',
+    disb_validated_by: 'Validado por',
+    disb_validated_at: 'Data de validação',
     btn_save_submit: 'Guardar e Submeter',
     notif_projects_pending: 'projecto(s) aguardam validação da DGP',
     notif_projects_rejected: 'projecto(s) rejeitado(s) — necessitam correcção',
@@ -1352,6 +1368,17 @@ const I18N = {
     disb_file: 'Pièce justificative (PDF, image)',
     disb_view_file: 'Voir fichier',
     disb_reject_reason: 'Motif du rejet :',
+    disb_detail_title: 'Détail de la Dépense',
+    disb_rejection_reason: 'Motif du Rejet',
+    disb_rejected_msg: 'Cette dépense a été rejetée par la DGP. Corrigez et resoumettez.',
+    disb_validated_msg: 'Cette dépense a été validée et comptabilisée.',
+    disb_submitted_msg: 'En attente de validation par la DGP.',
+    disb_draft_msg: 'Brouillon — soumettez pour validation.',
+    disb_workflow: 'Historique',
+    disb_submitted_by: 'Soumis par',
+    disb_submitted_at: 'Date de soumission',
+    disb_validated_by: 'Validé par',
+    disb_validated_at: 'Date de validation',
     btn_save_submit: 'Enregistrer et Soumettre',
     notif_projects_pending: 'projet(s) en attente de validation DGP',
     notif_projects_rejected: 'projet(s) rejeté(s) — nécessitent correction',
@@ -2599,7 +2626,9 @@ function renderExecution(d) {
 }
 
 // ── Declarations table ─────────────────────────────────────
+let DISB_LIST = []; // store for detail lookup
 function renderDeclarations(decls) {
+  DISB_LIST = decls;
   const container = document.getElementById('exec-declarations');
   if (!decls.length) {
     container.innerHTML = `<p style="text-align:center;color:var(--muted);padding:20px;font-size:13px">${T('exec_no_declarations')}</p>`;
@@ -2623,22 +2652,100 @@ function renderDeclarations(decls) {
       const wb = wfBg[d.workflow_status] || '#f5f5f5';
       const canValidate = (isDGP() || isAdmin()) && d.workflow_status === 'SUBMETIDO';
       const canSubmit = d.workflow_status === 'RASCUNHO';
-      return `<tr>
+      return `<tr class="clickable" onclick="openDisbDetail(${d.id})" style="cursor:pointer">
         <td style="text-align:left" title="${esc(d.project_title || '')}">${esc(d.project_code)}</td>
         <td>${d.fiscal_year}</td>
         <td>${esc(d.period_display || d.period)}</td>
         <td>${fmtN(parseFloat(d.actual_amount||0))}</td>
         <td>${d.execution_rate ? d.execution_rate.toFixed(1)+'%' : '—'}</td>
         <td><span class="exec-rate-badge" style="background:${wb};color:${wc}">${esc(d.workflow_status_display || d.workflow_status)}</span></td>
-        <td style="text-align:left">${d.justification_file_url ? `<a href="${d.justification_file_url}" target="_blank" class="hbtn hbtn-ghost" style="color:var(--accent);font-size:10px;padding:3px 8px">&#128196; ${T('disb_view_file')}</a>` : '—'}</td>
-        <td style="white-space:nowrap">
+        <td style="text-align:left">${d.justification_file_url ? `<a href="${d.justification_file_url}" target="_blank" onclick="event.stopPropagation()" class="hbtn hbtn-ghost" style="color:var(--accent);font-size:10px;padding:3px 8px">&#128196; ${T('disb_view_file')}</a>` : '—'}</td>
+        <td style="white-space:nowrap" onclick="event.stopPropagation()">
           ${canSubmit ? `<button class="btn-sm btn-sub" onclick="submitDisb(${d.id})">${T('btn_submit')}</button>` : ''}
           ${canValidate ? `<button class="btn-sm btn-val" onclick="validateDisb(${d.id})">${T('btn_validate')}</button> <button class="btn-sm btn-rej" onclick="rejectDisb(${d.id})">${T('btn_reject')}</button>` : ''}
-          ${d.workflow_status === 'REJEITADO' && d.rejection_note ? `<span style="font-size:10px;color:var(--danger)" title="${esc(d.rejection_note)}">&#9888;</span>` : ''}
+          ${d.workflow_status === 'REJEITADO' ? `<span style="font-size:14px;color:var(--danger)" title="${esc(d.rejection_note || '')}">&#9888;</span>` : ''}
         </td>
       </tr>`;
     }).join('')}</tbody>
   </table>`;
+}
+
+function openDisbDetail(id) {
+  const d = DISB_LIST.find(x => x.id === id);
+  if (!d) return;
+  const wfColors = {RASCUNHO:'#6c757d',SUBMETIDO:'#0d6efd',VALIDADO:'#198754',REJEITADO:'#dc3545'};
+  const wfBg = {RASCUNHO:'#f5f5f5',SUBMETIDO:'#dbeafe',VALIDADO:'#d1fae5',REJEITADO:'#fee2e2'};
+  const wc = wfColors[d.workflow_status] || '#6c757d';
+  const wb = wfBg[d.workflow_status] || '#f5f5f5';
+  const rate = d.execution_rate ? d.execution_rate.toFixed(1) : '0.0';
+  const rateColor = rate >= 75 ? '#065f46' : rate >= 50 ? '#92400e' : '#991b1b';
+  const rateBg = rate >= 75 ? '#d1fae5' : rate >= 50 ? '#fef3c7' : '#fee2e2';
+
+  const html = `
+    <div class="modal-header-bar">
+      <h2>${T('disb_detail_title')}</h2>
+      <button class="modal-close" onclick="closeDisbDetail()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <!-- Status banner -->
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:20px;padding:14px 18px;border-radius:10px;background:${wb}">
+        <span class="exec-rate-badge" style="background:${wc};color:#fff;font-size:13px;padding:6px 16px">${esc(d.workflow_status_display || d.workflow_status)}</span>
+        <span style="font-size:13px;color:${wc};font-weight:600">${d.workflow_status === 'REJEITADO' ? T('disb_rejected_msg') : d.workflow_status === 'VALIDADO' ? T('disb_validated_msg') : d.workflow_status === 'SUBMETIDO' ? T('disb_submitted_msg') : T('disb_draft_msg')}</span>
+      </div>
+
+      ${d.workflow_status === 'REJEITADO' && d.rejection_note ? `
+        <div style="background:#fef2f2;border:1px solid #fca5a5;border-radius:10px;padding:14px 18px;margin-bottom:18px">
+          <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#991b1b;font-weight:700;margin-bottom:6px">${T('disb_rejection_reason')}</div>
+          <div style="font-size:13px;color:#7f1d1d;line-height:1.6">${esc(d.rejection_note)}</div>
+        </div>
+      ` : ''}
+
+      <!-- KPIs -->
+      <div class="detail-kpis" style="margin-bottom:18px">
+        <div class="detail-kpi kpi-total">
+          <div class="dk-label">${T('exec_programmed')}</div>
+          <div class="dk-value">${fmtN(parseFloat(d.programmed_amount||0))} <span class="dk-unit">FCFA</span></div>
+        </div>
+        <div class="detail-kpi kpi-fin">
+          <div class="dk-label">${T('exec_disbursed')}</div>
+          <div class="dk-value">${fmtN(parseFloat(d.actual_amount||0))} <span class="dk-unit">FCFA</span></div>
+        </div>
+        <div class="detail-kpi kpi-ext">
+          <div class="dk-label">${T('exec_rate')}</div>
+          <div class="dk-value"><span class="exec-rate-badge" style="background:${rateBg};color:${rateColor};font-size:16px;padding:6px 14px">${rate}%</span></div>
+        </div>
+      </div>
+
+      <!-- Details grid -->
+      <div class="detail-grid">
+        <div class="detail-section">
+          <h3><span class="sec-icon" style="background:var(--accent)">&#9776;</span> ${T('detail_identification')}</h3>
+          <div class="detail-row"><span class="dlabel">${T('th_code')}</span><span class="dvalue" style="font-family:Consolas,monospace">${esc(d.project_code)}</span></div>
+          <div class="detail-row"><span class="dlabel">${T('th_project')}</span><span class="dvalue">${esc(d.project_title || '')}</span></div>
+          <div class="detail-row"><span class="dlabel">${T('th_ministry')}</span><span class="dvalue">${esc(d.ministry_short || d.ministry_name || '')}</span></div>
+          <div class="detail-row"><span class="dlabel">${T('th_year')}</span><span class="dvalue">${d.fiscal_year}</span></div>
+          <div class="detail-row"><span class="dlabel">${T('exec_period')}</span><span class="dvalue">${esc(d.period_display || d.period)}</span></div>
+          ${d.date ? `<div class="detail-row"><span class="dlabel">${T('field_start_date')}</span><span class="dvalue">${esc(d.date)}</span></div>` : ''}
+        </div>
+        <div class="detail-section">
+          <h3><span class="sec-icon" style="background:var(--gold)">&#9733;</span> ${T('disb_workflow')}</h3>
+          ${d.submitted_by_name ? `<div class="detail-row"><span class="dlabel">${T('disb_submitted_by')}</span><span class="dvalue">${esc(d.submitted_by_name)}</span></div>` : ''}
+          ${d.submitted_at ? `<div class="detail-row"><span class="dlabel">${T('disb_submitted_at')}</span><span class="dvalue">${new Date(d.submitted_at).toLocaleString()}</span></div>` : ''}
+          ${d.validated_by_name ? `<div class="detail-row"><span class="dlabel">${T('disb_validated_by')}</span><span class="dvalue">${esc(d.validated_by_name)}</span></div>` : ''}
+          ${d.validated_at ? `<div class="detail-row"><span class="dlabel">${T('disb_validated_at')}</span><span class="dvalue">${new Date(d.validated_at).toLocaleString()}</span></div>` : ''}
+          ${d.notes ? `<div class="detail-row" style="flex-direction:column;gap:4px"><span class="dlabel">${T('field_description')}</span><span class="dvalue" style="text-align:left;font-weight:400;color:var(--ink2)">${esc(d.notes)}</span></div>` : ''}
+          ${d.justification_file_url ? `<div class="detail-row"><span class="dlabel">${T('disb_justification')}</span><span class="dvalue"><a href="${d.justification_file_url}" target="_blank" class="hbtn hbtn-accent" style="font-size:11px;padding:5px 14px">&#128196; ${T('disb_view_file')}</a></span></div>` : ''}
+        </div>
+      </div>
+    </div>
+  `;
+
+  document.getElementById('disb-detail-content').innerHTML = html;
+  document.getElementById('disb-detail-modal').style.display = '';
+}
+
+function closeDisbDetail() {
+  document.getElementById('disb-detail-modal').style.display = 'none';
 }
 
 // ── Disbursement form ──────────────────────────────────────

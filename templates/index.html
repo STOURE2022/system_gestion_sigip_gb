@@ -214,13 +214,16 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
 .modal{background:#fff;border-radius:14px;padding:40px;width:100%;max-width:380px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
 .modal h2{font-size:20px;font-weight:700;margin-bottom:6px;color:var(--ink)}
 .modal p{font-size:13px;color:var(--muted);margin-bottom:24px}
-.form-group{margin-bottom:16px}
-.form-group label{display:block;font-size:12px;font-weight:600;color:var(--ink2);margin-bottom:6px;text-transform:uppercase;letter-spacing:.5px}
-.form-group input{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:14px;font-family:inherit;transition:.15s}
-.form-group input:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,150,30,.15)}
-.btn-primary{width:100%;padding:12px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
-.btn-primary:hover{background:#0d6560}
-.btn-primary:disabled{opacity:.6;cursor:not-allowed}
+.form-group{margin-bottom:16px;position:relative}
+.form-group label{display:block;font-size:11px;font-weight:700;color:var(--muted);margin-bottom:7px;text-transform:uppercase;letter-spacing:1px}
+.form-group input{width:100%;padding:11px 14px;border:1.5px solid #e2ddd2;border-radius:10px;font-size:13.5px;font-family:inherit;transition:.2s;background:#fafaf8}
+.form-group input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(10,77,74,.1);background:#fff}
+.form-group input:hover{border-color:#c8c2b6}
+.btn-primary{width:100%;padding:12px;background:linear-gradient(135deg,var(--accent),#0d6560);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;transition:.2s;letter-spacing:.3px;box-shadow:0 2px 8px rgba(10,77,74,.2)}
+.btn-primary:hover{background:linear-gradient(135deg,#0d6560,var(--accent));transform:translateY(-1px);box-shadow:0 4px 14px rgba(10,77,74,.3)}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none;box-shadow:none}
+.btn-cancel{padding:10px 22px;border:1.5px solid var(--line);border-radius:10px;background:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;color:var(--ink2);transition:.2s}
+.btn-cancel:hover{background:#f5f3ee;border-color:#c8c2b6}
 .form-error{color:var(--danger);font-size:12px;margin-top:8px;display:none}
 .modal-skip{text-align:center;margin-top:16px;font-size:12px;color:var(--muted)}
 .modal-skip a{color:var(--accent);cursor:pointer;text-decoration:underline}
@@ -243,18 +246,28 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
 .btn-add{background:var(--accent);color:#fff;border:none;padding:9px 18px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:.15s}
 .btn-add:hover{background:#0d6560}
 /* Wide modal */
-.modal-wide{max-width:820px;padding:28px 32px;max-height:92vh;overflow-y:auto}
-.modal-tabs{display:flex;border-bottom:2px solid var(--line);margin-bottom:22px}
-.modal-tab{padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:none;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px;font-family:inherit;transition:.12s}
-.modal-tab.active{color:var(--ink);border-bottom-color:var(--gold)}
+.modal-wide{max-width:860px;padding:0;max-height:92vh;overflow-y:auto;border-radius:16px}
+.modal-header-bar{background:linear-gradient(135deg,var(--ink),var(--ink2));padding:22px 28px;border-radius:16px 16px 0 0;display:flex;justify-content:space-between;align-items:center}
+.modal-header-bar h2{color:#fff;font-size:18px;font-weight:700;letter-spacing:.3px}
+.modal-header-bar .modal-close{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:#fff;width:32px;height:32px;border-radius:8px;font-size:16px;cursor:pointer;display:grid;place-items:center;transition:.15s}
+.modal-header-bar .modal-close:hover{background:rgba(255,255,255,.25)}
+.modal-body{padding:24px 28px}
+.modal-tabs{display:flex;gap:4px;background:#f5f3ee;border-radius:10px;padding:4px;margin-bottom:24px}
+.modal-tab{flex:1;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;border:none;background:none;color:var(--muted);border-radius:8px;font-family:inherit;transition:.2s;text-align:center}
+.modal-tab:hover{color:var(--ink);background:rgba(255,255,255,.5)}
+.modal-tab.active{color:#fff;background:var(--accent);box-shadow:0 2px 8px rgba(10,77,74,.25)}
 .tab-pane{display:none}.tab-pane.active{display:block}
 .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .form-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
 @media(max-width:600px){.form-row,.form-row3{grid-template-columns:1fr}}
-.form-group select,.form-group textarea{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit;background:#fff;transition:.15s;color:var(--ink)}
-.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--gold);box-shadow:0 0 0 3px rgba(200,150,30,.15)}
-.form-group textarea{resize:vertical;min-height:56px}
-.form-group input[type="date"]{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit}
+.form-group select,.form-group textarea{width:100%;padding:11px 14px;border:1.5px solid #e2ddd2;border-radius:10px;font-size:13.5px;font-family:inherit;background:#fafaf8;transition:.2s;color:var(--ink)}
+.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(10,77,74,.1);background:#fff}
+.form-group select:hover,.form-group textarea:hover{border-color:#c8c2b6}
+.form-group textarea{resize:vertical;min-height:70px}
+.form-group input[type="date"]{width:100%;padding:11px 14px;border:1.5px solid #e2ddd2;border-radius:10px;font-size:13px;font-family:inherit;background:#fafaf8;transition:.2s}
+.form-group input[type="date"]:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(10,77,74,.1);background:#fff}
+.form-section-title{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--gold);font-weight:700;margin:20px 0 12px;padding-bottom:8px;border-bottom:1px solid #f0ece3;display:flex;align-items:center;gap:8px}
+.form-section-title .fs-dot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
 /* Programming grid */
 .prog-grid{width:100%;border-collapse:collapse;margin-top:4px;font-size:12.5px}
 .prog-grid th{background:#f4f1ea;padding:8px 10px;font-size:11px;font-weight:700;text-align:center;border:1px solid var(--line);white-space:nowrap}
@@ -571,90 +584,103 @@ tbody tr.clickable:hover{background:#f0ece3;transform:scale(1.002)}
 <!-- Project Form Modal -->
 <div id="project-modal" class="modal-overlay" style="display:none">
   <div class="modal modal-wide">
-    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:18px">
-      <h2 id="project-modal-title" style="font-size:18px;font-weight:700;color:var(--ink)">Novo Projecto</h2>
-      <button onclick="closeProjectModal()" style="background:none;border:none;font-size:20px;cursor:pointer;color:var(--muted);line-height:1">&times;</button>
+    <div class="modal-header-bar">
+      <h2 id="project-modal-title">Novo Projecto</h2>
+      <button class="modal-close" onclick="closeProjectModal()">&times;</button>
     </div>
-    <div class="modal-tabs">
-      <button class="modal-tab active" id="tab-info" onclick="switchTab('info')" data-i18n="tab_info">Identificação</button>
-      <button class="modal-tab" id="tab-prog" onclick="switchTab('prog')" data-i18n="tab_prog_saisie">Programação</button>
-    </div>
-    <!-- Tab 1: Project info -->
-    <div class="tab-pane active" id="pane-info">
-      <div class="form-row" style="margin-bottom:14px">
+    <div class="modal-body">
+      <div class="modal-tabs">
+        <button class="modal-tab active" id="tab-info" onclick="switchTab('info')" data-i18n="tab_info">Identificacao</button>
+        <button class="modal-tab" id="tab-prog" onclick="switchTab('prog')" data-i18n="tab_prog_saisie">Programacao</button>
+      </div>
+      <!-- Tab 1: Project info -->
+      <div class="tab-pane active" id="pane-info">
+        <!-- Identification -->
+        <div class="form-section-title"><span class="fs-dot"></span> <span data-i18n="field_code">Codigo do Projecto</span></div>
         <div class="form-group">
-          <label data-i18n="field_code">Código</label>
-          <input id="f-code" type="text" placeholder="ex: 123456789" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
+          <label data-i18n="field_code">Codigo</label>
+          <input id="f-code" type="text" placeholder="ex: 123456789">
         </div>
         <div class="form-group">
-          <label data-i18n="field_status_exec">Estado de Execução</label>
+          <label data-i18n="field_title">Nome do Projecto</label>
+          <input id="f-title" type="text" placeholder="Nome completo do projecto">
+        </div>
+
+        <!-- Classification -->
+        <div class="form-section-title"><span class="fs-dot" style="background:var(--accent)"></span> <span data-i18n="detail_identification">Classificacao</span></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-i18n="field_ministry">Ministerio</label>
+            <select id="f-ministry"></select>
+          </div>
+          <div class="form-group">
+            <label data-i18n="field_sector">Sector</label>
+            <select id="f-sector"><option value="">--</option></select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label data-i18n="field_financier">Financiador Principal</label>
+          <select id="f-financier"><option value="">--</option></select>
+        </div>
+
+        <!-- Dates -->
+        <div class="form-section-title"><span class="fs-dot" style="background:var(--ext)"></span> <span data-i18n="detail_dates">Periodo</span></div>
+        <div class="form-row">
+          <div class="form-group">
+            <label data-i18n="field_start_date">Data de Inicio</label>
+            <input id="f-start" type="date">
+          </div>
+          <div class="form-group">
+            <label data-i18n="field_end_date">Data de Fim</label>
+            <input id="f-end" type="date">
+          </div>
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+          <label data-i18n="field_description">Descricao</label>
+          <textarea id="f-desc" rows="3" placeholder="Descricao do projecto (opcional)"></textarea>
+        </div>
+
+        <!-- Status -->
+        <div class="form-section-title"><span class="fs-dot" style="background:var(--empr)"></span> <span data-i18n="field_status_exec">Estado de Execucao</span></div>
+        <div class="form-group">
+          <label data-i18n="field_status_exec">Estado</label>
           <select id="f-status">
             <option value="IDENTIFIED">Identificado</option>
-            <option value="IN_PROGRESS">Em Execução</option>
-            <option value="COMPLETED">Concluído</option>
+            <option value="IN_PROGRESS">Em Execucao</option>
+            <option value="COMPLETED">Concluido</option>
             <option value="SUSPENDED">Suspenso</option>
             <option value="CANCELLED">Cancelado</option>
           </select>
         </div>
+        <div id="form-error-info" class="form-error"></div>
       </div>
-      <div class="form-group" style="margin-bottom:14px">
-        <label data-i18n="field_title">Nome do Projecto</label>
-        <input id="f-title" type="text" placeholder="Nome completo do projecto" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
-      </div>
-      <div class="form-row" style="margin-bottom:14px">
-        <div class="form-group">
-          <label data-i18n="field_ministry">Ministério</label>
-          <select id="f-ministry"></select>
+      <!-- Tab 2: Pluriannual programming -->
+      <div class="tab-pane" id="pane-prog">
+        <p style="font-size:12px;color:var(--muted);margin-bottom:14px;line-height:1.6" data-i18n="prog_hint">Insira os montantes anuais em FCFA (minimo 0). O total do projecto sera recalculado automaticamente.</p>
+        <div style="overflow-x:auto">
+          <table class="prog-grid">
+            <thead>
+              <tr>
+                <th data-i18n="th_year">Ano</th>
+                <th data-i18n="legend_donations">Donativos (FCFA)</th>
+                <th data-i18n="legend_loans">Emprestimos (FCFA)</th>
+                <th data-i18n="legend_state">Financ. interno do Estado (FCFA)</th>
+                <th data-i18n="th_year_total">Total Ano</th>
+              </tr>
+            </thead>
+            <tbody id="prog-rows"></tbody>
+          </table>
         </div>
-        <div class="form-group">
-          <label data-i18n="field_sector">Sector</label>
-          <select id="f-sector"><option value="">—</option></select>
-        </div>
+        <div class="prog-total"><span data-i18n="prog_grand_total">Total geral : </span><strong id="prog-grand-total">0</strong> FCFA</div>
+        <div id="form-error-prog" class="form-error"></div>
       </div>
-      <div class="form-group" style="margin-bottom:14px">
-        <label data-i18n="field_financier">Financiador Principal</label>
-        <select id="f-financier"><option value="">—</option></select>
+      <!-- Modal actions -->
+      <div style="display:flex;justify-content:flex-end;gap:12px;margin-top:24px;padding-top:18px;border-top:2px solid #f0ece3">
+        <button class="btn-cancel" onclick="closeProjectModal()" data-i18n="btn_cancel">Cancelar</button>
+        <button id="btn-save-project" onclick="saveProject()" class="btn-primary" style="width:auto;padding:12px 32px" data-i18n="btn_save">Guardar</button>
       </div>
-      <div class="form-row" style="margin-bottom:14px">
-        <div class="form-group">
-          <label data-i18n="field_start_date">Data de Início</label>
-          <input id="f-start" type="date" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
-        </div>
-        <div class="form-group">
-          <label data-i18n="field_end_date">Data de Fim</label>
-          <input id="f-end" type="date" style="width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;font-size:13px;font-family:inherit">
-        </div>
-      </div>
-      <div class="form-group" style="margin-bottom:14px">
-        <label data-i18n="field_description">Descrição</label>
-        <textarea id="f-desc" rows="3" placeholder="Descrição do projecto (opcional)"></textarea>
-      </div>
-      <div id="form-error-info" class="form-error"></div>
-    </div>
-    <!-- Tab 2: Pluriannual programming -->
-    <div class="tab-pane" id="pane-prog">
-      <p style="font-size:12px;color:var(--muted);margin-bottom:14px" data-i18n="prog_hint">Insira os montants anuais em FCFA (mínimo 0). O total do projecto será recalculado automaticamente.</p>
-      <div style="overflow-x:auto">
-        <table class="prog-grid">
-          <thead>
-            <tr>
-              <th data-i18n="th_year">Ano</th>
-              <th data-i18n="legend_donations">Donativos (FCFA)</th>
-              <th data-i18n="legend_loans">Empréstimos (FCFA)</th>
-              <th data-i18n="legend_state">Financ. interno do Estado (FCFA)</th>
-              <th data-i18n="th_year_total">Total Ano</th>
-            </tr>
-          </thead>
-          <tbody id="prog-rows"></tbody>
-        </table>
-      </div>
-      <div class="prog-total"><span data-i18n="prog_grand_total">Total geral : </span><strong id="prog-grand-total">0</strong> FCFA</div>
-      <div id="form-error-prog" class="form-error"></div>
-    </div>
-    <!-- Modal actions -->
-    <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:22px;padding-top:16px;border-top:1px solid var(--line)">
-      <button onclick="closeProjectModal()" style="padding:10px 20px;border:1px solid var(--line);border-radius:8px;background:#fff;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit" data-i18n="btn_cancel">Cancelar</button>
-      <button id="btn-save-project" onclick="saveProject()" class="btn-primary" style="width:auto;padding:10px 24px" data-i18n="btn_save">Guardar</button>
     </div>
   </div>
 </div>

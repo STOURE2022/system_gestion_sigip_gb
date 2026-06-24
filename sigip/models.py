@@ -409,7 +409,7 @@ class AnnualProgramming(models.Model):
         validators=[MinValueValidator(Decimal('0'))]
     )
     state_contribution = models.DecimalField(
-        _("Financement interne d'État (FCFA)"), max_digits=20, decimal_places=2, default=Decimal('0'),
+        _('Financiamento interno do Estado (FCFA)'), max_digits=20, decimal_places=2, default=Decimal('0'),
         validators=[MinValueValidator(Decimal('0'))]
     )
     version = models.IntegerField(_('Versão'), default=1)

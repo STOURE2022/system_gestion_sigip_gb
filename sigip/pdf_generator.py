@@ -55,37 +55,39 @@ def _draw_star(canvas, cx, cy, r, n=5, color=None):
 
 
 def _draw_watermark(canvas, doc):
-    """Draw a faint Guinea-Bissau coat of arms watermark in the center."""
+    """Draw a very faint Guinea-Bissau coat of arms watermark in the center."""
     canvas.saveState()
     w, h = A4
     cx, cy = w / 2, h / 2
 
     # Large faint circle
-    canvas.setFillColor(colors.HexColor('#00000008'))
+    canvas.setFillAlpha(0.04)
+    canvas.setFillColor(colors.HexColor('#333333'))
     canvas.circle(cx, cy, 6 * cm, fill=1, stroke=0)
 
     # Inner circle
-    canvas.setFillColor(colors.HexColor('#00000006'))
+    canvas.setFillAlpha(0.03)
     canvas.circle(cx, cy, 4.5 * cm, fill=1, stroke=0)
 
     # Star (black star of Guinea-Bissau)
-    _draw_star(canvas, cx, cy + 1.2 * cm, 1.8 * cm, 5, colors.HexColor('#00000010'))
+    canvas.setFillAlpha(0.06)
+    _draw_star(canvas, cx, cy + 1.2 * cm, 1.8 * cm, 5, colors.HexColor('#333333'))
 
     # Laurel branches (simplified as two arcs)
-    canvas.setStrokeColor(colors.HexColor('#0000000A'))
-    canvas.setLineWidth(3)
-    # Left branch
+    canvas.setStrokeAlpha(0.05)
+    canvas.setStrokeColor(colors.HexColor('#333333'))
+    canvas.setLineWidth(2.5)
     p = canvas.beginPath()
     p.arc(cx - 4 * cm, cy - 4 * cm, cx - 0.5 * cm, cy + 2 * cm, 30, 120)
     canvas.drawPath(p, fill=0, stroke=1)
-    # Right branch
     p = canvas.beginPath()
     p.arc(cx + 0.5 * cm, cy - 4 * cm, cx + 4 * cm, cy + 2 * cm, 30, 120)
     canvas.drawPath(p, fill=0, stroke=1)
 
-    # Text "REPÚBLICA DA GUINÉ-BISSAU" as very faint arc
+    # Text
+    canvas.setFillAlpha(0.05)
     canvas.setFont('Helvetica-Bold', 7)
-    canvas.setFillColor(colors.HexColor('#00000009'))
+    canvas.setFillColor(colors.HexColor('#333333'))
     canvas.drawCentredString(cx, cy - 3.8 * cm, 'REPÚBLICA DA GUINÉ-BISSAU')
 
     canvas.restoreState()

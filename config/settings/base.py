@@ -59,6 +59,7 @@ MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+    'core.middleware.ForceAdminLanguageMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -297,7 +298,7 @@ JAZZMIN_SETTINGS = {
     "site_logo": None,
     "login_logo": None,
     "site_icon": None,
-    "welcome_sign": "Bienvenue — Système de Gestion du Programme d'Investissement Public",
+    "welcome_sign": "Bem-vindo ao SGPIP — Sistema de Gestão do Programa de Investimento Público",
     "copyright": "DGP — República da Guiné-Bissau",
 
     # Search
@@ -305,14 +306,14 @@ JAZZMIN_SETTINGS = {
 
     # Top menu
     "topmenu_links": [
-        {"name": "← Retour à l'application", "url": "/app/", "new_window": False},
-        {"name": "📥 Import de Dados", "url": "/admin/import-data/", "new_window": False, "icon": "fas fa-file-import"},
+        {"name": "← Voltar à aplicação", "url": "/app/", "new_window": False},
+        {"name": "📥 Importar Dados", "url": "/admin/import-data/", "new_window": False, "icon": "fas fa-file-import"},
         {"model": "core.User"},
     ],
 
     # User menu
     "usermenu_links": [
-        {"name": "← Retour à l'application", "url": "/app/", "new_window": False},
+        {"name": "← Voltar à aplicação", "url": "/app/", "new_window": False},
     ],
 
     # Sidebar

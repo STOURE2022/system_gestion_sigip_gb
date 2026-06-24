@@ -15,9 +15,9 @@ from sigip.resumo_views import (
     ResumoExportView,
 )
 
-admin.site.site_header = 'SGPIP – Administration'
+admin.site.site_header = 'SGPIP – Administração'
 admin.site.site_title = 'SGPIP'
-admin.site.index_title = "Système de Gestion du Programme d'Investissement Public – Guinée-Bissau"
+admin.site.index_title = 'Sistema de Gestão do Programa de Investimento Público – Guiné-Bissau'
 
 urlpatterns = [
     # Admin import (must be before admin/ to avoid being caught by admin)

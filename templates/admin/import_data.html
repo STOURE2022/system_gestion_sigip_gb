@@ -1,24 +1,7 @@
 {% extends "admin/base_site.html" %}
 {% load i18n %}
 
-{% block title %}Import de Dados — SGPIP{% endblock %}
-
-{% block branding %}
-<div id="site-name" style="display:flex;align-items:center;gap:14px">
-  <a href="{% url 'admin:index' %}" style="color:#fff;text-decoration:none;font-size:15px;font-weight:700;letter-spacing:.3px">
-    SGPIP &mdash; Administration
-  </a>
-  <a href="/app/"
-     style="background:rgba(200,150,30,.25);border:1px solid rgba(200,150,30,.6);
-            color:#e8b84b;padding:5px 14px;border-radius:6px;font-size:11px;
-            font-weight:700;text-decoration:none;letter-spacing:.3px;
-            transition:background .15s;white-space:nowrap"
-     onmouseover="this.style.background='rgba(200,150,30,.45)'"
-     onmouseout="this.style.background='rgba(200,150,30,.25)'">
-    &#8592; SGPIP
-  </a>
-</div>
-{% endblock %}
+{% block title %}Importar Dados — SGPIP{% endblock %}
 
 {% block content %}
 <style>
@@ -44,28 +27,28 @@
 </style>
 
 <div class="import-card">
-  <h2>&#128229; Import de Dados</h2>
-  <p>Importer des projets et programmations depuis un fichier CSV, Excel (.xlsx) ou JSON.</p>
+  <h2>&#128229; Importar Dados</h2>
+  <p>Importar projectos e programa&ccedil;&otilde;es a partir de um ficheiro CSV, Excel (.xlsx) ou JSON.</p>
 
   <div class="format-info">
-    <b>Formats accept&eacute;s :</b><br>
-    &bull; <b>Excel PIP officiel</b> (.xlsx) &mdash; format DGP/DPDEP avec feuille &laquo; GLOBAL FINAN&Ccedil;AS &raquo; ou &laquo; PIP 2026_2030 GB &raquo;<br>
-    &bull; <b>CSV / Excel / JSON standardis&eacute;</b> &mdash; colonnes : code, title, ministry, financier, don_2026..2030, emp_2026..2030, state_2026..2030
+    <b>Formatos aceites:</b><br>
+    &bull; <b>Excel PIP oficial</b> (.xlsx) &mdash; formato DGP/DPDEP com folha &laquo; GLOBAL FINAN&Ccedil;AS &raquo; ou &laquo; PIP 2026_2030 GB &raquo;<br>
+    &bull; <b>CSV / Excel / JSON normalizado</b> &mdash; colunas: code, title, ministry, financier, don_2026..2030, emp_2026..2030, state_2026..2030
   </div>
 
   <form method="post" enctype="multipart/form-data" class="import-form" id="import-form">
     {% csrf_token %}
-    <label for="id_file">Fichier &agrave; importer</label>
+    <label for="id_file">Ficheiro a importar</label>
     <input type="file" name="file" id="id_file" accept=".csv,.xlsx,.xls,.json" required>
 
     <div class="options">
-      <label><input type="checkbox" name="dry_run" checked> Simulation (dry-run)</label>
-      <label><input type="checkbox" name="skip_qc"> Ignorer le contr&ocirc;le qualit&eacute;</label>
-      <label><input type="checkbox" name="use_pip_excel"> Format PIP officiel Excel</label>
+      <label><input type="checkbox" name="dry_run" checked> Simula&ccedil;&atilde;o (dry-run)</label>
+      <label><input type="checkbox" name="skip_qc"> Ignorar controlo de qualidade</label>
+      <label><input type="checkbox" name="use_pip_excel"> Formato PIP oficial Excel</label>
     </div>
 
     <button type="submit" class="btn-import" id="btn-import">
-      Lancer l'import
+      Iniciar importa&ccedil;&atilde;o
     </button>
     <span class="spinner" id="spinner"></span>
   </form>
@@ -78,7 +61,7 @@
 <script>
 document.getElementById('import-form').addEventListener('submit', function() {
   document.getElementById('btn-import').disabled = true;
-  document.getElementById('btn-import').textContent = 'Import en cours...';
+  document.getElementById('btn-import').textContent = 'A importar...';
   document.getElementById('spinner').style.display = 'inline-block';
 });
 </script>

@@ -1,8 +1,8 @@
 """
-Middleware de auditoria para SIGIP-GB.
-Regista automaticamente acções de login/logout.
+Middleware de auditoria e linguagem para SGPIP.
 """
 import logging
+from django.utils import translation
 from .models import AuditLog
 
 logger = logging.getLogger(__name__)
@@ -13,6 +13,20 @@ def get_client_ip(request):
     if x_forwarded_for:
         return x_forwarded_for.split(',')[0].strip()
     return request.META.get('REMOTE_ADDR')
+
+
+class ForceAdminLanguageMiddleware:
+    """Force Portuguese for the admin interface, regardless of browser language."""
+
+    def __init__(self, get_response):
+        self.get_response = get_response
+
+    def __call__(self, request):
+        if request.path.startswith('/admin'):
+            translation.activate('pt')
+            request.LANGUAGE_CODE = 'pt'
+        response = self.get_response(request)
+        return response
 
 
 class AuditLogMiddleware:

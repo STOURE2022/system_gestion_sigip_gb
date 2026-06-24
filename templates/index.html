@@ -2656,7 +2656,7 @@ function renderDeclarations(decls) {
       const wc = wfColors[d.workflow_status] || '#6c757d';
       const wb = wfBg[d.workflow_status] || '#f5f5f5';
       const canValidate = (isDGP() || isAdmin()) && d.workflow_status === 'SUBMETIDO';
-      const canSubmit = d.workflow_status === 'RASCUNHO';
+      const canSubmit = d.workflow_status === 'RASCUNHO' || d.workflow_status === 'REJEITADO';
       return `<tr class="clickable" onclick="openDisbDetail(${d.id})" style="cursor:pointer">
         <td style="text-align:left" title="${esc(d.project_title || '')}">${esc(d.project_code)}</td>
         <td>${d.fiscal_year}</td>

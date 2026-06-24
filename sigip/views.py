@@ -741,8 +741,8 @@ class DisbursementViewSet(viewsets.ModelViewSet):
         """Agent submits disbursement to DGP for validation."""
         from django.utils import timezone
         disb = self.get_object()
-        if disb.workflow_status != 'RASCUNHO':
-            return Response({'detail': 'Apenas rascunhos podem ser submetidos.'},
+        if disb.workflow_status not in ('RASCUNHO', 'REJEITADO'):
+            return Response({'detail': 'Apenas rascunhos ou rejeitados podem ser submetidos.'},
                             status=status.HTTP_400_BAD_REQUEST)
         disb.workflow_status = 'SUBMETIDO'
         disb.submitted_by = request.user

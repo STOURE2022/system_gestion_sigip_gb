@@ -314,7 +314,10 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
             'workflow_transition': 'RASCUNHO → SUBMETIDO',
         })
 
-        send_workflow_notification_task.delay(project.pk, 'submit', request.user.pk)
+        try:
+            send_workflow_notification_task.delay(project.pk, 'submit', request.user.pk)
+        except Exception:
+            pass
 
         serializer = ProjectDetailSerializer(project, context={'request': request})
         return Response(serializer.data)
@@ -348,7 +351,10 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
             'workflow_transition': 'SUBMETIDO → VALIDADO',
         })
 
-        send_workflow_notification_task.delay(project.pk, 'validate', request.user.pk)
+        try:
+            send_workflow_notification_task.delay(project.pk, 'validate', request.user.pk)
+        except Exception:
+            pass
 
         serializer = ProjectDetailSerializer(project, context={'request': request})
         return Response(serializer.data)
@@ -387,9 +393,12 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
             'rejection_note': project.rejection_note,
         })
 
-        send_workflow_notification_task.delay(
-            project.pk, 'reject', request.user.pk, project.rejection_note
-        )
+        try:
+            send_workflow_notification_task.delay(
+                project.pk, 'reject', request.user.pk, project.rejection_note
+            )
+        except Exception:
+            pass
 
         serializer_out = ProjectDetailSerializer(project, context={'request': request})
         return Response(serializer_out.data)
@@ -426,9 +435,12 @@ class ProjectViewSet(MinistryFilterMixin, viewsets.ModelViewSet):
             'rejection_note': project.rejection_note,
         })
 
-        send_workflow_notification_task.delay(
-            project.pk, 'unlock', request.user.pk, project.rejection_note
-        )
+        try:
+            send_workflow_notification_task.delay(
+                project.pk, 'unlock', request.user.pk, project.rejection_note
+            )
+        except Exception:
+            pass
 
         serializer_out = ProjectDetailSerializer(project, context={'request': request})
         return Response(serializer_out.data)

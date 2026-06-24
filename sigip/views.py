@@ -746,7 +746,7 @@ class DisbursementViewSet(viewsets.ModelViewSet):
         if instance.workflow_status in ('SUBMETIDO', 'VALIDADO'):
             from rest_framework.exceptions import PermissionDenied
             raise PermissionDenied('Não pode eliminar uma despesa submetida ou validada.')
-        serializer.save()
+        instance.delete()
 
     @action(detail=True, methods=['post'], url_path='submit')
     def submit(self, request, pk=None):

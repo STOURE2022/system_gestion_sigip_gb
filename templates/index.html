@@ -1151,6 +1151,9 @@ const I18N = {
     disb_detail_title: 'Detalhe da Despesa',
     disb_edit_title: 'Editar Despesa',
     disb_delete_confirm: 'Tem a certeza que deseja eliminar esta declaração?',
+    disb_comment: 'Comentário da DGP',
+    disb_comment_placeholder: 'Observação ou motivo (opcional)...',
+    btn_close: 'Fechar',
     disb_rejection_reason: 'Motivo da Rejeição',
     disb_rejected_msg: 'Esta despesa foi rejeitada pela DGP. Corrija e resubmeta.',
     disb_validated_msg: 'Esta despesa foi validada e contabilizada.',
@@ -1374,6 +1377,9 @@ const I18N = {
     disb_detail_title: 'Détail de la Dépense',
     disb_edit_title: 'Modifier la Dépense',
     disb_delete_confirm: 'Êtes-vous sûr de vouloir supprimer cette déclaration ?',
+    disb_comment: 'Commentaire DGP',
+    disb_comment_placeholder: 'Observation ou motif (optionnel)...',
+    btn_close: 'Fermer',
     disb_rejection_reason: 'Motif du Rejet',
     disb_rejected_msg: 'Cette dépense a été rejetée par la DGP. Corrigez et resoumettez.',
     disb_validated_msg: 'Cette dépense a été validée et comptabilisée.',
@@ -2599,9 +2605,8 @@ function renderExecution(d) {
 
   // Year chart
   const byYear = d.by_year || [];
-  const maxY = Math.max(...byYear.map(y => y.programmed), 1);
+  const maxY = Math.max(...byYear.map(y => Math.max(y.programmed, y.disbursed)), 1);
   document.getElementById('exec-year-chart').innerHTML = byYear.map(y => {
-    const maxBar = Math.max(y.programmed, y.disbursed, 1);
     const hProg = Math.max(y.programmed / maxY * 140, 3);
     const hDisb = Math.min(Math.max(y.disbursed / maxY * 140, y.disbursed > 0 ? 3 : 0), 140);
     const rateClass = y.rate > 0 ? '' : 'zero';
@@ -2759,20 +2764,43 @@ function openDisbDetail(id) {
 function _disbDetailActions(d) {
   const canEdit = d.workflow_status === 'RASCUNHO' || d.workflow_status === 'REJEITADO';
   const canValidate = (isDGP() || isAdmin()) && d.workflow_status === 'SUBMETIDO';
-  if (!canEdit && !canValidate) return '';
 
-  let buttons = '';
+  let comment = '';
+  if (canValidate) {
+    comment = `<div style="margin-top:18px">
+      <label style="display:block;font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">${T('disb_comment')}</label>
+      <textarea id="disb-detail-comment" rows="2" placeholder="${T('disb_comment_placeholder')}" style="width:100%;padding:10px 14px;border:1.5px solid #e2ddd2;border-radius:10px;font-size:13px;font-family:inherit;background:#fafaf8;resize:vertical"></textarea>
+    </div>`;
+  }
+
+  let buttons = `<button class="btn-cancel" onclick="closeDisbDetail()">${T('btn_close')}</button>`;
   if (canEdit) {
     buttons += `<button class="btn-cancel" onclick="closeDisbDetail();deleteDisb(${d.id})" style="color:var(--danger);border-color:#fca5a5">&times; ${T('btn_delete')}</button>`;
     buttons += `<button class="hbtn hbtn-ghost" style="color:var(--ink);padding:10px 20px;font-size:13px" onclick="closeDisbDetail();editDisb(${d.id})">${T('btn_edit')}</button>`;
     buttons += `<button class="btn-primary" style="width:auto;padding:10px 24px" onclick="closeDisbDetail();submitDisb(${d.id})">${T('btn_submit')}</button>`;
   }
   if (canValidate) {
-    buttons += `<button class="btn-cancel" style="color:var(--danger);border-color:#fca5a5" onclick="closeDisbDetail();rejectDisb(${d.id})">${T('btn_reject')}</button>`;
-    buttons += `<button class="btn-primary" style="width:auto;padding:10px 24px;background:linear-gradient(135deg,#198754,#157347)" onclick="closeDisbDetail();validateDisb(${d.id})">${T('btn_validate')}</button>`;
+    buttons += `<button class="btn-cancel" style="color:var(--danger);border-color:#fca5a5" onclick="rejectDisbFromDetail(${d.id})">${T('btn_reject')}</button>`;
+    buttons += `<button class="btn-primary" style="width:auto;padding:10px 24px;background:linear-gradient(135deg,#198754,#157347)" onclick="validateDisbFromDetail(${d.id})">${T('btn_validate')}</button>`;
   }
 
-  return `<div style="display:flex;justify-content:flex-end;gap:10px;margin-top:22px;padding-top:18px;border-top:2px solid #f0ece3;flex-wrap:wrap">${buttons}</div>`;
+  return comment + `<div style="display:flex;justify-content:flex-end;gap:10px;margin-top:18px;padding-top:18px;border-top:2px solid #f0ece3;flex-wrap:wrap">${buttons}</div>`;
+}
+
+function validateDisbFromDetail(id) {
+  closeDisbDetail();
+  validateDisb(id);
+}
+
+function rejectDisbFromDetail(id) {
+  const comment = document.getElementById('disb-detail-comment')?.value || '';
+  closeDisbDetail();
+  if (comment) {
+    // Use comment as rejection note directly
+    apiMutate('POST', `/disbursements/${id}/reject/`, {rejection_note: comment}).then(() => loadExecution()).catch(e => alert(e.message));
+  } else {
+    rejectDisb(id);
+  }
 }
 
 function closeDisbDetail() {
